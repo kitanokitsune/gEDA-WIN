@@ -1,0 +1,175 @@
+                                                ToDo
+                                               ------
+Start Date  : 2004-04-05
+Last Update : 2016-10-23
+Author      : Mike Waters
+Email       : mwaters517_AT_gmail_DOT_com
+====================================================================================================
+
+The following list contains "things to do" in the medium to long term for the gSpiceUI project. The
+items are grouped in the following categories :
+
+ 1. Bugs (refer also to src/Version.hpp)
+ 2. Enhancements to Existing Features
+ 3. Improvements to the Code Base
+ 4. Possible New Features
+
+Note : Bug reports are date stamped to highlight the age of the observation.
+
+----------------------------------------------------------------------------------------------------
+
+1. Bugs (refer also to src/Version.hpp) :
+
+ 2016-03-28 When the gSpiceUI GIU is set to it's minimum height and/or width some of the display
+            controls minimum dimensions are exceeded. Might go alway if layout managers where
+            implemented throughout gSpiceUI?
+ 2015-04-17 GNU-Cap DC analysis results headers contain part of the results file name instead of the
+            column labels. This happens when gnucap crashes (eg. it can't load library libgnucap.so).
+ 2015-04-17 If GNU-Cap binary crashes (eg. it can't load library libgnucap.so) gSpiceUI crashes.
+ 2015-04-15 Executing a GNU-Cap FO analysis on demos/bjt-amp-ce-2.sch crashes gSpiceUI. The bug is
+            in PrcGnuCap::bFmtResultsFO( ).
+ 2015-03-30 If at start-up a .ckt file can't be loaded but the associated .sch file exists then
+            import it. This can happen if the .ckt file is deleted between envocations of gSpiceUI.
+            The last accessed .ckt and .sch files are recorded in the config. file (.gspiceui.conf).
+            If the reload button is pressed the schematic file is re-imported.
+ 2015-02-22 Make sure all model files have the appropriate copyright notices.
+ 2015-02-09 Preference to use Degrees or Radian doesn't work for NG-Spice.
+ 2015-01-27 In CmdLinePcr the function CleanCfgFile( ) needs some work. The configuration file
+            should be wipe clean and re-written using the existing configuration settings.
+ 2012-02-10 If gnucap and/or ngspice aren't installed gSpiceUI just hangs.
+ 2011-09-07 Source synchronization isn't quite working in both the NG-Spice and the GNU-Cap DC
+            analyses. Source synchronization begins with a page changed event which is first
+            intercepted by Nbk<SimEng>::OnPageChangd( ) which then allows
+            NbkSimrBase::OnPageChangd( ) to actually handle the event. NbkSimrBase::OnPageChangd( )
+            gets a pointer to a PnlAnaBase object and changes the source name, however events can
+            only propagate down from Pnl<SimEng>DC to PnlAnaBase but not back the other way so
+            Pnl<SimEng>DC never knows about the event. Pnl<SimEng>DC::OnSrcName( ) is where the
+            sweep units type is set so this doesn't happen.
+ 2011-08-26 Still producing "prcbase.log".
+ 2011-05-26 Implement the bSaveSimCmds( ) method in the classes SimnGnuCap and SimnNgSpice.
+ 2011-04-27 NG-Spice doesn't like probes where one of two nodes is ground,
+            eg. ".PRINT TRAN V(Trigger,0)". It complains with the message :
+                  "Warning: can't parse '0': ignored"
+ 2011-04-19 The way the wxProcess class is used is fault prone. wxProcess objects should be created
+            dynamically when a process is to run and deleted soon after the process terminates.
+            PrcBase inherits from wxProcess, it should contain a pointer to wxProcess object as an
+            attribute.
+ 2011-03-23 In the class PrcSimrBase the console spew logging mechanism is clumsy;
+            PrcSimrBase::bSaveOutput( ) does almost the same thing as PrcBase::bLogOutput( ).
+            Shouldn't have a results file should just use the PrcBase log file system.
+ 2011-03-02 The GNU-Cap OP analysis the "Temp" column header is missing in the formatted results.
+            Talk to the GNU-Cap developer/s.
+ 2010-04-29 Resolve issues compiling the code under OSX. How?
+ 2010-04-19 In FrmMain::Initialize( ) if the call to m_oFileTsks.Initialize( ) causes an error
+            message to be displayed FrmMain is only partially initialized and it looks broken.
+            Test Method :
+              1. delete the netlist file named in the config. file under "Files/NetList",
+              2. arrange it so that gnetlist can't be found by gspiceui.
+ 2008-12-12 The function PrcBase::bLogOutput( ) ends early before all console output is collected.
+ 2007-10-25 For NG-Spice simulations if R1 and C1 are connected in parallel and R1 is selected as a
+            test component after a reload operation both R1 and C1 will be highlighted as test
+            components.
+ 2007-07-17 The transient analysis IC option isn't loaded correctly from the simulation file for
+            NG-Spice.
+
+----------------------------------------------------------------------------------------------------
+
+2. Enhancements to Existing Features :
+
+ * Allow .PARAM and other SPICE commands thro. to the simulation file.
+ * The reload button / function could be rendered superfluous before running a simulation the
+   schematic file modification timestamp was compared to the circuit file modification timestamp. If
+   the schematic file is newer then reload it automatically.
+ * After a simulation has completed add the run time in brackets to the status message.
+ * Get NG-Spice to display phase results using radians or degrees. Refer to section 10.5
+   Variables -> "units". The SET command doesn't seem to work in batch mode.
+ * Complete the implementation of layout managers in class PnlAnaBase and it's decendants.
+ * Modify the spin control so that zero appears more often when using the spin buttons
+   ie. decrement / increment through zero before changing the units.
+ * When a gschem process is exited and the schematic file has changed automatically do a reload and
+   maybe re-create the simulation file.
+ * In the simulation file, place simulation commands ahead of models and sub-circuits.
+ * After a simulation has run, if the data viewer utility is open tell it to reload the results
+   file.
+ * Could an existing opamp symbol be used in schematics instead of my symbol in the file
+   opamp-3.sym?
+ * Maybe all Open dialogs should accommodate upper case file extensions as well as lower case.
+ * For AC analysis if results magnitudes are in dB chosen how about displaying Signal Source
+   magnitude in dB.
+ * If user envokes either of the schematic editor or data viewer utilities and it is already running
+   bring it to the foreground instead of displaying an error message dialog.
+ * Use standard component values in PnlValue controls displaying R, L or C.
+ * Automatically add ".MODEL" statements to netlist file if they are missing.
+ * Remove the discontinuity at 360 degrees from the phase results.
+ * Remember the position of Gaw or gWave and place it there when it's envoked.
+ * PnlValue & PnlTxtSpn classes should object if non-numeric chars are entered.
+ * Allow the PnlTxtSpn class to be changed using the up and down arrow keys.
+ * When a netlist created by gSpiceUI is loaded into the NetList text control load it into the
+   Simulation text control as well. If gSpiceUI created the netlist it can be simulated.
+ * The NG-Spice Transient analysis cold initial conditions doesn't work. Will need to implement the
+   IC command to zero all nodes voltages.
+ * In PnlValue class shouldn't be allowed to change value or units if a component name hasn't been
+   chosen.
+ * If gSpiceUI is exited with gschem open, any unsaved changes in the schematic file are lost.
+ * In NG-Spice the variable "numdgt" could be useful for setting displayed precision. Refer to
+   section 10.5 Variables.
+ * While performing a simulation if the gSpiceUI GUI is corrupted it isn't re-drawn until after the
+   simulation is complete. Need wxYield( ) statements in appropriate places to allow the GUI to be
+   updated.
+ * Make analysis panel back-ground a bit darker than control panels.
+
+----------------------------------------------------------------------------------------------------
+
+3. Improvements to the Code Base :
+
+ * In the preferences dialogue add an option indicating what the PnlValue class should do when it's
+   next step could be zero, ie. change sign (eg. (+)ve to (-)ve) or change units (eg. V to mV).
+ * In the preferences dialogue add an option for line wrapping of the console buffers.
+ * Add cloc (Count Lines Of Code) to base Makefile.
+ * In FrmMain layout investigate using one vertical and one horizontal box sizer instead of the more
+   complex grid bag sizer.
+ * In the PnlAnaBase class and it's descendants haven't used a layout manager. Have hard coded
+   control sizes and positions. This is asking for trouble.
+ * Should export as much as possible of FrmMain to App_gSpiceUI. FrmMain should layout the main
+   frame and handle interrupts. App_gSpiceUI should manage all the processing tasks. Could some of
+   the interrupts be hand-balled to App_gSpiceUI?
+ * Abbreviate names containing NgSpice & GnuCap to NgSp & GCap respectively.
+ * Investigate replacing parts of PnlTxtSpn with wxSpinCtrlDouble. Create a test app. perhaps.
+ * Create a class for circuit description models.
+ * Create a class for circuit description sub-circuits.
+ * There are 3 types of source which may be used : a sweep source a signal source and an independant
+   source. Ensure that this distinction is clearly made in the code and the GUI.
+ * PnlValue class can be set to eg. 0.10 psec by the user but not programmatically, ie. using
+   bSetValue( ).
+ * In FrmMain the run simulation mechanism is evil. It needs a major overhaul. The Stop button
+   doesn't work because the app. stays in the OnSimRun( ) event handler while the simulation runs so
+   no other events are handled until this is exited.
+
+----------------------------------------------------------------------------------------------------
+
+4. Possible New Features :
+
+ * Add a mechanism to create a new schematic or netlist file so gSpiceUI can be used as an interface
+   to gschem in all situations. Don't ever need to start gschem separately if preferred.
+ * Provide support for SPICE OPUS.
+ * Fully support non-English locales using gettext( ), etc.
+ * Add help items for the documentation for NG-Spice and GNU-Cap.
+ * Add application paths to the Preferences dialogue :
+    - NG-Spice & GNU-Cap binaries (and documentation for same)
+    - gschem & gnetlist
+    - Gwave & Gaw
+    - calculator utility
+   Show which utilities have or haven't been found automatically.
+ * Do 'include' directives need to be expanded by gnetlist? Simulation engine could be left to do
+   this.
+ * Add a tool bar button for the calculator utility.
+ * Implement Fourier analysis panel for NG-Spice.
+ * When a simulation ends prematurely because of problems encountered by the simulation engine,
+   notify the user that this has happened. Need a mechanism to determining if the end of the sweep
+   range was actually been reached.
+ * Add a mechanism for envoking a calculator which the user may nominate in the preferences dialog
+   (the best one I've found so far is galculator).
+ * Develop a mechanism by which the user may set the initial conditions for the transient analysis.
+ * Investigate using the simulation engine PLOT command to display results.
+
+====================================================================================================

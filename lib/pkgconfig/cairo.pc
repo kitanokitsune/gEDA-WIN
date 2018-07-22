@@ -1,0 +1,13 @@
+prefix=/home/dj/nightly-geda/build/result
+exec_prefix=${prefix}
+libdir=${exec_prefix}/lib
+includedir=${prefix}/include
+
+Name: cairo
+Description: Multi-platform 2D graphics library
+Version: 1.10.2
+
+Requires.private:  gobject-2.0 glib-2.0   pixman-1 >= 0.18.4    freetype2 >= 9.7.3  libpng   
+Libs: -L${libdir} -lcairo
+Libs.private:       -lz -lz     
+Cflags: -I${includedir}/cairo

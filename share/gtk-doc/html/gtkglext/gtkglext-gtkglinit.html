@@ -1,0 +1,211 @@
+<html>
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=US-ASCII">
+<title>Initialization</title>
+<meta name="generator" content="DocBook XSL Stylesheets V1.65.1">
+<link rel="home" href="index.html" title="GtkGLExt Reference Manual">
+<link rel="up" href="GtkGLExt-API.html" title="Part&#160;III.&#160;GtkGLExt API Reference">
+<link rel="previous" href="GtkGLExt-API.html" title="Part&#160;III.&#160;GtkGLExt API Reference">
+<link rel="next" href="gtkglext-gtkglwidget.html" title="OpenGL-Capable Widget">
+<meta name="generator" content="GTK-Doc V1.4 (XML mode)">
+<link rel="stylesheet" href="style.css" type="text/css">
+<link rel="part" href="Overview.html" title="Part&#160;I.&#160;GtkGLExt Overview">
+<link rel="part" href="GdkGLExt-API.html" title="Part&#160;II.&#160;GdkGLExt API Reference">
+<link rel="part" href="GtkGLExt-API.html" title="Part&#160;III.&#160;GtkGLExt API Reference">
+</head>
+<body bgcolor="white" text="black" link="#0000FF" vlink="#840084" alink="#0000FF">
+<table class="navigation" width="100%" summary="Navigation header" cellpadding="2" cellspacing="2"><tr valign="middle">
+<td><a accesskey="p" href="GtkGLExt-API.html"><img src="left.png" width="24" height="24" border="0" alt="Prev"></a></td>
+<td><a accesskey="u" href="GtkGLExt-API.html"><img src="up.png" width="24" height="24" border="0" alt="Up"></a></td>
+<td><a accesskey="h" href="index.html"><img src="home.png" width="24" height="24" border="0" alt="Home"></a></td>
+<th width="100%" align="center">GtkGLExt Reference Manual</th>
+<td><a accesskey="n" href="gtkglext-gtkglwidget.html"><img src="right.png" width="24" height="24" border="0" alt="Next"></a></td>
+</tr></table>
+<div class="refentry" lang="en">
+<a name="gtkglext-gtkglinit"></a><div class="titlepage">
+<div></div>
+<div></div>
+</div>
+<div class="refnamediv"><table width="100%"><tr>
+<td valign="top">
+<h2><span class="refentrytitle">Initialization</span></h2>
+<p>Initialization &#8212; Library initialization functions</p>
+</td>
+<td valign="top" align="right"></td>
+</tr></table></div>
+<div class="refsynopsisdiv">
+<h2>Synopsis</h2>
+<pre class="synopsis">
+
+#include &lt;gtk/gtkgl.h&gt;
+
+
+void        <a href="gtkglext-gtkglinit.html#gtk-gl-init">gtk_gl_init</a>                     (int *argc,
+                                             char ***argv);
+<a
+href="/usr/share/gtk-doc/html/glib/glib-Basic-Types.html#gboolean"
+>gboolean</a>    <a href="gtkglext-gtkglinit.html#gtk-gl-init-check">gtk_gl_init_check</a>               (int *argc,
+                                             char ***argv);
+<a
+href="/usr/share/gtk-doc/html/glib/glib-Basic-Types.html#gboolean"
+>gboolean</a>    <a href="gtkglext-gtkglinit.html#gtk-gl-parse-args">gtk_gl_parse_args</a>               (int *argc,
+                                             char ***argv);
+</pre>
+</div>
+<div class="refsect1" lang="en">
+<a name="id2524828"></a><h2>Description</h2>
+<p>
+
+</p>
+</div>
+<div class="refsect1" lang="en">
+<a name="id2524838"></a><h2>Details</h2>
+<div class="refsect2" lang="en">
+<a name="id2524844"></a><h3>
+<a name="gtk-gl-init"></a>gtk_gl_init ()</h3>
+<a class="indexterm" name="id2524854"></a><pre class="programlisting">void        gtk_gl_init                     (int *argc,
+                                             char ***argv);</pre>
+<p>
+Call this function before using any other GtkGLExt functions in your 
+applications.  It will initialize everything needed to operate the library
+and parses some standard command line options. <i class="parameter"><tt>argc</tt></i> and 
+<i class="parameter"><tt>argv</tt></i> are adjusted accordingly so your own code will 
+never see those standard arguments.
+</p>
+<p>
+</p>
+<div class="note" style="margin-left: 0.5in; margin-right: 0.5in;">
+<h3 class="title">Note</h3>
+<p>
+This function will terminate your program if it was unable to initialize 
+the library for some reason. If you want your program to fall back to a 
+textual interface you want to call <a href="gtkglext-gtkglinit.html#gtk-gl-init-check"><tt class="function">gtk_gl_init_check()</tt></a> instead.
+</p>
+</div>
+<p>
+
+</p>
+<div class="variablelist"><table border="0">
+<col align="left" valign="top">
+<tbody>
+<tr>
+<td>
+<span class="term"><i class="parameter"><tt>argc</tt></i>&#160;:</span></td>
+<td> Address of the <i class="parameter"><tt>argc</tt></i> parameter of your 
+       <tt class="function"><tt class="function">main()</tt></tt> function. Changed if any arguments
+       were handled.
+</td>
+</tr>
+<tr>
+<td>
+<span class="term"><i class="parameter"><tt>argv</tt></i>&#160;:</span></td>
+<td> Address of the <i class="parameter"><tt>argv</tt></i> parameter of 
+       <tt class="function"><tt class="function">main()</tt></tt>. Any parameters understood by
+       <a href="gtkglext-gtkglinit.html#gtk-gl-init"><tt class="function">gtk_gl_init()</tt></a> are stripped before return.
+</td>
+</tr>
+</tbody>
+</table></div>
+</div>
+<hr>
+<div class="refsect2" lang="en">
+<a name="id2525015"></a><h3>
+<a name="gtk-gl-init-check"></a>gtk_gl_init_check ()</h3>
+<a class="indexterm" name="id2525026"></a><pre class="programlisting"><a
+href="/usr/share/gtk-doc/html/glib/glib-Basic-Types.html#gboolean"
+>gboolean</a>    gtk_gl_init_check               (int *argc,
+                                             char ***argv);</pre>
+<p>
+This function does the same work as <a href="gtkglext-gtkglinit.html#gtk-gl-init"><tt class="function">gtk_gl_init()</tt></a> with only 
+a single change: It does not terminate the program if the library can't be 
+initialized. Instead it returns <tt class="literal">FALSE</tt> on failure.
+</p>
+<p>
+This way the application can fall back to some other means of communication 
+with the user - for example a curses or command line interface.</p>
+<p>
+
+</p>
+<div class="variablelist"><table border="0">
+<col align="left" valign="top">
+<tbody>
+<tr>
+<td>
+<span class="term"><i class="parameter"><tt>argc</tt></i>&#160;:</span></td>
+<td> Address of the <i class="parameter"><tt>argc</tt></i> parameter of your 
+       <tt class="function"><tt class="function">main()</tt></tt> function. Changed if any arguments
+       were handled.
+</td>
+</tr>
+<tr>
+<td>
+<span class="term"><i class="parameter"><tt>argv</tt></i>&#160;:</span></td>
+<td> Address of the <i class="parameter"><tt>argv</tt></i> parameter of 
+       <tt class="function"><tt class="function">main()</tt></tt>. Any parameters understood by
+       <a href="gtkglext-gtkglinit.html#gtk-gl-init"><tt class="function">gtk_gl_init()</tt></a> are stripped before return.
+</td>
+</tr>
+<tr>
+<td>
+<span class="term"><span class="emphasis"><em>Returns</em></span>&#160;:</span></td>
+<td> <tt class="literal">TRUE</tt> if the GUI has been successfully initialized, 
+              <tt class="literal">FALSE</tt> otherwise.
+</td>
+</tr>
+</tbody>
+</table></div>
+</div>
+<hr>
+<div class="refsect2" lang="en">
+<a name="id2525196"></a><h3>
+<a name="gtk-gl-parse-args"></a>gtk_gl_parse_args ()</h3>
+<a class="indexterm" name="id2525207"></a><pre class="programlisting"><a
+href="/usr/share/gtk-doc/html/glib/glib-Basic-Types.html#gboolean"
+>gboolean</a>    gtk_gl_parse_args               (int *argc,
+                                             char ***argv);</pre>
+<p>
+Parses command line arguments, and initializes global
+attributes of GtkGLExt.
+</p>
+<p>
+Any arguments used by GtkGLExt are removed from the array and
+<i class="parameter"><tt>argc</tt></i> and <i class="parameter"><tt>argv</tt></i> are updated accordingly.
+</p>
+<p>
+You shouldn't call this function explicitely if you are using
+<a href="gtkglext-gtkglinit.html#gtk-gl-init"><tt class="function">gtk_gl_init()</tt></a>, or <a href="gtkglext-gtkglinit.html#gtk-gl-init-check"><tt class="function">gtk_gl_init_check()</tt></a>.</p>
+<p>
+
+</p>
+<div class="variablelist"><table border="0">
+<col align="left" valign="top">
+<tbody>
+<tr>
+<td>
+<span class="term"><i class="parameter"><tt>argc</tt></i>&#160;:</span></td>
+<td> the number of command line arguments.
+</td>
+</tr>
+<tr>
+<td>
+<span class="term"><i class="parameter"><tt>argv</tt></i>&#160;:</span></td>
+<td> the array of command line arguments.
+</td>
+</tr>
+<tr>
+<td>
+<span class="term"><span class="emphasis"><em>Returns</em></span>&#160;:</span></td>
+<td> <tt class="literal">TRUE</tt> if initialization succeeded, otherwise <tt class="literal">FALSE</tt>.
+</td>
+</tr>
+</tbody>
+</table></div>
+</div>
+</div>
+</div>
+<table class="navigation" width="100%" summary="Navigation footer" cellpadding="2" cellspacing="0"><tr valign="middle">
+<td align="left"><a accesskey="p" href="GtkGLExt-API.html"><b>&lt;&lt;&#160;Part&#160;III.&#160;GtkGLExt API Reference</b></a></td>
+<td align="right"><a accesskey="n" href="gtkglext-gtkglwidget.html"><b>OpenGL-Capable Widget&#160;&gt;&gt;</b></a></td>
+</tr></table>
+</body>
+</html>

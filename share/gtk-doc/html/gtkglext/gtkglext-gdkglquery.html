@@ -1,0 +1,319 @@
+<html>
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=US-ASCII">
+<title>Query</title>
+<meta name="generator" content="DocBook XSL Stylesheets V1.65.1">
+<link rel="home" href="index.html" title="GtkGLExt Reference Manual">
+<link rel="up" href="GdkGLExt-API.html" title="Part&#160;II.&#160;GdkGLExt API Reference">
+<link rel="previous" href="gtkglext-gdkglinit.html" title="Initialization">
+<link rel="next" href="gtkglext-gdkglconfig.html" title="Frame Buffer Configuration">
+<meta name="generator" content="GTK-Doc V1.4 (XML mode)">
+<link rel="stylesheet" href="style.css" type="text/css">
+<link rel="part" href="Overview.html" title="Part&#160;I.&#160;GtkGLExt Overview">
+<link rel="part" href="GdkGLExt-API.html" title="Part&#160;II.&#160;GdkGLExt API Reference">
+<link rel="part" href="GtkGLExt-API.html" title="Part&#160;III.&#160;GtkGLExt API Reference">
+</head>
+<body bgcolor="white" text="black" link="#0000FF" vlink="#840084" alink="#0000FF">
+<table class="navigation" width="100%" summary="Navigation header" cellpadding="2" cellspacing="2"><tr valign="middle">
+<td><a accesskey="p" href="gtkglext-gdkglinit.html"><img src="left.png" width="24" height="24" border="0" alt="Prev"></a></td>
+<td><a accesskey="u" href="GdkGLExt-API.html"><img src="up.png" width="24" height="24" border="0" alt="Up"></a></td>
+<td><a accesskey="h" href="index.html"><img src="home.png" width="24" height="24" border="0" alt="Home"></a></td>
+<th width="100%" align="center">GtkGLExt Reference Manual</th>
+<td><a accesskey="n" href="gtkglext-gdkglconfig.html"><img src="right.png" width="24" height="24" border="0" alt="Next"></a></td>
+</tr></table>
+<div class="refentry" lang="en">
+<a name="gtkglext-gdkglquery"></a><div class="titlepage">
+<div></div>
+<div></div>
+</div>
+<div class="refnamediv"><table width="100%"><tr>
+<td valign="top">
+<h2><span class="refentrytitle">Query</span></h2>
+<p>Query &#8212; Functions to query OpenGL support information</p>
+</td>
+<td valign="top" align="right"></td>
+</tr></table></div>
+<div class="refsynopsisdiv">
+<h2>Synopsis</h2>
+<pre class="synopsis">
+
+#include &lt;gdk/gdkgl.h&gt;
+
+
+void        (<a href="gtkglext-gdkglquery.html#GdkGLProc">*GdkGLProc</a>)                    (void);
+<a
+href="/usr/share/gtk-doc/html/glib/glib-Basic-Types.html#gboolean"
+>gboolean</a>    <a href="gtkglext-gdkglquery.html#gdk-gl-query-extension">gdk_gl_query_extension</a>          (void);
+<a
+href="/usr/share/gtk-doc/html/glib/glib-Basic-Types.html#gboolean"
+>gboolean</a>    <a href="gtkglext-gdkglquery.html#gdk-gl-query-extension-for-display">gdk_gl_query_extension_for_display</a>
+                                            (<a
+href="/usr/share/gtk-doc/html/gdk/GdkDisplay.html"
+>GdkDisplay</a> *display);
+<a
+href="/usr/share/gtk-doc/html/glib/glib-Basic-Types.html#gboolean"
+>gboolean</a>    <a href="gtkglext-gdkglquery.html#gdk-gl-query-version">gdk_gl_query_version</a>            (int *major,
+                                             int *minor);
+<a
+href="/usr/share/gtk-doc/html/glib/glib-Basic-Types.html#gboolean"
+>gboolean</a>    <a href="gtkglext-gdkglquery.html#gdk-gl-query-version-for-display">gdk_gl_query_version_for_display</a>
+                                            (<a
+href="/usr/share/gtk-doc/html/gdk/GdkDisplay.html"
+>GdkDisplay</a> *display,
+                                             int *major,
+                                             int *minor);
+<a
+href="/usr/share/gtk-doc/html/glib/glib-Basic-Types.html#gboolean"
+>gboolean</a>    <a href="gtkglext-gdkglquery.html#gdk-gl-query-gl-extension">gdk_gl_query_gl_extension</a>       (const char *extension);
+<a href="gtkglext-gdkglquery.html#GdkGLProc">GdkGLProc</a>   <a href="gtkglext-gdkglquery.html#gdk-gl-get-proc-address">gdk_gl_get_proc_address</a>         (const char *proc_name);
+</pre>
+</div>
+<div class="refsect1" lang="en">
+<a name="id2499227"></a><h2>Description</h2>
+<p>
+
+</p>
+</div>
+<div class="refsect1" lang="en">
+<a name="id2499237"></a><h2>Details</h2>
+<div class="refsect2" lang="en">
+<a name="id2499243"></a><h3>
+<a name="GdkGLProc"></a>GdkGLProc ()</h3>
+<a class="indexterm" name="id2499253"></a><pre class="programlisting">void        (*GdkGLProc)                    (void);</pre>
+<p>
+
+</p>
+</div>
+<hr>
+<div class="refsect2" lang="en">
+<a name="id2499274"></a><h3>
+<a name="gdk-gl-query-extension"></a>gdk_gl_query_extension ()</h3>
+<a class="indexterm" name="id2499284"></a><pre class="programlisting"><a
+href="/usr/share/gtk-doc/html/glib/glib-Basic-Types.html#gboolean"
+>gboolean</a>    gdk_gl_query_extension          (void);</pre>
+<p>
+Indicates whether the window system supports the OpenGL extension
+(GLX, WGL, etc.).</p>
+<p>
+
+</p>
+<div class="variablelist"><table border="0">
+<col align="left" valign="top">
+<tbody><tr>
+<td>
+<span class="term"><span class="emphasis"><em>Returns</em></span>&#160;:</span></td>
+<td> TRUE if OpenGL is supported, FALSE otherwise.
+</td>
+</tr></tbody>
+</table></div>
+</div>
+<hr>
+<div class="refsect2" lang="en">
+<a name="id2499326"></a><h3>
+<a name="gdk-gl-query-extension-for-display"></a>gdk_gl_query_extension_for_display ()</h3>
+<a class="indexterm" name="id2499337"></a><pre class="programlisting"><a
+href="/usr/share/gtk-doc/html/glib/glib-Basic-Types.html#gboolean"
+>gboolean</a>    gdk_gl_query_extension_for_display
+                                            (<a
+href="/usr/share/gtk-doc/html/gdk/GdkDisplay.html"
+>GdkDisplay</a> *display);</pre>
+<p>
+Indicates whether the window system supports the OpenGL extension
+(GLX, WGL, etc.).</p>
+<p>
+
+</p>
+<div class="variablelist"><table border="0">
+<col align="left" valign="top">
+<tbody>
+<tr>
+<td>
+<span class="term"><i class="parameter"><tt>display</tt></i>&#160;:</span></td>
+<td> the <a
+href="/usr/share/gtk-doc/html/gdk/GdkDisplay.html"
+><span class="type">GdkDisplay</span></a> where the query is sent to.
+</td>
+</tr>
+<tr>
+<td>
+<span class="term"><span class="emphasis"><em>Returns</em></span>&#160;:</span></td>
+<td> TRUE if OpenGL is supported, FALSE otherwise.
+</td>
+</tr>
+</tbody>
+</table></div>
+</div>
+<hr>
+<div class="refsect2" lang="en">
+<a name="id2499408"></a><h3>
+<a name="gdk-gl-query-version"></a>gdk_gl_query_version ()</h3>
+<a class="indexterm" name="id2499419"></a><pre class="programlisting"><a
+href="/usr/share/gtk-doc/html/glib/glib-Basic-Types.html#gboolean"
+>gboolean</a>    gdk_gl_query_version            (int *major,
+                                             int *minor);</pre>
+<p>
+Returns the version numbers of the OpenGL extension to the window system.
+</p>
+<p>
+In the X Window System, it returns the GLX version.
+</p>
+<p>
+In the Microsoft Windows, it returns the Windows version.</p>
+<p>
+
+</p>
+<div class="variablelist"><table border="0">
+<col align="left" valign="top">
+<tbody>
+<tr>
+<td>
+<span class="term"><i class="parameter"><tt>major</tt></i>&#160;:</span></td>
+<td> returns the major version number of the OpenGL extension.
+</td>
+</tr>
+<tr>
+<td>
+<span class="term"><i class="parameter"><tt>minor</tt></i>&#160;:</span></td>
+<td> returns the minor version number of the OpenGL extension.
+</td>
+</tr>
+<tr>
+<td>
+<span class="term"><span class="emphasis"><em>Returns</em></span>&#160;:</span></td>
+<td> FALSE if it fails, TRUE otherwise.
+</td>
+</tr>
+</tbody>
+</table></div>
+</div>
+<hr>
+<div class="refsect2" lang="en">
+<a name="id2499511"></a><h3>
+<a name="gdk-gl-query-version-for-display"></a>gdk_gl_query_version_for_display ()</h3>
+<a class="indexterm" name="id2499522"></a><pre class="programlisting"><a
+href="/usr/share/gtk-doc/html/glib/glib-Basic-Types.html#gboolean"
+>gboolean</a>    gdk_gl_query_version_for_display
+                                            (<a
+href="/usr/share/gtk-doc/html/gdk/GdkDisplay.html"
+>GdkDisplay</a> *display,
+                                             int *major,
+                                             int *minor);</pre>
+<p>
+Returns the version numbers of the OpenGL extension to the window system.
+</p>
+<p>
+In the X Window System, it returns the GLX version.
+</p>
+<p>
+In the Microsoft Windows, it returns the Windows version.</p>
+<p>
+
+</p>
+<div class="variablelist"><table border="0">
+<col align="left" valign="top">
+<tbody>
+<tr>
+<td>
+<span class="term"><i class="parameter"><tt>display</tt></i>&#160;:</span></td>
+<td> the <a
+href="/usr/share/gtk-doc/html/gdk/GdkDisplay.html"
+><span class="type">GdkDisplay</span></a> where the query is sent to.
+</td>
+</tr>
+<tr>
+<td>
+<span class="term"><i class="parameter"><tt>major</tt></i>&#160;:</span></td>
+<td> returns the major version number of the OpenGL extension.
+</td>
+</tr>
+<tr>
+<td>
+<span class="term"><i class="parameter"><tt>minor</tt></i>&#160;:</span></td>
+<td> returns the minor version number of the OpenGL extension.
+</td>
+</tr>
+<tr>
+<td>
+<span class="term"><span class="emphasis"><em>Returns</em></span>&#160;:</span></td>
+<td> FALSE if it fails, TRUE otherwise.
+</td>
+</tr>
+</tbody>
+</table></div>
+</div>
+<hr>
+<div class="refsect2" lang="en">
+<a name="id2499645"></a><h3>
+<a name="gdk-gl-query-gl-extension"></a>gdk_gl_query_gl_extension ()</h3>
+<a class="indexterm" name="id2499656"></a><pre class="programlisting"><a
+href="/usr/share/gtk-doc/html/glib/glib-Basic-Types.html#gboolean"
+>gboolean</a>    gdk_gl_query_gl_extension       (const char *extension);</pre>
+<p>
+Determines whether a given OpenGL extension is supported.
+</p>
+<p>
+There must be a valid current rendering context to call
+<a href="gtkglext-gdkglquery.html#gdk-gl-query-gl-extension"><tt class="function">gdk_gl_query_gl_extension()</tt></a>.
+</p>
+<p>
+<a href="gtkglext-gdkglquery.html#gdk-gl-query-gl-extension"><tt class="function">gdk_gl_query_gl_extension()</tt></a> returns information about OpenGL extensions
+only. This means that window system dependent extensions (for example,
+GLX extensions) are not reported by <a href="gtkglext-gdkglquery.html#gdk-gl-query-gl-extension"><tt class="function">gdk_gl_query_gl_extension()</tt></a>.</p>
+<p>
+
+</p>
+<div class="variablelist"><table border="0">
+<col align="left" valign="top">
+<tbody>
+<tr>
+<td>
+<span class="term"><i class="parameter"><tt>extension</tt></i>&#160;:</span></td>
+<td> name of OpenGL extension.
+</td>
+</tr>
+<tr>
+<td>
+<span class="term"><span class="emphasis"><em>Returns</em></span>&#160;:</span></td>
+<td> TRUE if the OpenGL extension is supported, FALSE if not 
+              supported.
+</td>
+</tr>
+</tbody>
+</table></div>
+</div>
+<hr>
+<div class="refsect2" lang="en">
+<a name="id2499760"></a><h3>
+<a name="gdk-gl-get-proc-address"></a>gdk_gl_get_proc_address ()</h3>
+<a class="indexterm" name="id2499772"></a><pre class="programlisting"><a href="gtkglext-gdkglquery.html#GdkGLProc">GdkGLProc</a>   gdk_gl_get_proc_address         (const char *proc_name);</pre>
+<p>
+Returns the address of the OpenGL, GLU, or GLX function.</p>
+<p>
+
+</p>
+<div class="variablelist"><table border="0">
+<col align="left" valign="top">
+<tbody>
+<tr>
+<td>
+<span class="term"><i class="parameter"><tt>proc_name</tt></i>&#160;:</span></td>
+<td> function name.
+</td>
+</tr>
+<tr>
+<td>
+<span class="term"><span class="emphasis"><em>Returns</em></span>&#160;:</span></td>
+<td> the address of the function named by <i class="parameter"><tt>proc_name</tt></i>.
+</td>
+</tr>
+</tbody>
+</table></div>
+</div>
+</div>
+</div>
+<table class="navigation" width="100%" summary="Navigation footer" cellpadding="2" cellspacing="0"><tr valign="middle">
+<td align="left"><a accesskey="p" href="gtkglext-gdkglinit.html"><b>&lt;&lt;&#160;Initialization</b></a></td>
+<td align="right"><a accesskey="n" href="gtkglext-gdkglconfig.html"><b>Frame Buffer Configuration&#160;&gt;&gt;</b></a></td>
+</tr></table>
+</body>
+</html>

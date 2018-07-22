@@ -1,0 +1,359 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN"
+ "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html>
+<head>
+  <title></title>
+  <link rel="stylesheet" media="screen" type="text/css" href="./style.css" />
+  <link rel="stylesheet" media="screen" type="text/css" href="./design.css" />
+  <link rel="stylesheet" media="print" type="text/css" href="./print.css" />
+
+  <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+</head>
+<body>
+
+
+<h1 class="sectionedit2036"><a name="part_manager_installation" id="part_manager_installation">Part Manager Installation</a></h1>
+<div class="level1">
+
+<p>
+The parts manager is in development. All required functionality is not implemented.
+</p>
+
+</div>
+<!-- EDIT2036 SECTION "Part Manager Installation" [1-127] -->
+<h2 class="sectionedit2037"><a name="requirements" id="requirements">Requirements</a></h2>
+<div class="level2">
+
+<p>
+Building and using the part manager requires the following packages:
+</p>
+<div class="table sectionedit2038"><table class="inline">
+	<tr class="row0">
+		<th class="col0 leftalign"> PackageName   </th><th class="col1 leftalign"> Description                                             </th><th class="col2 leftalign"> Use      </th>
+	</tr>
+	<tr class="row1">
+		<td class="col0 leftalign"> autoconf      </td><td class="col1 leftalign"> automatic configure script builder                      </td><td class="col2"> Required </td>
+	</tr>
+	<tr class="row2">
+		<td class="col0 leftalign"> automake      </td><td class="col1"> A tool for generating GNU Standards-compliant Makefiles </td><td class="col2"> Required </td>
+	</tr>
+	<tr class="row3">
+		<td class="col0 leftalign"> gcc           </td><td class="col1 leftalign"> The GNU C compiler                                      </td><td class="col2"> Required </td>
+	</tr>
+	<tr class="row4">
+		<td class="col0 leftalign"> geda          </td><td class="col1 leftalign"> <acronym title="GNU General Public License">GPL</acronym> EDA – Electronics design software (metapackage)    </td><td class="col2"> Required </td>
+	</tr>
+	<tr class="row5">
+		<td class="col0 leftalign"> git-core      </td><td class="col1 leftalign"> fast, scalable, distributed revision control system     </td><td class="col2"> Required </td>
+	</tr>
+	<tr class="row6">
+		<td class="col0 leftalign"> guile-1.8     </td><td class="col1 leftalign"> The GNU extension language and Scheme interpreter       </td><td class="col2"> Required </td>
+	</tr>
+	<tr class="row7">
+		<td class="col0"> guile-1.8-dev </td><td class="col1 leftalign"> Development files for Guile 1.8                         </td><td class="col2"> Required </td>
+	</tr>
+	<tr class="row8">
+		<td class="col0"> libgtk2.0-dev </td><td class="col1 leftalign"> Development files for the GTK+ library                  </td><td class="col2"> Required </td>
+	</tr>
+	<tr class="row9">
+		<td class="col0 leftalign"> libtool       </td><td class="col1 leftalign"> Generic library support script                          </td><td class="col2"> Required </td>
+	</tr>
+	<tr class="row10">
+		<td class="col0 leftalign"> pkg-config    </td><td class="col1 leftalign"> Manage compile and link flags for libraries             </td><td class="col2"> Required </td>
+	</tr>
+	<tr class="row11">
+		<td class="col0 leftalign"> xsltproc      </td><td class="col1 leftalign"> <acronym title="Extensible Stylesheet Language Transformations">XSLT</acronym> command line processor                             </td><td class="col2"> Required </td>
+	</tr>
+</table></div>
+<!-- EDIT2038 TABLE [224-1267] -->
+<p>
+Additionally, GParts requires a database for the back-end.  Currently, GParts
+can use either MySQL, PostgreSQL, or SQLite.
+</p>
+
+</div>
+<!-- EDIT2037 SECTION "Requirements" [128-1392] -->
+<h3 class="sectionedit2039"><a name="mysql" id="mysql">MySQL</a></h3>
+<div class="level3">
+
+<p>
+In order to use MySQL, the packages listed below must be installed.  The
+mysql-server package may not be required if configured to use a remote server.
+</p>
+<div class="table sectionedit2040"><table class="inline">
+	<tr class="row0">
+		<th class="col0 leftalign"> PackageName        </th><th class="col1 leftalign"> Description                      </th><th class="col2 leftalign"> Use      </th>
+	</tr>
+	<tr class="row1">
+		<td class="col0"> libmysqlclient-dev </td><td class="col1"> MySQL database development files </td><td class="col2"> Required </td>
+	</tr>
+	<tr class="row2">
+		<td class="col0 leftalign"> mysql-client       </td><td class="col1 leftalign"> MySQL database client            </td><td class="col2"> Required </td>
+	</tr>
+	<tr class="row3">
+		<td class="col0 leftalign"> mysql-server       </td><td class="col1 leftalign"> MySQL database server            </td><td class="col2"> Required </td>
+	</tr>
+</table></div>
+<!-- EDIT2040 TABLE [1562-1837] -->
+</div>
+<!-- EDIT2039 SECTION "MySQL" [1393-1838] -->
+<h3 class="sectionedit2041"><a name="postgresql" id="postgresql">PostgreSQL</a></h3>
+<div class="level3">
+
+<p>
+In order to use PostgreSQL, the following packages must be installed:
+(TODO: PostgreSQL not supported yet.)
+</p>
+<div class="table sectionedit2042"><table class="inline">
+	<tr class="row0">
+		<th class="col0"> PackageName </th><th class="col1 leftalign"> Description                         </th><th class="col2 leftalign"> Use      </th>
+	</tr>
+	<tr class="row1">
+		<td class="col0 leftalign"> libpq-dev   </td><td class="col1"> Header files for PostgreSQL library </td><td class="col2"> Required </td>
+	</tr>
+	<tr class="row2">
+		<td class="col0 leftalign"> postgresql  </td><td class="col1 leftalign"> Object-relational <acronym title="Structured Query Language">SQL</acronym> database      </td><td class="col2"> Required </td>
+	</tr>
+</table></div>
+<!-- EDIT2042 TABLE [1970-2164] -->
+</div>
+<!-- EDIT2041 SECTION "PostgreSQL" [1839-2165] -->
+<h3 class="sectionedit2043"><a name="sqlite" id="sqlite">SQLite</a></h3>
+<div class="level3">
+
+<p>
+In order to use SQLite, the following packages must be installed:
+</p>
+<div class="table sectionedit2044"><table class="inline">
+	<tr class="row0">
+		<th class="col0 leftalign"> PackageName   </th><th class="col1 leftalign"> Description                           </th><th class="col2 leftalign"> Use      </th>
+	</tr>
+	<tr class="row1">
+		<td class="col0 leftalign"> libsqlite3-0     </td><td class="col1 leftalign"> SQLite 3 shared library               </td><td class="col2"> Required </td>
+	</tr>
+	<tr class="row2">
+		<td class="col0"> libsqlite3-0-dbg </td><td class="col1 leftalign"> SQLite 3 debugging symbols            </td><td class="col2"> Optional </td>
+	</tr>
+	<tr class="row3">
+		<td class="col0 leftalign"> libsqlite3-dev   </td><td class="col1 leftalign"> SQLite 3 development files            </td><td class="col2"> Required </td>
+	</tr>
+	<tr class="row4">
+		<td class="col0 leftalign"> sqlite3          </td><td class="col1"> A command line interface for SQLite 3 </td><td class="col2"> Required </td>
+	</tr>
+	<tr class="row5">
+		<td class="col0 leftalign"> sqlite3-doc      </td><td class="col1 leftalign"> SQLite 3 documentation                </td><td class="col2"> Optional </td>
+	</tr>
+</table></div>
+<!-- EDIT2044 TABLE [2251-2679] -->
+<p>
+Of course, installing all packages before building allows the application to
+use either database for the back-end.
+</p>
+
+</div>
+<!-- EDIT2043 SECTION "SQLite" [2166-2796] -->
+<h2 class="sectionedit2045"><a name="building_gparts_from_source" id="building_gparts_from_source">Building GParts from Source</a></h2>
+<div class="level2">
+
+<p>
+If needed, obtain the source from the source repository.
+</p>
+<pre class="code">$ git clone git://git.geda-project.org/gparts
+Initialized empty Git repository in /home/username/Projects/gparts/.git/
+remote: Counting objects: 930, done.
+remote: Compressing objects: 100% (712/712), done.
+remote: Total 930 (delta 735), reused 269 (delta 207)
+Receiving objects: 100% (930/930), 745.34 KiB | 283 KiB/s, done.
+Resolving deltas: 100% (735/735), done.
+$ cd gparts
+$</pre>
+
+<p>
+In the top directory of the source package, execute the following commands.
+Support for PostgreSQL is incomplete, so use the configure option.
+</p>
+<pre class="code">$ ./autogen.sh
+$ ./configure --without-postgresql
+$ make</pre>
+
+<p>
+The install requires root privileges.
+</p>
+<pre class="code">$ sudo make install</pre>
+
+<p>
+Finally, test the executable.
+</p>
+<pre class="code">$ gparts</pre>
+
+<p>
+To ensure dynamically loaded modules for database support work, select
+Database→Connect… from the part manager menu. The combo box Database
+Type should so options for the various databases supported.
+</p>
+
+<p>
+<a href="media/geda/gparts-ss-connect-types.png" class="media" target="_blank" title="geda:gparts-ss-connect-types.png"><img src="media/geda/gparts-ss-connect-types.png" class="media" title="" alt="" /></a>
+</p>
+
+<p>
+If no database modules appear in the combo box, it is likely the parts manager
+could not find the rc files. The parts manager needs to know the location of
+system-gafrc file. The parts manager will search for this file, but sometimes
+cannot locate it. Providing the following environment variable provides better
+results. For distributions using Debian packages, the system-gafrc file can be
+located with dpkg.
+</p>
+<pre class="code">$ dpkg -S system-gafrc
+libgeda-common: /etc/gEDA/system-gafrc</pre>
+<pre class="code">$ GEDADATARC=/etc/gEDA
+$ export GEDADATARC</pre>
+
+<p>
+Additionally, the parts manager needs to know the location of the symbol
+library and scheme files.
+</p>
+<pre class="code">$ dpkg -S gschem.scm
+geda-gschem: /usr/share/gEDA/scheme/gschem.scm</pre>
+<pre class="code">$ GEDADATADIR=/usr/share/gEDA
+$ export GEDADATADIR</pre>
+
+</div>
+<!-- EDIT2045 SECTION "Building GParts from Source" [2797-4605] -->
+<h2 class="sectionedit2046"><a name="database_creation" id="database_creation">Database Creation</a></h2>
+<div class="level2">
+
+</div>
+<!-- EDIT2046 SECTION "Database Creation" [4606-4637] -->
+<h3 class="sectionedit2047"><a name="mysql1" id="mysql1">MySQL</a></h3>
+<div class="level3">
+
+<p>
+Install MySQL.
+</p>
+<ul>
+<li class="level1"><div class="li"> Tested under 5.0.51a-3ubuntu5.1.</div>
+</li>
+</ul>
+
+<p>
+To create the database, enter MySQL command line mode as root and enter the <acronym title="Structured Query Language">SQL</acronym>
+commands below.  Placing the password in the command line could leave the
+password in the command line history.  Using only the -p option will cause
+mysql to prompt for the password and avoid this situation.  A different
+database name, other than gparts, can be specified by the user.  Using
+different names, the user can create multiple GPart databases.  Additionally,
+user accounts may need to be created.
+</p>
+<pre class="code">$ mysql -u root -p</pre>
+<pre class="code">mysql&gt; create database GParts;
+mysql&gt; use GParts;
+mysql&gt; grant all privileges on *.* to &#039;user&#039;@&#039;localhost&#039; identified by &#039;password&#039;;</pre>
+
+<p>
+After creating the database, the base tables and part-specific tables must be
+created.  All the <acronym title="Structured Query Language">SQL</acronym> commands to perform these operations are included in the
+distributed files.  Enter the following commands at the MySQL command line.
+</p>
+<pre class="code">mysql&gt; source sql/mysql/create-basic.sql
+mysql&gt; source sql/mysql/create-categories.sql
+mysql&gt; source sql/mysql/create-discretes.sql
+mysql&gt; source sql/mysql/create-passives.sql</pre>
+
+<p>
+Begin loading the database, starting with package data.  The package data must
+be loaded before any parts.
+</p>
+<pre class="code">mysql&gt; source data/packages.sql</pre>
+
+<p>
+The package includes a tool to parse the symbol libraries and generate an
+<acronym title="Structured Query Language">SQL</acronym> file for import into the database.  Run the tool at the shell prompt, then
+import the file from an MySQL prompt.  The tool requires the root gEDA
+directory as the only parameter. Your gEDA root directory may be different than
+below.  The symbol data must be loaded before any parts.
+</p>
+<pre class="code">$ tools/symbols.py /usr/share/gEDA &gt;tmp/symbols.sql</pre>
+<pre class="code">mysql&gt; source tmp/symbols.sql</pre>
+
+<p>
+The package includes a script to generate some sample part data.  Similar to
+the symbol tool, run the script at the shell prompt, then import the data at
+the MySQL prompt.
+</p>
+<pre class="code">$ data/parts-bourns.py &gt;tmp/parts-bourns.sql</pre>
+<pre class="code">mysql&gt; source tmp/parts-bourns.sql</pre>
+
+</div>
+<!-- EDIT2047 SECTION "MySQL" [4638-6631] -->
+<h3 class="sectionedit2048"><a name="postgresql1" id="postgresql1">PostgreSQL</a></h3>
+<div class="level3">
+
+<p>
+TODO: Finish implementation
+</p>
+
+</div>
+<!-- EDIT2048 SECTION "PostgreSQL" [6632-6682] -->
+<h3 class="sectionedit2049"><a name="sqlite1" id="sqlite1">SQLite</a></h3>
+<div class="level3">
+
+<p>
+The source package contains a sample database in the location below. This
+database can be opened from directly within the parts manager.
+</p>
+<ul>
+<li class="level1"><div class="li"> gparts/sql/sqlite/sample.db</div>
+</li>
+</ul>
+
+<p>
+If required, use the following command line to create a new database or recreate
+the sample database. In this example, the present working directory must be
+gparts/sql/sqlite.
+</p>
+<pre class="code">$ sqlite3 sample.db
+SQLite version 3.6.22
+Enter &quot;.help&quot; for instructions
+Enter SQL statements terminated with a &quot;;&quot;
+sqlite&gt;</pre>
+
+<p>
+After creating the database, read base and part specific tables into the
+database.
+</p>
+<pre class="code">sqlite&gt; .read create-basic.sql
+sqlite&gt; .read create-categories.sql
+sqlite&gt; .read create-discretes.sql
+sqlite&gt; .read create-passives.sql</pre>
+
+<p>
+Read sample symbols into the database.
+</p>
+<pre class="code">sqlite&gt; .read symbols.sql</pre>
+
+<p>
+Exit the command line interface.
+</p>
+<pre class="code">sqlite&gt; .exit</pre>
+
+<p>
+Read sample companies and packages into the database. The source distribution stores packages in <acronym title="Extensible Markup Language">XML</acronym>. The distribution contains an <acronym title="Extensible Stylesheet Language Transformations">XSLT</acronym> stylesheet to convert <acronym title="Extensible Markup Language">XML</acronym> into <acronym title="Structured Query Language">SQL</acronym> for importing into SQLite. Use the following command line to perform this operation.
+</p>
+<pre class="code">$ xsltproc convert.xml ../../data/companies.xml | sqlite3 sample.db
+$ xsltproc convert.xml ../../data/packages.xml | sqlite3 sample.db</pre>
+
+<p>
+Read sample parts into the database.
+</p>
+<pre class="code">$ ../../data/parts-bourns.py &gt;../../tmp/parts-bourns.xml
+$ xsltproc convert.xml ../../tmp/parts-bourns.xml | sqlite3 sample.db</pre>
+
+<p>
+For other sample parts, the data is not generated with a script.
+</p>
+<pre class="code">$ xsltproc convert.xml ../../tmp/rhom-discretes.xml | sqlite3 sample.db</pre>
+
+</div>
+<!-- EDIT2049 SECTION "SQLite" [6683-] --></body>
+</html>

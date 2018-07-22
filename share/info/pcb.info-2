@@ -1,0 +1,3588 @@
+This is pcb.info, produced by makeinfo version 4.13 from pcb.texi.
+
+INFO-DIR-SECTION Miscellaneous
+START-INFO-DIR-ENTRY
+* pcb: (pcb).                   An interactive printed circuit board editor.
+END-INFO-DIR-ENTRY
+
+   This file documents how to use Pcb, the open source, interactive
+printed circuit board layout system.
+
+   Copyright (C) 1994,1995,1996, 2004 Thomas Nau
+
+   Copyright (C) 1997, 1998, 1999, 2000, 2001, 2002 harry eaton
+
+   Copyright (C) 2003, 2004, 2005, 2006, 2007, 2009 Dan McMahill
+
+   Copyright (C) 2004 DJ Delorie
+
+   This program is free software; you may redistribute it and/or modify
+it under the terms of the GNU General Public License as published by
+the Free Software Foundation; either version 2 of the License, or (at
+your option) any later version.
+
+   This program is distributed in the hope that it will be useful, but
+WITHOUT ANY WARRANTY; without even the implied warranty of
+MERCHANT-ABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the GNU
+General Public License for more details.
+
+
+File: pcb.info,  Node: Display Action,  Next: djopt Action,  Prev: DisperseElements Action,  Up: core actions
+
+G.1.26 Display
+--------------
+
+Display(NameOnPCB|Description|Value)
+Display(Grid|Redraw)
+Display(CycleClip|CycleCrosshair|Toggle45Degree|ToggleStartDirection)
+Display(ToggleGrid|ToggleRubberBandMode|ToggleUniqueNames)
+Display(ToggleMask|ToggleName|ToggleClearLine|ToggleFullPoly|ToggleSnapPin)
+Display(ToggleThindraw|ToggleThindrawPoly|ToggleOrthoMove|ToggleLocalRef)
+Display(ToggleCheckPlanes|ToggleShowDRC|ToggleAutoDRC)
+Display(ToggleLiveRoute|LockNames|OnlyNames)
+Display(Pinout|PinOrPadName)
+
+Several display-related actions.
+
+`NameOnPCB'
+
+`Description'
+
+`Value'
+     Specify whether all elements show their name, description, or
+     value.
+
+`Redraw'
+     Redraw the whole board.
+
+`Toggle45Degree'
+     When clear, lines can be drawn at any angle.  When set, lines are
+     restricted to multiples of 45 degrees and requested lines may be
+     broken up according to the clip setting.
+
+`CycleClip'
+     Changes the way lines are restricted to 45 degree increments.  The
+     various settings are: straight only, orthogonal then angled, and
+     angled then orthogonal.  If AllDirections is set, this action
+     disables it.
+
+`CycleCrosshair'
+     Changes crosshair drawing.  Crosshair may accept form of 4-ray,
+     8-ray and 12-ray cross.
+
+`ToggleRubberBandMode'
+     If set, moving an object moves all the lines attached to it too.
+
+`ToggleStartDirection'
+     If set, each time you set a point in a line, the Clip toggles
+     between orth-angle and angle-ortho.
+
+`ToggleUniqueNames'
+     If set, you will not be permitted to change the name of an element
+     to match that of another element.
+
+`ToggleSnapPin'
+     If set, pin centers and pad end points are treated as additional
+     grid points that the cursor can snap to.
+
+`ToggleLocalRef'
+     If set, the mark is automatically set to the beginning of any
+     move, so you can see the relative distance you've moved.
+
+`ToggleThindraw'
+     If set, objects on the screen are drawn as outlines (lines are
+     drawn as center-lines).  This lets you see line endpoints hidden
+     under pins, for example.
+
+`ToggleThindrawPoly'
+     If set, polygons on the screen are drawn as outlines.
+
+`ToggleShowDRC'
+     If set, pending objects (i.e. lines you're in the process of
+     drawing) will be drawn with an outline showing how far away from
+     other copper you need to be.
+
+`ToggleLiveRoute'
+     If set, the progress of the autorouter will be visible on the
+     screen.
+
+`ToggleAutoDRC'
+     If set, you will not be permitted to make connections which violate
+     the current DRC and netlist settings.
+
+`ToggleCheckPlanes'
+     If set, lines and arcs aren't drawn, which usually leaves just the
+     polygons.  If you also disable all but the layer you're interested
+     in, this allows you to check for isolated regions.
+
+`ToggleOrthoMove'
+     If set, the crosshair is only allowed to move orthogonally from its
+     previous position.  I.e. you can move an element or line up, down,
+     left, or right, but not up+left or down+right.
+
+`ToggleName'
+     Selects whether the pinouts show the pin names or the pin numbers.
+
+`ToggleLockNames'
+     If set, text will ignore left mouse clicks and actions that work on
+     objects under the mouse. You can still select text with a lasso
+     (left mouse drag) and perform actions on the selection.
+
+`ToggleOnlyNames'
+     If set, only text will be sensitive for mouse clicks and actions
+     that work on objects under the mouse. You can still select other
+     objects with a lasso (left mouse drag) and perform actions on the
+     selection.
+
+`ToggleMask'
+     Turns the solder mask on or off.
+
+`ToggleClearLine'
+     When set, the clear-line flag causes new lines and arcs to have
+     their "clear polygons" flag set, so they won't be electrically
+     connected to any polygons they overlap.
+
+`ToggleFullPoly'
+     When set, the full-poly flag causes new polygons to have their
+     "full polygon" flag set, so all parts of them will be displayed
+     instead of only the biggest one.
+
+`ToggleGrid'
+     Resets the origin of the current grid to be wherever the mouse
+     pointer is (not where the crosshair currently is).  If you provide
+     two numbers after this, the origin is set to that coordinate.
+
+`Grid'
+     Toggles whether the grid is displayed or not.
+
+`Pinout'
+     Causes the pinout of the element indicated by the cursor to be
+     displayed, usually in a separate window.
+
+`PinOrPadName'
+     Toggles whether the names of pins, pads, or (yes) vias will be
+     displayed.  If the cursor is over an element, all of its pins and
+     pads are affected.
+
+
+
+File: pcb.info,  Node: djopt Action,  Next: DRC Action,  Prev: Display Action,  Up: core actions
+
+G.1.27 djopt
+------------
+
+djopt(debumpify|unjaggy|simple|vianudge|viatrim|orthopull)
+djopt(auto) - all of the above
+djopt(miter)
+
+Perform various optimizations on the current board.
+
+   The different types of optimizations change your board in order to
+reduce the total trace length and via count.
+
+`debumpify'
+     Looks for U-shaped traces that can be shortened or eliminated.
+
+`unjaggy'
+     Looks for corners which could be flipped to eliminate one or more
+     corners (i.e. jaggy lines become simpler).
+
+`simple'
+     Removing uneeded vias, replacing two or more trace segments in a
+     row with a single segment.  This is usually performed
+     automatically after other optimizations.
+
+`vianudge'
+     Looks for vias where all traces leave in the same direction.
+     Tries to move via in that direction to eliminate one of the traces
+     (and thus a corner).
+
+`viatrim'
+     Looks for traces that go from via to via, where moving that trace
+     to a different layer eliminates one or both vias.
+
+`orthopull'
+     Looks for chains of traces all going in one direction, with more
+     traces orthogonal on one side than on the other.  Moves the chain
+     in that direction, causing a net reduction in trace length,
+     possibly eliminating traces and/or corners.
+
+`splitlines'
+     Looks for lines that pass through vias, pins, or pads, and splits
+     them into separate lines so they can be managed separately.
+
+`auto'
+     Performs the above options, repeating until no further
+     optimizations can be made.
+
+`miter'
+     Replaces 90 degree corners with a pair of 45 degree corners, to
+     reduce RF losses and trace length.
+
+
+
+File: pcb.info,  Node: DRC Action,  Next: DumpLibrary Action,  Prev: djopt Action,  Up: core actions
+
+G.1.28 DRC
+----------
+
+DRC()
+
+Invoke the DRC check.
+
+   Note that the design rule check uses the current board rule settings,
+not the current style settings.
+
+
+File: pcb.info,  Node: DumpLibrary Action,  Next: elementlist Action,  Prev: DRC Action,  Up: core actions
+
+G.1.29 DumpLibrary
+------------------
+
+DumpLibrary()
+
+Display the entire contents of the libraries.
+
+
+File: pcb.info,  Node: elementlist Action,  Next: elementsetattr Action,  Prev: DumpLibrary Action,  Up: core actions
+
+G.1.30 elementlist
+------------------
+
+ElementList(Start|Done|Need,<refdes>,<footprint>,<value>)
+
+Adds the given element if it doesn't already exist.
+
+`Start'
+     Indicates the start of an element list; call this before any Need
+     actions.
+
+`Need'
+     Searches the board for an element with a matching refdes.
+
+     If found, the value and footprint are updated.
+
+     If not found, a new element is created with the given footprint
+     and value.
+
+`Done'
+     Compares the list of elements needed since the most recent `start'
+     with the list of elements actually on the board.  Any elements
+     that weren't listed are selected, so that the user may delete them.
+
+
+
+File: pcb.info,  Node: elementsetattr Action,  Next: EnableVendor Action,  Prev: elementlist Action,  Up: core actions
+
+G.1.31 elementsetattr
+---------------------
+
+ElementSetAttr(refdes,name[,value])
+
+Sets or clears an element-specific attribute.
+
+   If a value is specified, the named attribute is added (if not already
+present) or changed (if it is) to the given value.  If the value is not
+specified, the given attribute is removed if present.
+
+
+File: pcb.info,  Node: EnableVendor Action,  Next: execcommand Action,  Prev: elementsetattr Action,  Up: core actions
+
+G.1.32 EnableVendor
+-------------------
+
+EnableVendor()
+
+Enables automatic drill size mapping.
+
+   When drill mapping is enabled, new instances of pins and vias will
+have their drill holes mapped to one of the allowed drill sizes
+specified in the currently loaded vendor drill table.  To enable drill
+mapping, a vendor resource file containing a drill table must be loaded
+first.
+
+
+File: pcb.info,  Node: execcommand Action,  Next: ExecuteFile Action,  Prev: EnableVendor Action,  Up: core actions
+
+G.1.33 execcommand
+------------------
+
+ExecCommand(command)
+
+Runs a command.
+
+   Runs the given command, which is a system executable.
+
+
+File: pcb.info,  Node: ExecuteFile Action,  Next: Flip Action,  Prev: execcommand Action,  Up: core actions
+
+G.1.34 ExecuteFile
+------------------
+
+ExecuteFile(filename)
+
+Run actions from the given file.
+
+   Lines starting with `#' are ignored.
+
+
+File: pcb.info,  Node: Flip Action,  Next: FontEdit Action,  Prev: ExecuteFile Action,  Up: core actions
+
+G.1.35 Flip
+-----------
+
+Flip(Object|Selected|SelectedElements)
+
+Flip an element to the opposite side of the board.
+
+   Note that the location of the element will be symmetric about the
+cursor location; i.e. if the part you are pointing at will still be at
+the same spot once the element is on the other side.  When flipping
+multiple elements, this retains their positions relative to each other,
+not their absolute positions on the board.
+
+
+File: pcb.info,  Node: FontEdit Action,  Next: FontSave Action,  Prev: Flip Action,  Up: core actions
+
+G.1.36 FontEdit
+---------------
+
+FontEdit()
+
+Convert the current font to a PCB for editing.
+
+
+File: pcb.info,  Node: FontSave Action,  Next: FreeRotateBuffer Action,  Prev: FontEdit Action,  Up: core actions
+
+G.1.37 FontSave
+---------------
+
+FontSave()
+
+Convert the current PCB back to a font.
+
+
+File: pcb.info,  Node: FreeRotateBuffer Action,  Next: GlobalPuller Action,  Prev: FontSave Action,  Up: core actions
+
+G.1.38 FreeRotateBuffer
+-----------------------
+
+FreeRotateBuffer([Angle])
+
+Rotates the current paste buffer contents by the specified angle.  The
+angle is given in degrees.  If no angle is given, the user is prompted
+for one.
+
+   Rotates the contents of the pastebuffer by an arbitrary angle.  If no
+angle is given, the user is prompted for one.
+
+
+File: pcb.info,  Node: GlobalPuller Action,  Next: h Action,  Prev: FreeRotateBuffer Action,  Up: core actions
+
+G.1.39 GlobalPuller
+-------------------
+
+GlobalPuller()
+
+Pull all traces tight.
+
+
+File: pcb.info,  Node: h Action,  Next: Import Action,  Prev: GlobalPuller Action,  Up: core actions
+
+G.1.40 h
+--------
+
+h
+
+Print a help message for commands.
+
+   This is one of the command box helper actions.  While it is a regular
+action and can be used like any other action, its name and syntax are
+optimized for use with the command box (`:') and thus the syntax is
+documented for that purpose.
+
+
+File: pcb.info,  Node: Import Action,  Next: l Action,  Prev: h Action,  Up: core actions
+
+G.1.41 Import
+-------------
+
+Import()
+Import([gnetlist|make[,source,source,...]])
+Import(setnewpoint[,(mark|center|X,Y)])
+Import(setdisperse,D,units)
+
+Import schematics.
+
+   Imports element and netlist data from the schematics (or some other
+source).  The first parameter, which is optional, is the mode.  If not
+specified, the `import::mode' attribute in the PCB is used.  `gnetlist'
+means gnetlist is used to obtain the information from the schematics.
+`make' invokes `make', assuming the user has a `Makefile' in the
+current directory.  The `Makefile' will be invoked with the following
+variables set:
+
+`PCB'
+     The name of the .pcb file
+
+`SRCLIST'
+     A space-separated list of source files
+
+`OUT'
+     The name of the file in which to put the command script, which may
+     contain any `Pcb' actions.  By default, this is a temporary file
+     selected by `Pcb', but if you specify an `import::outfile'
+     attribute, that file name is used instead (and not automatically
+     deleted afterwards).
+
+
+   The target specified to be built is the first of these that apply:
+
+   * The target specified by an `import::target' attribute.
+
+   * The output file specified by an `import::outfile' attribute.
+
+   * If nothing else is specified, the target is `pcb_import'.
+
+
+   If you specify an `import::makefile' attribute, then "-f <that
+file>" will be added to the command line.
+
+   If you specify the mode, you may also specify the source files
+(schematics).  If you do not specify any, the list of schematics is
+obtained by reading the `import::srcN' attributes (like `import::src0',
+`import::src1', etc).
+
+   For compatibility with future extensions to the import file format,
+the generated file _must not_ start with the two characters `#%'.
+
+   If a temporary file is needed the `TMPDIR' environment variable is
+used to select its location.
+
+   Note that the programs `gnetlist' and `make' may be overridden by
+the user via the `make-program' and `gnetlist' `pcb' settings (i.e. in
+`~/.pcb/settings' or on the command line).
+
+   If `Pcb' cannot determine which schematic(s) to import from, the GUI
+is called to let user choose (see `ImportGUI()').
+
+   Note that Import() doesn't delete anything - after an Import,
+elements which shouldn't be on the board are selected and may be
+removed once it's determined that the deletion is appropriate.
+
+   If `Import()' is called with `setnewpoint', then the location of new
+components can be specified.  This is where parts show up when they're
+added to the board.  The default is the center of the board.
+
+`Import(setnewpoint)'
+     Prompts the user to click on the board somewhere, uses that point.
+     If called by a hotkey, uses the current location of the crosshair.
+
+`Import(setnewpoint,mark)'
+     Uses the location of the mark.  If no mark is present, the point is
+     not changed.
+
+`Import(setnewpoint,center)'
+     Resets the point to the center of the board.
+
+`Import(setnewpoint,X,Y,units)'
+     Sets the point to the specific coordinates given.  Example:
+     `Import(setnewpoint,50,25,mm)'
+
+
+   Note that the X and Y locations are stored in attributes named
+`import::newX' and `import::newY' so you could change them manually if
+you wished.
+
+   Calling `Import(setdisperse,D,units)' sets how much the newly placed
+elements are dispersed relative to the set point.  For example,
+`Import(setdisperse,10,mm)' will offset each part randomly up to 10mm
+away from the point.  The default dispersion is 1/10th of the smallest
+board dimension.  Dispersion is saved in the `import::disperse'
+attribute.
+
+
+File: pcb.info,  Node: l Action,  Next: le Action,  Prev: Import Action,  Up: core actions
+
+G.1.42 l
+--------
+
+l [name]
+
+Loads layout data.
+
+   Loads a new datafile (layout) and, if confirmed, overwrites any
+existing unsaved data.  The filename and the searchpath (_filePath_)
+are passed to the command defined by _fileCommand_.  If no filename is
+specified a file select box will popup.
+
+   This is one of the command box helper actions.  While it is a regular
+action and can be used like any other action, its name and syntax are
+optimized for use with the command box (`:') and thus the syntax is
+documented for that purpose.
+
+
+File: pcb.info,  Node: le Action,  Next: LoadFootprint Action,  Prev: l Action,  Up: core actions
+
+G.1.43 le
+---------
+
+le [name]
+
+Loads an element into the current buffer.
+
+   The filename and the searchpath (_elementPath_) are passed to the
+command defined by _elementCommand_.  If no filename is specified a
+file select box will popup.
+
+   This is one of the command box helper actions.  While it is a regular
+action and can be used like any other action, its name and syntax are
+optimized for use with the command box (`:') and thus the syntax is
+documented for that purpose.
+
+
+File: pcb.info,  Node: LoadFootprint Action,  Next: LoadFrom Action,  Prev: le Action,  Up: core actions
+
+G.1.44 LoadFootprint
+--------------------
+
+LoadFootprint(filename[,refdes,value])
+
+Loads a single footprint by name.
+
+   Loads a single footprint by name, rather than by reference or through
+the library.  If a refdes and value are specified, those are inserted
+into the footprint as well.  The footprint remains in the paste buffer.
+
+
+File: pcb.info,  Node: LoadFrom Action,  Next: LoadVendorFrom Action,  Prev: LoadFootprint Action,  Up: core actions
+
+G.1.45 LoadFrom
+---------------
+
+LoadFrom(Layout|LayoutToBuffer|ElementToBuffer|Netlist|Revert,filename)
+
+Load layout data from a file.
+
+   This action assumes you know what the filename is.  The various GUIs
+should have a similar `Load' action where the filename is optional, and
+will provide their own file selection mechanism to let you choose the
+file name.
+
+`Layout'
+     Loads an entire PCB layout, replacing the current one.
+
+`LayoutToBuffer'
+     Loads an entire PCB layout to the paste buffer.
+
+`ElementToBuffer'
+     Loads the given element file into the paste buffer.  Element files
+     contain only a single `Element' definition, such as the "newlib"
+     library uses.
+
+`Netlist'
+     Loads a new netlist, replacing any current netlist.
+
+`Revert'
+     Re-loads the current layout from its disk file, reverting any
+     changes you may have made.
+
+
+
+File: pcb.info,  Node: LoadVendorFrom Action,  Next: m Action,  Prev: LoadFrom Action,  Up: core actions
+
+G.1.46 LoadVendorFrom
+---------------------
+
+LoadVendorFrom(filename)
+
+Loads the specified vendor resource file.
+
+FILENAME
+     Name of the vendor resource file.  If not specified, the user will
+     be prompted to enter one.
+
+
+File: pcb.info,  Node: m Action,  Next: MarkCrosshair Action,  Prev: LoadVendorFrom Action,  Up: core actions
+
+G.1.47 m
+--------
+
+m [name]
+
+Loads a layout into the current buffer.
+
+   The filename and the searchpath (_filePath_) are passed to the
+command defined by _fileCommand_.  If no filename is specified a file
+select box will popup.
+
+   This is one of the command box helper actions.  While it is a regular
+action and can be used like any other action, its name and syntax are
+optimized for use with the command box (`:') and thus the syntax is
+documented for that purpose.
+
+
+File: pcb.info,  Node: MarkCrosshair Action,  Next: Message Action,  Prev: m Action,  Up: core actions
+
+G.1.48 MarkCrosshair
+--------------------
+
+MarkCrosshair()
+MarkCrosshair(Center)
+
+Set/Reset the Crosshair mark.
+
+   The "mark" is a small X-shaped target on the display which is
+treated like a second origin (the normal origin is the upper let corner
+of the board).  The GUI will display a second set of coordinates for
+this mark, which tells you how far you are from it.
+
+   If no argument is given, the mark is toggled - disabled if it was
+enabled, or enabled at the current cursor position of disabled.  If the
+`Center' argument is given, the mark is moved to the current cursor
+location.
+
+
+File: pcb.info,  Node: Message Action,  Next: MinClearGap Action,  Prev: MarkCrosshair Action,  Up: core actions
+
+G.1.49 Message
+--------------
+
+Message(message)
+
+Writes a message to the log window.
+
+   This action displays a message to the log window.  This action is
+primarily provided for use by other programs which may interface with
+PCB.  If multiple arguments are given, each one is sent to the log
+window followed by a newline.
+
+
+File: pcb.info,  Node: MinClearGap Action,  Next: MinMaskGap Action,  Prev: Message Action,  Up: core actions
+
+G.1.50 MinClearGap
+------------------
+
+MinClearGap(delta)
+MinClearGap(Selected, delta)
+
+Ensures that polygons are a minimum distance from objects.
+
+   Checks all specified objects, and increases the polygon clearance if
+needed to ensure a minimum distance between their edges and the polygon
+edges.
+
+
+File: pcb.info,  Node: MinMaskGap Action,  Next: Mode Action,  Prev: MinClearGap Action,  Up: core actions
+
+G.1.51 MinMaskGap
+-----------------
+
+MinMaskGap(delta)
+MinMaskGap(Selected, delta)
+
+Ensures the mask is a minimum distance from pins and pads.
+
+   Checks all specified pins and/or pads, and increases the mask if
+needed to ensure a minimum distance between the pin or pad edge and the
+mask edge.
+
+
+File: pcb.info,  Node: Mode Action,  Next: MorphPolygon Action,  Prev: MinMaskGap Action,  Up: core actions
+
+G.1.52 Mode
+-----------
+
+Mode(Arc|Arrow|Copy|InsertPoint|Line|Lock|Move|None|PasteBuffer)
+Mode(Polygon|Rectangle|Remove|Rotate|Text|Thermal|Via)
+Mode(Notify|Release|Cancel|Stroke)
+Mode(Save|Restore)
+
+Change or use the tool mode.
+
+`Arc'
+`Arrow'
+`Copy'
+`InsertPoint'
+`Line'
+`Lock'
+`Move'
+`None'
+`PasteBuffer'
+`Polygon'
+`Rectangle'
+`Remove'
+`Rotate'
+`Text'
+`Thermal'
+`Via'
+     Select the indicated tool.
+
+`Notify'
+     Called when you press the mouse button, or move the mouse.
+
+`Release'
+     Called when you release the mouse button.
+
+`Cancel'
+     Cancels any pending tool activity, allowing you to restart
+     elsewhere.  For example, this allows you to start a new line
+     rather than attach a line to the previous line.
+
+`Escape'
+     Similar to Cancel but calling this action a second time will return
+     to the Arrow tool.
+
+`Stroke'
+     If your `pcb' was built with libstroke, this invokes the stroke
+     input method.  If not, this will restart a drawing mode if you were
+     drawing, else it will select objects.
+
+`Save'
+     Remembers the current tool.
+
+`Restore'
+     Restores the tool to the last saved tool.
+
+
+
+File: pcb.info,  Node: MorphPolygon Action,  Next: MoveLayer Action,  Prev: Mode Action,  Up: core actions
+
+G.1.53 MorphPolygon
+-------------------
+
+MorphPolygon(Object|Selected)
+
+Converts dead polygon islands into separate polygons.
+
+   If a polygon is divided into unconnected "islands", you can use this
+command to convert the otherwise disappeared islands into separate
+polygons. Be sure the cursor is over a portion of the polygon that
+remains visible. Very small islands that may flake off are
+automatically deleted.
+
+
+File: pcb.info,  Node: MoveLayer Action,  Next: MoveObject Action,  Prev: MorphPolygon Action,  Up: core actions
+
+G.1.54 MoveLayer
+----------------
+
+MoveLayer(old,new)
+
+Moves/Creates/Deletes Layers.
+
+   Moves a layer, creates a new layer, or deletes a layer.
+
+`old'
+     The is the layer number to act upon.  Allowed values are:
+    `c'
+          Currently selected layer.
+
+    `-1'
+          Create a new layer.
+
+    `number'
+          An existing layer number.
+
+
+`new'
+     Specifies where to move the layer to.  Allowed values are:
+    `-1'
+          Deletes the layer.
+
+    `up'
+          Moves the layer up.
+
+    `down'
+          Moves the layer down.
+
+    `c'
+          Creates a new layer.
+
+
+
+
+File: pcb.info,  Node: MoveObject Action,  Next: MoveToCurrentLayer Action,  Prev: MoveLayer Action,  Up: core actions
+
+G.1.55 MoveObject
+-----------------
+
+MoveObject(X,Y,dim)
+
+Moves the object under the crosshair.
+
+   The `X' and `Y' are treated like `delta' is for many other objects.
+For each, if it's prefixed by `+' or `-', then that amount is relative.
+Otherwise, it's absolute.  Units can be `mil' or `mm'; if unspecified,
+units are PCB's internal units, currently 1/100 mil.
+
+
+File: pcb.info,  Node: MoveToCurrentLayer Action,  Next: Netlist Action,  Prev: MoveObject Action,  Up: core actions
+
+G.1.56 MoveToCurrentLayer
+-------------------------
+
+MoveToCurrentLayer(Object|SelectedObjects)
+
+Moves objects to the current layer.
+
+   Note that moving an element from a component layer to a solder layer,
+or from solder to component, won't automatically flip it.  Use the
+`Flip()' action to do that.
+
+
+File: pcb.info,  Node: Netlist Action,  Next: New Action,  Prev: MoveToCurrentLayer Action,  Up: core actions
+
+G.1.57 Netlist
+--------------
+
+Net(find|select|rats|norats|clear[,net[,pin]])
+Net(freeze|thaw|forcethaw)
+Net(add,net,pin)
+
+Perform various actions on netlists.
+
+   Each of these actions apply to a specified set of nets.  NET and PIN
+are patterns which match one or more nets or pins; these patterns may
+be full names or regular expressions.  If an exact match is found, it
+is the only match; if no exact match is found, _then_ the pattern is
+tried as a regular expression.
+
+   If neither NET nor PIN are specified, all nets apply.  If NET is
+specified but not PIN, all nets matching NET apply.  If both are
+specified, nets which match NET and contain a pin matching PIN apply.
+
+`find'
+     Nets which apply are marked _found_ and are drawn in the
+     `connected-color' color.
+
+`select'
+     Nets which apply are selected.
+
+`rats'
+     Nets which apply are marked as available for the rats nest.
+
+`norats'
+     Nets which apply are marked as not available for the rats nest.
+
+`clear'
+     Clears the netlist.
+
+`add'
+     Add the given pin to the given netlist, creating either if needed.
+
+`sort'
+     Called after a list of add's, this sorts the netlist.
+
+`freeze'
+`thaw'
+`forcethaw'
+     Temporarily prevents changes to the netlist from being reflected in
+     the GUI.  For example, if you need to make multiple changes, you
+     freeze the netlist, make the changes, then thaw it.  Note that
+     freeze/thaw requests may nest, with the netlist being fully thawed
+     only when all pending freezes are thawed.  You can bypass the
+     nesting by using forcethaw, which resets the freeze count and
+     immediately updates the GUI.
+
+
+
+File: pcb.info,  Node: New Action,  Next: OptAutoOnly Action,  Prev: Netlist Action,  Up: core actions
+
+G.1.58 New
+----------
+
+New([name])
+
+Starts a new layout.
+
+   If a name is not given, one is prompted for.
+
+
+File: pcb.info,  Node: OptAutoOnly Action,  Next: PasteBuffer Action,  Prev: New Action,  Up: core actions
+
+G.1.59 OptAutoOnly
+------------------
+
+OptAutoOnly()
+
+Toggles the optimize-only-autorouted flag.
+
+   The original purpose of the trace optimizer was to clean up the
+traces created by the various autorouters that have been used with PCB.
+When a board has a mix of autorouted and carefully hand-routed traces,
+you don't normally want the optimizer to move your hand-routed traces.
+But, sometimes you do.  By default, the optimizer only optimizes
+autorouted traces.  This action toggles that setting, so that you can
+optimize hand-routed traces also.
+
+
+File: pcb.info,  Node: PasteBuffer Action,  Next: Polygon Action,  Prev: OptAutoOnly Action,  Up: core actions
+
+G.1.60 PasteBuffer
+------------------
+
+PasteBuffer(AddSelected|Clear|1..MAX_BUFFER)
+PasteBuffer(Rotate, 1..3)
+PasteBuffer(Convert|Save|Restore|Mirror)
+PasteBuffer(ToLayout, X, Y, units)
+
+Various operations on the paste buffer.
+
+   There are a number of paste buffers; the actual limit is a
+compile-time constant `MAX_BUFFER' in `globalconst.h'.  It is currently
+`5'.  One of these is the "current" paste buffer, often referred to as
+"the" paste buffer.
+
+`AddSelected'
+     Copies the selected objects to the current paste buffer.
+
+`Clear'
+     Remove all objects from the current paste buffer.
+
+`Convert'
+     Convert the current paste buffer to an element.  Vias are
+     converted to pins, lines are converted to pads.
+
+`Restore'
+     Convert any elements in the paste buffer back to vias and lines.
+
+`Mirror'
+     Flip all objects in the paste buffer vertically (up/down flip).
+     To mirror horizontally, combine this with rotations.
+
+`Rotate'
+     Rotates the current buffer.  The number to pass is 1..3, where 1
+     means 90 degrees counter clockwise, 2 means 180 degrees, and 3
+     means 90 degrees clockwise (270 CCW).
+
+`Save'
+     Saves any elements in the current buffer to the indicated file.
+
+`ToLayout'
+     Pastes any elements in the current buffer to the indicated X, Y
+     coordinates in the layout.  The `X' and `Y' are treated like
+     `delta' is for many other objects.  For each, if it's prefixed by
+     `+' or `-', then that amount is relative to the last location.
+     Otherwise, it's absolute.  Units can be `mil' or `mm'; if
+     unspecified, units are PCB's internal units, currently 1/100 mil.
+
+`1..MAX_BUFFER'
+     Selects the given buffer to be the current paste buffer.
+
+
+
+File: pcb.info,  Node: Polygon Action,  Next: Puller Action,  Prev: PasteBuffer Action,  Up: core actions
+
+G.1.61 Polygon
+--------------
+
+Polygon(Close|PreviousPoint)
+
+Some polygon related stuff.
+
+   Polygons need a special action routine to make life easier.
+
+`Close'
+     Creates the final segment of the polygon.  This may fail if
+     clipping to 45 degree lines is switched on, in which case a
+     warning is issued.
+
+`PreviousPoint'
+     Resets the newly entered corner to the previous one. The Undo
+     action will call Polygon(PreviousPoint) when appropriate to do so.
+
+
+
+File: pcb.info,  Node: Puller Action,  Next: q Action,  Prev: Polygon Action,  Up: core actions
+
+G.1.62 Puller
+-------------
+
+Puller()
+
+Pull an arc-line junction tight.
+
+   The `Puller()' action is a special-purpose optimization.  When
+invoked while the crosshair is over the junction of an arc and a line,
+it will adjust the arc's angle and the connecting line's endpoint such
+that the line intersects the arc at a tangent.  In the example below,
+the left side is "before" with the black target marking where to put
+the crosshair:
+
+       [image src="puller.png" alt="Example of how puller works" ]
+
+The right side is "after" with the black target marking where the
+arc-line intersection was moved to.
+
+
+File: pcb.info,  Node: q Action,  Next: q! Action,  Prev: Puller Action,  Up: core actions
+
+G.1.63 q
+--------
+
+q
+
+Quits the application after confirming.
+
+   If you have unsaved changes, you will be prompted to confirm (or
+save) before quitting.
+
+   This is one of the command box helper actions.  While it is a regular
+action and can be used like any other action, its name and syntax are
+optimized for use with the command box (`:') and thus the syntax is
+documented for that purpose.
+
+
+File: pcb.info,  Node: q! Action,  Next: Quit Action,  Prev: q Action,  Up: core actions
+
+G.1.64 q!
+---------
+
+q!
+
+Quits the application without confirming.
+
+   Note that this command neither saves your data nor prompts for
+confirmation.
+
+   This is one of the command box helper actions.  While it is a regular
+action and can be used like any other action, its name and syntax are
+optimized for use with the command box (`:') and thus the syntax is
+documented for that purpose.
+
+
+File: pcb.info,  Node: Quit Action,  Next: Redo Action,  Prev: q! Action,  Up: core actions
+
+G.1.65 Quit
+-----------
+
+Quit()
+
+Quits the application after confirming.
+
+   If you have unsaved changes, you will be prompted to confirm (or
+save) before quitting.
+
+
+File: pcb.info,  Node: Redo Action,  Next: RemoveSelected Action,  Prev: Quit Action,  Up: core actions
+
+G.1.66 Redo
+-----------
+
+Redo()
+
+Redo recent"undo"operations.
+
+   This routine allows you to recover from the last undo command.  You
+might want to do this if you thought that undo was going to revert
+something other than what it actually did (in case you are confused
+about which operations are un-doable), or if you have been backing up
+through a long undo list and over-shoot your stopping point.  Any
+change that is made since the undo in question will trim the redo list.
+For example if you add ten lines, then undo three of them you could use
+redo to put them back, but if you move a line on the board before
+performing the redo, you will lose the ability to "redo" the three
+"undone" lines.
+
+
+File: pcb.info,  Node: RemoveSelected Action,  Next: Renumber Action,  Prev: Redo Action,  Up: core actions
+
+G.1.67 RemoveSelected
+---------------------
+
+RemoveSelected()
+
+Removes any selected objects.
+
+
+File: pcb.info,  Node: Renumber Action,  Next: Report Action,  Prev: RemoveSelected Action,  Up: core actions
+
+G.1.68 Renumber
+---------------
+
+Renumber()
+Renumber(filename)
+
+Renumber all elements.  The changes will be recorded to filename for
+use in backannotating these changes to the schematic.
+
+
+File: pcb.info,  Node: Report Action,  Next: ReportDialog Action,  Prev: Renumber Action,  Up: core actions
+
+G.1.69 Report
+-------------
+
+Report(Object|DrillReport|FoundPins|NetLength|AllNetLengths|[,name])
+
+Produce various report.
+
+`Object'
+     The object under the crosshair will be reported, describing various
+     aspects of the object.
+
+`DrillReport'
+     A report summarizing the number of drill sizes used, and how many
+     of each, will be produced.
+
+`FoundPins'
+     A report listing all pins and pads which are marked as "found" will
+     be produced.
+
+`NetLength'
+     The name and length of the net under the crosshair will be
+     reported to the message log.
+
+`AllNetLengths'
+     The name and length of the net under the crosshair will be
+     reported to the message log.  An optional parameter specifies mm,
+     mil, pcb, or in units
+
+
+
+File: pcb.info,  Node: ReportDialog Action,  Next: RipUp Action,  Prev: Report Action,  Up: core actions
+
+G.1.70 ReportDialog
+-------------------
+
+ReportDialog()
+
+Report on the object under the crosshair
+
+   This is a shortcut for `Report(Object)'.
+
+
+File: pcb.info,  Node: RipUp Action,  Next: rn Action,  Prev: ReportDialog Action,  Up: core actions
+
+G.1.71 RipUp
+------------
+
+RipUp(All|Selected|Element)
+
+Ripup auto-routed tracks, or convert an element to parts.
+
+`All'
+     Removes all lines and vias which were created by the autorouter.
+
+`Selected'
+     Removes all selected lines and vias which were created by the
+     autorouter.
+
+`Element'
+     Converts the element under the cursor to parts (vias and lines).
+     Note that this uses the highest numbered paste buffer.
+
+
+
+File: pcb.info,  Node: rn Action,  Next: RouteStyle Action,  Prev: RipUp Action,  Up: core actions
+
+G.1.72 rn
+---------
+
+rn [name]
+
+Reads netlist.
+
+   If no filename is given a file select box will pop up.  The file is
+read via the command defined by the _RatCommand_ resource. The command
+must send its output to _stdout_.
+
+   Netlists are used for generating rat's nests (see *note Rats Nest::)
+and for verifying the board layout (which is also accomplished by the
+_Ratsnest_ command).
+
+   This is one of the command box helper actions.  While it is a regular
+action and can be used like any other action, its name and syntax are
+optimized for use with the command box (`:') and thus the syntax is
+documented for that purpose.
+
+
+File: pcb.info,  Node: RouteStyle Action,  Next: s Action,  Prev: rn Action,  Up: core actions
+
+G.1.73 RouteStyle
+-----------------
+
+RouteStyle(1|2|3|4)
+
+Copies the indicated routing style into the current sizes.
+
+
+File: pcb.info,  Node: s Action,  Next: SaveSettings Action,  Prev: RouteStyle Action,  Up: core actions
+
+G.1.74 s
+--------
+
+s [name]
+
+Saves layout data.
+
+   Data and the filename are passed to the command defined by the
+resource _saveCommand_. It must read the layout data from _stdin_.  If
+no filename is entered, either the last one is used again or, if it is
+not available, a file select box will pop up.
+
+   This is one of the command box helper actions.  While it is a regular
+action and can be used like any other action, its name and syntax are
+optimized for use with the command box (`:') and thus the syntax is
+documented for that purpose.
+
+
+File: pcb.info,  Node: SaveSettings Action,  Next: SaveTo Action,  Prev: s Action,  Up: core actions
+
+G.1.75 SaveSettings
+-------------------
+
+SaveSettings()
+SaveSettings(local)
+
+Saves settings.
+
+   If you pass no arguments, the settings are stored in
+`$HOME/.pcb/settings'.  If you pass the word `local' they're saved in
+`./pcb.settings'.
+
+
+File: pcb.info,  Node: SaveTo Action,  Next: Select Action,  Prev: SaveSettings Action,  Up: core actions
+
+G.1.76 SaveTo
+-------------
+
+SaveTo(Layout|LayoutAs,filename)
+SaveTo(AllConnections|AllUnusedPins|ElementConnections,filename)
+SaveTo(PasteBuffer,filename)
+
+Saves data to a file.
+
+`Layout'
+     Saves the current layout.
+
+`LayoutAs'
+     Saves the current layout, and remembers the filename used.
+
+`AllConnections'
+     Save all connections to a file.
+
+`AllUnusedPins'
+     List all unused pins to a file.
+
+`ElementConnections'
+     Save connections to the element at the cursor to a file.
+
+`PasteBuffer'
+     Save the content of the active Buffer to a file. This is the
+     graphical way to create a footprint.
+
+
+
+File: pcb.info,  Node: Select Action,  Next: SetFlag Action,  Prev: SaveTo Action,  Up: core actions
+
+G.1.77 Select
+-------------
+
+Select(Object|ToggleObject)
+Select(All|Block|Connection)
+Select(ElementByName|ObjectByName|PadByName|PinByName)
+Select(ElementByName|ObjectByName|PadByName|PinByName, Name)
+Select(TextByName|ViaByName|NetByName)
+Select(TextByName|ViaByName|NetByName, Name)
+Select(Convert)
+
+Toggles or sets the selection.
+
+`ElementByName'
+
+`ObjectByName'
+
+`PadByName'
+
+`PinByName'
+
+`TextByName'
+
+`ViaByName'
+
+`NetByName'
+     These all rely on having a regular expression parser built into
+     `pcb'.  If the name is not specified then the user is prompted for
+     a pattern, and all objects that match the pattern and are of the
+     type specified are selected.
+
+`Object'
+
+`ToggleObject'
+     Selects the object under the cursor.
+
+`Block'
+     Selects all objects in a rectangle indicated by the cursor.
+
+`All'
+     Selects all objects on the board.
+
+`Found'
+     Selects all connections with the "found" flag set.
+
+`Connection'
+     Selects all connections with the "connected" flag set.
+
+`Convert'
+     Converts the selected objects to an element.  This uses the highest
+     numbered paste buffer.
+
+
+
+File: pcb.info,  Node: SetFlag Action,  Next: SetOctagon Action,  Prev: Select Action,  Up: core actions
+
+G.1.78 SetFlag
+--------------
+
+SetFlag(Object|Selected|SelectedObjects, flag)
+SetFlag(SelectedLines|SelectedPins|SelectedVias, flag)
+SetFlag(SelectedPads|SelectedTexts|SelectedNames, flag)
+SetFlag(SelectedElements, flag)
+flag = square | octagon | thermal | join
+
+Sets flags on objects.
+
+   Turns the given flag on, regardless of its previous setting.  See
+`ChangeFlag'.
+
+     SetFlag(SelectedPins,thermal)
+
+
+File: pcb.info,  Node: SetOctagon Action,  Next: SetSame Action,  Prev: SetFlag Action,  Up: core actions
+
+G.1.79 SetOctagon
+-----------------
+
+SetOctagon(Object|ToggleObject|SelectedElements|Selected)
+
+Sets the octagon-flag of objects.
+
+   Pins, pads, and vias can have various shapes.  All may be round.
+Pins and pads may be square (obviously "square" pads are usually
+rectangular).  Pins and vias may be octagonal.  When you change a shape
+flag of an element, you actually change all of its pins and pads.
+
+   Note that the square flag takes precedence over the octagon flag,
+thus, if both the square and octagon flags are set, the object is
+square.  When the square flag is cleared, the pins and pads will be
+either round or, if the octagon flag is set, octagonal.
+
+
+File: pcb.info,  Node: SetSame Action,  Next: SetSquare Action,  Prev: SetOctagon Action,  Up: core actions
+
+G.1.80 SetSame
+--------------
+
+SetSame()
+
+Sets current layer and sizes to match indicated item.
+
+   When invoked over any line, arc, polygon, or via, this changes the
+current layer to be the layer that item is on, and changes the current
+sizes (thickness, keepaway, drill, etc) according to that item.
+
+
+File: pcb.info,  Node: SetSquare Action,  Next: SetThermal Action,  Prev: SetSame Action,  Up: core actions
+
+G.1.81 SetSquare
+----------------
+
+SetSquare(ToggleObject|SelectedElements|SelectedPins)
+
+sets the square-flag of objects.
+
+   Note that `Pins' means pins and pads.
+
+   Pins, pads, and vias can have various shapes.  All may be round.
+Pins and pads may be square (obviously "square" pads are usually
+rectangular).  Pins and vias may be octagonal.  When you change a shape
+flag of an element, you actually change all of its pins and pads.
+
+   Note that the square flag takes precedence over the octagon flag,
+thus, if both the square and octagon flags are set, the object is
+square.  When the square flag is cleared, the pins and pads will be
+either round or, if the octagon flag is set, octagonal.
+
+
+File: pcb.info,  Node: SetThermal Action,  Next: SetValue Action,  Prev: SetSquare Action,  Up: core actions
+
+G.1.82 SetThermal
+-----------------
+
+SetThermal(Object|SelectedPins|SelectedVias|Selected, Style)
+
+Set the thermal (on the current layer) of pins or vias to the given
+style.  Style = 0 means no thermal.  Style = 1 has diagonal fingers
+with sharp edges.  Style = 2 has horizontal and vertical fingers with
+sharp edges.  Style = 3 is a solid connection to the plane.Style = 4
+has diagonal fingers with rounded edges.  Style = 5 has horizontal and
+vertical fingers with rounded edges.
+
+   This changes how/whether pins or vias connect to any rectangle or
+polygon on the current layer. The first argument can specify one
+object, or all selected pins, or all selected vias, or all selected
+pins and vias.  The second argument specifies the style of connection.
+There are 5 possibilities: 0 - no connection, 1 - 45 degree fingers
+with sharp edges, 2 - horizontal & vertical fingers with sharp edges, 3
+- solid connection, 4 - 45 degree fingers with rounded corners, 5 -
+horizontal & vertical fingers with rounded corners.
+
+   Pins and Vias may have thermals whether or not there is a polygon
+available to connect with. However, they will have no effect without
+the polygon.
+
+
+File: pcb.info,  Node: SetValue Action,  Next: ToggleHideName Action,  Prev: SetThermal Action,  Up: core actions
+
+G.1.83 SetValue
+---------------
+
+SetValue(Grid|Line|LineSize|Text|TextScale|ViaDrillingHole|Via|ViaSize, delta)
+
+Change various board-wide values and sizes.
+
+`ViaDrillingHole'
+     Changes the diameter of the drill for new vias.
+
+`Grid'
+     Sets the grid spacing.
+
+`Line'
+
+`LineSize'
+     Changes the thickness of new lines.
+
+`Via'
+
+`ViaSize'
+     Changes the diameter of new vias.
+
+`Text'
+
+`TextScale'
+     Changes the size of new text.
+
+
+
+File: pcb.info,  Node: ToggleHideName Action,  Next: ToggleVendor Action,  Prev: SetValue Action,  Up: core actions
+
+G.1.84 ToggleHideName
+---------------------
+
+ToggleHideName(Object|SelectedElements)
+
+Toggles the visibility of element names.
+
+   If names are hidden you won't see them on the screen and they will
+not appear on the silk layer when you print the layout.
+
+
+File: pcb.info,  Node: ToggleVendor Action,  Next: Undo Action,  Prev: ToggleHideName Action,  Up: core actions
+
+G.1.85 ToggleVendor
+-------------------
+
+ToggleVendor()
+
+Toggles the state of automatic drill size mapping.
+
+   When drill mapping is enabled, new instances of pins and vias will
+have their drill holes mapped to one of the allowed drill sizes
+specified in the currently loaded vendor drill table.  To enable drill
+mapping, a vendor resource file containing a drill table must be loaded
+first.
+
+
+File: pcb.info,  Node: Undo Action,  Next: UnloadVendor Action,  Prev: ToggleVendor Action,  Up: core actions
+
+G.1.86 Undo
+-----------
+
+Undo()
+Undo(ClearList)
+
+Undo recent changes.
+
+   The unlimited undo feature of `Pcb' allows you to recover from most
+operations that materially affect you work.  Calling `Undo()' without
+any parameter recovers from the last (non-undo) operation. `ClearList'
+is used to release the allocated memory. `ClearList' is called whenever
+a new layout is started or loaded. See also `Redo' and `Atomic'.
+
+   Note that undo groups operations by serial number; changes with the
+same serial number will be undone (or redone) as a group.  See `Atomic'.
+
+
+File: pcb.info,  Node: UnloadVendor Action,  Next: Unselect Action,  Prev: Undo Action,  Up: core actions
+
+G.1.87 UnloadVendor
+-------------------
+
+UnloadVendor()
+
+Unloads the current vendor drill mapping table.
+
+
+File: pcb.info,  Node: Unselect Action,  Next: w Action,  Prev: UnloadVendor Action,  Up: core actions
+
+G.1.88 Unselect
+---------------
+
+Unselect(All|Block|Connection)
+Unselect(ElementByName|ObjectByName|PadByName|PinByName)
+Unselect(ElementByName|ObjectByName|PadByName|PinByName, Name)
+Unselect(TextByName|ViaByName)
+Unselect(TextByName|ViaByName, Name)
+
+Unselects the object at the pointer location or the specified objects.
+
+`All'
+     Unselect all objects.
+
+`Block'
+     Unselect all objects in a rectangle given by the cursor.
+
+`Connection'
+     Unselect all connections with the "found" flag set.
+
+`ElementByName'
+
+`ObjectByName'
+
+`PadByName'
+
+`PinByName'
+
+`TextByName'
+
+`ViaByName'
+     These all rely on having a regular expression parser built into
+     `pcb'.  If the name is not specified then the user is prompted for
+     a pattern, and all objects that match the pattern and are of the
+     type specified are unselected.
+
+
+
+File: pcb.info,  Node: w Action,  Next: wq Action,  Prev: Unselect Action,  Up: core actions
+
+G.1.89 w
+--------
+
+w [name]
+
+Saves layout data.
+
+   This commands has been added for the convenience of `vi' users and
+has the same functionality as `s'.
+
+   This is one of the command box helper actions.  While it is a regular
+action and can be used like any other action, its name and syntax are
+optimized for use with the command box (`:') and thus the syntax is
+documented for that purpose.
+
+
+File: pcb.info,  Node: wq Action,  Prev: w Action,  Up: core actions
+
+G.1.90 wq
+---------
+
+wq
+
+Saves the layout data and quits.
+
+   This command has been added for the convenience of `vi' users and
+has the same functionality as `s' combined with `q'.
+
+   This is one of the command box helper actions.  While it is a regular
+action and can be used like any other action, its name and syntax are
+optimized for use with the command box (`:') and thus the syntax is
+documented for that purpose.
+
+
+File: pcb.info,  Node: common actions,  Next: gtk actions,  Prev: core actions,  Up: Action Reference
+
+G.2 common actions
+==================
+
+* Menu:
+
+* LayersChanged Action:: Tells the GUI that the layers have changed.
+* LibraryChanged Action:: Tells the GUI that the libraries have changed.
+* NetlistChanged Action:: Tells the GUI that the netlist has changed.
+* PCBChanged Action:: Tells the GUI that the whole PCB has changed. The optional``revert"parameter can be used as a hint to the GUI that the same design is beingreloaded, and that it might keep some viewport settings
+* RouteStylesChanged Action:: Tells the GUI that the routing styles have changed.
+
+
+File: pcb.info,  Node: LayersChanged Action,  Next: LibraryChanged Action,  Up: common actions
+
+G.2.1 LayersChanged
+-------------------
+
+LayersChanged()
+
+Tells the GUI that the layers have changed.
+
+   This includes layer names, colors, stacking order, visibility, etc.
+
+   This is one of a number of actions which are part of the HID
+interface.  The core functions use these actions to tell the current
+GUI when to change the presented information in response to changes
+that the GUI may not know about.  The user normally does not invoke
+these directly.
+
+
+File: pcb.info,  Node: LibraryChanged Action,  Next: NetlistChanged Action,  Prev: LayersChanged Action,  Up: common actions
+
+G.2.2 LibraryChanged
+--------------------
+
+LibraryChanged()
+
+Tells the GUI that the libraries have changed.
+
+   This is one of a number of actions which are part of the HID
+interface.  The core functions use these actions to tell the current
+GUI when to change the presented information in response to changes
+that the GUI may not know about.  The user normally does not invoke
+these directly.
+
+
+File: pcb.info,  Node: NetlistChanged Action,  Next: PCBChanged Action,  Prev: LibraryChanged Action,  Up: common actions
+
+G.2.3 NetlistChanged
+--------------------
+
+NetlistChanged()
+
+Tells the GUI that the netlist has changed.
+
+   This is one of a number of actions which are part of the HID
+interface.  The core functions use these actions to tell the current
+GUI when to change the presented information in response to changes
+that the GUI may not know about.  The user normally does not invoke
+these directly.
+
+
+File: pcb.info,  Node: PCBChanged Action,  Next: RouteStylesChanged Action,  Prev: NetlistChanged Action,  Up: common actions
+
+G.2.4 PCBChanged
+----------------
+
+PCBChanged([revert])
+
+Tells the GUI that the whole PCB has changed. The
+optional"revert"parameter can be used as a hint to the GUI that the
+same design is beingreloaded, and that it might keep some viewport
+settings
+
+   This is one of a number of actions which are part of the HID
+interface.  The core functions use these actions to tell the current
+GUI when to change the presented information in response to changes
+that the GUI may not know about.  The user normally does not invoke
+these directly.
+
+
+File: pcb.info,  Node: RouteStylesChanged Action,  Prev: PCBChanged Action,  Up: common actions
+
+G.2.5 RouteStylesChanged
+------------------------
+
+RouteStylesChanged()
+
+Tells the GUI that the routing styles have changed.
+
+   This is one of a number of actions which are part of the HID
+interface.  The core functions use these actions to tell the current
+GUI when to change the presented information in response to changes
+that the GUI may not know about.  The user normally does not invoke
+these directly.
+
+
+File: pcb.info,  Node: gtk actions,  Next: lesstif actions,  Prev: common actions,  Up: Action Reference
+
+G.3 gtk actions
+===============
+
+* Menu:
+
+* gtk About Action:: N_("Tell the user about this version of PCB.");
+* gtk AdjustStyle Action:: Open the window which allows editing of the route styles.
+* gtk Center Action:: N_("Moves the pointer to the center of the window.");
+* gtk Cursor Action:: N_("Move the cursor.");
+* gtk DoWindows Action:: N_("Open various GUI windows.");
+* gtk EditLayerGroups Action:: Open the preferences window which allows editing of the layer groups.
+* gtk GetXY Action:: N_("Get a coordinate.");
+* gtk ImportGUI Action:: N_("Asks user which schematics to import into PCB.
+");
+* gtk Pan Action:: N_("Start or stop panning (Mode = 1 to start, 0 to stop)
+Optional thumb argument is ignored for now in gtk hid.
+");
+* gtk Popup Action:: N_("Bring up the popup menu specified by `MenuName'.
+If called by a mouse event then the mouse button number
+must be specified as the optional second argument.");
+* gtk Print Action:: N_("Print the layout.");
+* gtk PrintCalibrate Action:: N_("Calibrate the printer.");
+* gtk Save Action:: N_("Save layout and/or element data to a user-selected file.");
+* gtk SelectLayer Action:: Select which layer is the current layer.
+* gtk SetUnits Action:: N_("Set the default measurement units.");
+* gtk SwapSides Action:: N_("Swaps the side of the board you're looking at.");
+* gtk ToggleView Action:: Toggle the visibility of the specified layer or layer group.
+* gtk Zoom Action:: N_("Various zoom factor changes.");
+
+
+File: pcb.info,  Node: gtk About Action,  Next: gtk AdjustStyle Action,  Up: gtk actions
+
+G.3.1 gtk About
+---------------
+
+About()
+
+N_("Tell the user about this version of PCB.");
+
+   This just pops up a dialog telling the user which version of `pcb'
+they're running.
+
+
+File: pcb.info,  Node: gtk AdjustStyle Action,  Next: gtk Center Action,  Prev: gtk About Action,  Up: gtk actions
+
+G.3.2 gtk AdjustStyle
+---------------------
+
+AdjustStyle()
+
+Open the window which allows editing of the route styles.
+
+   Opens the window which allows editing of the route styles.
+
+
+File: pcb.info,  Node: gtk Center Action,  Next: gtk Cursor Action,  Prev: gtk AdjustStyle Action,  Up: gtk actions
+
+G.3.3 gtk Center
+----------------
+
+Center()
+
+N_("Moves the pointer to the center of the window.");
+
+   Move the pointer to the center of the window, but only if it's
+currently within the window already.
+
+
+File: pcb.info,  Node: gtk Cursor Action,  Next: gtk DoWindows Action,  Prev: gtk Center Action,  Up: gtk actions
+
+G.3.4 gtk Cursor
+----------------
+
+Cursor(Type,DeltaUp,DeltaRight,Units)
+
+N_("Move the cursor.");
+
+   This action moves the mouse cursor.  Unlike other actions which take
+coordinates, this action's coordinates are always relative to the
+user's view of the board.  Thus, a positive DELTAUP may move the cursor
+towards the board origin if the board is inverted.
+
+   Type is one of `Pan' or `Warp'.  `Pan' causes the viewport to move
+such that the crosshair is under the mouse cursor.  `Warp' causes the
+mouse cursor to move to be above the crosshair.
+
+   UNITS can be one of the following:
+
+`mil'
+`mm'
+     The cursor is moved by that amount, in board units.
+
+`grid'
+     The cursor is moved by that many grid points.
+
+`view'
+     The values are percentages of the viewport's view.  Thus, a pan of
+     `100' would scroll the viewport by exactly the width of the
+     current view.
+
+`board'
+     The values are percentages of the board size.  Thus, a move of
+     `50,50' moves you halfway across the board.
+
+
+
+File: pcb.info,  Node: gtk DoWindows Action,  Next: gtk EditLayerGroups Action,  Prev: gtk Cursor Action,  Up: gtk actions
+
+G.3.5 gtk DoWindows
+-------------------
+
+DoWindows(1|2|3|4|5|6)
+DoWindows(Layout|Library|Log|Netlist|Preferences|DRC)
+
+N_("Open various GUI windows.");
+
+`1'
+`Layout'
+     Open the layout window.  Since the layout window is always shown
+     anyway, this has no effect.
+
+`2'
+`Library'
+     Open the library window.
+
+`3'
+`Log'
+     Open the log window.
+
+`4'
+`Netlist'
+     Open the netlist window.
+
+`5'
+`Preferences'
+     Open the preferences window.
+
+`6'
+`DRC'
+     Open the DRC violations window.
+
+
+
+File: pcb.info,  Node: gtk EditLayerGroups Action,  Next: gtk GetXY Action,  Prev: gtk DoWindows Action,  Up: gtk actions
+
+G.3.6 gtk EditLayerGroups
+-------------------------
+
+EditLayerGroups()
+
+Open the preferences window which allows editing of the layer groups.
+
+   Opens the preferences window which is where the layer groups are
+edited.  This action is primarily provides to provide menu resource
+compatibility with the lesstif HID.
+
+
+File: pcb.info,  Node: gtk GetXY Action,  Next: gtk ImportGUI Action,  Prev: gtk EditLayerGroups Action,  Up: gtk actions
+
+G.3.7 gtk GetXY
+---------------
+
+GetXY()
+
+N_("Get a coordinate.");
+
+   Prompts the user for a coordinate, if one is not already selected.
+
+
+File: pcb.info,  Node: gtk ImportGUI Action,  Next: gtk Pan Action,  Prev: gtk GetXY Action,  Up: gtk actions
+
+G.3.8 gtk ImportGUI
+-------------------
+
+ImportGUI()
+
+N_("Asks user which schematics to import into PCB.  ");
+
+   Asks user which schematics to import into PCB.
+
+
+File: pcb.info,  Node: gtk Pan Action,  Next: gtk Popup Action,  Prev: gtk ImportGUI Action,  Up: gtk actions
+
+G.3.9 gtk Pan
+-------------
+
+Pan([thumb], Mode)
+
+N_("Start or stop panning (Mode = 1 to start, 0 to stop) Optional thumb
+argument is ignored for now in gtk hid.  ");
+
+   Start or stop panning.  To start call with Mode = 1, to stop call
+with Mode = 0.
+
+
+File: pcb.info,  Node: gtk Popup Action,  Next: gtk Print Action,  Prev: gtk Pan Action,  Up: gtk actions
+
+G.3.10 gtk Popup
+----------------
+
+Popup(MenuName, [Button])
+
+N_("Bring up the popup menu specified by `MenuName'.  If called by a
+mouse event then the mouse button number must be specified as the
+optional second argument.");
+
+   This just pops up the specified menu.  The menu must have been
+defined as a named subresource of the Popups resource in the menu
+resource file. The second, optional (and ignored) argument represents
+the mouse button number which is triggering the popup.
+
+
+File: pcb.info,  Node: gtk Print Action,  Next: gtk PrintCalibrate Action,  Prev: gtk Popup Action,  Up: gtk actions
+
+G.3.11 gtk Print
+----------------
+
+Print()
+
+N_("Print the layout.");
+
+   This will find the default printing HID, prompt the user for its
+options, and print the layout.
+
+
+File: pcb.info,  Node: gtk PrintCalibrate Action,  Next: gtk Save Action,  Prev: gtk Print Action,  Up: gtk actions
+
+G.3.12 gtk PrintCalibrate
+-------------------------
+
+PrintCalibrate()
+
+N_("Calibrate the printer.");
+
+   This will print a calibration page, which you would measure and type
+the measurements in, so that future printouts will be more precise.
+
+
+File: pcb.info,  Node: gtk Save Action,  Next: gtk SelectLayer Action,  Prev: gtk PrintCalibrate Action,  Up: gtk actions
+
+G.3.13 gtk Save
+---------------
+
+Save()
+Save(Layout|LayoutAs)
+Save(AllConnections|AllUnusedPins|ElementConnections)
+Save(PasteBuffer)
+
+N_("Save layout and/or element data to a user-selected file.");
+
+   This action is a GUI front-end to the core's `SaveTo' action (*note
+SaveTo Action::).  If you happen to pass a filename, like `SaveTo',
+then `SaveTo' is called directly.  Else, the user is prompted for a
+filename to save, and then `SaveTo' is called with that filename.
+
+
+File: pcb.info,  Node: gtk SelectLayer Action,  Next: gtk SetUnits Action,  Prev: gtk Save Action,  Up: gtk actions
+
+G.3.14 gtk SelectLayer
+----------------------
+
+SelectLayer(1..MAXLAYER|Silk|Rats)
+
+Select which layer is the current layer.
+
+   The specified layer becomes the currently active layer.  It is made
+visible if it is not already visible
+
+
+File: pcb.info,  Node: gtk SetUnits Action,  Next: gtk SwapSides Action,  Prev: gtk SelectLayer Action,  Up: gtk actions
+
+G.3.15 gtk SetUnits
+-------------------
+
+SetUnits(mm|mil)
+
+N_("Set the default measurement units.");
+
+`mil'
+     Sets the display units to mils (1/1000 inch).
+
+`mm'
+     Sets the display units to millimeters.
+
+
+
+File: pcb.info,  Node: gtk SwapSides Action,  Next: gtk ToggleView Action,  Prev: gtk SetUnits Action,  Up: gtk actions
+
+G.3.16 gtk SwapSides
+--------------------
+
+SwapSides(|v|h|r)
+
+N_("Swaps the side of the board you're looking at.");
+
+   This action changes the way you view the board.
+
+`v'
+     Flips the board over vertically (up/down).
+
+`h'
+     Flips the board over horizontally (left/right), like flipping
+     pages in a book.
+
+`r'
+     Rotates the board 180 degrees without changing sides.
+
+
+   If no argument is given, the board isn't moved but the opposite side
+is shown.
+
+   Normally, this action changes which pads and silk layer are drawn as
+true silk, and which are drawn as the "invisible" layer.  It also
+determines which solder mask you see.
+
+   As a special case, if the layer group for the side you're looking at
+is visible and currently active, and the layer group for the opposite
+is not visible (i.e. disabled), then this action will also swap which
+layer group is visible and active, effectively swapping the "working
+side" of the board.
+
+
+File: pcb.info,  Node: gtk ToggleView Action,  Next: gtk Zoom Action,  Prev: gtk SwapSides Action,  Up: gtk actions
+
+G.3.17 gtk ToggleView
+---------------------
+
+ToggleView(1..MAXLAYER)
+ToggleView(layername)
+ToggleView(Silk|Rats|Pins|Vias|Mask|BackSide)
+
+Toggle the visibility of the specified layer or layer group.
+
+   If you pass an integer, that layer is specified by index (the first
+layer is `1', etc).  If you pass a layer name, that layer is specified
+by name.  When a layer is specified, the visibility of the layer group
+containing that layer is toggled.
+
+   If you pass a special layer name, the visibility of those components
+(silk, rats, etc) is toggled.  Note that if you have a layer named the
+same as a special layer, the layer is chosen over the special layer.
+
+
+File: pcb.info,  Node: gtk Zoom Action,  Prev: gtk ToggleView Action,  Up: gtk actions
+
+G.3.18 gtk Zoom
+---------------
+
+Zoom()
+Zoom(factor)
+
+N_("Various zoom factor changes."); Changes the zoom (magnification) of
+the view of the board.  If no arguments are passed, the view is scaled
+such that the board just fits inside the visible window (i.e. "view
+all").  Otherwise, FACTOR specifies a change in zoom factor.  It may be
+prefixed by `+', `-', or `=' to change how the zoom factor is modified.
+The FACTOR is a floating point number, such as `1.5' or `0.75'.
+
+`+FACTOR'
+     Values greater than 1.0 cause the board to be drawn smaller; more
+     of the board will be visible.  Values between 0.0 and 1.0 cause
+     the board to be drawn bigger; less of the board will be visible.
+
+`-FACTOR'
+     Values greater than 1.0 cause the board to be drawn bigger; less of
+     the board will be visible.  Values between 0.0 and 1.0 cause the
+     board to be drawn smaller; more of the board will be visible.
+
+`=FACTOR'
+     The FACTOR is an absolute zoom factor; the unit for this value is
+     "PCB units per screen pixel".  Since PCB units are 0.01 mil, a
+     FACTOR of 1000 means 10 mils (0.01 in) per pixel, or 100 DPI,
+     about the actual resolution of most screens - resulting in an
+     "actual size" board.  Similarly, a FACTOR of 100 gives you a 10x
+     actual size.
+
+
+   Note that zoom factors of zero are silently ignored.
+
+
+File: pcb.info,  Node: lesstif actions,  Prev: gtk actions,  Up: Action Reference
+
+G.4 lesstif actions
+===================
+
+* Menu:
+
+* lesstif About Action:: Tell the user about this version of PCB.
+* lesstif AdjustSizes Action:: Let the user change the board size, DRC parameters, etc
+* lesstif AdjustStyle Action:: Displays the route style adjustment window.
+* lesstif Benchmark Action:: Benchmark the GUI speed.
+* lesstif Command Action:: Displays the command line input window.
+* lesstif Cursor Action:: Move the cursor.
+* lesstif Debug Action:: Debug action.
+* lesstif DebugXY Action:: Debug action, with coordinates
+* lesstif DoWindows Action:: Open various GUI windows.
+* lesstif DumpKeys Action:: Dump Lesstif key bindings.
+* lesstif EditLayerGroups Action:: Let the user change the layer groupings
+* lesstif Export Action:: Export the layout.
+* lesstif GetXY Action:: Get a coordinate.
+* lesstif ImportGUI Action:: Lets the user choose the schematics to import from
+* lesstif LibraryShow Action:: Displays the library window.
+* lesstif Load Action:: Load layout data from a user-selected file.
+* lesstif LoadVendor Action:: Loads a user-selected vendor resource file.
+* lesstif NetlistShow Action:: Selects the given pinname or netname in the netlist window.
+* lesstif Print Action:: Print the layout.
+* lesstif PrintCalibrate Action:: Calibrate the printer.
+* lesstif PromptFor Action:: Prompt for a response.
+* lesstif Return Action:: Simulate a passing or failing action.
+* lesstif Save Action:: Save layout data to a user-selected file.
+* lesstif SelectLayer Action:: Select which layer is the current layer.
+* lesstif SetUnits Action:: Set the default measurement units.
+* lesstif SwapSides Action:: Swaps the side of the board you're looking at.
+* lesstif ToggleView Action:: Toggle the visibility of the specified layer or layer group.
+* lesstif Zoom Action:: Various zoom factor changes.
+
+
+File: pcb.info,  Node: lesstif About Action,  Next: lesstif AdjustSizes Action,  Up: lesstif actions
+
+G.4.1 lesstif About
+-------------------
+
+About()
+
+Tell the user about this version of PCB.
+
+   This just pops up a dialog telling the user which version of `pcb'
+they're running.
+
+
+File: pcb.info,  Node: lesstif AdjustSizes Action,  Next: lesstif AdjustStyle Action,  Prev: lesstif About Action,  Up: lesstif actions
+
+G.4.2 lesstif AdjustSizes
+-------------------------
+
+AdjustSizes()
+
+Let the user change the board size, DRC parameters, etc
+
+   Displays a dialog box that lets the user change the board size, DRC
+parameters, and text scale.
+
+   The units are determined by the default display units.
+
+
+File: pcb.info,  Node: lesstif AdjustStyle Action,  Next: lesstif Benchmark Action,  Prev: lesstif AdjustSizes Action,  Up: lesstif actions
+
+G.4.3 lesstif AdjustStyle
+-------------------------
+
+AdjustStyle()
+
+Displays the route style adjustment window.
+
+
+File: pcb.info,  Node: lesstif Benchmark Action,  Next: lesstif Command Action,  Prev: lesstif AdjustStyle Action,  Up: lesstif actions
+
+G.4.4 lesstif Benchmark
+-----------------------
+
+Benchmark()
+
+Benchmark the GUI speed.
+
+   This action is used to speed-test the Lesstif graphics subsystem.  It
+redraws the current screen as many times as possible in ten seconds.
+It reports the amount of time needed to draw the screen once.
+
+
+File: pcb.info,  Node: lesstif Command Action,  Next: lesstif Cursor Action,  Prev: lesstif Benchmark Action,  Up: lesstif actions
+
+G.4.5 lesstif Command
+---------------------
+
+Command()
+
+Displays the command line input window.
+
+   The command window allows the user to manually enter actions to be
+executed.  Action syntax can be done one of two ways:
+
+`'
+     Follow the action name by an open parenthesis, arguments separated
+     by commas, end with a close parenthesis.  Example: `Abc(1,2,3)'
+
+`'
+     Separate the action name and arguments by spaces.  Example: `Abc 1
+     2 3'.
+
+
+   The first option allows you to have arguments with spaces in them,
+but the second is more "natural" to type for most people.
+
+   Note that action names are not case sensitive, but arguments normally
+are.  However, most actions will check for "keywords" in a case
+insensitive way.
+
+   There are three ways to finish with the command window.  If you press
+the `Enter' key, the command is invoked, the window goes away, and the
+next time you bring up the command window it's empty.  If you press the
+`Esc' key, the window goes away without invoking anything, and the next
+time you bring up the command window it's empty.  If you change focus
+away from the command window (i.e. click on some other window), the
+command window goes away but the next time you bring it up it resumes
+entering the command you were entering before.
+
+
+File: pcb.info,  Node: lesstif Cursor Action,  Next: lesstif Debug Action,  Prev: lesstif Command Action,  Up: lesstif actions
+
+G.4.6 lesstif Cursor
+--------------------
+
+Cursor(Type,DeltaUp,DeltaRight,Units)
+
+Move the cursor.
+
+   This action moves the mouse cursor.  Unlike other actions which take
+coordinates, this action's coordinates are always relative to the
+user's view of the board.  Thus, a positive DELTAUP may move the cursor
+towards the board origin if the board is inverted.
+
+   Type is one of `Pan' or `Warp'.  `Pan' causes the viewport to move
+such that the crosshair is under the mouse cursor.  `Warp' causes the
+mouse cursor to move to be above the crosshair.
+
+   UNITS can be one of the following:
+
+`mil'
+`mm'
+     The cursor is moved by that amount, in board units.
+
+`grid'
+     The cursor is moved by that many grid points.
+
+`view'
+     The values are percentages of the viewport's view.  Thus, a pan of
+     `100' would scroll the viewport by exactly the width of the
+     current view.
+
+`board'
+     The values are percentages of the board size.  Thus, a move of
+     `50,50' moves you halfway across the board.
+
+
+
+File: pcb.info,  Node: lesstif Debug Action,  Next: lesstif DebugXY Action,  Prev: lesstif Cursor Action,  Up: lesstif actions
+
+G.4.7 lesstif Debug
+-------------------
+
+Debug(...)
+
+Debug action.
+
+   This action exists to help debug scripts; it simply prints all its
+arguments to stdout.
+
+
+File: pcb.info,  Node: lesstif DebugXY Action,  Next: lesstif DoWindows Action,  Prev: lesstif Debug Action,  Up: lesstif actions
+
+G.4.8 lesstif DebugXY
+---------------------
+
+DebugXY(...)
+
+Debug action, with coordinates
+
+   Like `Debug', but requires a coordinate.  If the user hasn't yet
+indicated a location on the board, the user will be prompted to click
+on one.
+
+
+File: pcb.info,  Node: lesstif DoWindows Action,  Next: lesstif DumpKeys Action,  Prev: lesstif DebugXY Action,  Up: lesstif actions
+
+G.4.9 lesstif DoWindows
+-----------------------
+
+DoWindows(1|2|3|4)
+DoWindows(Layout|Library|Log|Netlist)
+
+Open various GUI windows.
+
+`1'
+`Layout'
+     Open the layout window.  Since the layout window is always shown
+     anyway, this has no effect.
+
+`2'
+`Library'
+     Open the library window.
+
+`3'
+`Log'
+     Open the log window.
+
+`4'
+`Netlist'
+     Open the netlist window.
+
+
+
+File: pcb.info,  Node: lesstif DumpKeys Action,  Next: lesstif EditLayerGroups Action,  Prev: lesstif DoWindows Action,  Up: lesstif actions
+
+G.4.10 lesstif DumpKeys
+-----------------------
+
+DumpKeys()
+
+Dump Lesstif key bindings.
+
+   Causes the list of key bindings (from `pcb-menu.res') to be dumped
+to stdout.  This is most useful when invoked from the command line like
+this:
+
+     pcb --action-string DumpKeys
+
+
+File: pcb.info,  Node: lesstif EditLayerGroups Action,  Next: lesstif Export Action,  Prev: lesstif DumpKeys Action,  Up: lesstif actions
+
+G.4.11 lesstif EditLayerGroups
+------------------------------
+
+EditLayerGroups()
+
+Let the user change the layer groupings
+
+   Displays a dialog that lets the user view and change the layer
+groupings.  Each layer (row) can be a member of any one layer group
+(column).  Note the special layers `solder' and `component' allow you
+to specify which groups represent the top and bottom of the board.
+
+   See *note ChangeName Action::.
+
+
+File: pcb.info,  Node: lesstif Export Action,  Next: lesstif GetXY Action,  Prev: lesstif EditLayerGroups Action,  Up: lesstif actions
+
+G.4.12 lesstif Export
+---------------------
+
+Export()
+
+Export the layout.
+
+   Prompts the user for an exporter to use.  Then, prompts the user for
+that exporter's options, and exports the layout.
+
+
+File: pcb.info,  Node: lesstif GetXY Action,  Next: lesstif ImportGUI Action,  Prev: lesstif Export Action,  Up: lesstif actions
+
+G.4.13 lesstif GetXY
+--------------------
+
+GetXY()
+
+Get a coordinate.
+
+   Prompts the user for a coordinate, if one is not already selected.
+
+
+File: pcb.info,  Node: lesstif ImportGUI Action,  Next: lesstif LibraryShow Action,  Prev: lesstif GetXY Action,  Up: lesstif actions
+
+G.4.14 lesstif ImportGUI
+------------------------
+
+ImportGUI()
+
+Lets the user choose the schematics to import from
+
+   Displays a dialog that lets the user select the schematic(s) to
+import from, then saves that information in the layout's attributes for
+future imports.
+
+
+File: pcb.info,  Node: lesstif LibraryShow Action,  Next: lesstif Load Action,  Prev: lesstif ImportGUI Action,  Up: lesstif actions
+
+G.4.15 lesstif LibraryShow
+--------------------------
+
+LibraryShow()
+
+Displays the library window.
+
+
+File: pcb.info,  Node: lesstif Load Action,  Next: lesstif LoadVendor Action,  Prev: lesstif LibraryShow Action,  Up: lesstif actions
+
+G.4.16 lesstif Load
+-------------------
+
+Load()
+Load(Layout|LayoutToBuffer|ElementToBuffer|Netlist|Revert)
+
+Load layout data from a user-selected file.
+
+   This action is a GUI front-end to the core's `LoadFrom' action
+(*note LoadFrom Action::).  If you happen to pass a filename, like
+`LoadFrom', then `LoadFrom' is called directly.  Else, the user is
+prompted for a filename to load, and then `LoadFrom' is called with
+that filename.
+
+
+File: pcb.info,  Node: lesstif LoadVendor Action,  Next: lesstif NetlistShow Action,  Prev: lesstif Load Action,  Up: lesstif actions
+
+G.4.17 lesstif LoadVendor
+-------------------------
+
+LoadVendor()
+
+Loads a user-selected vendor resource file.
+
+   The user is prompted for a file to load, and then `LoadVendorFrom'
+is called (*note LoadVendorFrom Action::) to load that vendor file.
+
+
+File: pcb.info,  Node: lesstif NetlistShow Action,  Next: lesstif Print Action,  Prev: lesstif LoadVendor Action,  Up: lesstif actions
+
+G.4.18 lesstif NetlistShow
+--------------------------
+
+NetlistShow(pinname|netname)
+
+Selects the given pinname or netname in the netlist window.
+
+
+File: pcb.info,  Node: lesstif Print Action,  Next: lesstif PrintCalibrate Action,  Prev: lesstif NetlistShow Action,  Up: lesstif actions
+
+G.4.19 lesstif Print
+--------------------
+
+Print()
+
+Print the layout.
+
+   This will find the default printing HID, prompt the user for its
+options, and print the layout.
+
+
+File: pcb.info,  Node: lesstif PrintCalibrate Action,  Next: lesstif PromptFor Action,  Prev: lesstif Print Action,  Up: lesstif actions
+
+G.4.20 lesstif PrintCalibrate
+-----------------------------
+
+PrintCalibrate()
+
+Calibrate the printer.
+
+   This will print a calibration page, which you would measure and type
+the measurements in, so that future printouts will be more precise.
+
+
+File: pcb.info,  Node: lesstif PromptFor Action,  Next: lesstif Return Action,  Prev: lesstif PrintCalibrate Action,  Up: lesstif actions
+
+G.4.21 lesstif PromptFor
+------------------------
+
+PromptFor([message[,default]])
+
+Prompt for a response.
+
+   This is mostly for testing the lesstif HID interface.  The parameters
+are passed to the `prompt_for()' HID function, causing the user to be
+prompted for a response.  The respose is simply printed to the user's
+stdout.
+
+
+File: pcb.info,  Node: lesstif Return Action,  Next: lesstif Save Action,  Prev: lesstif PromptFor Action,  Up: lesstif actions
+
+G.4.22 lesstif Return
+---------------------
+
+Return(0|1)
+
+Simulate a passing or failing action.
+
+   This is for testing.  If passed a 0, does nothing and succeeds.  If
+passed a 1, does nothing but pretends to fail.
+
+
+File: pcb.info,  Node: lesstif Save Action,  Next: lesstif SelectLayer Action,  Prev: lesstif Return Action,  Up: lesstif actions
+
+G.4.23 lesstif Save
+-------------------
+
+Save()
+Save(Layout|LayoutAs)
+Save(AllConnections|AllUnusedPins|ElementConnections)
+Save(PasteBuffer)
+
+Save layout data to a user-selected file.
+
+   This action is a GUI front-end to the core's `SaveTo' action (*note
+SaveTo Action::).  If you happen to pass a filename, like `SaveTo',
+then `SaveTo' is called directly.  Else, the user is prompted for a
+filename to save, and then `SaveTo' is called with that filename.
+
+
+File: pcb.info,  Node: lesstif SelectLayer Action,  Next: lesstif SetUnits Action,  Prev: lesstif Save Action,  Up: lesstif actions
+
+G.4.24 lesstif SelectLayer
+--------------------------
+
+SelectLayer(1..MAXLAYER|Silk|Rats)
+
+Select which layer is the current layer.
+
+   The specified layer becomes the currently active layer.  It is made
+visible if it is not already visible
+
+
+File: pcb.info,  Node: lesstif SetUnits Action,  Next: lesstif SwapSides Action,  Prev: lesstif SelectLayer Action,  Up: lesstif actions
+
+G.4.25 lesstif SetUnits
+-----------------------
+
+SetUnits(mm|mil)
+
+Set the default measurement units.
+
+`mil'
+     Sets the display units to mils (1/1000 inch).
+
+`mm'
+     Sets the display units to millimeters.
+
+
+
+File: pcb.info,  Node: lesstif SwapSides Action,  Next: lesstif ToggleView Action,  Prev: lesstif SetUnits Action,  Up: lesstif actions
+
+G.4.26 lesstif SwapSides
+------------------------
+
+SwapSides(|v|h|r)
+
+Swaps the side of the board you're looking at.
+
+   This action changes the way you view the board.
+
+`v'
+     Flips the board over vertically (up/down).
+
+`h'
+     Flips the board over horizontally (left/right), like flipping
+     pages in a book.
+
+`r'
+     Rotates the board 180 degrees without changing sides.
+
+
+   If no argument is given, the board isn't moved but the opposite side
+is shown.
+
+   Normally, this action changes which pads and silk layer are drawn as
+true silk, and which are drawn as the "invisible" layer.  It also
+determines which solder mask you see.
+
+   As a special case, if the layer group for the side you're looking at
+is visible and currently active, and the layer group for the opposite
+is not visible (i.e. disabled), then this action will also swap which
+layer group is visible and active, effectively swapping the "working
+side" of the board.
+
+
+File: pcb.info,  Node: lesstif ToggleView Action,  Next: lesstif Zoom Action,  Prev: lesstif SwapSides Action,  Up: lesstif actions
+
+G.4.27 lesstif ToggleView
+-------------------------
+
+ToggleView(1..MAXLAYER)
+ToggleView(layername)
+ToggleView(Silk|Rats|Pins|Vias|Mask|BackSide)
+
+Toggle the visibility of the specified layer or layer group.
+
+   If you pass an integer, that layer is specified by index (the first
+layer is `1', etc).  If you pass a layer name, that layer is specified
+by name.  When a layer is specified, the visibility of the layer group
+containing that layer is toggled.
+
+   If you pass a special layer name, the visibility of those components
+(silk, rats, etc) is toggled.  Note that if you have a layer named the
+same as a special layer, the layer is chosen over the special layer.
+
+
+File: pcb.info,  Node: lesstif Zoom Action,  Prev: lesstif ToggleView Action,  Up: lesstif actions
+
+G.4.28 lesstif Zoom
+-------------------
+
+Zoom()
+Zoom(factor)
+
+Various zoom factor changes.
+
+   Changes the zoom (magnification) of the view of the board.  If no
+arguments are passed, the view is scaled such that the board just fits
+inside the visible window (i.e. "view all").  Otherwise, FACTOR
+specifies a change in zoom factor.  It may be prefixed by `+', `-', or
+`=' to change how the zoom factor is modified.  The FACTOR is a
+floating point number, such as `1.5' or `0.75'.
+
+`+FACTOR'
+     Values greater than 1.0 cause the board to be drawn smaller; more
+     of the board will be visible.  Values between 0.0 and 1.0 cause
+     the board to be drawn bigger; less of the board will be visible.
+
+`-FACTOR'
+     Values greater than 1.0 cause the board to be drawn bigger; less of
+     the board will be visible.  Values between 0.0 and 1.0 cause the
+     board to be drawn smaller; more of the board will be visible.
+
+`=FACTOR'
+     The FACTOR is an absolute zoom factor; the unit for this value is
+     "PCB units per screen pixel".  Since PCB units are 0.01 mil, a
+     FACTOR of 1000 means 10 mils (0.01 in) per pixel, or 100 DPI,
+     about the actual resolution of most screens - resulting in an
+     "actual size" board.  Similarly, a FACTOR of 100 gives you a 10x
+     actual size.
+
+
+   Note that zoom factors of zero are silently ignored.
+
+
+File: pcb.info,  Node: Glossary,  Next: Index,  Prev: Action Reference,  Up: Top
+
+Appendix H Glossary
+*******************
+
+Footprint
+     The pattern of metal, silkscreen, soldermask relief, and drills
+     which defines where you place a component on a circuit board.
+     Footprints are the placed by the user onto the PC board during the
+     placement phase of PCB layout.
+
+Gerber File
+     The file format used in the industry to convey a board database to
+     the manufacturer is RS-274X (which replaces the now obsolete
+     RS-274D format).  This file format was originally developed by
+     Gerber for their photo plotters and thus RS-274D and RS-274X
+     format files are often times refered to as "Gerber" files.
+
+Thermal, Thermal Relief
+     A thermal relief is a way of connecting a pin to a ground or power
+     plane.  Instead of directly connecting to the plane, small "spokes"
+     are used to increase the thermal resistance between the pin and
+     the plane.  Often times these connections are refered to as simply
+     a thermal.  By increasing the thermal resistance to the plane, it
+     becomes easier to solder to the pin.  In the drawing below, the
+     pin on the left is connected to the polygon using a solid
+     connection with no thermal relief, the middle pin is connected
+     using a thermal, while the pin on the right has no connection to
+     the polygon.  In PCB, the "Thermal" Tool is used to make both a
+     solid connection and one with thermal relief (see *note Polygon
+     Objects::).
+
+         [image src="thermal.png" alt="Example of a thermal relief" ]
+
+
+File: pcb.info,  Node: Index,  Prev: Glossary,  Up: Top
+
+Index of Resources
+******************
+
+ [index ]
+* Menu:
+
+* absoluteGrid:                          Resources.           (line   9)
+* alignmentDistance:                     Resources.           (line  13)
+* allDirectionLines:                     Resources.           (line  17)
+* backgroundImage:                       Resources.           (line  21)
+* backupInterval:                        Resources.           (line  43)
+* bloat:                                 Resources.           (line  52)
+* BTNMOD:                                running configure.   (line  25)
+* connectedColor:                        Resources.           (line  55)
+* cross hairColor:                       Resources.           (line  60)
+* DEFAULTFONT:                           running configure.   (line  16)
+* DEFAULTLIBRARY:                        running configure.   (line  19)
+* Element Search:                        Regular Expressions. (line   6)
+* elementColor:                          Resources.           (line  68)
+* elementCommand <1>:                    File Formats.        (line  14)
+* elementCommand:                        Resources.           (line  74)
+* elementContentsCommand:                Resources.           (line 173)
+* elementPath:                           Resources.           (line  85)
+* elementSelectedColor:                  Resources.           (line  68)
+* Exporting a layout:                    Exporting.           (line   6)
+* fileCommand <1>:                       File Formats.        (line  14)
+* fileCommand:                           Resources.           (line  93)
+* filePath:                              Resources.           (line 102)
+* fontCommand <1>:                       File Formats.        (line  14)
+* fontCommand:                           Resources.           (line 110)
+* fontFile:                              Resources.           (line 118)
+* fontPath:                              Resources.           (line 124)
+* GNUM4:                                 running configure.   (line  22)
+* grid:                                  Resources.           (line 128)
+* gridColor:                             Resources.           (line 133)
+* INFOLIBDIR:                            running configure.   (line  10)
+* invisibleObjectsColor:                 Resources.           (line 141)
+* layerColor:                            Resources.           (line 145)
+* layerGroups:                           Resources.           (line 151)
+* layerName:                             Resources.           (line 159)
+* layerSelectedColor:                    Resources.           (line 145)
+* libraryCommand <1>:                    File Formats.        (line  14)
+* libraryCommand:                        Resources.           (line 163)
+* libraryContentsCommand:                File Formats.        (line  14)
+* libraryFilename:                       Resources.           (line 179)
+* libraryPath:                           Resources.           (line 184)
+* lineThickness:                         Resources.           (line 189)
+* Measuring distances:                   Measuring distances. (line   6)
+* media:                                 Resources.           (line 195)
+* offLimitColor:                         Resources.           (line 203)
+* PCBLIBDIR:                             running configure.   (line  13)
+* pinColor:                              Resources.           (line 208)
+* pinoutFont0..6:                        Resources.           (line 213)
+* pinoutNameLength:                      Resources.           (line 217)
+* pinoutOffsetX:                         Resources.           (line 222)
+* pinoutOffsetY:                         Resources.           (line 222)
+* pinoutTextOffsetX:                     Resources.           (line 228)
+* pinoutTextOffsetY:                     Resources.           (line 228)
+* pinoutZoom:                            Resources.           (line 234)
+* pinSelectedColor:                      Resources.           (line 208)
+* printCommand:                          Resources.           (line 239)
+* raiseLogWindow:                        Resources.           (line 244)
+* ratCommand:                            Resources.           (line 248)
+* ratPath:                               Resources.           (line 252)
+* Regular Expressions:                   Regular Expressions. (line   6)
+* resetAfterElement:                     Resources.           (line 255)
+* ringBellWhenFinished:                  Resources.           (line 262)
+* routeStyle:                            Resources.           (line 267)
+* rubberBandMode:                        Resources.           (line 274)
+* saveCommand <1>:                       File Formats.        (line  14)
+* saveCommand:                           Resources.           (line 278)
+* saveInTMP:                             Resources.           (line 285)
+* saveLastCommand:                       Resources.           (line 294)
+* Searching for elements:                Searching for elements.
+                                                              (line   6)
+* shrink:                                Resources.           (line 299)
+* size:                                  Resources.           (line 302)
+* stipplePolygons:                       Resources.           (line 307)
+* textScale:                             Resources.           (line 313)
+* useLogWindow:                          Resources.           (line 317)
+* viaColor:                              Resources.           (line 324)
+* viaDrillingHole:                       Resources.           (line 330)
+* viaSelectedColor:                      Resources.           (line 324)
+* viaThickness:                          Resources.           (line 330)
+* volume:                                Resources.           (line 338)
+* warnColor:                             Resources.           (line 343)
+* zoom:                                  Resources.           (line 347)
+
+Index of Actions, Commands and Options
+**************************************
+
+ [index ]
+* Menu:
+
+* -- basename <string>:                  nelma Options.       (line   6)
+* --action-script <string>:              General Options.     (line  79)
+* --action-string <string>:              General Options.     (line  82)
+* --align-marks:                         Postscript Export.   (line  12)
+* --alignment-distance <num>:            Sizes.               (line  66)
+* --all-direction-lines:                 General GUI Options. (line  35)
+* --all-layers:                          Gerber Export.       (line   9)
+* --as-shown <1>:                        PNG Options.         (line  23)
+* --as-shown:                            Encapsulated Postscript Export.
+                                                              (line  13)
+* --auto-mirror:                         Postscript Export.   (line  25)
+* --background-color <string>:           Colors.              (line  12)
+* --backup-interval:                     General Options.     (line  62)
+* --bg-image <string> <1>:               lesstif GUI Options. (line   9)
+* --bg-image <string>:                   GTK+ GUI Options.    (line   9)
+* --black-color <string>:                Colors.              (line   6)
+* --bloat <num>:                         DRC Options.         (line   9)
+* --bomfile <string>:                    BOM Creation.        (line   6)
+* --clear-increment-mil <string>:        General Options.     (line  46)
+* --clear-increment-mm <string>:         General Options.     (line  30)
+* --clear-line:                          General GUI Options. (line  21)
+* --connected-color <string>:            Colors.              (line  54)
+* --copper-height <num>:                 nelma Options.       (line  12)
+* --copyright:                           General Options.     (line  15)
+* --cross-color <string>:                Colors.              (line  18)
+* --crosshair-color <string>:            Colors.              (line  15)
+* --default-font <string>:               Paths.               (line  12)
+* --default-PCB-height <num>:            Sizes.               (line  59)
+* --default-PCB-width <num>:             Sizes.               (line  56)
+* --dpi:                                 PNG Options.         (line   9)
+* --dpi <num>:                           nelma Options.       (line   9)
+* --draw-grid:                           General GUI Options. (line  18)
+* --drill-copper:                        Postscript Export.   (line  61)
+* --drill-helper:                        Postscript Export.   (line   9)
+* --dump-actions:                        General Options.     (line  24)
+* --element-color <string>:              Colors.              (line  36)
+* --element-command <string>:            Commands.            (line  17)
+* --element-path <string>:               General Options.     (line  74)
+* --element-selected-color <string>:     Colors.              (line  48)
+* --eps-file <string>:                   Encapsulated Postscript Export.
+                                                              (line   6)
+* --eps-scale <num>:                     Encapsulated Postscript Export.
+                                                              (line  10)
+* --fab-author <string>:                 General Options.     (line  85)
+* --file-command <string>:               Commands.            (line  14)
+* --file-path <string>:                  Paths.               (line  15)
+* --fill-holes:                          PNG Options.         (line  35)
+* --fill-page:                           Postscript Export.   (line  22)
+* --font-command <string>:               Commands.            (line  11)
+* --font-path <string>:                  Paths.               (line  20)
+* --format <string>:                     PNG Options.         (line  38)
+* --found-color <string>:                Colors.              (line  57)
+* --full-poly:                           General GUI Options. (line  24)
+* --gerberfile <string>:                 Gerber Export.       (line   6)
+* --grid <num>:                          Sizes.               (line  70)
+* --grid-color <string>:                 Colors.              (line  63)
+* --grid-increment-mil <string>:         General Options.     (line  50)
+* --grid-increment-mm <string>:          General Options.     (line  34)
+* --grid-units-mm <string>:              General Options.     (line  27)
+* --groups <string>:                     General Options.     (line  66)
+* --help:                                General Options.     (line   6)
+* --invisible-mark-color <string>:       Colors.              (line  45)
+* --invisible-objects-color <string>:    Colors.              (line  42)
+* --keepaway <num>:                      Sizes.               (line  52)
+* --layer-color-<n> <string>:            Colors.              (line  66)
+* --layer-name-1 <string>:               Layer Names.         (line   6)
+* --layer-name-2 <string>:               Layer Names.         (line   9)
+* --layer-name-3 <string>:               Layer Names.         (line  12)
+* --layer-name-4 <string>:               Layer Names.         (line  15)
+* --layer-name-5 <string>:               Layer Names.         (line  18)
+* --layer-name-6 <string>:               Layer Names.         (line  21)
+* --layer-name-7 <string>:               Layer Names.         (line  24)
+* --layer-name-8 <string>:               Layer Names.         (line  27)
+* --layer-selected-color-<n> <string>:   Colors.              (line  69)
+* --layer-stack <string>:                General Options.     (line  88)
+* --lib-command <string>:                Commands.            (line  27)
+* --lib-command-dir <string>:            Commands.            (line  24)
+* --lib-contents-command <string>:       Commands.            (line  31)
+* --lib-name <string>:                   Paths.               (line   9)
+* --lib-newlib <string>:                 Paths.               (line   6)
+* --lib-path <string>:                   Paths.               (line  24)
+* --line-increment-mil <string>:         General Options.     (line  54)
+* --line-increment-mm <string>:          General Options.     (line  38)
+* --line-thickness <num>:                Sizes.               (line  42)
+* --listen <1>:                          lesstif GUI Options. (line   6)
+* --listen:                              GTK+ GUI Options.    (line   6)
+* --lprcommand <string>:                 lpr Printing Options.
+                                                              (line   6)
+* --mask-color <string>:                 Colors.              (line  76)
+* --media <media-name>:                  Postscript Export.   (line  37)
+* --metric:                              Gerber Export.       (line  15)
+* --min-drill <num>:                     DRC Options.         (line  21)
+* --min-ring <num>:                      DRC Options.         (line  24)
+* --min-silk <num>:                      DRC Options.         (line  18)
+* --min-width <num>:                     DRC Options.         (line  15)
+* --minimum polygon area <num>:          Sizes.               (line  73)
+* --mirror:                              Postscript Export.   (line  19)
+* --monochrome <1>:                      PNG Options.         (line  26)
+* --monochrome:                          Encapsulated Postscript Export.
+                                                              (line  16)
+* --multi-file:                          Postscript Export.   (line  51)
+* --off-limit-color <string>:            Colors.              (line  60)
+* --only-visible <1>:                    PNG Options.         (line  29)
+* --only-visible:                        Encapsulated Postscript Export.
+                                                              (line  19)
+* --outfile <string>:                    PNG Options.         (line   6)
+* --outline:                             Postscript Export.   (line  16)
+* --pcb-menu <string> <1>:               lesstif GUI Options. (line  15)
+* --pcb-menu <string>:                   GTK+ GUI Options.    (line  15)
+* --photo-flip-x:                        PNG Options.         (line  51)
+* --photo-flip-y:                        PNG Options.         (line  55)
+* --photo-mask-colour <colour>:          PNG Options.         (line  59)
+* --photo-mode:                          PNG Options.         (line  48)
+* --photo-plating:                       PNG Options.         (line  63)
+* --photo-silk-colour:                   PNG Options.         (line  68)
+* --pin-color <string>:                  Colors.              (line  27)
+* --pin-name-color <string>:             Colors.              (line  33)
+* --pin-selected-color <string>:         Colors.              (line  30)
+* --pinout-offset-x <num>:               General GUI Options. (line   6)
+* --pinout-offset-y <num>:               General GUI Options. (line   9)
+* --pinout-text-offset-x <num>:          General GUI Options. (line  12)
+* --pinout-text-offset-y <num>:          General GUI Options. (line  15)
+* --png-bloat <num><dim>:                PNG Options.         (line  42)
+* --print-file <string>:                 Commands.            (line  21)
+* --ps-bloat <num>:                      Postscript Export.   (line  31)
+* --ps-color:                            Postscript Export.   (line  28)
+* --ps-invert:                           Postscript Export.   (line  34)
+* --psfade <num>:                        Postscript Export.   (line  44)
+* --psfile <string>:                     Postscript Export.   (line   6)
+* --rat-color <string>:                  Colors.              (line  39)
+* --rat-command <string>:                Commands.            (line  39)
+* --rat-selected-color <string>:         Colors.              (line  51)
+* --rat-thickness <num><unit>:           Sizes.               (line  45)
+* --reset-after-element:                 General Options.     (line 100)
+* --ring-bell-finished:                  General Options.     (line 104)
+* --route-styles <string>:               General Options.     (line  69)
+* --save-command <string>:               Commands.            (line  36)
+* --save-in-tmp:                         General Options.     (line  95)
+* --save-last-command:                   General Options.     (line  92)
+* --scale <num>:                         Postscript Export.   (line  47)
+* --show-actions:                        General Options.     (line  21)
+* --show-defaults:                       General Options.     (line  18)
+* --show-legend:                         Postscript Export.   (line  64)
+* --show-number:                         General GUI Options. (line  38)
+* --shrink <num>:                        DRC Options.         (line  12)
+* --size-increment-mil <string>:         General Options.     (line  58)
+* --size-increment-mm <string>:          General Options.     (line  42)
+* --snap-pin:                            General GUI Options. (line  31)
+* --substrate-epsilon <num>:             nelma Options.       (line  18)
+* --substrate-height <num>:              nelma Options.       (line  15)
+* --text-scale <num>:                    Sizes.               (line  62)
+* --unique-names:                        General GUI Options. (line  27)
+* --use-alpha:                           PNG Options.         (line  32)
+* --verbose <1>:                         Gerber Export.       (line  12)
+* --verbose:                             General Options.     (line  12)
+* --version:                             General Options.     (line   9)
+* --via-color <string>:                  Colors.              (line  21)
+* --via-drilling-hole <num>:             Sizes.               (line  39)
+* --via-selected-color <string>:         Colors.              (line  24)
+* --via-thickness <num>:                 Sizes.               (line  36)
+* --warn-color <string>:                 Colors.              (line  73)
+* --x-max:                               PNG Options.         (line  13)
+* --xcalib <num>:                        Postscript Export.   (line  55)
+* --xy-max:                              PNG Options.         (line  19)
+* --xy-unit <unit>:                      BOM Creation.        (line  12)
+* --xyfile <string>:                     BOM Creation.        (line   9)
+* --y-max:                               PNG Options.         (line  16)
+* --ycalib <num>:                        Postscript Export.   (line  58)
+* :actionCommand():                      User Commands.       (line  75)
+* :l:                                    User Commands.       (line  33)
+* :le:                                   User Commands.       (line  39)
+* :m:                                    User Commands.       (line  45)
+* :q:                                    User Commands.       (line  51)
+* :rn:                                   User Commands.       (line  61)
+* :s:                                    User Commands.       (line  55)
+* :w[q]:                                 User Commands.       (line  71)
+* AddRats():                             Actions.             (line  27)
+* ApplyVendor() <1>:                     ApplyVendor Action.  (line   8)
+* ApplyVendor():                         Actions.             (line  54)
+* Atomic():                              Actions.             (line  58)
+* Bell():                                Actions.             (line  68)
+* ChangeClearSize():                     Actions.             (line  72)
+* ChangeDrillSize():                     Actions.             (line  83)
+* ChangeFlag():                          Actions.             (line  93)
+* ChangeHole():                          Actions.             (line 101)
+* ChangeName():                          Actions.             (line 107)
+* ChangeOctagon():                       Actions.             (line 117)
+* ChangePinName():                       Actions.             (line 123)
+* ChangeSize():                          Actions.             (line 129)
+* ChangeSquare():                        Actions.             (line 148)
+* ClrFlag():                             Actions.             (line 154)
+* Command():                             Actions.             (line 160)
+* Connection():                          Actions.             (line 167)
+* DeleteRats():                          Actions.             (line 181)
+* DisableVendor() <1>:                   DisableVendor Action.
+                                                              (line  10)
+* DisableVendor():                       Actions.             (line 188)
+* DisperseElements():                    Actions.             (line 193)
+* Display():                             Actions.             (line 199)
+* DRC():                                 Actions.             (line 234)
+* EditLayerGroups():                     Actions.             (line 250)
+* EnableVendor() <1>:                    EnableVendor Action. (line  10)
+* EnableVendor():                        Actions.             (line 254)
+* ExecuteFile():                         Actions.             (line 238)
+* Load():                                Actions.             (line 259)
+* LoadVendor():                          Actions.             (line 265)
+* LoadVendorFrom():                      LoadVendorFrom Action.
+                                                              (line  10)
+* MarkCrosshair():                       Actions.             (line 269)
+* Mode():                                Actions.             (line 277)
+* MovePointer():                         Actions.             (line 326)
+* MoveToCurrentLayer():                  Actions.             (line 340)
+* New():                                 Actions.             (line 350)
+* PasteBuffer():                         Actions.             (line 355)
+* Polygon():                             Actions.             (line 382)
+* Print():                               Actions.             (line 392)
+* Quit():                                Actions.             (line 412)
+* Redo():                                Actions.             (line 416)
+* RemoveSelected():                      Actions.             (line 430)
+* Report():                              Actions.             (line 434)
+* RouteStyle():                          Actions.             (line 440)
+* Save():                                Actions.             (line 450)
+* Select():                              Actions.             (line 459)
+* SetFlag():                             Actions.             (line 471)
+* SetValue():                            Actions.             (line 477)
+* SwapSides():                           Actions.             (line 499)
+* SwitchDrawingLayer():                  Actions.             (line 503)
+* ToggleHideName():                      Actions.             (line 509)
+* ToggleVendor() <1>:                    ToggleVendor Action. (line  10)
+* ToggleVendor():                        Actions.             (line 516)
+* ToggleVisibility():                    Actions.             (line 521)
+* Undo():                                Actions.             (line 528)
+* UnloadVendor() <1>:                    UnloadVendor Action. (line  10)
+* UnloadVendor():                        Actions.             (line 539)
+* Unselect():                            Actions.             (line 543)
+
+Index of Concepts
+*****************
+
+ [index ]
+* Menu:
+
+* /tmp <1>:                              Resources.           (line 285)
+* /tmp:                                  Loading and Saving.  (line  18)
+* action command:                        User Commands.       (line  75)
+* action reference:                      Action Reference.    (line   6)
+* actions:                               Actions.             (line   6)
+* actions file, executing:               Actions.             (line 238)
+* Actions, initiating:                   User Commands.       (line  75)
+* align-marks:                           Postscript Export.   (line  12)
+* alignment:                             Resources.           (line  13)
+* alignment targets:                     Printing.            (line  47)
+* Alpha:                                 DEC Alpha.           (line   6)
+* annotation file format:                Annotation File Format.
+                                                              (line   6)
+* arc:                                   Arc Objects.         (line   6)
+* arc, an example:                       Arcs.                (line   6)
+* architecture <1>:                      Linux.               (line   6)
+* architecture <2>:                      SCO.                 (line   6)
+* architecture <3>:                      DEC Alpha.           (line   6)
+* architecture <4>:                      SGI.                 (line   6)
+* architecture <5>:                      Sun.                 (line   6)
+* architecture:                          HP.                  (line   6)
+* arrow tool:                            Arrow Tool.          (line   6)
+* as-shown (EPS):                        Encapsulated Postscript Export.
+                                                              (line  13)
+* ASCII files, format of:                File Formats.        (line   6)
+* Atari version:                         History.             (line   6)
+* atomic:                                Actions.             (line  58)
+* auto-router:                           Menu.                (line 119)
+* autorouter:                            Autorouter.          (line   6)
+* backannotation file format:            Annotation File Format.
+                                                              (line   6)
+* background:                            Resources.           (line  21)
+* backup <1>:                            Resources.           (line  43)
+* backup:                                Loading and Saving.  (line  18)
+* bell:                                  Actions.             (line  68)
+* bill of materials:                     bom.                 (line   6)
+* bloat:                                 Resources.           (line  52)
+* bom:                                   bom.                 (line   6)
+* buffer, an example:                    Pastebuffer.         (line   6)
+* buffer, convert contents to element:   Elements.            (line  59)
+* Buffer, popup menu:                    Menu.                (line 107)
+* buffer, selecting a:                   Actions.             (line 355)
+* button translations:                   Actions.             (line   6)
+* cat:                                   Resources.           (line  93)
+* centering:                             Actions.             (line 199)
+* centroid file format:                  Centroid File Format.
+                                                              (line   6)
+* centroid file, algorithms:             Centroid File Format.
+                                                              (line  35)
+* change active layer:                   Layer Controls.      (line   6)
+* change drawing layer:                  Actions.             (line 503)
+* change object name:                    Actions.             (line 107)
+* change settings:                       Actions.             (line 477)
+* change sizes:                          Actions.             (line  72)
+* change square flag:                    Actions.             (line 148)
+* change viewing side:                   Actions.             (line 499)
+* changing layers:                       Moving and Copying.  (line  20)
+* changing pin/pad names:                Actions.             (line 123)
+* clearance:                             Line Objects.        (line  38)
+* clearance, changing of objects:        Actions.             (line  72)
+* clearance, for new lines:              Menu.                (line  79)
+* clipping lines to 45 degree <1>:       Actions.             (line 199)
+* clipping lines to 45 degree:           Resources.           (line  17)
+* closing a polygon:                     Actions.             (line 382)
+* cnc:                                   gcode.               (line   6)
+* color printout:                        Printing.            (line  32)
+* color, warning:                        Resources.           (line 343)
+* colors:                                Resources.           (line  55)
+* command-line options:                  Command-Line Options.
+                                                              (line   6)
+* compile, how to:                       compiling.           (line   6)
+* configure:                             running configure.   (line   6)
+* connection, removing an:               Translations.        (line  11)
+* connections, colors:                   Resources.           (line  55)
+* connections, creating list of:         Connection Lists.    (line   6)
+* connections, reseting:                 Actions.             (line 167)
+* connections, reseting after element:   Resources.           (line 255)
+* connections, searching for:            Actions.             (line 167)
+* Connects, popup menu:                  Menu.                (line 119)
+* copy an object:                        Translations.        (line  40)
+* copying objects:                       Actions.             (line 355)
+* copying, an example:                   Moving and Copying.  (line   6)
+* creating objects:                      Common.              (line   6)
+* cursor color:                          Resources.           (line  60)
+* cursor movements:                      Actions.             (line 326)
+* cursor position:                       Actions.             (line 269)
+* cursor steps:                          Resources.           (line 128)
+* cutting objects:                       Actions.             (line 355)
+* DEC:                                   DEC Alpha.           (line   6)
+* default font:                          Resources.           (line 118)
+* default layout size:                   Resources.           (line 302)
+* default library:                       Resources.           (line 179)
+* default text scaling:                  Resources.           (line 313)
+* default translations:                  Translations.        (line   6)
+* design rule checker, invoking:         Menu.                (line 119)
+* design rule checking <1>:              Actions.             (line 234)
+* design rule checking:                  Design Rule Checking.
+                                                              (line   6)
+* device, selecting an output:           Printing.            (line  21)
+* directory /tmp <1>:                    Resources.           (line 285)
+* directory /tmp:                        Loading and Saving.  (line  18)
+* dispersing elements:                   Actions.             (line 193)
+* display:                               Resources.           (line 307)
+* displaying element names <1>:          Actions.             (line 199)
+* displaying element names:              Menu.                (line  60)
+* displaying pinout:                     Actions.             (line 199)
+* displaying status information:         Status-line and Input-field.
+                                                              (line   6)
+* distributing elements:                 Actions.             (line 193)
+* DOS filenames:                         Printing.            (line  80)
+* drawing objects:                       Drawing and Removing.
+                                                              (line   6)
+* drc <1>:                               Actions.             (line 234)
+* drc <2>:                               Resources.           (line  52)
+* drc:                                   Design Rule Checking.
+                                                              (line   6)
+* drill:                                 Actions.             (line 434)
+* drill report:                          Menu.                (line 141)
+* drill sizes, list of standard:         Standard Drill Sizes.
+                                                              (line   6)
+* Drill table:                           Vendor drill mapping.
+                                                              (line   6)
+* drill-helper:                          Postscript Export.   (line   9)
+* drilling hole, changing of objects:    Actions.             (line  83)
+* drilling hole, setting of initial size: Actions.            (line 477)
+* Edit, popup menu:                      Menu.                (line  40)
+* element name, hiding:                  Actions.             (line 509)
+* element name, removing from silk-screen: Actions.           (line 509)
+* Element Search:                        Regular Expressions. (line   6)
+* element, an example:                   Elements.            (line   6)
+* element, an overview:                  Element Objects.     (line   6)
+* element, color:                        Resources.           (line  68)
+* element, command:                      Resources.           (line  74)
+* element, creating a new package:       Elements.            (line  59)
+* element, display names of <1>:         Actions.             (line 199)
+* element, display names of:             Menu.                (line  60)
+* element, editing:                      Menu.                (line 107)
+* element, file format:                  Element File.        (line   6)
+* element, files:                        Resources.           (line  74)
+* element, loading to buffer:            User Commands.       (line  39)
+* element, move name of:                 Translations.        (line  40)
+* elements, dispersing:                  Actions.             (line 193)
+* elements, distributing:                Actions.             (line 193)
+* encapsulated postscript:               eps.                 (line   6)
+* entering user commands:                User Commands.       (line   6)
+* eps:                                   eps.                 (line   6)
+* erasing objects:                       Drawing and Removing.
+                                                              (line   6)
+* example files:                         Elements.            (line  19)
+* example of buffer handling:            Pastebuffer.         (line   6)
+* example of connection lists:           Connection Lists.    (line   6)
+* example of copying:                    Moving and Copying.  (line   6)
+* example of creating an element:        Elements.            (line  59)
+* example of element handling:           Elements.            (line   6)
+* example of line handling:              Lines.               (line   6)
+* example of loading:                    Loading and Saving.  (line   6)
+* example of loading an element file:    Elements.            (line  41)
+* example of moving:                     Moving and Copying.  (line   6)
+* example of pastebuffer handling:       Pastebuffer.         (line   6)
+* example of pin handling:               Elements.            (line  41)
+* example of polygon handling:           Polygons.            (line   6)
+* example of printing:                   Printing.            (line   6)
+* example of rectangle handling:         Polygons.            (line   6)
+* example of saving:                     Loading and Saving.  (line   6)
+* example of text handling:              Text.                (line   6)
+* example of via handling:               Vias.                (line   6)
+* exit <1>:                              Actions.             (line 412)
+* exit:                                  User Commands.       (line  51)
+* Exporting a layout:                    Exporting.           (line   6)
+* file format, element data:             Element File.        (line   6)
+* file format, font data:                Font File.           (line   6)
+* file format, layout data:              Layout File.         (line   6)
+* file format, libraries:                Library File.        (line   6)
+* file format, library contents:         Library Contents File.
+                                                              (line   6)
+* file formats:                          File Formats.        (line   6)
+* file formats, pads and lines:          Pad and Line Representation.
+                                                              (line   6)
+* file load command:                     Resources.           (line  93)
+* file save command:                     Resources.           (line 278)
+* File sytax:                            File Syntax.         (line   6)
+* File, popup menu:                      Menu.                (line  27)
+* flags, changing:                       Actions.             (line  93)
+* flags, clearing:                       Actions.             (line 154)
+* flags, setting:                        Actions.             (line 471)
+* font command:                          Resources.           (line 110)
+* font file, format of:                  Font File.           (line   6)
+* font files:                            Resources.           (line 110)
+* font, an overview:                     Symbol Objects.      (line   6)
+* font, used for pin names:              Resources.           (line 213)
+* format of element files:               Element File.        (line   6)
+* format of font files:                  Font File.           (line   6)
+* format of layout files:                Layout File.         (line   6)
+* format of libraries:                   Library File.        (line   6)
+* format of library contents:            Library Contents File.
+                                                              (line   6)
+* FreeBSD:                               BSD.                 (line   6)
+* g-code:                                gcode.               (line   6)
+* gcode:                                 gcode.               (line   6)
+* gEDA, how to interface with:           gEDA.                (line   6)
+* gerber:                                gerber.              (line   7)
+* glossary:                              Glossary.            (line   6)
+* GNU build system:                      quickstart.          (line   6)
+* GNU configure script:                  running configure.   (line   6)
+* grid <1>:                              Resources.           (line   9)
+* grid:                                  Layout Area.         (line   6)
+* grid color:                            Resources.           (line 133)
+* grid, absolute and relative:           Actions.             (line 199)
+* grid, alignment:                       Menu.                (line  60)
+* grid, display <1>:                     Actions.             (line 199)
+* grid, display:                         Menu.                (line  60)
+* grid, setting of:                      Actions.             (line 477)
+* groups:                                Resources.           (line 151)
+* groups, editing of:                    Actions.             (line 250)
+* gschem, how to interface with:         gEDA.                (line   6)
+* Hewlett Packard:                       HP.                  (line   6)
+* hide element name:                     Actions.             (line 509)
+* how to start:                          Getting Started.     (line   6)
+* HP:                                    HP.                  (line   6)
+* image export:                          png.                 (line   6)
+* index of terms:                        Glossary.            (line   6)
+* Info, popup menu:                      Menu.                (line 141)
+* information about objects:             Actions.             (line 434)
+* input-field, position of:              Status-line and Input-field.
+                                                              (line   6)
+* inputfield, saving entered command-line: Resources.         (line 294)
+* inputfield, start user input:          Actions.             (line 160)
+* install, how to:                       compiling.           (line   6)
+* key translations:                      Actions.             (line   6)
+* keyboard bell:                         Resources.           (line 262)
+* layer controls:                        Layer Controls.      (line   6)
+* layer groups:                          Layer Objects.       (line  19)
+* layer visibility, toggling:            Actions.             (line 521)
+* layer, change active:                  Actions.             (line 503)
+* layer, name of:                        Resources.           (line 159)
+* layers, an overview:                   Layer Objects.       (line   6)
+* layers, changing which is active:      Layer Controls.      (line   6)
+* layers, colors:                        Resources.           (line 145)
+* layers, editing of groups:             Actions.             (line 250)
+* layers, groups:                        Resources.           (line 151)
+* layers, switching on/off:              Layer Controls.      (line   6)
+* layout files:                          Resources.           (line  93)
+* layout files, format of:               Layout File.         (line   6)
+* layout files, saving of:               User Commands.       (line  55)
+* layout objects, an overview:           Intro.               (line   6)
+* layout, default size of:               Resources.           (line 302)
+* layout, loading a:                     User Commands.       (line  33)
+* layout, loading to buffer:             User Commands.       (line  45)
+* layout, merging a:                     User Commands.       (line  45)
+* layout, printing a:                    Actions.             (line 392)
+* layout, start a new:                   Actions.             (line 350)
+* layout-name <1>:                       User Commands.       (line  61)
+* layout-name:                           Element Objects.     (line   6)
+* length of a pin name:                  Resources.           (line 217)
+* library accuracy:                      Element Objects.     (line  74)
+* library command:                       Resources.           (line 163)
+* library contents command:              Resources.           (line 173)
+* library contents file, format of:      Library Contents File.
+                                                              (line   6)
+* library creation:                      Library Creation.    (line   6)
+* library file, format of:               Library File.        (line   6)
+* library name:                          Resources.           (line 179)
+* library searchpath:                    Resources.           (line 184)
+* library window:                        Library Window.      (line   6)
+* lines, an example:                     Lines.               (line   6)
+* lines, an overview:                    Line Objects.        (line   6)
+* lines, clipping to 45 degree <1>:      Actions.             (line 199)
+* lines, clipping to 45 degree:          Resources.           (line  17)
+* lines, setting of initial size:        Actions.             (line 477)
+* lines, size:                           Resources.           (line 189)
+* Linux:                                 Linux.               (line   6)
+* listing library contents:              Resources.           (line 173)
+* loading a layout to buffer:            User Commands.       (line  45)
+* loading elements:                      Resources.           (line  74)
+* loading elements to buffer:            User Commands.       (line  39)
+* loading files:                         Actions.             (line 259)
+* loading fonts:                         Resources.           (line 110)
+* loading layouts <1>:                   Resources.           (line  93)
+* loading layouts:                       User Commands.       (line  33)
+* loading symbols:                       Resources.           (line 110)
+* loading, an example:                   Loading and Saving.  (line   6)
+* log window <1>:                        Resources.           (line 244)
+* log window:                            Log Window.          (line   6)
+* m4:                                    Resources.           (line  74)
+* m4, preprocessing example files:       Elements.            (line  19)
+* mark:                                  Actions.             (line 269)
+* Measuring distances:                   Measuring distances. (line   6)
+* media:                                 Resources.           (line 195)
+* media margin:                          Resources.           (line 195)
+* media, size of:                        Printing.            (line  59)
+* menus:                                 Menu.                (line   6)
+* merging layouts:                       User Commands.       (line  45)
+* messages <1>:                          Resources.           (line 244)
+* messages:                              Log Window.          (line   6)
+* mirroring printout:                    Printing.            (line  28)
+* mode selection:                        Tool Selectors.      (line   6)
+* mode, selecting of:                    Actions.             (line 277)
+* mounting holes:                        Actions.             (line 101)
+* move:                                  Resources.           (line 274)
+* move an object:                        Translations.        (line  40)
+* moving objects:                        Arrow Tool.          (line   6)
+* moving objects to current layer:       Actions.             (line 340)
+* moving, an example:                    Moving and Copying.  (line   6)
+* moving, traces to a different layer:   Moving and Copying.  (line  20)
+* multi-file:                            Postscript Export.   (line  51)
+* name of an element:                    Actions.             (line 199)
+* name, change an objects:               Actions.             (line 107)
+* namelength of pins:                    Resources.           (line 217)
+* nelma:                                 nelma.               (line   6)
+* NetBSD:                                BSD.                 (line   6)
+* netlist <1>:                           Actions.             (line  27)
+* netlist <2>:                           Resources.           (line 248)
+* netlist <3>:                           Rats Nest.           (line   6)
+* netlist:                               Net Objects.         (line   6)
+* Netlist Window:                        Netlist Window.      (line   6)
+* netlist, file format:                  Netlist File.        (line   6)
+* netlist, reading:                      Netlist File.        (line   6)
+* object report:                         Menu.                (line 141)
+* object, change name of:                Actions.             (line 107)
+* object, changing the size of an:       Common.              (line   6)
+* object, copy an:                       Translations.        (line  40)
+* object, creating an:                   Common.              (line   6)
+* object, drawing and removing:          Drawing and Removing.
+                                                              (line   6)
+* object, move an:                       Translations.        (line  40)
+* object, removing an <1>:               Translations.        (line  11)
+* object, removing an:                   Common.              (line   6)
+* objects, moving to current layer:      Actions.             (line 340)
+* octagonal flag, changing:              Actions.             (line  93)
+* octagonal flag, clearing:              Actions.             (line 154)
+* octagonal flag, setting:               Actions.             (line 471)
+* octagonal pins and vias:               Actions.             (line 117)
+* off limit color:                       Resources.           (line 203)
+* offset of pinnames:                    Resources.           (line 228)
+* offset of pinout:                      Resources.           (line 222)
+* offset of printout:                    Printing.            (line  75)
+* old library:                           Element Objects.     (line  74)
+* only-visible:                          Encapsulated Postscript Export.
+                                                              (line  19)
+* OpenWindows:                           Sun.                 (line   6)
+* operation modes, selecting of:         Actions.             (line 277)
+* optimizer:                             Trace Optimizer.     (line   6)
+* outline printout:                      Printing.            (line  36)
+* output device:                         Printing.            (line  21)
+* overlap, minimum:                      Design Rule Checking.
+                                                              (line   6)
+* pad specification:                     Pad and Line Representation.
+                                                              (line   6)
+* pastebuffer, an example:               Pastebuffer.         (line   6)
+* pastebuffer, convert contents to element: Elements.         (line  59)
+* pastebuffer, popup menu:               Menu.                (line 107)
+* pastebuffer, selecting a:              Actions.             (line 355)
+* path for element files:                Resources.           (line  85)
+* path for font files:                   Resources.           (line 124)
+* path for layout files:                 Resources.           (line 102)
+* path for libraries:                    Resources.           (line 184)
+* PC UNIX <1>:                           BSD.                 (line   6)
+* PC UNIX <2>:                           Linux.               (line   6)
+* PC UNIX:                               SCO.                 (line   6)
+* PCB, an overview:                      Overview.            (line   6)
+* photo-mask-colour:                     PNG Options.         (line  59)
+* photo-mode:                            PNG Options.         (line  48)
+* photo-plating:                         PNG Options.         (line  63)
+* photo-silk-colour:                     PNG Options.         (line  68)
+* pin color:                             Resources.           (line 208)
+* pin, name of:                          Resources.           (line 217)
+* pin/pad names, changing:               Actions.             (line 123)
+* pinout, display of:                    Actions.             (line 199)
+* pinout, font to display pin names:     Resources.           (line 213)
+* pinout, zoomfactor of display:         Resources.           (line 234)
+* pins, an example:                      Elements.            (line  41)
+* pins, changing shape of:               Actions.             (line 117)
+* png:                                   png.                 (line   6)
+* pointer, moving of:                    Actions.             (line 326)
+* polygon:                               Resources.           (line 307)
+* polygon point, go back to previous:    Actions.             (line 382)
+* polygon, an example:                   Polygons.            (line   6)
+* polygon, an overview:                  Polygon Objects.     (line   6)
+* polygon, closing a:                    Actions.             (line 382)
+* popping up menus:                      Menu.                (line   6)
+* postprocessing layout data:            Resources.           (line 278)
+* postscript:                            ps.                  (line   6)
+* preprocessing element data:            Resources.           (line  74)
+* preprocessing font data:               Resources.           (line 110)
+* preprocessing layout data:             Resources.           (line  93)
+* preventing loss of data <1>:           Resources.           (line 285)
+* preventing loss of data:               Loading and Saving.  (line  18)
+* print command:                         Printing.            (line  84)
+* print media <1>:                       Resources.           (line 195)
+* print media:                           Printing.            (line  59)
+* print offset:                          Printing.            (line  75)
+* printing:                              Resources.           (line 239)
+* printing a layout:                     Actions.             (line 392)
+* printing, an example:                  Printing.            (line   6)
+* problems:                              problems.            (line   6)
+* ps:                                    ps.                  (line   6)
+* ps-bloat:                              Postscript Export.   (line  31)
+* ps-invert:                             Postscript Export.   (line  34)
+* psfade:                                Postscript Export.   (line  44)
+* quit <1>:                              Actions.             (line 412)
+* quit:                                  User Commands.       (line  51)
+* rat's nest:                            User Commands.       (line  61)
+* rat-line <1>:                          Actions.             (line  27)
+* rat-line:                              Rats Nest.           (line   6)
+* rats nest <1>:                         Actions.             (line  27)
+* rats nest <2>:                         Resources.           (line 248)
+* rats nest:                             Rats Nest.           (line   6)
+* rats-nest:                             Net Objects.         (line   6)
+* recover:                               Actions.             (line 416)
+* rectangle, an example:                 Polygons.            (line   6)
+* redo <1>:                              Actions.             (line 416)
+* redo:                                  Menu.                (line  40)
+* redrawing layout:                      Actions.             (line 199)
+* refreshing layout:                     Actions.             (line 199)
+* Regular Expressions:                   Regular Expressions. (line   6)
+* removing connections:                  Translations.        (line  11)
+* removing objects <1>:                  Translations.        (line  11)
+* removing objects <2>:                  Common.              (line   6)
+* removing objects:                      Drawing and Removing.
+                                                              (line   6)
+* removing selected objects:             Actions.             (line 430)
+* report <1>:                            Actions.             (line 434)
+* report:                                Menu.                (line 141)
+* reseting found connections <1>:        Actions.             (line 167)
+* reseting found connections:            Resources.           (line 255)
+* resources:                             Resources.           (line   6)
+* rotate:                                Resources.           (line 274)
+* rotating a buffer:                     Actions.             (line 355)
+* rotating printout:                     Printing.            (line  24)
+* Route Styles, popup menu:              Menu.                (line  49)
+* routing style <1>:                     Actions.             (line 440)
+* routing style:                         Resources.           (line 267)
+* rubber band:                           Menu.                (line  79)
+* rubberband <1>:                        Actions.             (line 199)
+* rubberband:                            Resources.           (line 274)
+* saving connections:                    Actions.             (line 450)
+* saving files:                          Actions.             (line 450)
+* saving found connections:              Actions.             (line 167)
+* saving last entered user command:      Resources.           (line 294)
+* saving layouts <1>:                    Resources.           (line 278)
+* saving layouts <2>:                    User Commands.       (line  55)
+* saving layouts:                        Loading and Saving.  (line  18)
+* saving, an example:                    Loading and Saving.  (line   6)
+* scaling a printout:                    Printing.            (line  55)
+* scanning connections:                  Actions.             (line 167)
+* schematic capture:                     Schematic Frontends. (line   6)
+* schematic frontend:                    Schematic Frontends. (line   6)
+* SCO:                                   SCO.                 (line   6)
+* script file, executing:                Actions.             (line 238)
+* scrolling:                             Translations.        (line  21)
+* searching connections:                 Actions.             (line 167)
+* Searching for elements:                Searching for elements.
+                                                              (line   6)
+* searchpath for element files:          Resources.           (line  85)
+* searchpath for font files:             Resources.           (line 124)
+* searchpath for layout files:           Resources.           (line 102)
+* searchpath for libraries:              Resources.           (line 184)
+* Select, popup menu:                    Menu.                (line  96)
+* selected object, removing an:          Actions.             (line 430)
+* selected objects, changing sizes:      Menu.                (line  96)
+* selected objects, removing:            Menu.                (line  96)
+* selecting a buffer:                    Actions.             (line 355)
+* selecting a new tool:                  Tool Selectors.      (line   6)
+* selecting objects:                     Actions.             (line 459)
+* selecting, using the arrow tool:       Arrow Tool.          (line   6)
+* selection:                             Actions.             (line 459)
+* Settings, popup menu:                  Menu.                (line  79)
+* SGI:                                   SGI.                 (line   6)
+* show-legend:                           Postscript Export.   (line  64)
+* shrink:                                Resources.           (line 299)
+* signal:                                Actions.             (line  68)
+* Silicon Graphics:                      SGI.                 (line   6)
+* size of lines:                         Resources.           (line 189)
+* size of lines and vias:                Actions.             (line 440)
+* size of vias:                          Resources.           (line 330)
+* sizes, changing of objects:            Actions.             (line  72)
+* snap to pins:                          Menu.                (line  79)
+* Solaris:                               Sun.                 (line   6)
+* solder mask, viewing and editing:      Menu.                (line  69)
+* spacing, minimum:                      Design Rule Checking.
+                                                              (line   6)
+* speaker volume:                        Resources.           (line 338)
+* square flag, changing:                 Actions.             (line  93)
+* square flag, changing of objects:      Actions.             (line 148)
+* square flag, clearing:                 Actions.             (line 154)
+* square flag, setting:                  Actions.             (line 471)
+* standard drill sizes:                  Standard Drill Sizes.
+                                                              (line   6)
+* start user input:                      Actions.             (line 160)
+* starting a new layout:                 Actions.             (line 350)
+* starting Pcb:                          Command-Line Options.
+                                                              (line   6)
+* status information:                    Status-line and Input-field.
+                                                              (line   6)
+* strings, an example:                   Text.                (line   6)
+* strings, an overview:                  Text Objects.        (line   6)
+* Sun:                                   Sun.                 (line   6)
+* symbols:                               Resources.           (line 118)
+* symbols, an overview:                  Symbol Objects.      (line   6)
+* Syntax, file:                          File Syntax.         (line   6)
+* temporary files <1>:                   Resources.           (line 285)
+* temporary files:                       Loading and Saving.  (line  18)
+* terminology:                           Glossary.            (line   6)
+* TeX, problems:                         TeX and Manuals.     (line   6)
+* text, an example:                      Text.                (line   6)
+* text, an overview:                     Text Objects.        (line   6)
+* text, default scaling:                 Resources.           (line 313)
+* thermal flag, changing:                Actions.             (line  93)
+* thermal flag, clearing:                Actions.             (line 154)
+* thermal flag, setting:                 Actions.             (line 471)
+* thickness of lines:                    Resources.           (line 189)
+* thickness of objects:                  Common.              (line   6)
+* thickness of vias:                     Resources.           (line 330)
+* thickness, changing of objects:        Actions.             (line 129)
+* toggle layer visibility:               Actions.             (line 521)
+* tool selection:                        Tool Selectors.      (line   6)
+* tool, arrow:                           Arrow Tool.          (line   6)
+* trace optimizer:                       Trace Optimizer.     (line   6)
+* translations <1>:                      Translations.        (line   6)
+* translations:                          Actions.             (line   6)
+* troubleshooting:                       problems.            (line   6)
+* two line mode:                         Line Objects.        (line  14)
+* undo <1>:                              Actions.             (line 528)
+* undo:                                  Menu.                (line  40)
+* undo, multi-action resources:          Actions.             (line  58)
+* unique names:                          Menu.                (line  79)
+* unix command:                          Resources.           (line  74)
+* unselect objects:                      Actions.             (line 543)
+* user commands:                         User Commands.       (line   6)
+* user input:                            Translations.        (line  33)
+* vendor drill table <1>:                UnloadVendor Action. (line  10)
+* vendor drill table <2>:                ToggleVendor Action. (line  10)
+* vendor drill table <3>:                LoadVendorFrom Action.
+                                                              (line  10)
+* vendor drill table <4>:                EnableVendor Action. (line  10)
+* vendor drill table <5>:                DisableVendor Action.
+                                                              (line  10)
+* vendor drill table <6>:                ApplyVendor Action.  (line   8)
+* vendor drill table:                    Actions.             (line  54)
+* Vendor drill table:                    Vendor drill mapping.
+                                                              (line   6)
+* vendor drill table, disabling:         Actions.             (line 188)
+* vendor drill table, enabling:          Actions.             (line 254)
+* vendor drill table, loading:           Actions.             (line 265)
+* vendor drill table, toggling:          Actions.             (line 516)
+* vendor drill table, unloading:         Actions.             (line 539)
+* vendor map <1>:                        UnloadVendor Action. (line  10)
+* vendor map <2>:                        ToggleVendor Action. (line  10)
+* vendor map <3>:                        LoadVendorFrom Action.
+                                                              (line  10)
+* vendor map <4>:                        EnableVendor Action. (line  10)
+* vendor map <5>:                        DisableVendor Action.
+                                                              (line  10)
+* vendor map <6>:                        ApplyVendor Action.  (line   8)
+* vendor map:                            Actions.             (line  54)
+* vendor map, disabling:                 Actions.             (line 188)
+* vendor map, enabling:                  Actions.             (line 254)
+* vendor map, loading:                   Actions.             (line 265)
+* vendor map, toggling:                  Actions.             (line 516)
+* vendor map, unloading:                 Actions.             (line 539)
+* Vendor mapping:                        Vendor drill mapping.
+                                                              (line   6)
+* Vendor rules:                          Vendor drill mapping.
+                                                              (line   6)
+* vias, an example:                      Vias.                (line   6)
+* vias, an overview:                     Via Objects.         (line   6)
+* vias, changing shape of:               Actions.             (line 117)
+* vias, color:                           Resources.           (line 324)
+* vias, converting to mounting hole:     Actions.             (line 101)
+* vias, setting of initial size:         Actions.             (line 477)
+* vias, size:                            Resources.           (line 330)
+* View, popup menu:                      Menu.                (line  60)
+* viewing side, changing of:             Actions.             (line 499)
+* volume of speaker:                     Resources.           (line 338)
+* Window, popup menu:                    Menu.                (line 149)
+* x-y file format:                       Centroid File Format.
+                                                              (line   6)
+* x-y file, algorithms:                  Centroid File Format.
+                                                              (line  35)
+* X11:                                   X11 Interface.       (line   6)
+* X11 default translations:              Translations.        (line   6)
+* X11 resources:                         Resources.           (line   6)
+* X11 translations:                      Actions.             (line   6)
+* X11, problems:                         X11.                 (line   6)
+* xcircuit, how to interface with:       xcircuit.            (line   6)
+* zoom of Layout area:                   Resources.           (line 347)
+* zoom of pinout window:                 Resources.           (line 234)
+* zoom, setting:                         Menu.                (line  60)
+* zoom, setting of:                      Actions.             (line 477)
+
+

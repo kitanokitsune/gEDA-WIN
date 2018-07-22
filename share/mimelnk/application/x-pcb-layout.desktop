@@ -1,0 +1,10 @@
+[Desktop Entry]
+Encoding=UTF-8
+Comment=PCB layout
+Comment[nl]=PCB opmaak
+Comment[ru]=PCB трассировка
+MimeType=application/x-pcb-layout
+Type=MimeType
+Icon=application-x-pcb-layout
+Patterns=*.pcb
+X-KDE-IsAlso=text/plain

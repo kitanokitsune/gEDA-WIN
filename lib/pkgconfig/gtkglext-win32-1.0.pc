@@ -1,0 +1,17 @@
+prefix=/home/dj/nightly-geda/build/result
+exec_prefix=${prefix}
+libdir=${exec_prefix}/lib
+includedir=${prefix}/include
+
+target=win32
+api_version=1.0
+
+multihead=@GDKGLEXT_MULTIHEAD_SUPPORT@
+
+Name: GtkGLExt
+Description: OpenGL Extension to GTK+ (${target} target)
+Version: 1.2.0
+Requires: gtk+-2.0 gdkglext-${target}-${api_version}
+Libs: -L${libdir} -lgtkglext-${target}-${api_version}
+Libs.private: 
+Cflags: -I${includedir}/gtkglext-${api_version}

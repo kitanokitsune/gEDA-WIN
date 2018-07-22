@@ -1,0 +1,10 @@
+[Desktop Entry]
+Encoding=UTF-8
+Comment=PCB netlist
+Comment[nl]=PCB netlijst
+Comment[ru]=PCB список соединений
+MimeType=application/x-pcb-netlist
+Type=MimeType
+Icon=application-x-pcb-netlist
+Patterns=*.net
+X-KDE-IsAlso=text/plain

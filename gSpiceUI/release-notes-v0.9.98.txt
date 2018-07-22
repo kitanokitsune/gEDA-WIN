@@ -1,0 +1,36 @@
+There are two notable additions to this release. A mechanism to set the
+precision of the results data and the return of component names in the NG-Spice
+results. Otherwise this release mainly contains bug fixes.
+
+I'm focusing mainly on fixing bugs at present so that version 1.0.00 is as
+stable as possible when it's released. I'll be keeping a watch on the mailing
+lists on SourceForge so if you've found a problem let me know so that I can fix
+it.
+
+The following is an extract from the ChangeLog file associated with this release :
+
+ * BugFix : In the <root>/Makefile the "install" target had the files ReadMe
+            and Install in upper-case which caused the install to fail. Bug
+            found by Werner H.
+ * BugFix : For NG-Spice simulations columns of results where lost if more than
+            three parameters where derived. Class CmdNgSpiceOPT can now set an
+            appropriate page width for the number of derived parameters.
+ * Updates to the text files : Authors, ChangeLog, Install, ReadMe and ToDo.
+ * Add a new command line option "-c" to partially rebuild/clean the
+   configuration file ie. ~/.gspiceui.conf.
+ * BugFix : The command line processor was not functioning properly when the
+            option "-g" was specified without an argument.
+ * Some updates to the installation instructions (ie. Install).
+ * BugFix : Gaw was used regardless of the setting in the Preferences dialog.
+ * In <root>/src/Makefile the debug flag was set by default. This meant that
+   the resulting binary was much larger than necessary. The debug flag is now
+   clear by default.
+ * There is a new parameter in the preferences dialog which allows the results
+   precision to be specified; a lower value means the raw data is easier to
+   read but a higher value provides for greater resolution.
+ * Brought back the component names in the NG-Spice results column labels.
+ * Much of the implementation of the method bMakeArgLst( ) in classes PrcGnuCap
+   and PrcNgSpice has been moved to the base class PrcSimrBase.
+ * The gSchem ".sym" files in the <root>/lib/ directory where mistakenly
+   omitted from the last release.
+ * Bug fixes.

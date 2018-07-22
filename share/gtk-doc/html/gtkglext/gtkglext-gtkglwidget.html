@@ -1,0 +1,396 @@
+<html>
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=US-ASCII">
+<title>OpenGL-Capable Widget</title>
+<meta name="generator" content="DocBook XSL Stylesheets V1.65.1">
+<link rel="home" href="index.html" title="GtkGLExt Reference Manual">
+<link rel="up" href="GtkGLExt-API.html" title="Part&#160;III.&#160;GtkGLExt API Reference">
+<link rel="previous" href="gtkglext-gtkglinit.html" title="Initialization">
+<link rel="next" href="gtkglext-gtkglversion.html" title="Version Information">
+<meta name="generator" content="GTK-Doc V1.4 (XML mode)">
+<link rel="stylesheet" href="style.css" type="text/css">
+<link rel="part" href="Overview.html" title="Part&#160;I.&#160;GtkGLExt Overview">
+<link rel="part" href="GdkGLExt-API.html" title="Part&#160;II.&#160;GdkGLExt API Reference">
+<link rel="part" href="GtkGLExt-API.html" title="Part&#160;III.&#160;GtkGLExt API Reference">
+</head>
+<body bgcolor="white" text="black" link="#0000FF" vlink="#840084" alink="#0000FF">
+<table class="navigation" width="100%" summary="Navigation header" cellpadding="2" cellspacing="2"><tr valign="middle">
+<td><a accesskey="p" href="gtkglext-gtkglinit.html"><img src="left.png" width="24" height="24" border="0" alt="Prev"></a></td>
+<td><a accesskey="u" href="GtkGLExt-API.html"><img src="up.png" width="24" height="24" border="0" alt="Up"></a></td>
+<td><a accesskey="h" href="index.html"><img src="home.png" width="24" height="24" border="0" alt="Home"></a></td>
+<th width="100%" align="center">GtkGLExt Reference Manual</th>
+<td><a accesskey="n" href="gtkglext-gtkglversion.html"><img src="right.png" width="24" height="24" border="0" alt="Next"></a></td>
+</tr></table>
+<div class="refentry" lang="en">
+<a name="gtkglext-gtkglwidget"></a><div class="titlepage">
+<div></div>
+<div></div>
+</div>
+<div class="refnamediv"><table width="100%"><tr>
+<td valign="top">
+<h2><span class="refentrytitle">OpenGL-Capable Widget</span></h2>
+<p>OpenGL-Capable Widget &#8212; OpenGL extension to GtkWidget API</p>
+</td>
+<td valign="top" align="right"></td>
+</tr></table></div>
+<div class="refsynopsisdiv">
+<h2>Synopsis</h2>
+<pre class="synopsis">
+
+#include &lt;gtk/gtkgl.h&gt;
+
+
+<a
+href="/usr/share/gtk-doc/html/glib/glib-Basic-Types.html#gboolean"
+>gboolean</a>    <a href="gtkglext-gtkglwidget.html#gtk-widget-set-gl-capability">gtk_widget_set_gl_capability</a>    (<a
+href="/usr/share/gtk-doc/html/gtk/GtkWidget.html"
+>GtkWidget</a> *widget,
+                                             <a href="gtkglext-gdkglconfig.html#GdkGLConfig">GdkGLConfig</a> *glconfig,
+                                             <a href="gtkglext-gdkglcontext.html#GdkGLContext">GdkGLContext</a> *share_list,
+                                             <a
+href="/usr/share/gtk-doc/html/glib/glib-Basic-Types.html#gboolean"
+>gboolean</a> direct,
+                                             int render_type);
+<a
+href="/usr/share/gtk-doc/html/glib/glib-Basic-Types.html#gboolean"
+>gboolean</a>    <a href="gtkglext-gtkglwidget.html#gtk-widget-is-gl-capable">gtk_widget_is_gl_capable</a>        (<a
+href="/usr/share/gtk-doc/html/gtk/GtkWidget.html"
+>GtkWidget</a> *widget);
+<a href="gtkglext-gdkglconfig.html#GdkGLConfig">GdkGLConfig</a>* <a href="gtkglext-gtkglwidget.html#gtk-widget-get-gl-config">gtk_widget_get_gl_config</a>       (<a
+href="/usr/share/gtk-doc/html/gtk/GtkWidget.html"
+>GtkWidget</a> *widget);
+<a href="gtkglext-gdkglcontext.html#GdkGLContext">GdkGLContext</a>* <a href="gtkglext-gtkglwidget.html#gtk-widget-create-gl-context">gtk_widget_create_gl_context</a>  (<a
+href="/usr/share/gtk-doc/html/gtk/GtkWidget.html"
+>GtkWidget</a> *widget,
+                                             <a href="gtkglext-gdkglcontext.html#GdkGLContext">GdkGLContext</a> *share_list,
+                                             <a
+href="/usr/share/gtk-doc/html/glib/glib-Basic-Types.html#gboolean"
+>gboolean</a> direct,
+                                             int render_type);
+<a href="gtkglext-gdkglcontext.html#GdkGLContext">GdkGLContext</a>* <a href="gtkglext-gtkglwidget.html#gtk-widget-get-gl-context">gtk_widget_get_gl_context</a>     (<a
+href="/usr/share/gtk-doc/html/gtk/GtkWidget.html"
+>GtkWidget</a> *widget);
+<a href="gtkglext-gdkglwindow.html#GdkGLWindow">GdkGLWindow</a>* <a href="gtkglext-gtkglwidget.html#gtk-widget-get-gl-window">gtk_widget_get_gl_window</a>       (<a
+href="/usr/share/gtk-doc/html/gtk/GtkWidget.html"
+>GtkWidget</a> *widget);
+#define     <a href="gtkglext-gtkglwidget.html#gtk-widget-get-gl-drawable">gtk_widget_get_gl_drawable</a>      (widget)
+</pre>
+</div>
+<div class="refsect1" lang="en">
+<a name="id2526216"></a><h2>Description</h2>
+<p>
+GtkGLExt is an extension to GTK which adds OpenGL capabilities to
+GtkWidget. Its use is quite simple: use <a href="gtkglext-gtkglwidget.html#gtk-widget-set-gl-capability"><span class="type">gtk_widget_set_gl_capability</span></a>
+to add OpenGL support to a widget, it will create a OpenGL drawable
+(<a href="gtkglext-gdkgldrawable.html#GdkGLDrawable"><span class="type">GdkGLDrawable</span></a>) for the widget, which can be obtained via
+<a href="gtkglext-gtkglwidget.html#gtk-widget-get-gl-drawable"><span class="type">gtk_widget_get_gl_drawable</span></a>. OpenGL rendering context (<a href="gtkglext-gdkglcontext.html#GdkGLContext"><span class="type">GdkGLContext</span></a>)
+can also be obtained via <a href="gtkglext-gtkglwidget.html#gtk-widget-get-gl-context"><span class="type">gtk_widget_get_gl_context</span></a>.
+With <a href="gtkglext-gdkgldrawable.html#GdkGLDrawable"><span class="type">GdkGLDrawable</span></a> and <a href="gtkglext-gdkglcontext.html#GdkGLContext"><span class="type">GdkGLContext</span></a>, <a href="gtkglext-gdkgldrawable.html#gdk-gl-drawable-gl-begin"><span class="type">gdk_gl_drawable_gl_begin</span></a> and
+<a href="gtkglext-gdkgldrawable.html#gdk-gl-drawable-gl-end"><span class="type">gdk_gl_drawable_gl_end</span></a> can be called, and OpenGL function calls can
+be made between those two functions.
+</p>
+</div>
+<div class="refsect1" lang="en">
+<a name="id2526309"></a><h2>Details</h2>
+<div class="refsect2" lang="en">
+<a name="id2526315"></a><h3>
+<a name="gtk-widget-set-gl-capability"></a>gtk_widget_set_gl_capability ()</h3>
+<a class="indexterm" name="id2526326"></a><pre class="programlisting"><a
+href="/usr/share/gtk-doc/html/glib/glib-Basic-Types.html#gboolean"
+>gboolean</a>    gtk_widget_set_gl_capability    (<a
+href="/usr/share/gtk-doc/html/gtk/GtkWidget.html"
+>GtkWidget</a> *widget,
+                                             <a href="gtkglext-gdkglconfig.html#GdkGLConfig">GdkGLConfig</a> *glconfig,
+                                             <a href="gtkglext-gdkglcontext.html#GdkGLContext">GdkGLContext</a> *share_list,
+                                             <a
+href="/usr/share/gtk-doc/html/glib/glib-Basic-Types.html#gboolean"
+>gboolean</a> direct,
+                                             int render_type);</pre>
+<p>
+Set the OpenGL-capability to the <i class="parameter"><tt>widget</tt></i>.
+This function prepares the widget for its use with OpenGL.</p>
+<p>
+
+</p>
+<div class="variablelist"><table border="0">
+<col align="left" valign="top">
+<tbody>
+<tr>
+<td>
+<span class="term"><i class="parameter"><tt>widget</tt></i>&#160;:</span></td>
+<td> the <a
+href="/usr/share/gtk-doc/html/gtk/GtkWidget.html"
+><span class="type">GtkWidget</span></a> to be used as the rendering area.
+</td>
+</tr>
+<tr>
+<td>
+<span class="term"><i class="parameter"><tt>glconfig</tt></i>&#160;:</span></td>
+<td> a <a href="gtkglext-gdkglconfig.html#GdkGLConfig"><span class="type">GdkGLConfig</span></a>.
+</td>
+</tr>
+<tr>
+<td>
+<span class="term"><i class="parameter"><tt>share_list</tt></i>&#160;:</span></td>
+<td> the <a href="gtkglext-gdkglcontext.html#GdkGLContext"><span class="type">GdkGLContext</span></a> with which to share display lists and texture
+             objects. NULL indicates that no sharing is to take place.
+</td>
+</tr>
+<tr>
+<td>
+<span class="term"><i class="parameter"><tt>direct</tt></i>&#160;:</span></td>
+<td> whether rendering is to be done with a direct connection to
+         the graphics system.
+</td>
+</tr>
+<tr>
+<td>
+<span class="term"><i class="parameter"><tt>render_type</tt></i>&#160;:</span></td>
+<td> GDK_GL_RGBA_TYPE or GDK_GL_COLOR_INDEX_TYPE (currently not
+              used).
+</td>
+</tr>
+<tr>
+<td>
+<span class="term"><span class="emphasis"><em>Returns</em></span>&#160;:</span></td>
+<td> TRUE if it is successful, FALSE otherwise.
+</td>
+</tr>
+</tbody>
+</table></div>
+</div>
+<hr>
+<div class="refsect2" lang="en">
+<a name="id2526509"></a><h3>
+<a name="gtk-widget-is-gl-capable"></a>gtk_widget_is_gl_capable ()</h3>
+<a class="indexterm" name="id2526520"></a><pre class="programlisting"><a
+href="/usr/share/gtk-doc/html/glib/glib-Basic-Types.html#gboolean"
+>gboolean</a>    gtk_widget_is_gl_capable        (<a
+href="/usr/share/gtk-doc/html/gtk/GtkWidget.html"
+>GtkWidget</a> *widget);</pre>
+<p>
+Returns whether the <i class="parameter"><tt>widget</tt></i> is OpenGL-capable.</p>
+<p>
+
+</p>
+<div class="variablelist"><table border="0">
+<col align="left" valign="top">
+<tbody>
+<tr>
+<td>
+<span class="term"><i class="parameter"><tt>widget</tt></i>&#160;:</span></td>
+<td> a <a
+href="/usr/share/gtk-doc/html/gtk/GtkWidget.html"
+><span class="type">GtkWidget</span></a>.
+</td>
+</tr>
+<tr>
+<td>
+<span class="term"><span class="emphasis"><em>Returns</em></span>&#160;:</span></td>
+<td> TRUE if the <i class="parameter"><tt>widget</tt></i> is OpenGL-capable, FALSE otherwise.
+</td>
+</tr>
+</tbody>
+</table></div>
+</div>
+<hr>
+<div class="refsect2" lang="en">
+<a name="id2526601"></a><h3>
+<a name="gtk-widget-get-gl-config"></a>gtk_widget_get_gl_config ()</h3>
+<a class="indexterm" name="id2526612"></a><pre class="programlisting"><a href="gtkglext-gdkglconfig.html#GdkGLConfig">GdkGLConfig</a>* gtk_widget_get_gl_config       (<a
+href="/usr/share/gtk-doc/html/gtk/GtkWidget.html"
+>GtkWidget</a> *widget);</pre>
+<p>
+Returns the <a href="gtkglext-gdkglconfig.html#GdkGLConfig"><span class="type">GdkGLConfig</span></a> referred by the <i class="parameter"><tt>widget</tt></i>.</p>
+<p>
+
+</p>
+<div class="variablelist"><table border="0">
+<col align="left" valign="top">
+<tbody>
+<tr>
+<td>
+<span class="term"><i class="parameter"><tt>widget</tt></i>&#160;:</span></td>
+<td> a <a
+href="/usr/share/gtk-doc/html/gtk/GtkWidget.html"
+><span class="type">GtkWidget</span></a>.
+</td>
+</tr>
+<tr>
+<td>
+<span class="term"><span class="emphasis"><em>Returns</em></span>&#160;:</span></td>
+<td> the <a href="gtkglext-gdkglconfig.html#GdkGLConfig"><span class="type">GdkGLConfig</span></a>.
+</td>
+</tr>
+</tbody>
+</table></div>
+</div>
+<hr>
+<div class="refsect2" lang="en">
+<a name="id2526701"></a><h3>
+<a name="gtk-widget-create-gl-context"></a>gtk_widget_create_gl_context ()</h3>
+<a class="indexterm" name="id2526712"></a><pre class="programlisting"><a href="gtkglext-gdkglcontext.html#GdkGLContext">GdkGLContext</a>* gtk_widget_create_gl_context  (<a
+href="/usr/share/gtk-doc/html/gtk/GtkWidget.html"
+>GtkWidget</a> *widget,
+                                             <a href="gtkglext-gdkglcontext.html#GdkGLContext">GdkGLContext</a> *share_list,
+                                             <a
+href="/usr/share/gtk-doc/html/glib/glib-Basic-Types.html#gboolean"
+>gboolean</a> direct,
+                                             int render_type);</pre>
+<p>
+Creates a new <a href="gtkglext-gdkglcontext.html#GdkGLContext"><span class="type">GdkGLContext</span></a> with the appropriate <a href="gtkglext-gdkgldrawable.html#GdkGLDrawable"><span class="type">GdkGLDrawable</span></a>
+for this widget. The GL context must be freed when you're
+finished with it. See also <a href="gtkglext-gtkglwidget.html#gtk-widget-get-gl-context"><tt class="function">gtk_widget_get_gl_context()</tt></a>.</p>
+<p>
+
+</p>
+<div class="variablelist"><table border="0">
+<col align="left" valign="top">
+<tbody>
+<tr>
+<td>
+<span class="term"><i class="parameter"><tt>widget</tt></i>&#160;:</span></td>
+<td> a <a
+href="/usr/share/gtk-doc/html/gtk/GtkWidget.html"
+><span class="type">GtkWidget</span></a>.
+</td>
+</tr>
+<tr>
+<td>
+<span class="term"><i class="parameter"><tt>share_list</tt></i>&#160;:</span></td>
+<td> the <a href="gtkglext-gdkglcontext.html#GdkGLContext"><span class="type">GdkGLContext</span></a> with which to share display lists and texture
+             objects. NULL indicates that no sharing is to take place.
+</td>
+</tr>
+<tr>
+<td>
+<span class="term"><i class="parameter"><tt>direct</tt></i>&#160;:</span></td>
+<td> whether rendering is to be done with a direct connection to
+         the graphics system.
+</td>
+</tr>
+<tr>
+<td>
+<span class="term"><i class="parameter"><tt>render_type</tt></i>&#160;:</span></td>
+<td> GDK_GL_RGBA_TYPE or GDK_GL_COLOR_INDEX_TYPE (currently not
+              used).
+</td>
+</tr>
+<tr>
+<td>
+<span class="term"><span class="emphasis"><em>Returns</em></span>&#160;:</span></td>
+<td> the new <a href="gtkglext-gdkglcontext.html#GdkGLContext"><span class="type">GdkGLContext</span></a>.
+</td>
+</tr>
+</tbody>
+</table></div>
+</div>
+<hr>
+<div class="refsect2" lang="en">
+<a name="id2526895"></a><h3>
+<a name="gtk-widget-get-gl-context"></a>gtk_widget_get_gl_context ()</h3>
+<a class="indexterm" name="id2526906"></a><pre class="programlisting"><a href="gtkglext-gdkglcontext.html#GdkGLContext">GdkGLContext</a>* gtk_widget_get_gl_context     (<a
+href="/usr/share/gtk-doc/html/gtk/GtkWidget.html"
+>GtkWidget</a> *widget);</pre>
+<p>
+Returns the <a href="gtkglext-gdkglcontext.html#GdkGLContext"><span class="type">GdkGLContext</span></a> with the appropriate <a href="gtkglext-gdkgldrawable.html#GdkGLDrawable"><span class="type">GdkGLDrawable</span></a>
+for this widget. Unlike the GL context returned by
+<a href="gtkglext-gtkglwidget.html#gtk-widget-create-gl-context"><tt class="function">gtk_widget_create_gl_context()</tt></a>,  this context is owned by the widget.
+</p>
+<p>
+<a href="gtkglext-gdkglcontext.html#GdkGLContext"><span class="type">GdkGLContext</span></a> is needed for the function gdk_gl_drawable_begin,
+or for sharing display lists (see <a href="gtkglext-gtkglwidget.html#gtk-widget-set-gl-capability"><tt class="function">gtk_widget_set_gl_capability()</tt></a>).</p>
+<p>
+
+</p>
+<div class="variablelist"><table border="0">
+<col align="left" valign="top">
+<tbody>
+<tr>
+<td>
+<span class="term"><i class="parameter"><tt>widget</tt></i>&#160;:</span></td>
+<td> a <a
+href="/usr/share/gtk-doc/html/gtk/GtkWidget.html"
+><span class="type">GtkWidget</span></a>.
+</td>
+</tr>
+<tr>
+<td>
+<span class="term"><span class="emphasis"><em>Returns</em></span>&#160;:</span></td>
+<td> the <a href="gtkglext-gdkglcontext.html#GdkGLContext"><span class="type">GdkGLContext</span></a>.
+</td>
+</tr>
+</tbody>
+</table></div>
+</div>
+<hr>
+<div class="refsect2" lang="en">
+<a name="id2527036"></a><h3>
+<a name="gtk-widget-get-gl-window"></a>gtk_widget_get_gl_window ()</h3>
+<a class="indexterm" name="id2527046"></a><pre class="programlisting"><a href="gtkglext-gdkglwindow.html#GdkGLWindow">GdkGLWindow</a>* gtk_widget_get_gl_window       (<a
+href="/usr/share/gtk-doc/html/gtk/GtkWidget.html"
+>GtkWidget</a> *widget);</pre>
+<p>
+Returns the <a href="gtkglext-gdkglwindow.html#GdkGLWindow"><span class="type">GdkGLWindow</span></a> owned by the <i class="parameter"><tt>widget</tt></i>.</p>
+<p>
+
+</p>
+<div class="variablelist"><table border="0">
+<col align="left" valign="top">
+<tbody>
+<tr>
+<td>
+<span class="term"><i class="parameter"><tt>widget</tt></i>&#160;:</span></td>
+<td> a <a
+href="/usr/share/gtk-doc/html/gtk/GtkWidget.html"
+><span class="type">GtkWidget</span></a>.
+</td>
+</tr>
+<tr>
+<td>
+<span class="term"><span class="emphasis"><em>Returns</em></span>&#160;:</span></td>
+<td> the <a href="gtkglext-gdkglwindow.html#GdkGLWindow"><span class="type">GdkGLWindow</span></a>.
+</td>
+</tr>
+</tbody>
+</table></div>
+</div>
+<hr>
+<div class="refsect2" lang="en">
+<a name="id2527135"></a><h3>
+<a name="gtk-widget-get-gl-drawable"></a>gtk_widget_get_gl_drawable()</h3>
+<a class="indexterm" name="id2527147"></a><pre class="programlisting">#define     gtk_widget_get_gl_drawable(widget)</pre>
+<p>
+Returns the <a href="gtkglext-gdkgldrawable.html#GdkGLDrawable"><span class="type">GdkGLDrawable</span></a> owned by the <i class="parameter"><tt>widget</tt></i>. In fact, this is
+macro that casts the result of <a href="gtkglext-gtkglwidget.html#gtk-widget-get-gl-window"><span class="type">gtk_widget_get_gl_window</span></a> to <a href="gtkglext-gdkgldrawable.html#GdkGLDrawable"><span class="type">GdkGLDrawable</span></a>.
+</p>
+<div class="variablelist"><table border="0">
+<col align="left" valign="top">
+<tbody>
+<tr>
+<td>
+<span class="term"><i class="parameter"><tt>widget</tt></i>&#160;:</span></td>
+<td>a <a
+href="/usr/share/gtk-doc/html/gtk/GtkWidget.html"
+><span class="type">GtkWidget</span></a>.
+</td>
+</tr>
+<tr>
+<td>
+<span class="term"><span class="emphasis"><em>Returns</em></span>&#160;:</span></td>
+<td>the <a href="gtkglext-gdkgldrawable.html#GdkGLDrawable"><span class="type">GdkGLDrawable</span></a>.
+
+
+</td>
+</tr>
+</tbody>
+</table></div>
+</div>
+</div>
+</div>
+<table class="navigation" width="100%" summary="Navigation footer" cellpadding="2" cellspacing="0"><tr valign="middle">
+<td align="left"><a accesskey="p" href="gtkglext-gtkglinit.html"><b>&lt;&lt;&#160;Initialization</b></a></td>
+<td align="right"><a accesskey="n" href="gtkglext-gtkglversion.html"><b>Version Information&#160;&gt;&gt;</b></a></td>
+</tr></table>
+</body>
+</html>

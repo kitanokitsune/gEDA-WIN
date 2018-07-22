@@ -1,0 +1,1 @@
+(component-library (build-path (getenv "USERPROFILE") ".gEDA" "local_symbols") "Local Symbols")

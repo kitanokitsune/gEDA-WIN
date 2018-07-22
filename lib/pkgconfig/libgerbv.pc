@@ -1,0 +1,12 @@
+prefix=/home/dj/nightly-geda/build/result
+exec_prefix=${prefix}
+libdir=${exec_prefix}/lib
+includedir=${prefix}/include
+pkgincludedir=${prefix}/include/gerbv-2.6A
+
+Name: libgerbv
+Description: Core library for gerbv
+Requires: glib-2.0 gtk+-2.0
+Version: 2.6A
+Libs: -L${libdir} -lgerbv
+Cflags: -I${pkgincludedir}

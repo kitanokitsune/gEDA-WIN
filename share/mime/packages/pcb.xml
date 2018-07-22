@@ -1,0 +1,50 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<mime-info xmlns="http://www.freedesktop.org/standards/shared-mime-info">
+  <mime-type type="application/x-pcb-layout">
+    <sub-class-of type="text/plain"/>
+    <comment>PCB layout</comment>
+    <comment xml:lang="nl">PCB opmaak</comment>
+    <comment xml:lang="ru">PCB трассировка</comment>
+    <glob pattern="*.pcb"/>
+    <magic priority="50">
+      <match value="# release: pcb " type="string" offset="0"/>
+    </magic>
+  </mime-type>
+  <mime-type type="application/x-pcb-footprint">
+    <sub-class-of type="text/plain"/>
+    <comment>PCB footprint</comment>
+    <comment xml:lang="nl">PCB voetafdruk</comment>
+    <comment xml:lang="ru">PCB посадочное место</comment>
+    <glob pattern="*.fp"/>
+    <magic priority="50">
+      <match value="Element[" type="string" offset="0:20"/>
+    </magic>
+  </mime-type>
+  <mime-type type="application/x-pcb-netlist">
+    <sub-class-of type="text/plain"/>
+    <comment>PCB netlist</comment>
+    <comment xml:lang="nl">PCB netlijst</comment>
+    <comment xml:lang="ru">PCB список соединений</comment>
+    <glob pattern="*.net"/>
+  </mime-type>
+  <mime-type type="application/x-gerber">
+    <sub-class-of type="text/plain"/>
+    <comment>Gerber file</comment>
+    <comment xml:lang="nl">Gerber bestand</comment>
+    <comment xml:lang="ru">Gerber-файл</comment>
+    <glob pattern="*.gbr"/>
+    <magic priority="50">
+      <match value="G04" type="string" offset="0"/>
+    </magic>
+  </mime-type>
+  <mime-type type="application/x-excellon">
+    <sub-class-of type="text/plain"/>
+    <comment>Excellon drill file</comment>
+    <comment xml:lang="nl">Excellon boor bestand</comment>
+    <comment xml:lang="ru">Файл сверловки Excellon</comment>
+    <glob pattern="*.cnc"/>
+    <magic priority="50">
+      <match value="M48" type="string" offset="0"/>
+    </magic>
+  </mime-type>
+</mime-info>

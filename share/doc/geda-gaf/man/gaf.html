@@ -1,0 +1,705 @@
+<!-- Creator     : groff version 1.18.1.4 -->
+<!-- CreationDate: Tue Jan 22 03:56:20 2013 -->
+<html>
+<head>
+<meta name="generator" content="groff -Thtml, see www.gnu.org">
+<meta name="Content-Style" content="text/css">
+<title>gaf</title>
+</head>
+<body>
+
+<h1 align=center>gaf</h1>
+<a href="#NAME">NAME</a><br>
+<a href="#SYNOPSIS">SYNOPSIS</a><br>
+<a href="#DESCRIPTION">DESCRIPTION</a><br>
+<a href="#GENERAL OPTIONS">GENERAL OPTIONS</a><br>
+<a href="#EXPORTING IMAGE FILES">EXPORTING IMAGE FILES</a><br>
+<a href="#ACCESSING CONFIGURATION">ACCESSING CONFIGURATION</a><br>
+<a href="#SCHEME PROCESSING">SCHEME PROCESSING</a><br>
+<a href="#ENVIRONMENT">ENVIRONMENT</a><br>
+<a href="#AUTHORS">AUTHORS</a><br>
+<a href="#COPYRIGHT">COPYRIGHT</a><br>
+<a href="#SEE ALSO">SEE ALSO</a><br>
+
+<hr>
+<a name="NAME"></a>
+<h2>NAME</h2>
+<!-- INDENTATION -->
+<table width="100%" border=0 rules="none" frame="void"
+       cols="2" cellspacing="0" cellpadding="0">
+<tr valign="top" align="left">
+<td width="10%"></td>
+<td width="89%">
+<p>gaf - gEDA/gaf Command-Line Utility</p>
+</td>
+</table>
+<a name="SYNOPSIS"></a>
+<h2>SYNOPSIS</h2>
+<!-- INDENTATION -->
+<table width="100%" border=0 rules="none" frame="void"
+       cols="2" cellspacing="0" cellpadding="0">
+<tr valign="top" align="left">
+<td width="10%"></td>
+<td width="89%">
+<p><b>gaf</b> [<i>OPTION</i> ...] <i>COMMAND</i>
+[<i>ARGS</i> ...]</p>
+</td>
+</table>
+<a name="DESCRIPTION"></a>
+<h2>DESCRIPTION</h2>
+<!-- INDENTATION -->
+<table width="100%" border=0 rules="none" frame="void"
+       cols="2" cellspacing="0" cellpadding="0">
+<tr valign="top" align="left">
+<td width="10%"></td>
+<td width="89%">
+<p><b>gaf</b> is part of the gEDA (GPL Electronic Design
+Automation) toolset. It provides a number of small
+command-line utilities for working with schematic and symbol
+files, and is designed to be used for batch processing of
+designs created using the schematic editor <b>gschem</b>(1).
+It currently has three built-in <i>COMMAND</i>s:</p>
+<!-- INDENTATION -->
+<p><b>gaf export</b> is used to create SVG, PDF, PNG, PS and
+EPS files from schematic and symbol files, for printing or
+embedding in other documents.</p>
+<!-- INDENTATION -->
+<p><b>gaf config</b> allows reading and writing settings in
+gEDA project, user and system configuration stores.</p>
+<!-- INDENTATION -->
+<p><b>gaf shell</b> provides a Scheme REPL for command-line
+batch processing of schematic data.</p>
+</td>
+</table>
+<a name="GENERAL OPTIONS"></a>
+<h2>GENERAL OPTIONS</h2>
+<!-- INDENTATION -->
+<table width="100%" border=0 rules="none" frame="void"
+       cols="2" cellspacing="0" cellpadding="0">
+<tr valign="top" align="left">
+<td width="10%"></td>
+<td width="89%">
+<p><b>--no-rcfiles</b></p></td>
+</table>
+<!-- INDENTATION -->
+<table width="100%" border=0 rules="none" frame="void"
+       cols="2" cellspacing="0" cellpadding="0">
+<tr valign="top" align="left">
+<td width="23%"></td>
+<td width="76%">
+<p>Prevent &lsquo;gafrc&rsquo; Scheme initialisation files
+from being loaded.</p>
+</td>
+</table>
+<!-- INDENTATION -->
+<table width="100%" border=0 rules="none" frame="void"
+       cols="2" cellspacing="0" cellpadding="0">
+<tr valign="top" align="left">
+<td width="10%"></td>
+<td width="89%">
+<p><b>-h</b>, <b>--help</b></p></td>
+</table>
+<!-- INDENTATION -->
+<table width="100%" border=0 rules="none" frame="void"
+       cols="2" cellspacing="0" cellpadding="0">
+<tr valign="top" align="left">
+<td width="23%"></td>
+<td width="76%">
+<p>Print a help message.</p>
+</td>
+</table>
+<!-- INDENTATION -->
+<table width="100%" border=0 rules="none" frame="void"
+       cols="2" cellspacing="0" cellpadding="0">
+<tr valign="top" align="left">
+<td width="10%"></td>
+<td width="89%">
+<p><b>-V</b>, <b>--version</b></p></td>
+</table>
+<!-- INDENTATION -->
+<table width="100%" border=0 rules="none" frame="void"
+       cols="2" cellspacing="0" cellpadding="0">
+<tr valign="top" align="left">
+<td width="23%"></td>
+<td width="76%">
+<p>Print <b>gaf</b> version information.</p>
+</td>
+</table>
+<a name="EXPORTING IMAGE FILES"></a>
+<h2>EXPORTING IMAGE FILES</h2>
+<!-- INDENTATION -->
+<table width="100%" border=0 rules="none" frame="void"
+       cols="2" cellspacing="0" cellpadding="0">
+<tr valign="top" align="left">
+<td width="10%"></td>
+<td width="89%">
+<p><b>gaf export</b> [<i>OPTION</i> ...] <b>-o</b>
+<i>OUTPUT</i> [<i>--</i>] <i>FILE</i> ...</p>
+<!-- INDENTATION -->
+<p><b>gaf export</b> can export schematic and symbol files
+in a variety of image formats for printing or further
+processing. It currently supports single-page PNG, SVG and
+EPS output, and multi-page PS and PDF output. It accepts a
+variety of options for controlling how the output is
+formatted.</p>
+</td>
+</table>
+<!-- INDENTATION -->
+<table width="100%" border=0 rules="none" frame="void"
+       cols="2" cellspacing="0" cellpadding="0">
+<tr valign="top" align="left">
+<td width="10%"></td>
+<td width="89%">
+<p><b>-o</b>, <b>--output</b>=<i>FILE</i></p></td>
+</table>
+<!-- INDENTATION -->
+<table width="100%" border=0 rules="none" frame="void"
+       cols="2" cellspacing="0" cellpadding="0">
+<tr valign="top" align="left">
+<td width="23%"></td>
+<td width="76%">
+<p>Output generated image data to <i>FILE</i>.</p>
+</td>
+</table>
+<!-- INDENTATION -->
+<table width="100%" border=0 rules="none" frame="void"
+       cols="2" cellspacing="0" cellpadding="0">
+<tr valign="top" align="left">
+<td width="10%"></td>
+<td width="89%">
+<p><b>-f</b>, <b>--format</b>=(<b>png</b> | <b>pdf</b> |
+<b>svg</b> | <b>ps</b> | <b>eps</b>)</p></td>
+</table>
+<!-- INDENTATION -->
+<table width="100%" border=0 rules="none" frame="void"
+       cols="2" cellspacing="0" cellpadding="0">
+<tr valign="top" align="left">
+<td width="23%"></td>
+<td width="76%">
+<p>Specify an output format. Usually, this option is not
+required, because <b>gaf export</b> will infer the correct
+format from the file extension of the output file.</p>
+</td>
+</table>
+<!-- INDENTATION -->
+<table width="100%" border=0 rules="none" frame="void"
+       cols="2" cellspacing="0" cellpadding="0">
+<tr valign="top" align="left">
+<td width="10%"></td>
+<td width="89%">
+<p><b>-p</b>, <b>--paper</b>=<i>NAME</i></p></td>
+</table>
+<!-- INDENTATION -->
+<table width="100%" border=0 rules="none" frame="void"
+       cols="2" cellspacing="0" cellpadding="0">
+<tr valign="top" align="left">
+<td width="23%"></td>
+<td width="76%">
+<p>Size the output for a particular paper size. The
+<i>NAME</i> should be a PWG 5101.1-2002 paper name. For
+example, valid values include &lsquo;iso_a4&rsquo;,
+&lsquo;na_letter&rsquo;, or &lsquo;na_d&rsquo;.</p>
+</td>
+</table>
+<!-- INDENTATION -->
+<table width="100%" border=0 rules="none" frame="void"
+       cols="2" cellspacing="0" cellpadding="0">
+<tr valign="top" align="left">
+<td width="10%"></td>
+<td width="89%">
+<p><b>-l</b>, <b>--layout</b>=(<b>auto</b> |
+<b>landscape</b> | <b>portrait</b>)</p></td>
+</table>
+<!-- INDENTATION -->
+<table width="100%" border=0 rules="none" frame="void"
+       cols="2" cellspacing="0" cellpadding="0">
+<tr valign="top" align="left">
+<td width="23%"></td>
+<td width="76%">
+<p>When using a paper size, set the orientation of the
+output. If &lsquo;auto&rsquo; layout is used, the
+orientation that best fits the drawing will be used.</p>
+</td>
+</table>
+<!-- INDENTATION -->
+<table width="100%" border=0 rules="none" frame="void"
+       cols="2" cellspacing="0" cellpadding="0">
+<tr valign="top" align="left">
+<td width="10%"></td>
+<td width="89%">
+<p><b>-s</b>, <b>--size</b>=(<b>auto</b> |
+<i>WIDTH</i>:<i>HEIGHT</i>)</p></td>
+</table>
+<!-- INDENTATION -->
+<table width="100%" border=0 rules="none" frame="void"
+       cols="2" cellspacing="0" cellpadding="0">
+<tr valign="top" align="left">
+<td width="23%"></td>
+<td width="76%">
+<p>Size the output with specific dimensions. If the size is
+&lsquo;auto&rsquo;, select the size that best fits the
+drawing.</p>
+</td>
+</table>
+<!-- INDENTATION -->
+<table width="100%" border=0 rules="none" frame="void"
+       cols="2" cellspacing="0" cellpadding="0">
+<tr valign="top" align="left">
+<td width="10%"></td>
+<td width="89%">
+<p><b>-k</b>, <b>--scale</b>=(<b>FACTOR</b>)</p></td>
+</table>
+<!-- INDENTATION -->
+<table width="100%" border=0 rules="none" frame="void"
+       cols="2" cellspacing="0" cellpadding="0">
+<tr valign="top" align="left">
+<td width="23%"></td>
+<td width="76%">
+<p>Set the output scale <i>FACTOR</i>. This is a distance
+identical with 100 points (1 default grid spacing) in
+<b>gschem</b>(1) coordinate space. It is used to size the
+output when neither <b>--paper</b> nor <b>--size</b> are
+given, and defaults to 100 mil.</p>
+</td>
+</table>
+<!-- INDENTATION -->
+<table width="100%" border=0 rules="none" frame="void"
+       cols="2" cellspacing="0" cellpadding="0">
+<tr valign="top" align="left">
+<td width="10%"></td>
+<td width="89%">
+<p><b>-m</b>, <b>--margins</b>=(<b>auto</b> |
+<i>TOP</i>[:<i>LEFT</i>[:<i>BOTTOM</i>[:<i>RIGHT</i>]]])</p></td>
+</table>
+<!-- INDENTATION -->
+<table width="100%" border=0 rules="none" frame="void"
+       cols="2" cellspacing="0" cellpadding="0">
+<tr valign="top" align="left">
+<td width="23%"></td>
+<td width="76%">
+<p>Set the widths of the margins to be used. If
+&lsquo;auto&rsquo; margins are specified, a sensible default
+value will be chosen. Up to four margin widths can be
+provided. If one is provided, it will be used on all four
+sides. If two are provided, the first will be used for the
+top/bottom and the second for the left/right. If three are
+provided, the first will be used for the top, the second for
+left/right, and the third for the bottom.</p>
+</td>
+</table>
+<!-- INDENTATION -->
+<table width="100%" border=0 rules="none" frame="void"
+       cols="2" cellspacing="0" cellpadding="0">
+<tr valign="top" align="left">
+<td width="10%"></td>
+<td width="89%">
+<p><b>-a</b>, <b>--align</b>=(<b>auto</b> |
+<i>HALIGN</i>:<i>VALIGN</i>)</p></td>
+</table>
+<!-- INDENTATION -->
+<table width="100%" border=0 rules="none" frame="void"
+       cols="2" cellspacing="0" cellpadding="0">
+<tr valign="top" align="left">
+<td width="23%"></td>
+<td width="76%">
+<p>Set how the drawing is aligned within the page.
+<i>HALIGN</i> controls the horizontal alignment, and
+<i>VALIGN</i> the vertical. Each alignment value should be
+in the range 0.0 to 1.0. The &lsquo;auto&rsquo; alignment is
+equivalent to a value of &lsquo;0.5:0.5&rsquo;, i.e.
+centered.</p>
+</td>
+</table>
+<!-- INDENTATION -->
+<table width="100%" border=0 rules="none" frame="void"
+       cols="2" cellspacing="0" cellpadding="0">
+<tr valign="top" align="left">
+<td width="10%"></td>
+<td width="89%">
+<p><b>-d</b>, <b>--dpi</b>=<i>DPI</i></p></td>
+</table>
+<!-- INDENTATION -->
+<table width="100%" border=0 rules="none" frame="void"
+       cols="2" cellspacing="0" cellpadding="0">
+<tr valign="top" align="left">
+<td width="23%"></td>
+<td width="76%">
+<p>Set the number of pixels per inch used when generating
+PNG output.</p>
+</td>
+</table>
+<!-- INDENTATION -->
+<table width="100%" border=0 rules="none" frame="void"
+       cols="2" cellspacing="0" cellpadding="0">
+<tr valign="top" align="left">
+<td width="10%"></td>
+<td width="89%">
+<p><b>-c</b>, <b>--color</b></p></td>
+</table>
+<!-- INDENTATION -->
+<table width="100%" border=0 rules="none" frame="void"
+       cols="2" cellspacing="0" cellpadding="0">
+<tr valign="top" align="left">
+<td width="23%"></td>
+<td width="76%">
+<p>Enable colour output.</p>
+</td>
+</table>
+<!-- INDENTATION -->
+<table width="100%" border=0 rules="none" frame="void"
+       cols="2" cellspacing="0" cellpadding="0">
+<tr valign="top" align="left">
+<td width="10%"></td>
+<td width="89%">
+<p><b>--no-color</b></p></td>
+</table>
+<!-- INDENTATION -->
+<table width="100%" border=0 rules="none" frame="void"
+       cols="2" cellspacing="0" cellpadding="0">
+<tr valign="top" align="left">
+<td width="23%"></td>
+<td width="76%">
+<p>Disable color output.</p>
+</td>
+</table>
+<!-- INDENTATION -->
+<table width="100%" border=0 rules="none" frame="void"
+       cols="2" cellspacing="0" cellpadding="0">
+<tr valign="top" align="left">
+<td width="10%"></td>
+<td width="89%">
+<p><b>-F</b>, <b>--font</b>=<i>FONT-FAMILY</i></p></td>
+</table>
+<!-- INDENTATION -->
+<table width="100%" border=0 rules="none" frame="void"
+       cols="2" cellspacing="0" cellpadding="0">
+<tr valign="top" align="left">
+<td width="23%"></td>
+<td width="76%">
+<p>Set the font to be used for drawing text.</p>
+</td>
+</table>
+<!-- TABS -->
+<table width="100%" border=0 rules="none" frame="void"
+       cols="4" cellspacing="0" cellpadding="0">
+<tr valign="top" align="left">
+<td width="11%"></td>
+<td width="2%">
+
+<p><b>--</b></p>
+</td>
+<td width="8%"></td>
+<td width="76%">
+
+<p>Treat all remaining arguments as schematic or symbol
+filenames. Use this if you have a schematic or symbol
+filename which begins with &lsquo;-&rsquo;.</p>
+</td>
+</table>
+<!-- INDENTATION -->
+<table width="100%" border=0 rules="none" frame="void"
+       cols="2" cellspacing="0" cellpadding="0">
+<tr valign="top" align="left">
+<td width="10%"></td>
+<td width="89%">
+<p>The <b>--size</b>, <b>--margins</b>, or <b>--scale</b>
+options described above accept values using units of
+&lsquo;mm&rsquo;, &lsquo;cm&rsquo;, &lsquo;in&rsquo;,
+&lsquo;pc&rsquo;, &lsquo;px&rsquo;, or &lsquo;pt&rsquo;. If
+you do not provide a unit, points are assumed. N.b. that
+&lsquo;px&rsquo; are evaluated relative to the current
+<b>--dpi</b> setting.</p>
+<!-- INDENTATION -->
+<p>When using the <b>--size</b>, <b>--margins</b>, or
+<b>--align</b> options with multiple values, you may use
+&lsquo;;&rsquo;, or &lsquo; &rsquo; as a separator between
+them instead of &lsquo;:&rsquo;. In such a case, remember to
+properly quote your arguments to avoid them to be
+interpreted by your shell.</p>
+</td>
+</table>
+<a name="ACCESSING CONFIGURATION"></a>
+<h2>ACCESSING CONFIGURATION</h2>
+<!-- INDENTATION -->
+<table width="100%" border=0 rules="none" frame="void"
+       cols="2" cellspacing="0" cellpadding="0">
+<tr valign="top" align="left">
+<td width="10%"></td>
+<td width="89%">
+<p><b>gaf config</b> [<i>OPTION</i>] [<i>GROUP KEY</i>
+[<i>VALUE</i>]]</p>
+<!-- INDENTATION -->
+<p><b>gaf config</b> is a basic utility for inspecting and
+modifying gEDA/gaf configuration stores.</p>
+<!-- INDENTATION -->
+<p>If a <i>GROUP</i> and KEY are specified, retrieves the
+value of that configuration parameter. If a <i>VALUE</i> is
+specified, sets the value of that parameter. The <b>-p</b>,
+<b>-u</b> and <b>-s</b> options can be used to select the
+configuration store affected (by default, the project
+configuration store for the current working directory). If
+no <i>GROUP</i> and <i>KEY</i> are provided, outputs the
+filename of the selected configuration store.</p>
+</td>
+</table>
+<!-- INDENTATION -->
+<table width="100%" border=0 rules="none" frame="void"
+       cols="2" cellspacing="0" cellpadding="0">
+<tr valign="top" align="left">
+<td width="10%"></td>
+<td width="89%">
+<p><b>-p</b>, <b>--project</b>[=<i>PATH</i>]</p></td>
+</table>
+<!-- INDENTATION -->
+<table width="100%" border=0 rules="none" frame="void"
+       cols="2" cellspacing="0" cellpadding="0">
+<tr valign="top" align="left">
+<td width="23%"></td>
+<td width="76%">
+<p>Select the project configuration store of the project
+located in <i>PATH</i>. If no <i>PATH</i> is provided,
+selects the project in the current working directory.</p>
+</td>
+</table>
+<!-- INDENTATION -->
+<table width="100%" border=0 rules="none" frame="void"
+       cols="2" cellspacing="0" cellpadding="0">
+<tr valign="top" align="left">
+<td width="10%"></td>
+<td width="89%">
+<p><b>-u</b>, <b>--user</b></p></td>
+</table>
+<!-- INDENTATION -->
+<table width="100%" border=0 rules="none" frame="void"
+       cols="2" cellspacing="0" cellpadding="0">
+<tr valign="top" align="left">
+<td width="23%"></td>
+<td width="76%">
+<p>Select the user configuration store.</p>
+</td>
+</table>
+<!-- INDENTATION -->
+<table width="100%" border=0 rules="none" frame="void"
+       cols="2" cellspacing="0" cellpadding="0">
+<tr valign="top" align="left">
+<td width="10%"></td>
+<td width="89%">
+<p><b>-s</b>, <b>--system</b></p></td>
+</table>
+<!-- INDENTATION -->
+<table width="100%" border=0 rules="none" frame="void"
+       cols="2" cellspacing="0" cellpadding="0">
+<tr valign="top" align="left">
+<td width="23%"></td>
+<td width="76%">
+<p>Select the system configuration store. Depending on user
+permissions, the system configuration store may be
+read-only.</p>
+</td>
+</table>
+<a name="SCHEME PROCESSING"></a>
+<h2>SCHEME PROCESSING</h2>
+<!-- INDENTATION -->
+<table width="100%" border=0 rules="none" frame="void"
+       cols="2" cellspacing="0" cellpadding="0">
+<tr valign="top" align="left">
+<td width="10%"></td>
+<td width="89%">
+<p><b>gaf shell</b> [<i>OPTION ...</i>]</p>
+<!-- INDENTATION -->
+<p><b>gaf shell</b> provides a Scheme Read-Eval-Print Loop
+(REPL) for automating processing of schematic and symbol
+files. It is designed to be used with the gEDA Scheme
+API.</p>
+</td>
+</table>
+<!-- TABS -->
+<table width="100%" border=0 rules="none" frame="void"
+       cols="4" cellspacing="0" cellpadding="0">
+<tr valign="top" align="left">
+<td width="11%"></td>
+<td width="10%">
+
+<p><b>-s</b> <i>FILE</i></p>
+</td>
+<td width="7%"></td>
+<td width="70%">
+
+<p>Evaluate Scheme source code from <i>FILE</i>, and
+exit.</p>
+</td>
+<tr valign="top" align="left">
+<td width="11%"></td>
+<td width="10%">
+
+<p><b>-c</b> <i>EXPR</i></p>
+</td>
+<td width="7%"></td>
+<td width="70%">
+
+<p>Evaluate the Scheme expression <i>EXPR</i>, and
+exit.</p>
+</td>
+<tr valign="top" align="left">
+<td width="11%"></td>
+<td width="10%">
+
+<p><b>--</b></p>
+</td>
+<td width="7%"></td>
+<td width="70%">
+
+<p>Stop scanning arguments; run interactively.</p>
+</td>
+</table>
+<!-- INDENTATION -->
+<table width="100%" border=0 rules="none" frame="void"
+       cols="2" cellspacing="0" cellpadding="0">
+<tr valign="top" align="left">
+<td width="10%"></td>
+<td width="89%">
+<p><b>-L</b> <i>DIRECTORY</i></p></td>
+</table>
+<!-- INDENTATION -->
+<table width="100%" border=0 rules="none" frame="void"
+       cols="2" cellspacing="0" cellpadding="0">
+<tr valign="top" align="left">
+<td width="23%"></td>
+<td width="76%">
+<p>Prepend <i>DIRECTORY</i> to the list of directories to be
+searched for Scheme files.</p>
+</td>
+</table>
+<!-- TABS -->
+<table width="100%" border=0 rules="none" frame="void"
+       cols="5" cellspacing="0" cellpadding="0">
+<tr valign="top" align="left">
+<td width="11%"></td>
+<td width="10%">
+
+<p><b>-l</b> <i>FILE</i></p>
+</td>
+<td width="14%"></td>
+<td width="55%">
+
+<p>Evaluate Scheme source code from <i>FILE</i>.</p>
+</td>
+<td width="7%">
+</td>
+</table>
+<!-- INDENTATION -->
+<table width="100%" border=0 rules="none" frame="void"
+       cols="2" cellspacing="0" cellpadding="0">
+<tr valign="top" align="left">
+<td width="10%"></td>
+<td width="89%">
+<p>The <b>-s</b>, <b>-c</b> and <b>--</b> switches stop
+argument processing and pass all the remaining arguments as
+the value of &lsquo;(command-line)&rsquo;.</p>
+</td>
+</table>
+<a name="ENVIRONMENT"></a>
+<h2>ENVIRONMENT</h2>
+<!-- INDENTATION -->
+<table width="100%" border=0 rules="none" frame="void"
+       cols="2" cellspacing="0" cellpadding="0">
+<tr valign="top" align="left">
+<td width="10%"></td>
+<td width="89%">
+<p><b>GEDADATA</b></p></td>
+</table>
+<!-- INDENTATION -->
+<table width="100%" border=0 rules="none" frame="void"
+       cols="2" cellspacing="0" cellpadding="0">
+<tr valign="top" align="left">
+<td width="23%"></td>
+<td width="76%">
+<p>specifies the search directory for Scheme and rc files.
+The default is &lsquo;${prefix}/share/gEDA&rsquo;.</p>
+</td>
+</table>
+<!-- INDENTATION -->
+<table width="100%" border=0 rules="none" frame="void"
+       cols="2" cellspacing="0" cellpadding="0">
+<tr valign="top" align="left">
+<td width="10%"></td>
+<td width="89%">
+<p><b>GEDADATARC</b></p></td>
+</table>
+<!-- INDENTATION -->
+<table width="100%" border=0 rules="none" frame="void"
+       cols="2" cellspacing="0" cellpadding="0">
+<tr valign="top" align="left">
+<td width="23%"></td>
+<td width="76%">
+<p>specifies the search directory for rc files. The default
+is &lsquo;$GEDADATA&rsquo;.</p>
+</td>
+</table>
+<a name="AUTHORS"></a>
+<h2>AUTHORS</h2>
+<!-- INDENTATION -->
+<table width="100%" border=0 rules="none" frame="void"
+       cols="2" cellspacing="0" cellpadding="0">
+<tr valign="top" align="left">
+<td width="10%"></td>
+<td width="89%">
+<p>See the &lsquo;AUTHORS&rsquo; file included with this
+program.</p>
+</td>
+</table>
+<a name="COPYRIGHT"></a>
+<h2>COPYRIGHT</h2>
+<!-- INDENTATION -->
+<table width="100%" border=0 rules="none" frame="void"
+       cols="2" cellspacing="0" cellpadding="0">
+<tr valign="top" align="left">
+<td width="10%"></td>
+<td width="89%">
+<pre>Copyright &copy; 2012 gEDA Contributors.  License GPLv2+: GNU GPL
+version 2 or later.  Please see the &lsquo;COPYING&rsquo; file included with this
+program for full details.
+
+This is free software: you are free to change and redistribute it.
+There is NO WARRANTY, to the extent permitted by law.
+
+</pre>
+</td>
+</table>
+<a name="SEE ALSO"></a>
+<h2>SEE ALSO</h2>
+<!-- INDENTATION -->
+
+<table width="100%" border=0 rules="none" frame="void"
+       cols="2" cellspacing="0" cellpadding="0">
+<tr valign="top" align="left">
+<td width="10%"></td>
+<td width="89%">
+<p><b>gschem</b>(1).</p>
+<!-- INDENTATION -->
+<p>For more information on the Scheme API, see the
+<b>geda-scheme</b> Texinfo manual. If the <b>info</b>
+program is properly installed at your site, the command</p>
+</td>
+</table>
+<!-- INDENTATION -->
+<table width="100%" border=0 rules="none" frame="void"
+       cols="2" cellspacing="0" cellpadding="0">
+<tr valign="top" align="left">
+<td width="20%"></td>
+<td width="79%">
+<p><b>info geda-scheme</b></p>
+</td>
+</table>
+<!-- INDENTATION -->
+<table width="100%" border=0 rules="none" frame="void"
+       cols="2" cellspacing="0" cellpadding="0">
+<tr valign="top" align="left">
+<td width="10%"></td>
+<td width="89%">
+<p>should give you access to the complete manual.</p>
+</td>
+</table>
+<hr>
+</body>
+</html>

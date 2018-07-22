@@ -1,0 +1,10 @@
+[Desktop Entry]
+Encoding=UTF-8
+Comment=Excellon drill file
+Comment[nl]=Excellon boor bestand
+Comment[ru]=Файл сверловки Excellon
+MimeType=application/x-excellon
+Type=MimeType
+Icon=application-x-excellon
+Patterns=*.cnc
+X-KDE-IsAlso=text/plain

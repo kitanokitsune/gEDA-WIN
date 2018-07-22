@@ -1,0 +1,424 @@
+<!-- Creator     : groff version 1.18.1.4 -->
+<!-- CreationDate: Tue Jan 22 03:59:08 2013 -->
+<html>
+<head>
+<meta name="generator" content="groff -Thtml, see www.gnu.org">
+<meta name="Content-Style" content="text/css">
+<title>gsymcheck</title>
+</head>
+<body>
+
+<h1 align=center>gsymcheck</h1>
+<a href="#NAME">NAME</a><br>
+<a href="#SYNOPSIS">SYNOPSIS</a><br>
+<a href="#DESCRIPTION">DESCRIPTION</a><br>
+<a href="#OPTIONS">OPTIONS</a><br>
+<a href="#EXAMPLES">EXAMPLES</a><br>
+<a href="#ENVIRONMENT">ENVIRONMENT</a><br>
+<a href="#AUTHOR">AUTHOR</a><br>
+<a href="#SEE ALSO">SEE ALSO</a><br>
+<a href="#COPYRIGHT">COPYRIGHT</a><br>
+
+<hr>
+<a name="NAME"></a>
+<h2>NAME</h2>
+<!-- INDENTATION -->
+<table width="100%" border=0 rules="none" frame="void"
+       cols="2" cellspacing="0" cellpadding="0">
+<tr valign="top" align="left">
+<td width="10%"></td>
+<td width="89%">
+<p>gsymcheck - gEDA/gaf Symbol Checker</p>
+</td>
+</table>
+<a name="SYNOPSIS"></a>
+<h2>SYNOPSIS</h2>
+<!-- INDENTATION -->
+<table width="100%" border=0 rules="none" frame="void"
+       cols="2" cellspacing="0" cellpadding="0">
+<tr valign="top" align="left">
+<td width="10%"></td>
+<td width="89%">
+<p><b>gsymcheck</b> [&minus;h] [&minus;v] [&minus;q] symbol1
+[... symbolN]</p>
+</td>
+</table>
+<a name="DESCRIPTION"></a>
+<h2>DESCRIPTION</h2>
+<!-- INDENTATION -->
+<table width="100%" border=0 rules="none" frame="void"
+       cols="2" cellspacing="0" cellpadding="0">
+<tr valign="top" align="left">
+<td width="10%"></td>
+<td width="89%">
+<p><i>gsymcheck</i> is a symbol checker for gEDA/gaf. Here
+is a list of checks that <i>gsymcheck</i> performs:</p>
+</td>
+</table>
+<!-- TABS -->
+<table width="100%" border=0 rules="none" frame="void"
+       cols="3" cellspacing="0" cellpadding="0">
+<tr valign="top" align="left">
+<td width="11%"></td>
+<td width="2%">
+
+<p>&bull;</p>
+</td>
+<td width="85%">
+
+<p>Checks for graphical= attribute (if present does varied
+tests)</p>
+</td>
+<tr valign="top" align="left">
+<td width="11%"></td>
+<td width="2%">
+
+<p>&bull;</p>
+</td>
+<td width="85%">
+
+<p>Checks for the device= attribute</p>
+</td>
+<tr valign="top" align="left">
+<td width="11%"></td>
+<td width="2%">
+
+<p>&bull;</p>
+</td>
+<td width="85%">
+
+<p>Checks for various other missing attributes (pinlabel,
+pintype, pinseq, footprint, refdes)</p>
+</td>
+<tr valign="top" align="left">
+<td width="11%"></td>
+<td width="2%">
+
+<p>&bull;</p>
+</td>
+<td width="85%">
+
+<p>Checks to make sure that the active pin end is on the
+100 unit grid.</p>
+</td>
+<tr valign="top" align="left">
+<td width="11%"></td>
+<td width="2%">
+
+<p>&bull;</p>
+</td>
+<td width="85%">
+
+<p>Checks the uses of the various attributes (duplicates,
+incorrect syntax, invalid values, etc...)</p>
+</td>
+<tr valign="top" align="left">
+<td width="11%"></td>
+<td width="2%">
+
+<p>&bull;</p>
+</td>
+<td width="85%">
+
+<p>Checks for obsolete, old, and forbidden attributes</p>
+</td>
+<tr valign="top" align="left">
+<td width="11%"></td>
+<td width="2%">
+
+<p>&bull;</p>
+</td>
+<td width="85%">
+
+<p>Checks for any nets or buses within a symbol</p>
+</td>
+<tr valign="top" align="left">
+<td width="11%"></td>
+<td width="2%">
+
+<p>&bull;</p>
+</td>
+<td width="85%">
+
+<p>Checks for any other connections within a symbol</p>
+</td>
+<tr valign="top" align="left">
+<td width="11%"></td>
+<td width="2%">
+
+<p>&bull;</p>
+</td>
+<td width="85%">
+
+<p>Checks to make sure the number of pins is the correct
+number</p>
+</td>
+</table>
+<a name="OPTIONS"></a>
+<h2>OPTIONS</h2>
+<!-- INDENTATION -->
+<table width="100%" border=0 rules="none" frame="void"
+       cols="2" cellspacing="0" cellpadding="0">
+<tr valign="top" align="left">
+<td width="10%"></td>
+<td width="89%">
+<p><i>gsymcheck</i> accepts the following options:</p>
+</td>
+</table>
+<!-- TABS -->
+<table width="100%" border=0 rules="none" frame="void"
+       cols="4" cellspacing="0" cellpadding="0">
+<tr valign="top" align="left">
+<td width="11%"></td>
+<td width="7%">
+
+<p><b>-q</b></p>
+</td>
+<td width="4%"></td>
+<td width="76%">
+
+<p>Quiet mode on. This mode turns off all
+warnings/notes/messages. (optional)</p>
+</td>
+<tr valign="top" align="left">
+<td width="11%"></td>
+<td width="7%">
+
+<p><b>-v</b></p>
+</td>
+<td width="4%"></td>
+<td width="76%">
+
+<p>Verbose mode 1. This mode will show all error messages
+(optional)</p>
+</td>
+<tr valign="top" align="left">
+<td width="11%"></td>
+<td width="7%">
+
+<p><b>-vv</b></p>
+</td>
+<td width="4%"></td>
+<td width="76%">
+
+<p>Verbose mode 2. This mode will show all error and
+warning messages (optional)</p>
+</td>
+<tr valign="top" align="left">
+<td width="11%"></td>
+<td width="7%">
+
+<p><b>-vvv</b></p>
+</td>
+<td width="4%"></td>
+<td width="76%">
+
+<p>Verbose mode 2. This mode will show all error, warning,
+and info messages (optional)</p>
+</td>
+<tr valign="top" align="left">
+<td width="11%"></td>
+<td width="7%">
+
+<p><b>-h</b></p>
+</td>
+<td width="4%"></td>
+<td width="76%">
+
+<p>Usage summary / gsymcheck help</p>
+</td>
+</table>
+<!-- INDENTATION -->
+<table width="100%" border=0 rules="none" frame="void"
+       cols="2" cellspacing="0" cellpadding="0">
+<tr valign="top" align="left">
+<td width="10%"></td>
+<td width="89%">
+<p>symbol1 [... symbolN]</p></td>
+</table>
+<!-- INDENTATION -->
+<table width="100%" border=0 rules="none" frame="void"
+       cols="2" cellspacing="0" cellpadding="0">
+<tr valign="top" align="left">
+<td width="23%"></td>
+<td width="76%">
+<p>At least one symbol file must be specified. If multiple
+symbols are specified then they are sequentially read in and
+checked. It is important that the schematic(s) follow all
+the options (ie last).</p>
+</td>
+</table>
+<a name="EXAMPLES"></a>
+<h2>EXAMPLES</h2>
+<!-- INDENTATION -->
+<table width="100%" border=0 rules="none" frame="void"
+       cols="2" cellspacing="0" cellpadding="0">
+<tr valign="top" align="left">
+<td width="10%"></td>
+<td width="89%">
+<p>Here are some examples on how to run
+<i>gsymcheck</i>:</p>
+<!-- INDENTATION -->
+<p>To get usage information just run:</p>
+</td>
+</table>
+<!-- TABS -->
+<table width="100%" border=0 rules="none" frame="void"
+       cols="2" cellspacing="0" cellpadding="0">
+<tr valign="top" align="left">
+<td width="7%"></td>
+<td width="92%">
+
+<p>gsymcheck</p>
+</td>
+</table>
+<!-- INDENTATION -->
+<table width="100%" border=0 rules="none" frame="void"
+       cols="2" cellspacing="0" cellpadding="0">
+<tr valign="top" align="left">
+<td width="10%"></td>
+<td width="89%">
+<p>To actually check a symbol with just error counts,
+run:</p>
+</td>
+</table>
+<!-- TABS -->
+<table width="100%" border=0 rules="none" frame="void"
+       cols="2" cellspacing="0" cellpadding="0">
+<tr valign="top" align="left">
+<td width="7%"></td>
+<td width="92%">
+
+<p>gsymcheck symbolfilename.sym</p>
+</td>
+</table>
+<!-- INDENTATION -->
+<table width="100%" border=0 rules="none" frame="void"
+       cols="2" cellspacing="0" cellpadding="0">
+<tr valign="top" align="left">
+<td width="10%"></td>
+<td width="89%">
+<p>To get the actuall error messages, run:</p>
+</td>
+</table>
+<!-- TABS -->
+<table width="100%" border=0 rules="none" frame="void"
+       cols="2" cellspacing="0" cellpadding="0">
+<tr valign="top" align="left">
+<td width="7%"></td>
+<td width="92%">
+
+<p>gsymcheck &minus;v symbolfilename.sym</p>
+</td>
+</table>
+<!-- INDENTATION -->
+<table width="100%" border=0 rules="none" frame="void"
+       cols="2" cellspacing="0" cellpadding="0">
+<tr valign="top" align="left">
+<td width="10%"></td>
+<td width="89%">
+<p>To see all the error messages and warnings, run:</p>
+</td>
+</table>
+<!-- TABS -->
+<table width="100%" border=0 rules="none" frame="void"
+       cols="2" cellspacing="0" cellpadding="0">
+<tr valign="top" align="left">
+<td width="7%"></td>
+<td width="92%">
+
+<p>gsymcheck &minus;vv symbolfilename.sym</p>
+</td>
+</table>
+<!-- INDENTATION -->
+<table width="100%" border=0 rules="none" frame="void"
+       cols="2" cellspacing="0" cellpadding="0">
+<tr valign="top" align="left">
+<td width="10%"></td>
+<td width="89%">
+<p>To see all the error messages, warnings, and parse info,
+run:</p>
+</td>
+</table>
+<!-- TABS -->
+<table width="100%" border=0 rules="none" frame="void"
+       cols="2" cellspacing="0" cellpadding="0">
+<tr valign="top" align="left">
+<td width="7%"></td>
+<td width="92%">
+
+<p>gsymcheck &minus;vvv symbolfilename.sym</p>
+</td>
+</table>
+<a name="ENVIRONMENT"></a>
+<h2>ENVIRONMENT</h2>
+<!-- INDENTATION -->
+<table width="100%" border=0 rules="none" frame="void"
+       cols="2" cellspacing="0" cellpadding="0">
+<tr valign="top" align="left">
+<td width="10%"></td>
+<td width="89%">
+<p><i>gsymcheck</i> respects the following environment
+variable:</p>
+</td>
+</table>
+<!-- INDENTATION -->
+<table width="100%" border=0 rules="none" frame="void"
+       cols="2" cellspacing="0" cellpadding="0">
+<tr valign="top" align="left">
+<td width="10%"></td>
+<td width="89%">
+<p><b>GEDADATA</b></p></td>
+</table>
+<!-- INDENTATION -->
+<table width="100%" border=0 rules="none" frame="void"
+       cols="2" cellspacing="0" cellpadding="0">
+<tr valign="top" align="left">
+<td width="23%"></td>
+<td width="76%">
+<p>specifies where the various required scheme and rc files
+are located (the default is ${prefix}/share/gEDA). This
+environment variables does not need to be set by the end
+user unless they are moving the executables to a new install
+${prefix}.</p>
+</td>
+</table>
+<a name="AUTHOR"></a>
+<h2>AUTHOR</h2>
+<!-- INDENTATION -->
+<table width="100%" border=0 rules="none" frame="void"
+       cols="2" cellspacing="0" cellpadding="0">
+<tr valign="top" align="left">
+<td width="10%"></td>
+<td width="89%">
+<p>Ales Hvezda and many others</p>
+</td>
+</table>
+<a name="SEE ALSO"></a>
+<h2>SEE ALSO</h2>
+<!-- INDENTATION -->
+<table width="100%" border=0 rules="none" frame="void"
+       cols="2" cellspacing="0" cellpadding="0">
+<tr valign="top" align="left">
+<td width="10%"></td>
+<td width="89%">
+<p><b>gschem</b>(1), <b>gnetlist</b>(1)</p>
+</td>
+</table>
+<a name="COPYRIGHT"></a>
+<h2>COPYRIGHT</h2>
+<!-- INDENTATION -->
+<table width="100%" border=0 rules="none" frame="void"
+       cols="2" cellspacing="0" cellpadding="0">
+<tr valign="top" align="left">
+<td width="10%"></td>
+<td width="89%">
+<p>Copyright &copy; 1999-2008 Ales Hvezda</p>
+<!-- INDENTATION -->
+<p>This document can be freely redistributed according to
+the terms of the GNU General Public License version 2.0</p>
+</td>
+</table>
+<hr>
+</body>
+</html>

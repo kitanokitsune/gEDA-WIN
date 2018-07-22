@@ -1,0 +1,97 @@
+This release of gSpiceUI is the first in a long time (longer than intended).
+I've been building up to version 1.0.00 since the last release but kept putting
+it off thinking that the code was never good enough. I've decided to release
+this version regardless; if I don't call something version 1.0.00 it might
+never happen. However, much of the effort in this release has gone to testing
+and bug fixes over new features, so this release should be pretty good.
+
+A notable point about this release is that it can be compiled against the
+wxWidgets library version 2.9.2 (with wxWidgets 2.8 compatibility enabled).
+This was requested by a Mac OSX user. The limited testing I've done has
+revealed that there's more to do however; there are new run-time bugs when
+using wxWidgets v2.9.x, but it's a start.
+
+For the time being most development effort will still be centered on wxWidgets
+v2.8.x. I don't want to leave anyone behind and there's no compelling reason to
+change at present.
+
+The following is an extract from the ChangeLog file associated with this
+release :
+
+ * When gSpiceUI is installed example schematic files and library files are now
+   included (this was always intended but overlooked).
+ * gSpiceUI has been successfully compiled against the wxWidgets library
+   version 2.9.2 (with wxWidgets 2.8 compatibility enabled). This was requested
+   by a Mac OSX user Jerry J. since "it works better with the Cocoa framework".
+ * BugFix : The temporary file management scheme was incomplete. If more than
+            one circuit descriptions were loaded in a single session temporary
+            files could be created but not deleted.
+ * Modifications to the functions in utility/StrUtils.cpp. Signal source names
+   are now sorted so that the most used component types appear at the top of
+   the list.
+ * Modifications to the functions in utility/StrUtils.cpp. The more interesting
+   node and component names now tend to be placed at the top of the test probe
+   list boxes and the remaining names are sorted more sensibly.
+ * In the classes NetList, SimnBase, SimnGunCap and SimnNgSpice change all
+   Extract*( ) function names to Load*( ).
+ * BugFix : In version v0.9.99 a reload operation would close gschem and gwave
+            or gaw. (This was unintended behaviour.)
+ * In class SpinCtrl hard-coded a spin button repeat period of 80 msec. This
+   will be user configurable in the future.
+ * Increased the maximum number of lines which can be displayed in any text
+   control to 1,000,000 lines and the default to 10,000. (I don't know if
+   wxTextCtrl can cope with this but someone will try it sooner or later and
+   we'll find out).
+ * Objects inheriting from PrcBase (which itself inherits from wxProcess)
+   created input and output streams but didn't deleted them. Eventually all
+   available file descriptors were used up and gSpiceUI could no longer launch
+   new processes. This long standing bug has been resolved (I think?) thanks to
+   a contribution made by Jarno Honkanen.
+ * Added a LM555 model file and demo. schematic.
+ * In the classes PrcGWave and PrcGaw removed the functions bFormatLine( ) and
+   bFormatField( ) because these operations are already performed by PrcGnuCap
+   and PrcNgSpice.
+ * Over-haul of the ChoUnits class.
+ * In the PnlValue::bSetValue( ) methods remove unnecessary complexity by
+   eliminating the bNoUnits argument; it's already implemented by the
+   PnlValue::m_bUseUnits attribute.
+ * BugFix : If a node label didn't start with a digit CmdGnuCapPR::Parse( )
+            categorized it as a component label.
+ * BugFix : The src/Makefile target "deps" was not correctly defined. Most of
+            the source files where being overlooked.
+ * In HelpTasks class removed the status bar from the HTML window, it wasn't
+   used.
+ * Disable the Stop tool and Stop menu option when no simulation is actually
+   running.
+ * In the HelpTasks class added a tool to the tool bar for moving forward in
+   the history database.
+ * In the HelpTasks class implemented wxFrame close tool for HTML window.
+ * Implemented a new command-line option -d which enables debug mode. This
+   causes console spew to be generated on standard error.
+ * At startup error messages are held over until the the main frame of the GUI
+   has been fully displayed.
+ * In src/Makefile added a new variable $DESTDIR which may be used to specify
+   the install location at the request of ???.
+ * BugFix : The src/Makefile install mechanism failed if the target bin/
+            directory didn't already exist.
+ * In the classes PnlValue, SpinCtrl and ChoUnits the method bClear( ) is used
+   to set defaults. Added a function bSetDefaults( ) to set default values and
+   changed the bClear( ) methods to just clear the object attributes.
+ * Replace all references to wxWindows with wxWidgets.
+ * Minor updates to Install documentation.
+ * BugFix : The files utility/iStrCmp.h and utility/iStrCmp.c actually contain
+            C++ code so they have been renamed to utility/iStrCmp.hpp and
+            utility/iStrCmp.cpp respectively. Also removed instructions for
+            compiling C code from Makefile.
+ * In the class ConvertType all function for processing double float's take
+   only double's of long's as arguments. (This is to do with compile time
+   problems under OSX.)
+ * BugFix : If gSpiceUI has gschem open and a reload operation is executed, the
+            gSchem process is no longer closed.
+ * Added a mechanism to sch/Makefile to convert all example schematic files
+   included with gSpiceUI to netlist files using gnetlist. This provides some
+   level of validation of schematic files, although it doesn't guarantee that
+   they will work.
+ * Updates to the HTML documentation.
+ * Minor updates to man page.
+ * Various minor modifications and bug fixes.

@@ -1,0 +1,364 @@
+<!-- Creator     : groff version 1.18.1.4 -->
+<!-- CreationDate: Tue Jan 22 03:56:29 2013 -->
+<html>
+<head>
+<meta name="generator" content="groff -Thtml, see www.gnu.org">
+<meta name="Content-Style" content="text/css">
+<title>gschem</title>
+</head>
+<body>
+
+<h1 align=center>gschem</h1>
+<a href="#NAME">NAME</a><br>
+<a href="#SYNOPSIS">SYNOPSIS</a><br>
+<a href="#DESCRIPTION">DESCRIPTION</a><br>
+<a href="#OPTIONS">OPTIONS</a><br>
+<a href="#SCHEMATIC AND SYMBOL FILES">SCHEMATIC AND SYMBOL FILES</a><br>
+<a href="#ENVIRONMENT">ENVIRONMENT</a><br>
+<a href="#AUTHORS">AUTHORS</a><br>
+<a href="#COPYRIGHT">COPYRIGHT</a><br>
+<a href="#SEE ALSO">SEE ALSO</a><br>
+
+<hr>
+<a name="NAME"></a>
+<h2>NAME</h2>
+<!-- INDENTATION -->
+<table width="100%" border=0 rules="none" frame="void"
+       cols="2" cellspacing="0" cellpadding="0">
+<tr valign="top" align="left">
+<td width="10%"></td>
+<td width="89%">
+<p>gschem - gEDA/gaf Schematic Capture</p>
+</td>
+</table>
+<a name="SYNOPSIS"></a>
+<h2>SYNOPSIS</h2>
+<!-- INDENTATION -->
+<table width="100%" border=0 rules="none" frame="void"
+       cols="2" cellspacing="0" cellpadding="0">
+<tr valign="top" align="left">
+<td width="10%"></td>
+<td width="89%">
+<p><b>gschem</b> [<i>OPTION</i> ...] [<i>--</i>]
+[<i>FILE</i> ...]</p>
+</td>
+</table>
+<a name="DESCRIPTION"></a>
+<h2>DESCRIPTION</h2>
+<!-- INDENTATION -->
+<table width="100%" border=0 rules="none" frame="void"
+       cols="2" cellspacing="0" cellpadding="0">
+<tr valign="top" align="left">
+<td width="10%"></td>
+<td width="89%">
+<p><b>gschem</b> is a schematic capture application, and is
+part of the gEDA (GPL Electronic Design Automation) toolset.
+It is used to draw electronic schematics, which describe the
+logical structure of an circuit. Schematics are made up of
+symbols, which represent the various components in the
+circuit, and are obtained either from a standard library or
+created by the user. The connections between components
+represented by nets (wires). Schematics may be printed to a
+PostScript file for printing or further conversion to other
+output formats. Output to various image formats is also
+supported.</p>
+<!-- INDENTATION -->
+<p><b>gschem</b> can also be used for editing symbols for
+use in schematics.</p>
+</td>
+</table>
+<a name="OPTIONS"></a>
+<h2>OPTIONS</h2>
+<!-- INDENTATION -->
+<table width="100%" border=0 rules="none" frame="void"
+       cols="2" cellspacing="0" cellpadding="0">
+<tr valign="top" align="left">
+<td width="10%"></td>
+<td width="89%">
+<p><b>-q</b>, <b>--quiet</b></p></td>
+</table>
+<!-- INDENTATION -->
+<table width="100%" border=0 rules="none" frame="void"
+       cols="2" cellspacing="0" cellpadding="0">
+<tr valign="top" align="left">
+<td width="23%"></td>
+<td width="76%">
+<p>Quiet mode. Turn off all warnings/notes/messages.</p>
+</td>
+</table>
+<!-- INDENTATION -->
+<table width="100%" border=0 rules="none" frame="void"
+       cols="2" cellspacing="0" cellpadding="0">
+<tr valign="top" align="left">
+<td width="10%"></td>
+<td width="89%">
+<p><b>-v</b>, <b>--verbose</b></p></td>
+</table>
+<!-- INDENTATION -->
+<table width="100%" border=0 rules="none" frame="void"
+       cols="2" cellspacing="0" cellpadding="0">
+<tr valign="top" align="left">
+<td width="23%"></td>
+<td width="76%">
+<p>Verbose mode. Output all diagnostic information.</p>
+</td>
+</table>
+<!-- INDENTATION -->
+<table width="100%" border=0 rules="none" frame="void"
+       cols="2" cellspacing="0" cellpadding="0">
+<tr valign="top" align="left">
+<td width="10%"></td>
+<td width="89%">
+<p><b>-r</b>, <b>--config-file</b>=<i>FILE</i></p></td>
+</table>
+<!-- INDENTATION -->
+<table width="100%" border=0 rules="none" frame="void"
+       cols="2" cellspacing="0" cellpadding="0">
+<tr valign="top" align="left">
+<td width="23%"></td>
+<td width="76%">
+<p>Specify an additional configuration file. Normally
+<b>gschem</b> searches for the system configuration file,
+then &lsquo;$HOME/.gEDA/gschemrc&rsquo;, and finally for a
+&lsquo;gschemrc&rsquo; file in the current working
+directory. This option allows the user to specify an
+additional rc file which is read after all the other rc
+files have been are read.</p>
+</td>
+</table>
+<!-- INDENTATION -->
+<table width="100%" border=0 rules="none" frame="void"
+       cols="2" cellspacing="0" cellpadding="0">
+<tr valign="top" align="left">
+<td width="10%"></td>
+<td width="89%">
+<p><b>-L</b> <i>DIRECTORY</i></p></td>
+</table>
+<!-- INDENTATION -->
+<table width="100%" border=0 rules="none" frame="void"
+       cols="2" cellspacing="0" cellpadding="0">
+<tr valign="top" align="left">
+<td width="23%"></td>
+<td width="76%">
+<p>Prepend <i>DIRECTORY</i> to the list of directories to be
+searched for Scheme files.</p>
+</td>
+</table>
+<!-- TABS -->
+<table width="100%" border=0 rules="none" frame="void"
+       cols="3" cellspacing="0" cellpadding="0">
+<tr valign="top" align="left">
+<td width="11%"></td>
+<td width="11%">
+
+<p><b>-s</b> <i>FILE</i></p>
+</td>
+<td width="76%">
+
+<p>Specify a Scheme script to be executed at startup.</p>
+</td>
+<tr valign="top" align="left">
+<td width="11%"></td>
+<td width="11%">
+
+<p><b>-c</b> <i>EXPR</i></p>
+</td>
+<td width="76%">
+
+<p>Specify a Scheme expression to be evaluated at
+startup.</p>
+</td>
+</table>
+<!-- INDENTATION -->
+<table width="100%" border=0 rules="none" frame="void"
+       cols="2" cellspacing="0" cellpadding="0">
+<tr valign="top" align="left">
+<td width="10%"></td>
+<td width="89%">
+<p><b>-o</b>, <b>--output</b>=<i>FILE</i></p></td>
+</table>
+<!-- INDENTATION -->
+<table width="100%" border=0 rules="none" frame="void"
+       cols="2" cellspacing="0" cellpadding="0">
+<tr valign="top" align="left">
+<td width="23%"></td>
+<td width="76%">
+<p>Specify a filename for PostScript output. This command
+line argument is useful when running <b>gschem</b> from a
+shell script and with a Scheme script. The filename can be
+changed through the print dialog box.</p>
+</td>
+</table>
+<!-- TABS -->
+<table width="100%" border=0 rules="none" frame="void"
+       cols="4" cellspacing="0" cellpadding="0">
+<tr valign="top" align="left">
+<td width="13%"></td>
+<td width="2%">
+
+<p><b>-p</b></p>
+</td>
+<td width="7%"></td>
+<td width="76%">
+
+<p>Automatically place the window. This may be useful if
+running <b>gschem</b> from the command line and generating
+output.</p>
+</td>
+</table>
+<!-- INDENTATION -->
+<table width="100%" border=0 rules="none" frame="void"
+       cols="2" cellspacing="0" cellpadding="0">
+<tr valign="top" align="left">
+<td width="10%"></td>
+<td width="89%">
+<p><b>-h</b>, <b>--help</b></p></td>
+</table>
+<!-- INDENTATION -->
+<table width="100%" border=0 rules="none" frame="void"
+       cols="2" cellspacing="0" cellpadding="0">
+<tr valign="top" align="left">
+<td width="23%"></td>
+<td width="76%">
+<p>Print a help message.</p>
+</td>
+</table>
+<!-- INDENTATION -->
+<table width="100%" border=0 rules="none" frame="void"
+       cols="2" cellspacing="0" cellpadding="0">
+<tr valign="top" align="left">
+<td width="10%"></td>
+<td width="89%">
+<p><b>-V</b>, <b>--version</b></p></td>
+</table>
+<!-- INDENTATION -->
+<table width="100%" border=0 rules="none" frame="void"
+       cols="2" cellspacing="0" cellpadding="0">
+<tr valign="top" align="left">
+<td width="23%"></td>
+<td width="76%">
+<p>Print <b>gschem</b> version information.</p>
+</td>
+</table>
+<!-- TABS -->
+<table width="100%" border=0 rules="none" frame="void"
+       cols="4" cellspacing="0" cellpadding="0">
+<tr valign="top" align="left">
+<td width="11%"></td>
+<td width="2%">
+
+<p><b>--</b></p>
+</td>
+<td width="8%"></td>
+<td width="76%">
+
+<p>Treat all remaining arguments as schematic or symbol
+filenames. Use this if you have a schematic or symbol
+filename which begins with &lsquo;-&rsquo;.</p>
+</td>
+</table>
+<a name="SCHEMATIC AND SYMBOL FILES"></a>
+<h2>SCHEMATIC AND SYMBOL FILES</h2>
+<!-- INDENTATION -->
+<table width="100%" border=0 rules="none" frame="void"
+       cols="2" cellspacing="0" cellpadding="0">
+<tr valign="top" align="left">
+<td width="10%"></td>
+<td width="89%">
+<p>Optionally, schematic or symbol <i>FILE</i>s may be
+specified on the command line. Any schematic or symbols
+specified are loaded at startup as separate documents in the
+schematic editor.</p>
+<!-- INDENTATION -->
+<p>If no <i>FILE</i>s are specified, a blank schematic is
+created for editing.</p>
+</td>
+</table>
+<a name="ENVIRONMENT"></a>
+<h2>ENVIRONMENT</h2>
+<!-- INDENTATION -->
+<table width="100%" border=0 rules="none" frame="void"
+       cols="2" cellspacing="0" cellpadding="0">
+<tr valign="top" align="left">
+<td width="10%"></td>
+<td width="89%">
+<p><b>GEDADATA</b></p></td>
+</table>
+<!-- INDENTATION -->
+<table width="100%" border=0 rules="none" frame="void"
+       cols="2" cellspacing="0" cellpadding="0">
+<tr valign="top" align="left">
+<td width="23%"></td>
+<td width="76%">
+<p>specifies the search directory for Scheme and rc files.
+The default is &lsquo;${prefix}/share/gEDA&rsquo;.</p>
+</td>
+</table>
+<!-- INDENTATION -->
+<table width="100%" border=0 rules="none" frame="void"
+       cols="2" cellspacing="0" cellpadding="0">
+<tr valign="top" align="left">
+<td width="10%"></td>
+<td width="89%">
+<p><b>GEDADATARC</b></p></td>
+</table>
+<!-- INDENTATION -->
+<table width="100%" border=0 rules="none" frame="void"
+       cols="2" cellspacing="0" cellpadding="0">
+<tr valign="top" align="left">
+<td width="23%"></td>
+<td width="76%">
+<p>specifies the search directory for rc files. The default
+is &lsquo;$GEDADATA&rsquo;.</p>
+</td>
+</table>
+<a name="AUTHORS"></a>
+<h2>AUTHORS</h2>
+<!-- INDENTATION -->
+<table width="100%" border=0 rules="none" frame="void"
+       cols="2" cellspacing="0" cellpadding="0">
+<tr valign="top" align="left">
+<td width="10%"></td>
+<td width="89%">
+<p>See the &lsquo;AUTHORS&rsquo; file included with this
+program.</p>
+</td>
+</table>
+<a name="COPYRIGHT"></a>
+<h2>COPYRIGHT</h2>
+<!-- INDENTATION -->
+<table width="100%" border=0 rules="none" frame="void"
+       cols="2" cellspacing="0" cellpadding="0">
+<tr valign="top" align="left">
+<td width="10%"></td>
+<td width="89%">
+<pre>Copyright &copy; 1999-2011 gEDA Contributors.  License GPLv2+: GNU GPL
+version 2 or later.  Please see the &lsquo;COPYING&rsquo; file included with this
+program for full details.
+
+This is free software: you are free to change and redistribute it.
+There is NO WARRANTY, to the extent permitted by law.
+
+</pre>
+</td>
+</table>
+<a name="SEE ALSO"></a>
+<h2>SEE ALSO</h2>
+<!-- INDENTATION -->
+
+<table width="100%" border=0 rules="none" frame="void"
+       cols="2" cellspacing="0" cellpadding="0">
+<tr valign="top" align="left">
+<td width="10%"></td>
+<td width="89%">
+<p><b>gnetlist</b>(1), <b>gsymcheck</b>(1)</p>
+<!-- INDENTATION -->
+<p>The full documentation for <b>gschem</b> is available
+from within the program by selecting the &lsquo;gEDA
+Documentation&rsquo; option from the program&rsquo;s
+&lsquo;Help&rsquo; menu.</p>
+</td>
+</table>
+<hr>
+</body>
+</html>

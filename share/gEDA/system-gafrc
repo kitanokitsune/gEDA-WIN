@@ -1,0 +1,120 @@
+;                                                         -*-Scheme-*-
+;;; 
+;;; Common init file for gaf
+;;;
+
+; The following global variables are defined by libgeda:
+;
+; path-sep       -- system path separator
+; geda-data-path -- path to gEDA system-wide data directory
+; geda-rc-path   -- path to gEDA system-wide config directory
+
+;; Set some flags to aid in debugging rc files
+(cond-expand (guile-2 #t)
+             (guile (debug-enable 'debug)))
+(debug-enable 'backtrace)
+(read-enable 'positions)
+
+; The libgeda Scheme library provides a number of useful functions for
+; writing Scheme code for embedding in gaf.
+(load-from-path "geda.scm")
+
+;; Import deprecated Scheme functions
+(load-from-path "geda-deprecated-config.scm")
+(use-modules (geda deprecated))
+
+
+;; The directory containing various bitmaps (e.g. icons)
+(bitmap-directory (build-path geda-data-path "bitmap"))
+
+; scheme-directory dir
+;
+; This keyword allows additional directories to be added to the list
+; of directories which are used by gEDA to load Scheme code.
+; Environment variables in 'dir' are expanded.  By default,
+; '${GEDADATA}/scheme' is in the load path, as are all of the standard
+; Guile Scheme libraries.
+;(scheme-directory "${HOME}/.gEDA/scheme")
+
+;
+; Start of attribute promotion keywords
+; 
+
+; attribute-promotion string
+;
+; This keyword controls if attribute promotion occurs when you instanciate a
+; component.  Attribute promotion basically means that any floating attribute
+; (unattached) which is inside a symbol gets "promoted" or attached to the 
+; newly inserted component.  This only occurs when the component is 
+; instanciated.
+;
+(attribute-promotion "enabled")
+;(attribute-promotion "disabled")
+
+; promote-invisible string
+;
+; If attribute-promotion is enabled, then this controls if invisible floating
+; attributes are promoted (attached to the outside of the component) if the 
+; text string is invisible.  There are cases where it is undesirable, so the 
+; default is disabled.
+;
+;(promote-invisible "enabled")
+(promote-invisible "disabled")
+
+; keep-invisible string
+;
+; If both attribute-promotion and promote-invisible are enabled, then this 
+; controls if invisible floating attributes are kept around in memory and
+; NOT deleted.  Having this enabled will keeps component slotting working.
+; If attribute-promotion and promote-invisible are enabled and this
+; keyword is disabled, then component slotting will NOT work (and maybe 
+; other functions which depend on hidden attributes, since those attributes
+; are deleted from memory).
+;
+;(keep-invisible "disabled")
+(keep-invisible "enabled")
+
+; always-promote-attributes
+;
+; Set the list of attributes that are always promoted regardless of
+; their visibility. The list should be a scm list of strings. The
+; space separated attribute names are deprecated.
+;
+;(always-promote-attributes "footprint device value model-name")
+(always-promote-attributes '("footprint" "device" "value" "model-name"))
+
+;
+; End of attribute promotion keywords
+; 
+
+; make-backup-files
+;
+; Enable the creation of backup files (name.sch~) when saving a schematic.
+; It may be useful to disable this if your schematic is under version control
+; as you can always recover any mistakes from the revision history.
+;(make-backup-files "disabled")
+(make-backup-files "enabled")
+
+;;;; Color maps
+
+;; Load functions for handling color maps
+(load-from-path "color-map.scm")
+
+;; Make the printing color map more user-friendly
+(color-map-make-friendly print-color-map)
+
+;; Load up a color scheme for printing optimised for a white background.
+; Comment out the second line and comment in the first line for a
+; dark background. The dark background is the original look.
+;
+;(load (build-path geda-rc-path "print-colormap-darkbg")) ; dark background
+(load (build-path geda-rc-path "print-colormap-lightbg")) ; light background
+
+
+;;;; Process configuration script directory
+
+;; The directory containing any extra scheme files to load
+(define geda-confd-path (build-path geda-data-path "gafrc.d"))
+
+;; Execute any scheme files found in the geda-confd-path directory.
+(load-scheme-dir geda-confd-path)

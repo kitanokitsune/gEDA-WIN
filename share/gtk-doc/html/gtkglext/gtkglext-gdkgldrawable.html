@@ -1,0 +1,379 @@
+<html>
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=US-ASCII">
+<title>Rendering Surface</title>
+<meta name="generator" content="DocBook XSL Stylesheets V1.65.1">
+<link rel="home" href="index.html" title="GtkGLExt Reference Manual">
+<link rel="up" href="GdkGLExt-API.html" title="Part&#160;II.&#160;GdkGLExt API Reference">
+<link rel="previous" href="gtkglext-gdkglcontext.html" title="Rendering Context">
+<link rel="next" href="gtkglext-gdkglpixmap.html" title="OpenGL Pixmap">
+<meta name="generator" content="GTK-Doc V1.4 (XML mode)">
+<link rel="stylesheet" href="style.css" type="text/css">
+<link rel="part" href="Overview.html" title="Part&#160;I.&#160;GtkGLExt Overview">
+<link rel="part" href="GdkGLExt-API.html" title="Part&#160;II.&#160;GdkGLExt API Reference">
+<link rel="part" href="GtkGLExt-API.html" title="Part&#160;III.&#160;GtkGLExt API Reference">
+</head>
+<body bgcolor="white" text="black" link="#0000FF" vlink="#840084" alink="#0000FF">
+<table class="navigation" width="100%" summary="Navigation header" cellpadding="2" cellspacing="2"><tr valign="middle">
+<td><a accesskey="p" href="gtkglext-gdkglcontext.html"><img src="left.png" width="24" height="24" border="0" alt="Prev"></a></td>
+<td><a accesskey="u" href="GdkGLExt-API.html"><img src="up.png" width="24" height="24" border="0" alt="Up"></a></td>
+<td><a accesskey="h" href="index.html"><img src="home.png" width="24" height="24" border="0" alt="Home"></a></td>
+<th width="100%" align="center">GtkGLExt Reference Manual</th>
+<td><a accesskey="n" href="gtkglext-gdkglpixmap.html"><img src="right.png" width="24" height="24" border="0" alt="Next"></a></td>
+</tr></table>
+<div class="refentry" lang="en">
+<a name="gtkglext-gdkgldrawable"></a><div class="titlepage">
+<div></div>
+<div></div>
+</div>
+<div class="refnamediv"><table width="100%"><tr>
+<td valign="top">
+<h2><span class="refentrytitle">Rendering Surface</span></h2>
+<p>Rendering Surface &#8212; OpenGL rendering surface interface</p>
+</td>
+<td valign="top" align="right"></td>
+</tr></table></div>
+<div class="refsynopsisdiv">
+<h2>Synopsis</h2>
+<a name="GdkGLDrawable"></a><pre class="synopsis">
+
+#include &lt;gdk/gdkgl.h&gt;
+
+
+            <a href="gtkglext-gdkgldrawable.html#GdkGLDrawable-struct">GdkGLDrawable</a>;
+<a
+href="/usr/share/gtk-doc/html/glib/glib-Basic-Types.html#gboolean"
+>gboolean</a>    <a href="gtkglext-gdkgldrawable.html#gdk-gl-drawable-make-current">gdk_gl_drawable_make_current</a>    (<a href="gtkglext-gdkgldrawable.html#GdkGLDrawable">GdkGLDrawable</a> *gldrawable,
+                                             <a href="gtkglext-gdkglcontext.html#GdkGLContext">GdkGLContext</a> *glcontext);
+<a
+href="/usr/share/gtk-doc/html/glib/glib-Basic-Types.html#gboolean"
+>gboolean</a>    <a href="gtkglext-gdkgldrawable.html#gdk-gl-drawable-is-double-buffered">gdk_gl_drawable_is_double_buffered</a>
+                                            (<a href="gtkglext-gdkgldrawable.html#GdkGLDrawable">GdkGLDrawable</a> *gldrawable);
+void        <a href="gtkglext-gdkgldrawable.html#gdk-gl-drawable-swap-buffers">gdk_gl_drawable_swap_buffers</a>    (<a href="gtkglext-gdkgldrawable.html#GdkGLDrawable">GdkGLDrawable</a> *gldrawable);
+void        <a href="gtkglext-gdkgldrawable.html#gdk-gl-drawable-wait-gl">gdk_gl_drawable_wait_gl</a>         (<a href="gtkglext-gdkgldrawable.html#GdkGLDrawable">GdkGLDrawable</a> *gldrawable);
+void        <a href="gtkglext-gdkgldrawable.html#gdk-gl-drawable-wait-gdk">gdk_gl_drawable_wait_gdk</a>        (<a href="gtkglext-gdkgldrawable.html#GdkGLDrawable">GdkGLDrawable</a> *gldrawable);
+<a
+href="/usr/share/gtk-doc/html/glib/glib-Basic-Types.html#gboolean"
+>gboolean</a>    <a href="gtkglext-gdkgldrawable.html#gdk-gl-drawable-gl-begin">gdk_gl_drawable_gl_begin</a>        (<a href="gtkglext-gdkgldrawable.html#GdkGLDrawable">GdkGLDrawable</a> *gldrawable,
+                                             <a href="gtkglext-gdkglcontext.html#GdkGLContext">GdkGLContext</a> *glcontext);
+void        <a href="gtkglext-gdkgldrawable.html#gdk-gl-drawable-gl-end">gdk_gl_drawable_gl_end</a>          (<a href="gtkglext-gdkgldrawable.html#GdkGLDrawable">GdkGLDrawable</a> *gldrawable);
+<a href="gtkglext-gdkglconfig.html#GdkGLConfig">GdkGLConfig</a>* <a href="gtkglext-gdkgldrawable.html#gdk-gl-drawable-get-gl-config">gdk_gl_drawable_get_gl_config</a>  (<a href="gtkglext-gdkgldrawable.html#GdkGLDrawable">GdkGLDrawable</a> *gldrawable);
+void        <a href="gtkglext-gdkgldrawable.html#gdk-gl-drawable-get-size">gdk_gl_drawable_get_size</a>        (<a href="gtkglext-gdkgldrawable.html#GdkGLDrawable">GdkGLDrawable</a> *gldrawable,
+                                             <a
+href="/usr/share/gtk-doc/html/glib/glib-Basic-Types.html#gint"
+>gint</a> *width,
+                                             <a
+href="/usr/share/gtk-doc/html/glib/glib-Basic-Types.html#gint"
+>gint</a> *height);
+<a href="gtkglext-gdkgldrawable.html#GdkGLDrawable">GdkGLDrawable</a>* <a href="gtkglext-gdkgldrawable.html#gdk-gl-drawable-get-current">gdk_gl_drawable_get_current</a>  (void);
+
+
+</pre>
+</div>
+<div class="refsect1" lang="en">
+<a name="id2508050"></a><h2>Object Hierarchy</h2>
+<pre class="synopsis">
+
+  GInterface
+   +----GdkGLDrawable
+</pre>
+</div>
+<div class="refsect1" lang="en">
+<a name="id2508070"></a><h2>Description</h2>
+<p>
+
+</p>
+</div>
+<div class="refsect1" lang="en">
+<a name="id2508080"></a><h2>Details</h2>
+<div class="refsect2" lang="en">
+<a name="id2508086"></a><h3>
+<a name="GdkGLDrawable-struct"></a>GdkGLDrawable</h3>
+<a class="indexterm" name="id2508097"></a><pre class="programlisting">typedef struct _GdkGLDrawable GdkGLDrawable;</pre>
+<p>
+
+</p>
+</div>
+<hr>
+<div class="refsect2" lang="en">
+<a name="id2508113"></a><h3>
+<a name="gdk-gl-drawable-make-current"></a>gdk_gl_drawable_make_current ()</h3>
+<a class="indexterm" name="id2508123"></a><pre class="programlisting"><a
+href="/usr/share/gtk-doc/html/glib/glib-Basic-Types.html#gboolean"
+>gboolean</a>    gdk_gl_drawable_make_current    (<a href="gtkglext-gdkgldrawable.html#GdkGLDrawable">GdkGLDrawable</a> *gldrawable,
+                                             <a href="gtkglext-gdkglcontext.html#GdkGLContext">GdkGLContext</a> *glcontext);</pre>
+<p>
+Attach an OpenGL rendering context to a <i class="parameter"><tt>gldrawable</tt></i>.</p>
+<p>
+
+</p>
+<div class="variablelist"><table border="0">
+<col align="left" valign="top">
+<tbody>
+<tr>
+<td>
+<span class="term"><i class="parameter"><tt>gldrawable</tt></i>&#160;:</span></td>
+<td> a <a href="gtkglext-gdkgldrawable.html#GdkGLDrawable"><span class="type">GdkGLDrawable</span></a>.
+</td>
+</tr>
+<tr>
+<td>
+<span class="term"><i class="parameter"><tt>glcontext</tt></i>&#160;:</span></td>
+<td> a <a href="gtkglext-gdkglcontext.html#GdkGLContext"><span class="type">GdkGLContext</span></a>.
+</td>
+</tr>
+<tr>
+<td>
+<span class="term"><span class="emphasis"><em>Returns</em></span>&#160;:</span></td>
+<td> TRUE if it is successful, FALSE otherwise.
+</td>
+</tr>
+</tbody>
+</table></div>
+</div>
+<hr>
+<div class="refsect2" lang="en">
+<a name="id2508229"></a><h3>
+<a name="gdk-gl-drawable-is-double-buffered"></a>gdk_gl_drawable_is_double_buffered ()</h3>
+<a class="indexterm" name="id2508240"></a><pre class="programlisting"><a
+href="/usr/share/gtk-doc/html/glib/glib-Basic-Types.html#gboolean"
+>gboolean</a>    gdk_gl_drawable_is_double_buffered
+                                            (<a href="gtkglext-gdkgldrawable.html#GdkGLDrawable">GdkGLDrawable</a> *gldrawable);</pre>
+<p>
+Returns whether the <i class="parameter"><tt>gldrawable</tt></i> supports the double-buffered visual.</p>
+<p>
+
+</p>
+<div class="variablelist"><table border="0">
+<col align="left" valign="top">
+<tbody>
+<tr>
+<td>
+<span class="term"><i class="parameter"><tt>gldrawable</tt></i>&#160;:</span></td>
+<td> a <a href="gtkglext-gdkgldrawable.html#GdkGLDrawable"><span class="type">GdkGLDrawable</span></a>.
+</td>
+</tr>
+<tr>
+<td>
+<span class="term"><span class="emphasis"><em>Returns</em></span>&#160;:</span></td>
+<td> TRUE if the double-buffered visual is supported,
+              FALSE otherwise.
+</td>
+</tr>
+</tbody>
+</table></div>
+</div>
+<hr>
+<div class="refsect2" lang="en">
+<a name="id2508317"></a><h3>
+<a name="gdk-gl-drawable-swap-buffers"></a>gdk_gl_drawable_swap_buffers ()</h3>
+<a class="indexterm" name="id2508328"></a><pre class="programlisting">void        gdk_gl_drawable_swap_buffers    (<a href="gtkglext-gdkgldrawable.html#GdkGLDrawable">GdkGLDrawable</a> *gldrawable);</pre>
+<p>
+Exchange front and back buffers.</p>
+<p>
+
+</p>
+<div class="variablelist"><table border="0">
+<col align="left" valign="top">
+<tbody><tr>
+<td>
+<span class="term"><i class="parameter"><tt>gldrawable</tt></i>&#160;:</span></td>
+<td> a <a href="gtkglext-gdkgldrawable.html#GdkGLDrawable"><span class="type">GdkGLDrawable</span></a>.
+</td>
+</tr></tbody>
+</table></div>
+</div>
+<hr>
+<div class="refsect2" lang="en">
+<a name="id2508387"></a><h3>
+<a name="gdk-gl-drawable-wait-gl"></a>gdk_gl_drawable_wait_gl ()</h3>
+<a class="indexterm" name="id2508398"></a><pre class="programlisting">void        gdk_gl_drawable_wait_gl         (<a href="gtkglext-gdkgldrawable.html#GdkGLDrawable">GdkGLDrawable</a> *gldrawable);</pre>
+<p>
+Complete OpenGL execution prior to subsequent GDK drawing calls.</p>
+<p>
+
+</p>
+<div class="variablelist"><table border="0">
+<col align="left" valign="top">
+<tbody><tr>
+<td>
+<span class="term"><i class="parameter"><tt>gldrawable</tt></i>&#160;:</span></td>
+<td> a <a href="gtkglext-gdkgldrawable.html#GdkGLDrawable"><span class="type">GdkGLDrawable</span></a>.
+</td>
+</tr></tbody>
+</table></div>
+</div>
+<hr>
+<div class="refsect2" lang="en">
+<a name="id2508457"></a><h3>
+<a name="gdk-gl-drawable-wait-gdk"></a>gdk_gl_drawable_wait_gdk ()</h3>
+<a class="indexterm" name="id2508468"></a><pre class="programlisting">void        gdk_gl_drawable_wait_gdk        (<a href="gtkglext-gdkgldrawable.html#GdkGLDrawable">GdkGLDrawable</a> *gldrawable);</pre>
+<p>
+Complete GDK drawing execution prior to subsequent OpenGL calls.</p>
+<p>
+
+</p>
+<div class="variablelist"><table border="0">
+<col align="left" valign="top">
+<tbody><tr>
+<td>
+<span class="term"><i class="parameter"><tt>gldrawable</tt></i>&#160;:</span></td>
+<td> a <a href="gtkglext-gdkgldrawable.html#GdkGLDrawable"><span class="type">GdkGLDrawable</span></a>.
+</td>
+</tr></tbody>
+</table></div>
+</div>
+<hr>
+<div class="refsect2" lang="en">
+<a name="id2508527"></a><h3>
+<a name="gdk-gl-drawable-gl-begin"></a>gdk_gl_drawable_gl_begin ()</h3>
+<a class="indexterm" name="id2508537"></a><pre class="programlisting"><a
+href="/usr/share/gtk-doc/html/glib/glib-Basic-Types.html#gboolean"
+>gboolean</a>    gdk_gl_drawable_gl_begin        (<a href="gtkglext-gdkgldrawable.html#GdkGLDrawable">GdkGLDrawable</a> *gldrawable,
+                                             <a href="gtkglext-gdkglcontext.html#GdkGLContext">GdkGLContext</a> *glcontext);</pre>
+<p>
+Delimits the begining of the OpenGL execution.</p>
+<p>
+
+</p>
+<div class="variablelist"><table border="0">
+<col align="left" valign="top">
+<tbody>
+<tr>
+<td>
+<span class="term"><i class="parameter"><tt>gldrawable</tt></i>&#160;:</span></td>
+<td> a <a href="gtkglext-gdkgldrawable.html#GdkGLDrawable"><span class="type">GdkGLDrawable</span></a>.
+</td>
+</tr>
+<tr>
+<td>
+<span class="term"><i class="parameter"><tt>glcontext</tt></i>&#160;:</span></td>
+<td> a <a href="gtkglext-gdkglcontext.html#GdkGLContext"><span class="type">GdkGLContext</span></a>.
+</td>
+</tr>
+<tr>
+<td>
+<span class="term"><span class="emphasis"><em>Returns</em></span>&#160;:</span></td>
+<td> TRUE if it is successful, FALSE otherwise.
+</td>
+</tr>
+</tbody>
+</table></div>
+</div>
+<hr>
+<div class="refsect2" lang="en">
+<a name="id2508637"></a><h3>
+<a name="gdk-gl-drawable-gl-end"></a>gdk_gl_drawable_gl_end ()</h3>
+<a class="indexterm" name="id2508647"></a><pre class="programlisting">void        gdk_gl_drawable_gl_end          (<a href="gtkglext-gdkgldrawable.html#GdkGLDrawable">GdkGLDrawable</a> *gldrawable);</pre>
+<p>
+Delimits the end of the OpenGL execution.</p>
+<p>
+
+</p>
+<div class="variablelist"><table border="0">
+<col align="left" valign="top">
+<tbody><tr>
+<td>
+<span class="term"><i class="parameter"><tt>gldrawable</tt></i>&#160;:</span></td>
+<td> a <a href="gtkglext-gdkgldrawable.html#GdkGLDrawable"><span class="type">GdkGLDrawable</span></a>.
+</td>
+</tr></tbody>
+</table></div>
+</div>
+<hr>
+<div class="refsect2" lang="en">
+<a name="id2508706"></a><h3>
+<a name="gdk-gl-drawable-get-gl-config"></a>gdk_gl_drawable_get_gl_config ()</h3>
+<a class="indexterm" name="id2508717"></a><pre class="programlisting"><a href="gtkglext-gdkglconfig.html#GdkGLConfig">GdkGLConfig</a>* gdk_gl_drawable_get_gl_config  (<a href="gtkglext-gdkgldrawable.html#GdkGLDrawable">GdkGLDrawable</a> *gldrawable);</pre>
+<p>
+Gets <a href="gtkglext-gdkglconfig.html#GdkGLConfig"><span class="type">GdkGLConfig</span></a> with which the <i class="parameter"><tt>gldrawable</tt></i> is configured.</p>
+<p>
+
+</p>
+<div class="variablelist"><table border="0">
+<col align="left" valign="top">
+<tbody>
+<tr>
+<td>
+<span class="term"><i class="parameter"><tt>gldrawable</tt></i>&#160;:</span></td>
+<td> a <a href="gtkglext-gdkgldrawable.html#GdkGLDrawable"><span class="type">GdkGLDrawable</span></a>.
+</td>
+</tr>
+<tr>
+<td>
+<span class="term"><span class="emphasis"><em>Returns</em></span>&#160;:</span></td>
+<td> the <a href="gtkglext-gdkglconfig.html#GdkGLConfig"><span class="type">GdkGLConfig</span></a>.
+</td>
+</tr>
+</tbody>
+</table></div>
+</div>
+<hr>
+<div class="refsect2" lang="en">
+<a name="id2508807"></a><h3>
+<a name="gdk-gl-drawable-get-size"></a>gdk_gl_drawable_get_size ()</h3>
+<a class="indexterm" name="id2508818"></a><pre class="programlisting">void        gdk_gl_drawable_get_size        (<a href="gtkglext-gdkgldrawable.html#GdkGLDrawable">GdkGLDrawable</a> *gldrawable,
+                                             <a
+href="/usr/share/gtk-doc/html/glib/glib-Basic-Types.html#gint"
+>gint</a> *width,
+                                             <a
+href="/usr/share/gtk-doc/html/glib/glib-Basic-Types.html#gint"
+>gint</a> *height);</pre>
+<p>
+Fills *width and *height with the size of GL drawable.
+width or height can be NULL if you only want the other one.</p>
+<p>
+
+</p>
+<div class="variablelist"><table border="0">
+<col align="left" valign="top">
+<tbody>
+<tr>
+<td>
+<span class="term"><i class="parameter"><tt>gldrawable</tt></i>&#160;:</span></td>
+<td> a <a href="gtkglext-gdkgldrawable.html#GdkGLDrawable"><span class="type">GdkGLDrawable</span></a>.
+</td>
+</tr>
+<tr>
+<td>
+<span class="term"><i class="parameter"><tt>width</tt></i>&#160;:</span></td>
+<td> location to store drawable's width, or NULL.
+</td>
+</tr>
+<tr>
+<td>
+<span class="term"><i class="parameter"><tt>height</tt></i>&#160;:</span></td>
+<td> location to store drawable's height, or NULL.
+</td>
+</tr>
+</tbody>
+</table></div>
+</div>
+<hr>
+<div class="refsect2" lang="en">
+<a name="id2508922"></a><h3>
+<a name="gdk-gl-drawable-get-current"></a>gdk_gl_drawable_get_current ()</h3>
+<a class="indexterm" name="id2508933"></a><pre class="programlisting"><a href="gtkglext-gdkgldrawable.html#GdkGLDrawable">GdkGLDrawable</a>* gdk_gl_drawable_get_current  (void);</pre>
+<p>
+Returns the current <a href="gtkglext-gdkgldrawable.html#GdkGLDrawable"><span class="type">GdkGLDrawable</span></a>.</p>
+<p>
+
+</p>
+<div class="variablelist"><table border="0">
+<col align="left" valign="top">
+<tbody><tr>
+<td>
+<span class="term"><span class="emphasis"><em>Returns</em></span>&#160;:</span></td>
+<td> the current <a href="gtkglext-gdkgldrawable.html#GdkGLDrawable"><span class="type">GdkGLDrawable</span></a> or NULL if there is no current drawable.
+</td>
+</tr></tbody>
+</table></div>
+</div>
+</div>
+</div>
+<table class="navigation" width="100%" summary="Navigation footer" cellpadding="2" cellspacing="0"><tr valign="middle">
+<td align="left"><a accesskey="p" href="gtkglext-gdkglcontext.html"><b>&lt;&lt;&#160;Rendering Context</b></a></td>
+<td align="right"><a accesskey="n" href="gtkglext-gdkglpixmap.html"><b>OpenGL Pixmap&#160;&gt;&gt;</b></a></td>
+</tr></table>
+</body>
+</html>

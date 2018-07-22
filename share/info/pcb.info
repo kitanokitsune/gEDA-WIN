@@ -1,0 +1,327 @@
+This is pcb.info, produced by makeinfo version 4.13 from pcb.texi.
+
+INFO-DIR-SECTION Miscellaneous
+START-INFO-DIR-ENTRY
+* pcb: (pcb).                   An interactive printed circuit board editor.
+END-INFO-DIR-ENTRY
+
+   This file documents how to use Pcb, the open source, interactive
+printed circuit board layout system.
+
+   Copyright (C) 1994,1995,1996, 2004 Thomas Nau
+
+   Copyright (C) 1997, 1998, 1999, 2000, 2001, 2002 harry eaton
+
+   Copyright (C) 2003, 2004, 2005, 2006, 2007, 2009 Dan McMahill
+
+   Copyright (C) 2004 DJ Delorie
+
+   This program is free software; you may redistribute it and/or modify
+it under the terms of the GNU General Public License as published by
+the Free Software Foundation; either version 2 of the License, or (at
+your option) any later version.
+
+   This program is distributed in the hope that it will be useful, but
+WITHOUT ANY WARRANTY; without even the implied warranty of
+MERCHANT-ABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the GNU
+General Public License for more details.
+
+
+Indirect:
+pcb.info-1: 1021
+pcb.info-2: 296810
+
+Tag Table:
+(Indirect)
+Node: Top1021
+Node: Copying2466
+Node: History3138
+Node: Overview8024
+Node: Intro8845
+Node: Symbol Objects10326
+Node: Via Objects10906
+Node: Element Objects11924
+Node: Layer Objects18807
+Node: Line Objects21959
+Node: Arc Objects24912
+Node: Polygon Objects26360
+Node: Text Objects28989
+Node: Net Objects29804
+Node: Getting Started30734
+Node: Application Window32982
+Node: Menu33631
+Node: Status-line and Input-field42500
+Node: Layer Controls45775
+Node: Tool Selectors49453
+Node: Layout Area56155
+Node: Log Window57023
+Node: Library Window57857
+Node: Netlist Window59101
+Node: Drawing and Removing60685
+Node: Common62829
+Node: Lines64678
+Node: Arcs66242
+Node: Polygons67425
+Node: Text69312
+Node: Vias70297
+Node: Elements71673
+Node: Pastebuffer77133
+Node: Moving and Copying78955
+Node: Loading and Saving80366
+Node: Printing81965
+Node: Exporting86373
+Node: bom86828
+Node: gcode87016
+Node: gerber89867
+Node: nelma90067
+Node: png90219
+Node: ps90363
+Node: eps90532
+Node: Connection Lists90769
+Node: Arrow Tool92575
+Node: Rats Nest94806
+Node: Design Rule Checking99891
+Node: Trace Optimizer102256
+Node: Searching for elements103800
+Node: Measuring distances104301
+Node: Vendor drill mapping105024
+Node: Autorouter108262
+Node: User Commands111600
+Node: Command-Line Options115807
+Node: General Options117079
+Node: General GUI Options120275
+Node: GTK+ GUI Options121393
+Node: lesstif GUI Options121969
+Node: Colors122540
+Node: Layer Names124646
+Node: Paths125395
+Node: Sizes126243
+Node: Commands128040
+Node: DRC Options129391
+Node: BOM Creation130160
+Node: Gerber Export130480
+Node: Postscript Export130898
+Node: Encapsulated Postscript Export132655
+Node: PNG Options133209
+Node: lpr Printing Options135329
+Node: nelma Options135765
+Node: X11 Interface136191
+Node: Resources136659
+Node: Actions152188
+Node: Translations179392
+Node: File Formats180931
+Node: Pad and Line Representation182580
+Node: Layout File183562
+Node: Element File185077
+Node: Font File186118
+Node: Netlist File186499
+Node: Library Contents File187780
+Node: Library File188835
+Node: File Syntax191289
+Node: Arc syntax192655
+Node: Attribute syntax193864
+Node: Connect syntax194375
+Node: Cursor syntax194728
+Node: DRC syntax195392
+Node: Element syntax195883
+Node: ElementArc syntax197825
+Node: ElementLine syntax198783
+Node: FileVersion syntax199236
+Node: Flags syntax199734
+Node: Grid syntax200029
+Node: Groups syntax200521
+Node: Layer syntax201110
+Node: Line syntax201633
+Node: Mark syntax202294
+Node: Net syntax202557
+Node: Netlist syntax202834
+Node: Pad syntax202995
+Node: PCB syntax203951
+Node: Pin syntax204285
+Node: PolyArea syntax205084
+Node: Polygon syntax205438
+Node: Rat syntax205929
+Node: Styles syntax206310
+Node: Symbol syntax207256
+Node: SymbolLine syntax207642
+Node: Text syntax207940
+Node: Thermal syntax208648
+Node: Via syntax209060
+Node: Object Flags209734
+Node: PCBFlags212643
+Node: Library Creation214107
+Node: Schematic Frontends232639
+Node: gEDA233421
+Node: xcircuit242115
+Node: Installation242415
+Node: compiling242946
+Node: quickstart243268
+Node: running configure243664
+Node: problems244836
+Node: HP246271
+Node: Sun246932
+Node: SGI247289
+Node: DEC Alpha247604
+Node: SCO247775
+Node: Linux248256
+Node: BSD248451
+Node: X11248834
+Node: TeX and Manuals249646
+Node: Custom Menus250150
+Node: Resource Syntax250716
+Node: Menu Definitions253057
+Node: Menu Files and Defaults255749
+Node: Regular Expressions256555
+Node: Standard Drill Sizes260351
+Node: Centroid File Format270399
+Node: Annotation File Format273157
+Node: Action Reference275164
+Node: core actions276777
+Node: AddRats Action282711
+Node: ApplyVendor Action283180
+Node: Atomic Action283512
+Node: Attributes Action284665
+Node: AutoPlaceSelected Action285078
+Node: AutoRoute Action285436
+Node: ChangeClearSize Action286186
+Node: ChangeDrillSize Action286753
+Node: ChangeFlag Action287074
+Node: ChangeHole Action287800
+Node: ChangeJoin Action288161
+Node: ChangeName Action288755
+Node: ChangeOctagon Action289200
+Node: ChangePaste Action290057
+Node: ChangePinName Action290531
+Node: ChangeSize Action290969
+Node: ChangeSquare Action291714
+Node: ClearOctagon Action292607
+Node: ClearSquare Action293460
+Node: ClrFlag Action294287
+Node: Connection Action294808
+Node: Delete Action295471
+Node: DeleteRats Action295680
+Node: DisableVendor Action295893
+Node: DisperseElements Action296306
+Node: Display Action296810
+Node: djopt Action301516
+Node: DRC Action303262
+Node: DumpLibrary Action303525
+Node: elementlist Action303736
+Node: elementsetattr Action304534
+Node: EnableVendor Action304985
+Node: execcommand Action305488
+Node: ExecuteFile Action305743
+Node: Flip Action305991
+Node: FontEdit Action306540
+Node: FontSave Action306738
+Node: FreeRotateBuffer Action306941
+Node: GlobalPuller Action307410
+Node: h Action307605
+Node: Import Action308008
+Node: l Action311660
+Node: le Action312292
+Node: LoadFootprint Action312875
+Node: LoadFrom Action313317
+Node: LoadVendorFrom Action314299
+Node: m Action314634
+Node: MarkCrosshair Action315218
+Node: Message Action315916
+Node: MinClearGap Action316355
+Node: MinMaskGap Action316768
+Node: Mode Action317174
+Node: MorphPolygon Action318415
+Node: MoveLayer Action318941
+Node: MoveObject Action319643
+Node: MoveToCurrentLayer Action320130
+Node: Netlist Action320553
+Node: New Action322303
+Node: OptAutoOnly Action322516
+Node: PasteBuffer Action323175
+Node: Polygon Action324997
+Node: Puller Action325580
+Node: q Action326288
+Node: q! Action326778
+Node: Quit Action327260
+Node: Redo Action327521
+Node: RemoveSelected Action328327
+Node: Renumber Action328532
+Node: Report Action328833
+Node: ReportDialog Action329692
+Node: RipUp Action329944
+Node: rn Action330478
+Node: RouteStyle Action331210
+Node: s Action331426
+Node: SaveSettings Action332079
+Node: SaveTo Action332422
+Node: Select Action333145
+Node: SetFlag Action334368
+Node: SetOctagon Action334883
+Node: SetSame Action335655
+Node: SetSquare Action336069
+Node: SetThermal Action336878
+Node: SetValue Action338159
+Node: ToggleHideName Action338717
+Node: ToggleVendor Action339091
+Node: Undo Action339600
+Node: UnloadVendor Action340279
+Node: Unselect Action340494
+Node: w Action341435
+Node: wq Action341927
+Node: common actions342422
+Node: LayersChanged Action343087
+Node: LibraryChanged Action343646
+Node: NetlistChanged Action344169
+Node: PCBChanged Action344686
+Node: RouteStylesChanged Action345353
+Node: gtk actions345864
+Node: gtk About Action347441
+Node: gtk AdjustStyle Action347712
+Node: gtk Center Action348012
+Node: gtk Cursor Action348335
+Node: gtk DoWindows Action349460
+Node: gtk EditLayerGroups Action350085
+Node: gtk GetXY Action350526
+Node: gtk ImportGUI Action350790
+Node: gtk Pan Action351065
+Node: gtk Popup Action351430
+Node: gtk Print Action352024
+Node: gtk PrintCalibrate Action352314
+Node: gtk Save Action352676
+Node: gtk SelectLayer Action353275
+Node: gtk SetUnits Action353628
+Node: gtk SwapSides Action353963
+Node: gtk ToggleView Action355029
+Node: gtk Zoom Action355809
+Node: lesstif actions357245
+Node: lesstif About Action359153
+Node: lesstif AdjustSizes Action359437
+Node: lesstif AdjustStyle Action359860
+Node: lesstif Benchmark Action360116
+Node: lesstif Command Action360548
+Node: lesstif Cursor Action361965
+Node: lesstif Debug Action363104
+Node: lesstif DebugXY Action363394
+Node: lesstif DoWindows Action363765
+Node: lesstif DumpKeys Action364280
+Node: lesstif EditLayerGroups Action364697
+Node: lesstif Export Action365268
+Node: lesstif GetXY Action365603
+Node: lesstif ImportGUI Action365877
+Node: lesstif LibraryShow Action366286
+Node: lesstif Load Action366522
+Node: lesstif LoadVendor Action367096
+Node: lesstif NetlistShow Action367484
+Node: lesstif Print Action367768
+Node: lesstif PrintCalibrate Action368081
+Node: lesstif PromptFor Action368465
+Node: lesstif Return Action368935
+Node: lesstif Save Action369282
+Node: lesstif SelectLayer Action369875
+Node: lesstif SetUnits Action370252
+Node: lesstif SwapSides Action370604
+Node: lesstif ToggleView Action371687
+Node: lesstif Zoom Action372491
+Node: Glossary373945
+Node: Index375554
+
+End Tag Table

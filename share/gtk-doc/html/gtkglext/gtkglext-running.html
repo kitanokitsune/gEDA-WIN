@@ -1,0 +1,188 @@
+<html>
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=US-ASCII">
+<title>Running GtkGLExt Applications</title>
+<meta name="generator" content="DocBook XSL Stylesheets V1.65.1">
+<link rel="home" href="index.html" title="GtkGLExt Reference Manual">
+<link rel="up" href="Overview.html" title="Part&#160;I.&#160;GtkGLExt Overview">
+<link rel="previous" href="gtkglext-building.html" title="Compiling the GtkGLExt libraries">
+<link rel="next" href="GdkGLExt-API.html" title="Part&#160;II.&#160;GdkGLExt API Reference">
+<meta name="generator" content="GTK-Doc V1.4 (XML mode)">
+<link rel="stylesheet" href="style.css" type="text/css">
+<link rel="part" href="Overview.html" title="Part&#160;I.&#160;GtkGLExt Overview">
+<link rel="part" href="GdkGLExt-API.html" title="Part&#160;II.&#160;GdkGLExt API Reference">
+<link rel="part" href="GtkGLExt-API.html" title="Part&#160;III.&#160;GtkGLExt API Reference">
+</head>
+<body bgcolor="white" text="black" link="#0000FF" vlink="#840084" alink="#0000FF">
+<table class="navigation" width="100%" summary="Navigation header" cellpadding="2" cellspacing="2"><tr valign="middle">
+<td><a accesskey="p" href="gtkglext-building.html"><img src="left.png" width="24" height="24" border="0" alt="Prev"></a></td>
+<td><a accesskey="u" href="Overview.html"><img src="up.png" width="24" height="24" border="0" alt="Up"></a></td>
+<td><a accesskey="h" href="index.html"><img src="home.png" width="24" height="24" border="0" alt="Home"></a></td>
+<th width="100%" align="center">GtkGLExt Reference Manual</th>
+<td><a accesskey="n" href="GdkGLExt-API.html"><img src="right.png" width="24" height="24" border="0" alt="Next"></a></td>
+</tr></table>
+<div class="refentry" lang="en">
+<a name="gtkglext-running"></a><div class="titlepage">
+<div></div>
+<div></div>
+</div>
+<div class="refnamediv"><table width="100%"><tr>
+<td valign="top">
+<h2><span class="refentrytitle">Running GtkGLExt Applications</span></h2>
+<p>Running GtkGLExt Applications &#8212; 
+How to run and debug your GtkGLExt application
+</p>
+</td>
+<td valign="top" align="right"></td>
+</tr></table></div>
+<div class="refsect1" lang="en">
+<a name="id2496273"></a><h2>Running and debugging GtkGLExt Applications</h2>
+<div class="refsect2" lang="en">
+<a name="id2496279"></a><h3>Common command line options</h3>
+<p>
+All GtkGLExt applications support the following command line
+options. These are removed from <tt class="literal">argv</tt> by
+<a href="gtkglext-gtkglinit.html#gtk-gl-init">gtk_gl_init()</a>.
+</p>
+<p><b><tt class="systemitem">--gtk-gl-install-colormap</tt>.&#160;</b>
+Install OpenGL window's colormap to the top-level window.
+If window manager doesn't watch the WM_COLORMAP_WINDOWS property on
+the top-level window, we have to set OpenGL window's colormap to the
+top-level window, especially in color index mode (color index mode
+uses own private colormap).
+</p>
+<p><b><tt class="systemitem">--gtk-gl-debug <i class="replaceable"><tt>options</tt></i></tt>.&#160;</b>
+A list of <a href="gtkglext-running.html#GTK-GL-Debug-Options">debug options</a> 
+to turn on in addition to those specified in the
+<tt class="envar">GTK_GL_DEBUG</tt> environment variable. 
+This option is only available if GtkGLExt has been configured with
+<tt class="option">--enable-debug=yes</tt>.
+</p>
+<p><b><tt class="systemitem">--gtk-gl-no-debug <i class="replaceable"><tt>options</tt></i></tt>.&#160;</b>
+A list of <a href="gtkglext-running.html#GTK-GL-Debug-Options">debug options</a> 
+to turn off.
+This option is only available if GtkGLExt has been configured with
+<tt class="option">--enable-debug=yes</tt>.
+</p>
+<p>
+The following options are really used by GdkGLExt library.
+</p>
+<p><b><tt class="systemitem">--gdk-gl-no-standard-colormap</tt>.&#160;</b>
+This option disables GdkGLExt library to find a standard RGB colormap
+using XmuLookupStandardColormap(). If your application gets a BadColor
+X Window System error, try this option.
+On Solaris 2.4 and 2.5, they have a bug in XmuLookupStandardColormap()
+implementation. If your application gets a BadMatch X Window System
+error from XCreateWindow(), pass this option to avoid using broken
+XmuLookupStandardColormap(). Sun fixed this bug in Solaris 2.6.
+</p>
+<p><b><tt class="systemitem">--gdk-gl-force-indirect</tt>.&#160;</b>
+Users can force GdkGLExt library to use indirect rendering context.
+If your application has a problem with hardware acceleration, try 
+this option.
+</p>
+<p><b><tt class="systemitem">--gdk-gl-debug <i class="replaceable"><tt>options</tt></i></tt>.&#160;</b>
+A list of <a href="gtkglext-running.html#GDK-GL-Debug-Options">debug options</a> 
+to turn on in addition to those 
+specified in the <tt class="envar">GDK_GL_DEBUG</tt> environment variable. 
+This option is only available if GtkGLExt has been configured with
+<tt class="option">--enable-debug=yes</tt>.
+</p>
+<p><b><tt class="systemitem">--gdk-gl-no-debug <i class="replaceable"><tt>options</tt></i></tt>.&#160;</b>
+A list of <a href="gtkglext-running.html#GDK-GL-Debug-Options">debug options</a> 
+to turn off.
+This option is only available if GtkGLExt has been configured with
+<tt class="option">--enable-debug=yes</tt>.
+</p>
+</div>
+<hr>
+<div class="refsect2" lang="en">
+<a name="id2497095"></a><h3>Environment variables</h3>
+<p> 
+GtkGLExt inspects the following environment variables.
+</p>
+<p><b><tt class="envar">GTK_GL_INSTALL_COLORMAP</tt>.&#160;</b>
+    If this variable is set to 1, GtkGLExt will try to install
+    colormap to the top-level window.
+    If window manager doesn't watch the WM_COLORMAP_WINDOWS property on
+    the top-level window, we have to set OpenGL window's colormap to the
+    top-level window.
+  </p>
+<p><a name="GTK-GL-Debug-Options"></a><b><tt class="envar">GTK_GL_DEBUG</tt>.&#160;</b>
+  If GtkGLExt has been configured with <tt class="option">--enable-debug=yes</tt>,
+  this variable can be set to a list of debug options, which cause
+  GtkGLExt library to print out different types of debugging
+  information.
+  </p>
+<div class="variablelist"><table border="0">
+<col align="left" valign="top">
+<tbody>
+<tr>
+<td>
+<span class="term">misc</span></td>
+<td><p>Miscellaneous information</p></td>
+</tr>
+<tr>
+<td>
+<span class="term">func</span></td>
+<td><p>Show function call information</p></td>
+</tr>
+</tbody>
+</table></div>
+<p>
+  The special value <tt class="literal">all</tt> can be used to turn on all debug options.
+  </p>
+<p><b><tt class="envar">GDK_GL_NO_STANDARD_COLORMAP</tt>.&#160;</b>
+    If this variable is set to 1, GdkGLExt library doesn't try to
+    find a standard RGB colormap using XmuLookupStandardColormap().
+    If your application gets a BadColor X Window System error,
+    try to set this environment variable.
+    On Solaris 2.4 and 2.5, they have a bug in XmuLookupStandardColormap()
+    implementation. If your application gets a BadMatch X Window
+    System error from XCreateWindow(), set this environment variable
+    to avoid using broken XmuLookupStandardColormap(). Sun fixed this
+    bug in Solaris 2.6.
+  </p>
+<p><b><tt class="envar">GDK_GL_FORCE_INDIRECT</tt>.&#160;</b>
+    If this variable is set to 1, GdkGLExt library uses indirect
+    rendering context. If your application has a problem with
+    hardware acceleration, try to set this environment variable.
+  </p>
+<p><a name="GDK-GL-Debug-Options"></a><b><tt class="envar">GDK_GL_DEBUG</tt>.&#160;</b>
+  If GtkGLExt has been configured with <tt class="option">--enable-debug=yes</tt>,
+  this variable can be set to a list of debug options, which cause
+  GdkGLExt library to print out different types of debugging
+  information.
+  </p>
+<div class="variablelist"><table border="0">
+<col align="left" valign="top">
+<tbody>
+<tr>
+<td>
+<span class="term">misc</span></td>
+<td><p>Miscellaneous information</p></td>
+</tr>
+<tr>
+<td>
+<span class="term">func</span></td>
+<td><p>Show function call information</p></td>
+</tr>
+<tr>
+<td>
+<span class="term">impl</span></td>
+<td><p>Show window system specific (GLX, WGL) function call information</p></td>
+</tr>
+</tbody>
+</table></div>
+<p>
+  The special value <tt class="literal">all</tt> can be used to turn on all debug options.
+  </p>
+</div>
+</div>
+</div>
+<table class="navigation" width="100%" summary="Navigation footer" cellpadding="2" cellspacing="0"><tr valign="middle">
+<td align="left"><a accesskey="p" href="gtkglext-building.html"><b>&lt;&lt;&#160;Compiling the GtkGLExt libraries</b></a></td>
+<td align="right"><a accesskey="n" href="GdkGLExt-API.html"><b>Part&#160;II.&#160;GdkGLExt API Reference&#160;&gt;&gt;</b></a></td>
+</tr></table>
+</body>
+</html>

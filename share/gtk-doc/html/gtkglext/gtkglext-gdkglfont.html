@@ -1,0 +1,209 @@
+<html>
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=US-ASCII">
+<title>Font Rendering</title>
+<meta name="generator" content="DocBook XSL Stylesheets V1.65.1">
+<link rel="home" href="index.html" title="GtkGLExt Reference Manual">
+<link rel="up" href="GdkGLExt-API.html" title="Part&#160;II.&#160;GdkGLExt API Reference">
+<link rel="previous" href="gtkglext-gdkglwindow.html" title="OpenGL Window">
+<link rel="next" href="gtkglext-gdkglshapes.html" title="Geometric Object Rendering">
+<meta name="generator" content="GTK-Doc V1.4 (XML mode)">
+<link rel="stylesheet" href="style.css" type="text/css">
+<link rel="part" href="Overview.html" title="Part&#160;I.&#160;GtkGLExt Overview">
+<link rel="part" href="GdkGLExt-API.html" title="Part&#160;II.&#160;GdkGLExt API Reference">
+<link rel="part" href="GtkGLExt-API.html" title="Part&#160;III.&#160;GtkGLExt API Reference">
+</head>
+<body bgcolor="white" text="black" link="#0000FF" vlink="#840084" alink="#0000FF">
+<table class="navigation" width="100%" summary="Navigation header" cellpadding="2" cellspacing="2"><tr valign="middle">
+<td><a accesskey="p" href="gtkglext-gdkglwindow.html"><img src="left.png" width="24" height="24" border="0" alt="Prev"></a></td>
+<td><a accesskey="u" href="GdkGLExt-API.html"><img src="up.png" width="24" height="24" border="0" alt="Up"></a></td>
+<td><a accesskey="h" href="index.html"><img src="home.png" width="24" height="24" border="0" alt="Home"></a></td>
+<th width="100%" align="center">GtkGLExt Reference Manual</th>
+<td><a accesskey="n" href="gtkglext-gdkglshapes.html"><img src="right.png" width="24" height="24" border="0" alt="Next"></a></td>
+</tr></table>
+<div class="refentry" lang="en">
+<a name="gtkglext-gdkglfont"></a><div class="titlepage">
+<div></div>
+<div></div>
+</div>
+<div class="refnamediv"><table width="100%"><tr>
+<td valign="top">
+<h2><span class="refentrytitle">Font Rendering</span></h2>
+<p>Font Rendering &#8212; Functions for font rendering in OpenGL</p>
+</td>
+<td valign="top" align="right"></td>
+</tr></table></div>
+<div class="refsynopsisdiv">
+<h2>Synopsis</h2>
+<pre class="synopsis">
+
+#include &lt;gdk/gdkgl.h&gt;
+
+
+<a
+href="/usr/share/gtk-doc/html/pango/pango-Fonts.html#PangoFont"
+>PangoFont</a>*  <a href="gtkglext-gdkglfont.html#gdk-gl-font-use-pango-font">gdk_gl_font_use_pango_font</a>      (const <a
+href="/usr/share/gtk-doc/html/pango/pango-Fonts.html#PangoFontDescription"
+>PangoFontDescription</a> *font_desc,
+                                             int first,
+                                             int count,
+                                             int list_base);
+<a
+href="/usr/share/gtk-doc/html/pango/pango-Fonts.html#PangoFont"
+>PangoFont</a>*  <a href="gtkglext-gdkglfont.html#gdk-gl-font-use-pango-font-for-display">gdk_gl_font_use_pango_font_for_display</a>
+                                            (<a
+href="/usr/share/gtk-doc/html/gdk/GdkDisplay.html"
+>GdkDisplay</a> *display,
+                                             const <a
+href="/usr/share/gtk-doc/html/pango/pango-Fonts.html#PangoFontDescription"
+>PangoFontDescription</a> *font_desc,
+                                             int first,
+                                             int count,
+                                             int list_base);
+</pre>
+</div>
+<div class="refsect1" lang="en">
+<a name="id2515178"></a><h2>Description</h2>
+<p>
+
+</p>
+</div>
+<div class="refsect1" lang="en">
+<a name="id2515188"></a><h2>Details</h2>
+<div class="refsect2" lang="en">
+<a name="id2515194"></a><h3>
+<a name="gdk-gl-font-use-pango-font"></a>gdk_gl_font_use_pango_font ()</h3>
+<a class="indexterm" name="id2515205"></a><pre class="programlisting"><a
+href="/usr/share/gtk-doc/html/pango/pango-Fonts.html#PangoFont"
+>PangoFont</a>*  gdk_gl_font_use_pango_font      (const <a
+href="/usr/share/gtk-doc/html/pango/pango-Fonts.html#PangoFontDescription"
+>PangoFontDescription</a> *font_desc,
+                                             int first,
+                                             int count,
+                                             int list_base);</pre>
+<p>
+Creates bitmap display lists from a <a
+href="/usr/share/gtk-doc/html/pango/pango-Fonts.html#PangoFont"
+><span class="type">PangoFont</span></a>.</p>
+<p>
+
+</p>
+<div class="variablelist"><table border="0">
+<col align="left" valign="top">
+<tbody>
+<tr>
+<td>
+<span class="term"><i class="parameter"><tt>font_desc</tt></i>&#160;:</span></td>
+<td> a <a
+href="/usr/share/gtk-doc/html/pango/pango-Fonts.html#PangoFontDescription"
+><span class="type">PangoFontDescription</span></a> describing the font to use.
+</td>
+</tr>
+<tr>
+<td>
+<span class="term"><i class="parameter"><tt>first</tt></i>&#160;:</span></td>
+<td> the index of the first glyph to be taken.
+</td>
+</tr>
+<tr>
+<td>
+<span class="term"><i class="parameter"><tt>count</tt></i>&#160;:</span></td>
+<td> the number of glyphs to be taken.
+</td>
+</tr>
+<tr>
+<td>
+<span class="term"><i class="parameter"><tt>list_base</tt></i>&#160;:</span></td>
+<td> the index of the first display list to be generated.
+</td>
+</tr>
+<tr>
+<td>
+<span class="term"><span class="emphasis"><em>Returns</em></span>&#160;:</span></td>
+<td> the <a
+href="/usr/share/gtk-doc/html/pango/pango-Fonts.html#PangoFont"
+><span class="type">PangoFont</span></a> used, or NULL if no font matched.
+</td>
+</tr>
+</tbody>
+</table></div>
+</div>
+<hr>
+<div class="refsect2" lang="en">
+<a name="id2515355"></a><h3>
+<a name="gdk-gl-font-use-pango-font-for-display"></a>gdk_gl_font_use_pango_font_for_display ()</h3>
+<a class="indexterm" name="id2515367"></a><pre class="programlisting"><a
+href="/usr/share/gtk-doc/html/pango/pango-Fonts.html#PangoFont"
+>PangoFont</a>*  gdk_gl_font_use_pango_font_for_display
+                                            (<a
+href="/usr/share/gtk-doc/html/gdk/GdkDisplay.html"
+>GdkDisplay</a> *display,
+                                             const <a
+href="/usr/share/gtk-doc/html/pango/pango-Fonts.html#PangoFontDescription"
+>PangoFontDescription</a> *font_desc,
+                                             int first,
+                                             int count,
+                                             int list_base);</pre>
+<p>
+Creates bitmap display lists from a <a
+href="/usr/share/gtk-doc/html/pango/pango-Fonts.html#PangoFont"
+><span class="type">PangoFont</span></a>.</p>
+<p>
+
+</p>
+<div class="variablelist"><table border="0">
+<col align="left" valign="top">
+<tbody>
+<tr>
+<td>
+<span class="term"><i class="parameter"><tt>display</tt></i>&#160;:</span></td>
+<td> a <a
+href="/usr/share/gtk-doc/html/gdk/GdkDisplay.html"
+><span class="type">GdkDisplay</span></a>.
+</td>
+</tr>
+<tr>
+<td>
+<span class="term"><i class="parameter"><tt>font_desc</tt></i>&#160;:</span></td>
+<td> a <a
+href="/usr/share/gtk-doc/html/pango/pango-Fonts.html#PangoFontDescription"
+><span class="type">PangoFontDescription</span></a> describing the font to use.
+</td>
+</tr>
+<tr>
+<td>
+<span class="term"><i class="parameter"><tt>first</tt></i>&#160;:</span></td>
+<td> the index of the first glyph to be taken.
+</td>
+</tr>
+<tr>
+<td>
+<span class="term"><i class="parameter"><tt>count</tt></i>&#160;:</span></td>
+<td> the number of glyphs to be taken.
+</td>
+</tr>
+<tr>
+<td>
+<span class="term"><i class="parameter"><tt>list_base</tt></i>&#160;:</span></td>
+<td> the index of the first display list to be generated.
+</td>
+</tr>
+<tr>
+<td>
+<span class="term"><span class="emphasis"><em>Returns</em></span>&#160;:</span></td>
+<td> the <a
+href="/usr/share/gtk-doc/html/pango/pango-Fonts.html#PangoFont"
+><span class="type">PangoFont</span></a> used, or NULL if no font matched.
+</td>
+</tr>
+</tbody>
+</table></div>
+</div>
+</div>
+</div>
+<table class="navigation" width="100%" summary="Navigation footer" cellpadding="2" cellspacing="0"><tr valign="middle">
+<td align="left"><a accesskey="p" href="gtkglext-gdkglwindow.html"><b>&lt;&lt;&#160;OpenGL Window</b></a></td>
+<td align="right"><a accesskey="n" href="gtkglext-gdkglshapes.html"><b>Geometric Object Rendering&#160;&gt;&gt;</b></a></td>
+</tr></table>
+</body>
+</html>

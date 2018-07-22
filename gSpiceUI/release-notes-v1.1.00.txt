@@ -1,0 +1,115 @@
+This release of gSpiceUI has some significant updates to the code and so has been designated as
+version 1.1.00. The major changes in this release are :
+
+ - An Operating Point panel has been introduced for NG-Spice.
+ - Major re-work of the class PnlValue and related classes. Functionality is the same but the
+   architecture is better and many subtle bugs have been addressed.
+ - There are now two options for the main window layout in the Preferences dialogue.
+ - The PnlValue class spin control repeat rate can now be set in the Preferences dialogue.
+ - gSpiceUI can now be built against the latest version of wxWidgets ie. v3.0.02.
+ - Show or disable tool tips now works.
+ - Refinements of the OPTIONS dialogues (mostly more parameters are now supported).
+ - All temperature values are now in Celcius (support for Kelvin and Fahrenheit has been dropped).
+ - GNU-Cap FO analysis panel temporarily disabled.
+
+The new NG-Spice Operating Point panel has been introduced for to mirror that in GNU-Cap. It is
+implemented using the NG-Spice DC analysis command so the functionality provided by this command
+is now spread across two analysis panels.
+
+gSpiceUI can now be compiled against wxWidgets v3.0.x and development effort will now be focused on
+this version of the library. The reason for the change is due to requests from users, it seems that
+support for older versions of wxWidgets is being dropped by some Linux distributions. gSpiceUI can
+still be compiled against wxWidgets v2.8.12 but may look prettier with wxWidgets v3.0.x.
+
+The GNU-Cap Fourier analysis panel has temporarily been disabled. It's never really been properly
+tested and now has some new bugs associated with it. In the interests of releasing v1.1.00 of
+gSpiceUI I've decided to disable it rather than delay any further. I'm planning on providing the
+same functionality for NG-Spice so both may appear together some time in the future.
+
+I've decided to drop support for temperature values in Degrees Kelvin and Fahrenheit; it has never
+really worked in gSpiceUI as far as I can recall anyway. Both NG-Spice & GNU-Cap only support Deg.C
+and the data-sheets for various electronic components I've checked only mention Deg.C. I've
+investigated the implications of supporting Deg.K & Deg.F properly in gSpiceUI and concluded it
+would require significant effort and would add complexity to code which is already difficult to
+follow. I don't think the effort required is justified given the maginal benefit to be gained. Let
+me know if you disagree and why.
+
+The following is an extract from the ChangeLog file associated with this release :
+
+ * BugFix : In the NetList class the load file and load attributes operations have been separated to
+            prevent redundant disk activity. SimnBase class has been modified in simpathy.
+ * BugFix : In the Component class the type is determined based on the first character in the name
+            eg. D1 is assumed to be a diode. If the component type couldn't be identified it was
+            deemed invalid. This was a bit too harsh so now the component is assumed to be valid
+            even if it's type can't be determined.
+ * BugFix : The PnlValue control could be tripped up under certain circumstances if a value was
+            manually entered (eg. enter 1.0V and decrement to 0.0V instead of 1000.0mV).
+ * If a netlist loaded by gSpiceUI is found to be a valid simulation file it is now loaded into the
+   Simulation console as well as the NetList console. Changes to FrmMain::bSimnLoad( ).
+ * BugFix : In the simulation file an incorrect reference to schematic file/s could be included.
+            This could occur if a .ckt wasn't derived from a .sch file.
+ * gSpiceUI can now be compiled against wxWidgets v3.0.x or v2.8.12. Hence forth development will be
+   based around wxWidgets v3.0.x so gSpiceUI may look prettier with this version of the library.
+ * The delay between successive spin button control updates can now be set using the Preferences
+   dialogue and the "Spin control period" parameter. Allowable values range from 20 to 400 mSec.
+ * BugFix : Henry reported on 2010-10-04 that the command line option -g for importing schematic
+            file/s was broken. This bug has now been rectified.
+ * BugFix : If a PnlValue value outside the allowable range was manually entered, the spin buttons
+            ceased to work. The event handlers now know what to do in this case.
+ * Further development and testing of OPTIONS dialogue.
+ * Comparison of floating point numbers isn't easy when the values are similar. Two new functions
+   have been added to class CnvtType which compare floats ie. CnvtType::bIsEqual( ).
+ * Significant upgrades to class PnlValue bSetValue( ) functions. This is due to testing done using
+   the test application test_AppPnlValue.
+ * It's not good practise to declare "using namespace" with global scope so all such declaration
+   have been removed.
+ * BugFix : The CnvtType class bParseFlt( ) functions could fail at certain boundary conditions
+            around mantissa values of 1.0 and 10.0.
+ * Added a test application directory src/tests. The first test application is test_AppPnlValue
+   which is used to test the display control class PnlValue and all the classes it uses. It's
+   getting too difficult to test GUI components inside gSpiceUI.
+ * Support for temperature values in Degrees Kelvin and Fahrenheit has been dropped. Both NG-Spice
+   and GNU-Cap only support Deg.C and the data-sheets for various electronic components I've checked
+   only mention Deg.C. Supporting Deg.K & Deg.F properly in gSpiceUI would require significant
+   effort which isn't justified given the maginal benefit to be gained.
+ * Phase angle units are now set via the Preferences dialogue.
+ * The preferences dialogue now includes an option to alter the main frame layout. Either the probes
+   (nodes and components) lists extend the full height of the frame or (as normal) the text controls
+   can expand to cover the full width of the frame at the expense of probe lists height.
+ * BugFix : When setting a PnlValue the units where being ignored if the value to be set was zero.
+            The function PnlValue::bSetValue( wxString & ) has been completely rewritten.
+ * BugFix : If Source sychronization was enabled the sweep parameter units where not being updated
+            for the DC analysis panels.
+ * BugFix : In the class NbkNgSpice the result file width was not being calculated correctly meaning
+            results could be lost.
+ * In the classes CmdGnuCapOPT and DlgGcpCfgOPT have removed options which are no longer supported
+   and included new options.
+ * In Settings menu place Preferences item at the top.
+ * Created a new class UnitsBase as a base class to ChoUnits and LblUnits.
+ * Tidied up the layout of all configuration dialogues.
+ * Created a new class LblUnits to be used as an attribute in the class PnlValue as the units label.
+ * The layout of the analysis panels for both NG-Spice and GNU-Cap were showing a some bit rot.
+   These panels have been updated.
+ * Created a new class PnlLblTxt to replace some instances of the wxTextCtrl class. It provides much
+   of the functionality of wxTextCtrl and adds a parameter name string displayed to the left of the
+   wxTextCtrl control.
+ * Created a new class PnlLblCho to replace some instances of the wxChoice class. It provides the
+   functionality of wxChoice and adds a parameter name string displayed to the left of the wxChoice
+   control.
+ * Updates to the build system to suppress warnings when building with gcc and wxWidgets v2.8.12.
+ * Convert all bool values to lower case "true" or "false" instead of upper case "TRUE" and "FALSE".
+   There seems to be no reason to use upper case values hence the change.
+ * BugFix : The class CnvtType was failing one test utility check. The method bIsFloat( ) was not
+            detecting that a string like "123E-4" represents a float.
+ * Updates to the build system for the test utilities (ie. in src/Makefile).
+ * Change from the drawing package Xfig (and FIG drawing files converted to JPEG image files) to
+   Inkscape (and SVG drawing files converted to PNG image files).
+ * BugFix : Contributor "dcb" ran cppcheck on the gSpiceUI sources. Two non-sensical test
+            expressions inside two if( ) statements were found in the file CmdGnuCapGEN.cpp. Both
+            bugs have now been rectified. The rest of the sources passed the cppcheck tests OK.
+ * Update to GPL license version 3.
+ * Changed email address references.
+ * gSpiceUI now responds appropriately if a binary file can't be found eg. gschem or gnetlist.
+ * Major update of ConvertType class including a name change to CnvtType.
+ * HTML documentation updates.
+ * Many minor updates and bug fixes.

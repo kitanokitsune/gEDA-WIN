@@ -1,0 +1,117 @@
+                                               ReadMe
+                                              --------
+Start Date  : 2004-04-03
+Last Update : 2016-03-11
+Author      : Mike Waters
+Email       : mwaters517_AT_gmail_DOT_com
+====================================================================================================
+
+                                          Table of Contents
+
+  1.  Introduction.
+  2.  Installation.
+  3.  Documentation.
+  4.  Examples.
+  5.  Bugs / Things To Do.
+  6.  MS Windows & Mac OSX Support.
+
+----------------------------------------------------------------------------------------------------
+
+1.  Introduction.
+
+
+GNU Spice GUI is intended to provide a GUI to freely available electronic circuit simulation engine
+eg. GNU-Cap, NG-Spice. It uses gnetlist to convert schematic files to net list files and gwave to
+display simulation results. gschem is used as the schematic capture tool.
+
+The version numbering scheme uses the format : vA.B.CD
+  A  is the major release number (rarely updated).
+  B  is the minor release number (infrequently updated).
+  CD is the modification number (incremented as a result of almost any change).
+
+For example version 1.0 would be designated v1.0.00, any version with a major release number of 0 is
+pre-version 1.0. Until version 1.0.00 is released the version number will represent a percentage of
+the development completed towards version 1.0.00. Eg. v0.5.60 would signify that roughly %56 of the
+development effort has been completed towards version 1.0.00.
+
+----------------------------------------------------------------------------------------------------
+
+2.  Installation.
+
+
+Refer to the Install file.
+
+----------------------------------------------------------------------------------------------------
+
+3.  Documentation.
+
+
+Refer to the HTML User Manual in <install-dir>/html/User-Manual.html or while running gSpiceUI refer
+to the in application documentation (which are the same).
+
+----------------------------------------------------------------------------------------------------
+
+4.  Examples.
+
+
+The directory <install-dir>/sch contains various schematic files which may be used to experiment
+with gSpiceUI. These examples show how to prepare a schematic for simulation, which is not always a
+trivial task. It should be noted however that not all schematics are guaranteed to work.
+
+The directory <install-dir>/sch/demos contains various small example schematic files which are
+intended to illustrate the simulation of specific circuit elements eg. a diode. The intention is
+that these schematics should all work when simulated using gSpiceUI.
+
+The remaining schematics files in <install-dir>/sch are not guaranteed to behave properly when
+simulated. These files are a collection of things that have taken my interest over the years, some
+work and some don't.
+
+----------------------------------------------------------------------------------------------------
+
+5.  Bugs / Things To Do.
+
+
+Refer to the ToDo file for a list of known bugs and features which could be added in the future. If
+you have the sources the file <install-dir>/src/Version.hpp contains a list of bugs which need
+addressing in the short term.
+
+----------------------------------------------------------------------------------------------------
+
+6.  MS Windows & Mac OSX Support.
+
+
+Periodically I get asked about support for MS Windows and Mac OSX, what follows provides general
+information on the topic.
+
+First the bad news, I am not a regular user of either MS Windows or Mac OSX and I don't intend to
+put much effort into supporting either OS (maintaining gSpiceUI for Linux is head ache enough on
+it's own). The good news however is that gSpiceUI can be built and run on both OS's and I am
+prepared to help anyone else who wants to put in the hours testing / debugging the code in these
+environments.
+
+There are patches summited by OSX users that have already been added to the code base so that
+gSpiceUI can be used in that environment, although I've not done any testing myself (I don't have
+access to a OSX system). One of the original reasons for choosing the wxWidgets library was cross
+platform support. In theory it should be possible to build and run gSpiceUI in any environment
+having the GNU C++ compiler and wxWidgets support.
+
+The Install file contains instructions on how to build gSpiceUI for Windows, there are currently no
+such instructions for OSX however. Based on user reports I believe it can be done. If anyone would
+like to provide build instructions for OSX I'd be glad to add them to the gSpiceUI documentation.
+
+gSpiceUI has been developed under Linux using the GNU GCC compiler and Makefiles. Using another
+compiler and build system is no doubt possible but it will no doubt require some work. Since the
+GNU development tools are available for Windows and OSX it would seem wiser to use them.
+
+Keep in mind that gSpiceUI is only useful in concert with other applications (eg. gSchem, NG-Spice,
+GNU-Cap, Gaw, etc.) it is just a front end and doesn't do any of the heavy lifting. Consequently at
+least some of these other applications will also need to be built for Windoze or OSX.
+
+Many programmers use an IDE to take care the build system for a project. Years ago I decided to go
+IDE independent and started using the 'make' utility and hand crafting Makefile's. One of the many
+reasons for this decision was the belief that understanding the build system is as important as
+understanding the programming language. Using Makefile's forces me to understand the build system.
+There are no IDE specific project files in the gSpiceUI code base so everyone can use the IDE of
+choice.
+
+====================================================================================================

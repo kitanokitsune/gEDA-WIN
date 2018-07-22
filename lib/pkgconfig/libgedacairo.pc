@@ -1,0 +1,13 @@
+prefix=/home/dj/nightly-geda/build/result
+exec_prefix=${prefix}
+libdir=${exec_prefix}/lib
+includedir=${prefix}/include
+
+Name: libgedacairo
+Description: gEDA/gaf schematic renderer library
+Requires: libgeda glib-2.0 gobject-2.0 gdk-2.0 gdk-pixbuf-2.0 cairo pangocairo
+Requires.private:
+Version: 20121203
+Libs: -L${libdir} -lgedacairo -lm
+Libs.private:
+Cflags: -I${includedir}

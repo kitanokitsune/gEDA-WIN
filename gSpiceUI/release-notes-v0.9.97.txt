@@ -1,0 +1,85 @@
+After a long and at times arduous period here's v0.9.97 of gSpiceUI. This is a
+substanctial update from the previous release. With hindsight it would have
+been better to have released version 1.0 and have made this version 2.0. Many
+of the changes are architectual and wont be apparent to the user. Hopefully
+this release will just work better overall.
+
+
+The main changes are in the design of the simulation classes. There are two
+implications to this. Firstly, the simulation parameters are more effectively
+transferred between the simulator engine types ie. NG-Spice and GNU-Cap. If you
+swap simultaions engines, as far as possible the new simulator is automatically
+setup ready to go. Secondly, the improved design will allow inhancement. It was
+getting to the point where the code was so complicated that it was becoming
+overly difficult to maintain it let alone enhance it.
+
+
+The main reason for this release is that I've been using it in anger for the
+past week or so and it seemed to work OK. So, before breaking it again I
+thought I'd release a version. It's not perfect but hopefully it's an
+improvement on the previous releases (it's so long since I used any of them I'm
+no longer in a position to judge). If not, the interval between new releases
+should be back to months and not years. Use it for good and not evil.
+
+
+What follows is a sub-set of the changes, in reality this list is all that I
+recorded/remembered doing :
+
+ * Data is now transferred from a NG-Spice simulation object to a GNU-Cap
+   object (and visa-versa) by design rather than happenstance.
+ * DlgPrefs is no longer an attribute of FrmMain but is created when needed.
+ * Tidy up PrcGNetList class source files.
+ * Some changes to the installation instructions for wxWidgets (ie. Install).
+ * Remove the restriction that the transient analyse must have a signal source.
+ * Modified the class DlgGcpCfgGEN so that it is derived from wxDialog only and
+   not CmdGnuCapGEN as well.
+ * Modified the class DlgGcpCfgOPT so that it is derived from wxDialog only and
+   not CmdGnuCapOPT as well.
+ * Modified the class DlgNgsCfgSrc so that it is derived from wxDialog only and
+   not CpntNgsIndSrc as well.
+ * Modified the class DlgNgsCfgOPT so that it is derived from wxDialog only and
+   not CmdNgSpiceOPT as well.
+ * Bug Fix : The temporary file management strategy indicator wasn't being
+             stored in the configuration file. Changes to FileTasks class and
+             DlgPrefs class.
+ * Modified the Component class to handle TABs as field separators in component
+   definitions.
+ * Updates to the About dialog.
+ * Updates to the command line usage message.
+ * Update the tar target in the root Makefile.
+ * Modified DlgNgsCfgOPT so that it inherits CmdNgSpiceOPT instead of having an
+   instance as an attribute.
+ * Modified DlgNgsCfgSrc so that it inherits CpntNgsIndSrc instead of having an
+   instance as an attribute.
+ * Updates to the class ConvertType. Can now specify a resolution for
+   conversions from floats to strings.
+ * Updates to the About dialogue contents particularly the licence details.
+ * Major re-think and overhaul of the Simulation class to make it easier to
+   understand and maintain. It's been replaced with the structures SimnBase,
+   SimnNgSpice and SimnGnuCap.
+ * Many classes have been re-defined as structures so that most of they're
+   attributes have public access. This increases they're easy of use since
+   attributes can be accessed directly rather than via inline function calls.
+   (It would be nice if C++ had a mechanism for defining attributes as
+   read-only to the outside world.)
+ * Created a new simulation structure SimnBase from which the new structures
+   SimnNgSpice and SimnGnuCap inherit. These structure replace the single
+   Simulation class which had become far too complicated.
+ * Simplify NetList class.
+ * Updated Component class, changed type to structure, it now permits public
+   access to most attributes.
+ * Added units of pico-seconds (psec) to the units of time in class ChoUnits.
+ * Transient analyses may now be run without having to specify a sweep source.
+ * Integrated the command classes into the simulation engine process classes.
+ * Created new command classes CmdGnuCapOP, CmdGnuCapTR and CmdGnuCapFO for
+   parsing and formatting GNU-Cap OP, Transient and Fourier commands.
+ * Created new command classes CmdGnuCapPR and CmdGnuCapGEN for parsing and
+   formatting GNU-Cap Print and Generator commands.
+ * Created new command classes CmdNgSpicePR for parsing and formatting NG-Spice
+   Print commands.
+ * Created a new structure CpntNgsIndSrc which inherits from the Component
+   structure. It processes NG-Spice independent voltage or current source
+   definition commands.
+ * And others things that I've forgotten.
+
+

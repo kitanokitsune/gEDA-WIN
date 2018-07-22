@@ -1,0 +1,1083 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd">
+
+<!------------------------------------------------------------------------------------------------->
+<!--                            User-Manual.html                                                 -->
+<!--                           ------------------                                                -->
+<!-- Description : This is the main page for the gSpiceUI project.                               -->
+<!-- Started     : 2014-01-01                                                                    -->
+<!-- Last Update : Refer to the footer.                                                          -->
+<!-- Copyright   : (C) 2014 by MSWaters                                                          -->
+<!-- Note        : This document is formated according to the standard : XHTML 1.0 Strict        -->
+<!--               (refer to http://www.w3.org/TR/xhtml1/)                                       -->
+<!------------------------------------------------------------------------------------------------->
+
+<html lang="en" xmlns="http://www.w3.org/1999/xhtml">
+
+<!------------------------------------------------------------------------------------------------->
+
+<head>
+  <title>GNU SPICE GUI - User Manual</title>
+</head>
+
+<!------------------------------------------------------------------------------------------------->
+
+<body>
+
+<a name="TOP"></a>
+
+<h1>
+  <center>
+    GNU SPICE GUI<br>
+    User Manual
+  </center>
+</h1>
+
+<hr>
+
+<!------------------------------------------------------------------------------------------------->
+
+<h2><center>Table of Contents</center></h2>
+
+<blockquote>
+
+  1.    &nbsp; <a href="#INTRO"    > Introduction      </a><br><br>
+
+  2.    &nbsp; <a href="#MNU_BAR"  > Menu Bar          </a>
+
+  <blockquote>
+    2.1 &nbsp; <a href="#MNU_FILE" > File Menu         </a><br>
+    2.2 &nbsp; <a href="#MNU_SIM"  > Simulate Menu     </a><br>
+    2.3 &nbsp; <a href="#MNU_SETGS"> Settings Menu     </a><br>
+    2.4 &nbsp; <a href="#MNU_HELP" > Help Menu         </a>
+  </blockquote>
+
+  3.    &nbsp; <a href="#TOOL_BAR" > Tool Bar          </a><br><br>
+
+  4.    &nbsp; <a href="#MAIN_WIN" > Main Window       </a>
+
+  <blockquote>
+    4.1 &nbsp; <a href="#LST_NODES"> Node List         </a><br>
+    4.2 &nbsp; <a href="#LST_CPNTS"> Component List    </a><br>
+    4.3 &nbsp; <a href="#NBK_ANA"  > Analysis Notebook </a><br>
+    4.4 &nbsp; <a href="#NBK_TCTLS"> Console Notebook  </a><br>
+    4.5 &nbsp; <a href="#STAT_BAR" > Status Bar        </a>
+  </blockquote>
+
+  5.    &nbsp; <a href="#TMP_FILES"> Temporary Files   </a>
+
+</blockquote>
+
+<br>
+<hr size="5">
+
+<!------------------------------------------------------------------------------------------------->
+
+<a name="INTRO"></a><h2>1. &nbsp; &nbsp; &nbsp; Introduction</h2>
+<br>
+
+<p>
+  The name <b>gSpiceUI</b> is an abbreviation of the project title <i><b>GNU SPICE GUI</b></i>,
+  which is itself an acronym standing for <b>G</b>nu is <b>N</b>ot <b>U</b>nix, <b>S</b>imulation
+  <b>P</b>rogram with <b>I</b>ntegrated <b>C</b>ircuit <b>E</b>mphasis, <b>G</b>raphical <b>U</b>ser
+  <b>I</b>nterface.
+</p>
+
+<p>
+  gSpiceUI is intended to provide a GUI for freely available electronic circuit simulation engines
+  ie. <b>NG-Spice</b> and <b>GnuCAP</b>. If the <b>gEDA</b> (<b>G</b>NU <b>E</b>lectronic
+  <b>D</b>esign <b>A</b>utomation) tool set is used the utility <b>gnetlist</b> is used to convert
+  schematic files to netlist files, <b>Gaw</b> or <b>Gwave</b> (no longer supported) display
+  simulation results and <b>gschem</b> (part of the gEDA tool set) is the preferred schematic
+  capture application. gSpiceUI is useless without the software tools it depends on, credit should
+  go to the authors of those tools.
+</p>
+
+<p>
+  gSpiceUI can also be used in conjunction with the <b>KiCAD</b> tool set. KiCAD doesn't expose it's
+  netlist utility like gEDA so this step must be performed by the user inside the schematic capture
+  application <b>eeschema</b>. The import mechanism in gSpiceUI cannot be used in this case and as
+  yet eeschema can't be envoked inside gSpiceUI. Gaw and Gwave are used to display simulation
+  results.
+</p>
+
+<p>
+  The gSpiceUI GUI is designed to be as consistant as possible between analysis types and simulation
+  engines. The intention is to abstract the technical particulars from the user so that the focus
+  may be on the simulation rather than the simulation engine or even the analysis type.
+</p>
+
+<p>
+  Like all open source software gSpiceUI is a work in progress and probably always will be. It has
+  been developed over a long period of time (since 2003) and has reached a relatively mature state.
+  Experience in software development as well as using software in general has taught me that it's
+  better to provide less functionality that works than more functionality that just promises a lot.
+  Consequently, as a generally rule, bugs fixes and improvements to the underlying architecture will
+  take precedence over new functionality. I believe this approach pays off in the long term.
+</p>
+
+<p>
+  It is worth noting that whereas NG-Spice is derived from the SPICE code base, GNU-Cap is not.
+  GNU-Cap is an independent implementation of the principals used to analyses electronic circuits.
+  As a consequence analysis results can be generated using two independant mechanisms and then
+  compared. This is one of the reasons for supporting more than one simulation engine; if the same
+  or similar results can be achieved using two different simulation engines then it's likely that
+  the simulation results will bear some resemblence to what actually happens in reality.
+</p>
+
+<p>
+  It is important to realise that a simulation engine <b><i>models</i></b> the behaviour of a system
+  and therefore can never be 100% accurate. In addition the simulation engine itself is an
+  implementation in software of a mathematical model and so is also subject to bugs. As the
+  underlying mathematical model and software implementation improve the simulation performance
+  improves. One of the reasons for the choice of simulation engines to support was that they are
+  both in constant development. (Not to mention the inherent goodness and righteousness of open
+  source software, so I won't mention it.)
+</p>
+
+<p>
+  The skills and judgement of the user have a profound impact on the usefulness of electronic
+  simulation. It can be a technically demanding process requiring considerable thought, practice and
+  persistence. The alternative is to go straight to building prototypes; in any case, ultimately
+  prototypes must be created to finalize a design. However simulation is generally a rewarding step
+  in the development process, even if it only provides a better understanding of the internal
+  workings of a design.
+</p>
+
+<br>
+<a href="#TOP"><center>Return to top</center></a>
+
+<hr size="5">
+
+<!------------------------------------------------------------------------------------------------->
+
+<a name="MNU_BAR"></a><h2>2. &nbsp; &nbsp; &nbsp; Menu Bar</h2>
+<br>
+
+<p>
+  The menu bar provides access to almost all of the functionality provided by gSpiceUI. However
+  there are a few functions that can only be accessed via command line options.
+</p>
+
+<a name="MNU_FILE"></a><h3>2.1 &nbsp; &nbsp; File Menu</h3>
+
+<p>
+  This file menu contains options mainly associated with handling netlist and schematic files.
+</p>
+
+<h4>2.1.1 &nbsp; Open</h4>
+
+<p>
+  Open a netlist (circuit description) file containing component definitions and load it into the
+  NetList text control. If the netlist contains simulation instructions gSpiceUI attempts to parse
+  them and the settings are displayed in the GUI.
+</p>
+
+<p>
+  Notes :
+</p>
+<ul>
+  <li>
+    Be aware that gSpiceUI will modify the netlist file; it will change the formatting and remove
+    things it doesn't understand. If this isn't OK, create a copy of the netlist file and give that
+    to gSpiceUI.
+  </li>
+  <li>
+    When using the gEDA tool set the netlist file extension is ".ckt". For the KiCAD tool set the
+    netlist extension is "cir". Be sure to specify the appropriate file extension for the tool set.
+  </li>
+  <li>
+    There is an upper limit to the number of lines which may be displayed in any text control (the
+    underlying file isn't truncated). This setting maybe adjusted by the user, refer to
+    <i>2.3.2 Preferences Dialog</i>.
+  </li>
+</ul>
+
+<h4>2.1.2 &nbsp; Import</h4>
+
+<p>
+  Import one or more schematic files. The utility gnetlist is used to convert the schematic file/s
+  to a single netlist file. The netlist file name is automatically derived from the first schematic
+  file name in the list with the file extension changed to ".ckt". Eg. if schem1.sch, schem2.sch,
+  schem3.sch were specified as the schematic file names to be imported the netlist file name would
+  be schem1.ckt.
+</p>
+
+<p>
+  Notes :
+</p>
+<ul>
+  <li>
+    If you are using the KiCAD tool set Import won't work. The gEDA utility gnetlist can't convert
+    KiCAD schematics to a netlist file. The netlist utility in KiCAD is built into the schematic
+    capture application eeshema so gSpiceUI can't envoke it. The netlist file must be created or
+    updated from within eeshema by the user and reloaded into gSpiceUI using the Reload operation.
+    
+  </li>
+</ul>
+
+<h4>2.1.3 &nbsp; Reload</h4>
+
+<p>
+  Reload the netlist file. If the netlist was imported from one or more schematic files, the import
+  operation will be repeated. As far as possible the simulation settings shown in the currently
+  displayed analysis notebook page are retained.
+</p>
+
+<p>
+  When gSpiceUI is used to create a netlist file from schematic file/s it inserts a reference to the
+  schematic file/s near the beginning of the netlist file. If the currently open netlist has this
+  schematic reference, reload performs an import operation otherwise the netlist is simply reloaded.
+  In either case the simulation settings shown in the currently displayed analysis notebook page are
+  retained as far as possible.
+</p>
+
+<h4>2.1.4 &nbsp; Close</h4>
+
+<p>
+  If a netlist file is open then close it and resets all GUI parameters to default values.
+</p>
+
+<h4>2.1.5 &nbsp; Quit</h4>
+
+<p>
+  Close all files and child applications, delete temporary files if required and exit the
+  application.
+</p>
+
+<br>
+<a href="#TOP"><center>Return to top</center></a>
+
+<hr size="1" width="80%" align="center">
+
+<!------------------------------------------------------------------------------------------------->
+
+<a name="MNU_SIM"></a><h3>2.2 &nbsp; &nbsp; Simulate Menu</h3>
+
+<p>
+  The simulate menu contains options associated with circuit simulation operations and provides
+  access to other useful applications upon which gSpiceUI dependends.
+</p>
+
+<h4>2.2.1 &nbsp; Create</h4>
+
+<p>
+  Create a simulation file based on the values currently displayed on the GUI or the contents of the
+  Simulation text control. Note, any changes made to the GUI have priority over changes made by the
+  user to the Simulation text control contents.
+</p>
+
+<p>
+  If any changes are made to the GUI control contents the simulation file is completely
+  re-constructed, which then causes the Simulation control contents to be over-written and lost.
+  However, if changes have been made to the Simulation text control contents alone then it is
+  written verbatim to the simulation file.
+</p>
+
+<p>
+  If a problem is encountered a message box is displayed giving a brief explanation as to why the
+  operation could not be completed. The raw console spew generated by the process will have been
+  sent to the Console text control, a careful perusal of this generally reveals the cause of the
+  problem/s.
+</p>
+
+<h4>2.2.2 &nbsp; Run</h4>
+
+<p>
+  Run a simulation based on the values currently displayed on the GUI controls or in the Simulation
+  text control. If the user has made changes since the last Create operation then a Create operation
+  is automatically executed as described above.
+</p>
+
+<p>
+  If the simulation file is created successfully then gSpiceUI attempts to run the simulation. The
+  simulation results are formatted then sent to a data file (refer to section 5. Files) and are
+  displayed in the appropriate Simulation Results text control.
+</p>
+
+<p>
+  If a problem is encountered a message box is displayed giving a brief explanation as to why the
+  operation could not be completed. The raw console spew generated by the process will have been
+  sent to the Console text control, a careful perusal of this generally reveals the cause of the
+  problem/s.
+</p>
+
+<h4>2.2.3 &nbsp; Stop</h4>
+
+<p>
+  Stop a running simulation immediately. This option can only be executed if a simulation is
+  actually running. This is a useful option if a simulation is running too long or appears as if it
+  won't converge.
+</p>
+
+<h4>2.2.4 &nbsp; Schematic</h4>
+
+<p>
+  Edit a schematic file. If there is a schematic file associated with an open netlist file it is
+  opened using gschem and may be viewed or edited by the user. Note : if changes are made to the
+  schematic file (and the schematic file has been updated on disk by gschem) then an Import
+  operation must be performed in gSpiceUI in order for gSpiceUI to "know" about new the changes.
+</p>
+
+<p>
+  It's important to be aware that gSpiceUI cannot run a simulation based on any old schematic file
+  eg. generated by gschem. In fact, the simulation will fail unless the schematic is trivial or
+  you're just lucky. Certain prerequisites must be met before a schematic may be simulated. The
+  schematic must be translated into a form which can be interpreted by the simulation engine (eg. by
+  gnetlist), in short everything must be explicitly defined. The extra information required over
+  that sufficient for human readability is :
+</p>
+
+<p>
+  <ul>
+    <li>
+      At present if the KiCAD tool set is used this function will not work. The KiCAD schematic
+      capture application eeschema must be manually started by the user and the netlist file updated
+      by the user from within eeschema whenever the schematic is changed. Perform a Reload operation
+      and then proceed as normal.
+    </li>
+    <li>
+      All power supply sources must be explicitly defined.
+    </li>
+    <li>
+      All signal sources must be explicitly defined.</li>
+    <li>
+      Components not already defined in the simulation environment must be defined using models.
+    </li>
+    <li>
+      Component labels must adhere to the rules specified for the simulation engine eg. resistor
+      names always start with the letter 'R'. In particular be aware that often a model file
+      contains a sub-circuit which must have a name starting with the character 'X'.
+    </li>
+    <li>
+      Net labels must adhere to the rules specified for the simulation engine eg. they can't start
+      with a digit. Refer to the specific simulation engine documentation.
+    </li>
+  </ul>
+</p>
+
+<p>
+  Notes :
+</p>
+<ul>
+  <li>
+    In gschem, models may be included by setting the component's file attribute or by use of a SPICE
+    Model object. Either way the component value is set to the model or sub-circuit label. Check the
+    example schematics that come with gSpiceUI to see how it's done eg. the LM555 or operational
+    amplifier examples.
+  </li>
+  <li>
+    gSpiceUI recognizes a component type by the first letter of the component name eg. an inductor
+    name is expected to start with the letter 'L'. The following is list of the first letter of
+    various component types (this format is derived from NG-Spice) :
+    <table cellspacing=0 cellpadding=0>
+      <tr><td>&nbsp; &nbsp;</td><td>&nbsp; &nbsp; &nbsp;</td><td>&nbsp; &nbsp;</td><td></td></tr>
+      <tr><td></td><td>B</td><td>-</td><td>Non-Linear Dependent Source</td></tr>
+      <tr><td></td><td>C</td><td>-</td><td>Capacitor</td></tr>
+      <tr><td></td><td>D</td><td>-</td><td>Diode</td></tr>
+      <tr><td></td><td>E</td><td>-</td><td>Voltage Controlled Voltage Source</td></tr>
+      <tr><td></td><td>F</td><td>-</td><td>Current Controlled Current Source</td></tr>
+      <tr><td></td><td>G</td><td>-</td><td>Voltage Controlled Current Source</td></tr>
+      <tr><td></td><td>H</td><td>-</td><td>Current Controlled Voltage Source</td></tr>
+      <tr><td></td><td>I</td><td>-</td><td>Independent Current Source</td></tr>
+      <tr><td></td><td>J</td><td>-</td><td>JFET (Junction Field-Effect Transistor)</td></tr>
+      <tr><td></td><td>K</td><td>-</td><td>Coupled (Mutual) Inductors</td></tr>
+      <tr><td></td><td>L</td><td>-</td><td>Inductor</td></tr>
+      <tr><td></td><td>M</td><td>-</td><td>MOSFET (Metal-Oxide Semiconductor Field-Effect Transistor)</td></tr>
+      <tr><td></td><td>O</td><td>-</td><td>Lossy Transmission Line (LTRA)</td></tr>
+      <tr><td></td><td>P</td><td>-</td><td>Coupled Multi-conductor Transmission Line (CPL)</td></tr>
+      <tr><td></td><td>Q</td><td>-</td><td>BJT (Bipolar Junction Transistor)</td></tr>
+      <tr><td></td><td>R</td><td>-</td><td>Resistor</td></tr>
+      <tr><td></td><td>S</td><td>-</td><td>Voltage Controlled Switch</td></tr>
+      <tr><td></td><td>T</td><td>-</td><td>Lossless Transmission Line</td></tr>
+      <tr><td></td><td>U</td><td>-</td><td>Uniform Distributed RC Transmission Line (URC)</td></tr>
+      <tr><td></td><td>V</td><td>-</td><td>Independent Voltage Source</td></tr>
+      <tr><td></td><td>W</td><td>-</td><td>Current Controlled Switch</td></tr>
+      <tr><td></td><td>X</td><td>-</td><td>Sub-circuit</td></tr>
+      <tr><td></td><td>Y</td><td>-</td><td>Single Lossy Transmission Line (TXL)</td></tr>
+      <tr><td></td><td>Z</td><td>-</td><td>MESFET (Metal-Semiconductor Field Effect Transistor)</td></tr>
+    </table>
+  </li>
+</ul>
+
+<h4>2.2.5 &nbsp; View Results</h4>
+
+<p>
+  View simulation results in a graphical form. One of the simulation results files is opened using a
+  data viewer application eg. Gaw or Gwave. The particular results file loaded into the viewer
+  process dependents on the currently selected simulation results tab and analysis type
+  tab.
+</p>
+
+<br>
+<a href="#TOP"><center>Return to top</center></a>
+
+<hr size="1" width="80%" align="center">
+
+<!------------------------------------------------------------------------------------------------->
+
+<a name="MNU_SETGS"></a><h3>2.3 &nbsp; &nbsp; Settings Menu</h3>
+
+<p>
+  The settings menu contains application configuration options.
+</p>
+
+<h4>2.3.1 &nbsp; Simulation Engine Selection</h4>
+
+<p>
+  The first section of the Settings Menu contains radio buttons allowing the selection of the
+  electronic circuit simulation engine to be used. The analysis notebook is updated based on the
+  chosen simulation engine, the selected simulation engine name is displayed in the status line and
+  any simulation results are sent to the appropriate console tab.
+</p>
+
+<p>
+  When the simulation engine is changed gSpiceUI attempts to transfer simulation information to the
+  new simulator environment. The information is tranferred via the simulation file so if information
+  appears on the GUI but not in the simulation file it will be lost. If this is a problem create a
+  fresh simulation file prior to changing the simulation engine.
+</p>
+
+<h4>2.3.2 &nbsp; Preferences Dialog</h4>
+
+<p>
+  The preferences dialog contains the following settings :
+</p>
+
+<ul>
+  <li>
+    Waveform data viewer :<br>
+      A choice box containing the available waveform data viewer utilities. The currently selected
+      waveform data viewer utility name is displayed in the status line.
+      <br>&nbsp;
+  </li>
+  <li>
+    Temporary files :<br>
+      A choice box containing the available temporary file management strategies, ie. automatically
+      delete temporary files, prompt the user or just keep the temporary files. Most of the files in
+      question contain simulation results data and may be useful outside gSpiceUI. Refer to section
+      <a href="#TMP_FILES">5.&nbsp;Temporary&nbsp;Files</a>.
+      <br>&nbsp;
+  </li>
+  <li>
+    Main frame layout :<br>
+      A choice box containing the available main frame layout schemes. The main has two layout
+      schemes to choose from : longer probes (Nodes and Component) controls or a wider console
+      notebook control.
+      <br>&nbsp;
+  </li>
+  <li>
+    Phase / angle units :<br>
+      A choice box containing the available phase or angle units, ie. degrees or radians.
+      <br>&nbsp;
+  </li>
+  <li>
+    Results precision :<br>
+      A choice box containing the available precisions which may be applied to simulation results.
+      The data are rounded to the selected precision not just truncated.
+      <br>&nbsp;
+  </li>
+  <li>
+    gnetlist Guile backend :<br>
+      A choice box containing the available gnetlist Guile backend procedures. This list of Guile
+      backends is derived by querying gnetlist directly so whatever procedures gnetlist can detect
+      are listed.
+      <br>&nbsp;
+  </li>
+  <li>
+    Max text control lines :<br>
+      A value control which sets the maximum number of lines which may be displayed in any of the
+      console text controls. Simulation results files can potentially be very large, this value
+      allows the user to have some control over the system resources used by gSpiceUI.
+      <br>&nbsp;
+  </li>
+  <li>
+    Spin control period :<br>
+      A value control which sets the period (in msec) between successive spin button control
+      updates.
+      <br>&nbsp;
+  </li>
+  <li>
+    Tool tip delay :<br>
+      A value control which sets the delay (in msec) before a tool tip is displayed.
+      <br>&nbsp;
+  </li>
+  <li>
+    Show tool tips :<br>
+      A check box which enables or disables tool tips.
+      <br>&nbsp;
+  </li>
+  <li>
+    Sync. sweep sources :<br>
+      A check box which enables or disables synchronization of the sweep sources. If a sweep source
+      is selected in one analysis page, where possible the same source will appear in other analysis
+      pages. Note : the sweep source value is not carried over between pages (I'm not convinced this
+      behaviour would be helpful).
+      <br>&nbsp;
+  </li>
+  <li>
+    Sync. temperatures :<br>
+      A check box which enables or disables synchronization of the ambient temperature values
+      between analysis pages and the OPTIONS dialogue.
+      <br>&nbsp;
+  </li>
+  <li>
+    Keep the netlist file :<br>
+      A check box which controls whether netlist files are included in the list of temporary files
+      and therefore the temporary file management strategy.
+      <br>&nbsp;
+  </li>
+  <li>
+    gnetlist verbose mode :<br>
+      A check box which enables or disables gnetlist verbose mode. With this enabled gnetlist
+      generates lots of lovely console spew which appears in the Console tab of the console
+      notebook. It's useful for debugging when gnetlist is have problems importing schematic file/s.
+      <br>&nbsp;
+  </li>
+  <li>
+    Include model defs. :<br>
+      A check box which controls whether .INCLUDE directives are used for model files or the model
+      file contents are inserted in the netlist file. )This option controls the the gnetlist SPICE
+      backend "include_mode".)
+      <br>&nbsp;
+  </li>
+  <li>
+    Embed include files :<br>
+      A check box which controls how gnetlist behaves when it encounters a .INCLUDE directive. With
+      this option checked gnetlist embeds (inserts) the file contents into the netlist file. (This
+      option controls the the gnetlist SPICE backend "embedd_mode".)
+      <br>&nbsp;
+  </li>
+  <li>
+    Fix component prefixes :<br>
+      A check box which controls whether component label prefixes are automatically tested and
+      modified if the incorrect prefix is used. SPICE recognizes different components based on the
+      first character of the component label eg. R1 would be identified as a resistor. If an
+      incorrect prefix is detected the correct prefix is prepended to the component label. (This
+      option controls the the gnetlist SPICE backend "nomunge_mode".)
+      <br>&nbsp;
+  </li>
+  <li>
+    The paths to the various programs and utilities used by gSpiceUI may be manually set via this
+    menu selection. (Not yet implemented)
+  </li>
+</ul>
+
+<p>
+  Note :
+</p>
+<ul>
+  <li>
+    All preferences work if the gEDA tool set is used but some aren't pertinent if the KiCAD tool
+    set is used.
+  </li>
+</ul>
+
+<br>
+<a href="#TOP"><center>Return to top</center></a>
+
+<hr size="1" width="80%" align="center">
+
+<!------------------------------------------------------------------------------------------------->
+
+<a name="MNU_HELP"></a><h3>2.4 &nbsp; &nbsp; Help Menu</h3>
+
+<p>
+  The Help Menu contains the following options :
+</p>
+
+<h4>2.4.1 &nbsp; User Manual</h4>
+
+<p>
+  Open the gSpiceUI HTML documentation in a HTML view window (more specifically this document). At
+  the time of writing the HTML viewer only performs the basic functions (eg. it is monochrome) but
+  it is sufficient for the purpose.
+</p>
+
+<h4>2.4.2 &nbsp; About</h4>
+
+<p>
+  Open a dialogue containing application "About" information.
+</p>
+
+<br>
+<a href="#TOP"><center>Return to top</center></a>
+
+<hr size="5">
+
+<!------------------------------------------------------------------------------------------------->
+
+<a name="TOOL_BAR"></a><h2>3. &nbsp; &nbsp; &nbsp; Tool Bar</h2>
+<br>
+
+<p>
+  The tool bar contains buttons which give easy access to the most used functions. The buttons are
+  presented in groups associated with the different types of activities. Refer to the matching menu
+  bar function in section <a href="#MNU_BAR">Menu&nbsp;Bar</a>.
+</p>
+
+<br>
+<a href="#TOP"><center>Return to top</center></a>
+
+<hr size="5">
+
+<!------------------------------------------------------------------------------------------------->
+
+<a name="MAIN_WIN"></a><h2>4. &nbsp; &nbsp; &nbsp; Main Window</h2>
+<br>
+
+<p>
+  The main window is made up of various display objects which are described in the following
+  sub-sections. There are lists of possible test points, analysis settings, console output and a
+  status bar.
+</p>
+
+<p>
+  The main window title bar always contains at least the application name. If a file is open,
+  whether it be a netlist or schematic file/s, the name of a netlist file will be appended to the
+  normal window title banner. Keep in mind that this netlist file is the main file that gSpiceUI
+  works on.
+</p>
+
+<br>
+<a href="#TOP"><center>Return to top</center></a>
+
+<hr size="1" width="80%" align="center">
+
+<!------------------------------------------------------------------------------------------------->
+
+<a name="LST_NODES"></a><h3>4.1 &nbsp; &nbsp; Node List</h3>
+
+<p>
+  Display the list of node labels extracted from the netlist file. One or more nodes may be selected
+  (or deselected) by clicking on the node/s in the list with the mouse. The probes for the selected
+  nodes will be calculated and included in the simulation results.
+</p>
+
+<p>
+  A single node may be selected from the list by left clicking on it with the mouse. To select
+  multiple nodes press the control key and left click on the desired nodes with the mouse. To select
+  a range of nodes left click on the desired range with the mouse while holding down the shift key.
+</p>
+
+<br>
+<a href="#TOP"><center>Return to top</center></a>
+
+<hr size="1" width="80%" align="center">
+
+<!------------------------------------------------------------------------------------------------->
+
+<a name="LST_CPNTS"></a><h3>4.2 &nbsp; &nbsp; Component List</h3>
+
+<p>
+  Display the list of components extracted from the netlist file. One or more components may be
+  selected (or deselected) by clicking on the component/s in the list with the mouse. The probes for
+  the selected components will be calculated and included in the simulation results. At present only
+  two terminal components are included in this list.
+</p>
+
+<p>
+  A single component may be selected from the list by left clicking on it with the mouse. To select
+  multiple components press the control key and left click on the desired components with the mouse.
+  To select a range of components left click on the desired range with the mouse while holding down
+  the shift key.
+</p>
+
+<br>
+<a href="#TOP"><center>Return to top</center></a>
+
+<hr size="1" width="80%" align="center">
+
+<!------------------------------------------------------------------------------------------------->
+
+<a name="NBK_ANA"></a><h3>4.3 &nbsp; &nbsp; Analysis Notebook</a></h3>
+
+<p>
+  There are two mildly different analysis notebooks associated with the two simulation engines
+  supported by gSpiceUI ie. GNU-Cap or NG-Spice. Each analysis notebook contains analysis pages
+  reflecting the various analysis types supported by the associated simulation engine. The following
+  brief outlines the various analysis types current supported. For further information refer to the
+  user documentation for the appropriate simulation engine (much of what follows is taken from this
+  documentation).
+</p>
+
+<h4>4.3.1 &nbsp; Operating Point Analysis</h4>
+
+<b>NG-Spice :</b>
+
+<blockquote>
+  This analysis type is supported using the DC command in NG-Spice. The DC analysis determines the
+  DC operating point of the circuit with inductors shorted and capacitors opened. In this instance
+  the DC analysis is used to generate DC transfer curves for temperature stepped over a
+  user-specified range and the DC output variables are stored for each sequential temperature value.
+</blockquote>
+
+<b>GNU-Cap :</b>
+
+<blockquote>
+  Performs a nonlinear DC steady state analysis. If a temperature range is given, it sweeps the
+  temperature. If there are numeric arguments, they represent a temperature sweep. They are the
+  start and stop temperatures in degrees Celsius, and the step size, in order. This command also
+  sets up the quiescent point for subsequent AC analysis. It is necessary to do this for nonlinear
+  circuits. The last step in the sweep determines the quiescent point for the AC analysis.
+</blockquote>
+
+<h4>4.3.2 &nbsp; DC Analysis</h4>
+
+<b>NG-Spice :</b>
+
+<blockquote>
+  The DC analysis determines the DC operating point of the circuit with inductors shorted and
+  capacitors opened. A DC analysis is automatically performed prior to a Transient analysis to
+  determine the transient initial conditions, and prior to an AC small-signal analysis to determine
+  the  linearized, small-signal models for nonlinear devices. The DC analysis can also be used to
+  generate DC transfer curves : a specified independent voltage, current source, resistor or
+  temperature is stepped over a user-specified range and the DC output variables are stored for each
+  sequential source value.
+</blockquote>
+
+<b>GNU-Cap :</b>
+
+<blockquote>
+  Performs a nonlinear DC steady state analysis, and sweeps the signal input, or a component value.
+  If there are numeric arguments, without a part label, they represent a ramp from the generator
+  function. They are the start value, stop value and step size, in order. In some cases, you will
+  get one more step outside the specified range of inputs due to internal rounding errors. The last
+  input may be beyond the end point. The program will sweep any simple component, including
+  resistors, capacitors, and controlled sources.
+</blockquote>
+
+<h4>4.3.3 &nbsp; AC Analysis</h4>
+
+<b>NG-Spice :</b>
+
+<blockquote>
+  The AC small-signal analysis determines the output variables as a function of frequency. The DC
+  operating point of the circuit is first determined and used to generate linearized, small-signal
+  models for all of the nonlinear devices in the circuit. The resultant linearized version of the
+  circuit is then analyzed over a user-specified range of frequencies. The desired output of an AC
+  small-signal analysis is usually a transfer function (trans-impedance, voltage gain, etc.). If the
+  circuit has only one AC input, it is convenient to set that input to unity and zero phase, so that
+  output variables have the same value as the transfer function of the output variable with respect
+  to the input.
+</blockquote>
+
+<b>GNU-Cap :</b>
+
+<blockquote>
+  Performs a small signal, steady state, AC analysis. Sweeps frequency. The AC command does a linear
+  analysis about an operating point. It is absolutely necessary to do an OP analysis first on any
+  nonlinear circuit. Not doing this is the equivalent of testing it with the power off. If the start
+  frequency is zero, the program will still do an AC analysis. The actual frequency can be
+  considered to be the limit as the frequency approaches zero. It is, therefore, still possible to
+  have a non-zero phase angle, but delays are not shown because they may be infinite.
+</blockquote>
+
+<h4>4.3.4 &nbsp; Transient Analysis</h4>
+
+<b>NG-Spice :</b>
+
+<blockquote>
+  The Transient analysis determines the transient output variables as a function of time over a
+  user-specified time interval. The initial conditions are automatically determined by a DC
+  analysis. All sources which are not time dependent (for example, power supplies) are set to their
+  DC value.
+</blockquote>
+
+<b>GNU-Cap :</b>
+
+<blockquote>
+  Performs a nonlinear time domain (transient) analysis. Do not use a step size too large as this
+  will result in errors in the results. If you suspect that the results are not accurate, try a
+  larger argument to skip. This will force a smaller internal step size. If the results are close to
+  the same, they can be trusted. If not, try a still larger skip argument until they appear to match
+  close enough. The most obvious error of this type is aliasing. You must select sample frequency at
+  least twice the highest signal frequency that exists anywhere in the circuit. This frequency can
+  be very high, when you use the default step function as input. The signal generator does not have
+  any filtering.
+</blockquote>
+
+<h4>4.3.5 &nbsp; Fourier Analysis</h4>
+
+<b>NG-Spice :</b>
+
+<blockquote>
+  Not yet implemented.
+</blockquote>
+
+<b>GNU-Cap :</b>
+
+<blockquote>
+  Performs a nonlinear time domain (transient) analysis, but displays the results in the frequency
+  domain. Actually, this command does a nonlinear time domain analysis, then performs a Fourier
+  transform on the data to get the frequency data. The transient analysis parameters (start, stop,
+  step) are determined by the program as necessary to produce the desired spectral results. The
+  internal time steps are selected to match the Fourier points, so there is no interpolation done.
+</blockquote>
+
+<br>
+<a href="#TOP"><center>Return to top</center></a>
+
+<hr size="1" width="80%" align="center">
+
+<!------------------------------------------------------------------------------------------------->
+
+<a name="NBK_TCTLS"></a><h3>4.4 &nbsp; &nbsp; Text Control Notebook</h3>
+
+<p>
+  The console notebook contains various text controls which display text data generated by the
+  different operations initiated by gSpiceUI.
+</p>
+
+<h4>4.4.1 &nbsp; Console</h4>
+
+<p>
+  Display the console input/output for the last process executed by gSpiceUI. If an error occurs
+  this is a good place to look for indications of what has gone wrong.
+</p>
+
+<h4>4.4.2 &nbsp; Circuit</h4>
+
+<p>
+  Display the raw netlist file which was opened or imported via the file menu. The variables and
+  values contained in the netlist file are those displayed in the GUI's display objects.
+</p>
+
+<h4>4.4.3 &nbsp; Simulation</h4>
+
+<p>
+  Display the simulation file to be run. It is basically the netlist file plus simulator commands
+  based on user input to the GUI objects. It can be manually edited by the user and will be run as
+  is if the Run button is pressed. NOTE : if the create button is pressed the contents of this tab
+  will be over-written destroying any user input.
+</p>
+
+<h4>4.4.4 &nbsp; NG-Spice Results</h4>
+
+<p>
+  Display the results from the last run of the NG-Spice simulation engine. The raw data is
+  reformatted to aid readability; non-data records are removed and the precision is set according
+  the value set in the Preferences dialog. If required the raw output from the simulation engine may
+  be viewed in the Console tab.
+</p>
+
+<h4>4.4.5 &nbsp; GNU-Cap Results</h4>
+
+<p>
+  Display the results from the last run of the GNU-Cap simulation engine. The raw data is
+  reformatted to aid readability; non-data records are removed and the precision is set according
+  the value set in the Preferences dialog. If required the raw output from the simulation engine may
+  be viewed in the Console tab.
+</p>
+
+<br>
+<a href="#TOP"><center>Return to top</center></a>
+
+<hr size="1" width="80%" align="center">
+
+<!------------------------------------------------------------------------------------------------->
+
+<a name="STAT_BAR"></a><h3>4.5 &nbsp; &nbsp; Status Bar</h3>
+
+<p>
+  The status bar is located at the bottom of the application main frame. It consists of three panes
+  which contain text messages showing the state of gSpiceUI. From left to right the panes contain :
+</p>
+
+<p>
+<ol>
+  <li> The last application status or error message.</li>
+  <li> The currently selected simulation engine.</li>
+  <li> The currently selected waveform viewer utility.</li>
+</ol>
+</p>
+
+<br>
+<a href="#TOP"><center>Return to top</center></a>
+
+<hr size="5">
+
+<!------------------------------------------------------------------------------------------------->
+
+<a name="TMP_FILES"></a><h2>5. &nbsp; &nbsp; &nbsp; Temporary Files</h2>
+<br>
+
+<p>
+  Whilst running gSpiceUI various temporary files may be generated in the directory occupied by the
+  schematic or netlist file/s. To illustrate, consider the situation where the schematic file
+  "test-cct.sch" is imported and every possible analysis type is run, using both NG-Spice and
+  GNU-Cap. Along with the schematic file the following temporary files which would be created :
+</p>
+
+<blockquote>
+  <table cellspacing=0 cellpadding=0>
+
+    <tr>
+      <td>&lt;path&gt;/sch/test-cct.sch</td><td></td>
+      <td>(The schematic file to be analysed)</td>
+    </tr>
+
+    <tr><td>&nbsp;</td><td>&nbsp; &nbsp; &nbsp;</td><td>&nbsp;</td></tr>
+
+    <tr>
+      <td>&lt;path&gt;/sch/test-cct.ckt</td>       <td></td>
+      <td>(Netlist file with simulation commands)</td>
+    </tr>
+    <tr>
+      <td>&lt;path&gt;/sch/test-cct.sch~</td>      <td></td>
+      <td>(Backup file to the schematic file)</td>
+    </tr>
+    <tr>
+      <td>&lt;path&gt;/sch/gspiceui.log</td>        <td></td>
+      <td>(Temporary file for raw process output)</td>
+    </tr>
+
+    <tr><td>&nbsp;</td><td></td><td></td></tr>
+
+    <tr>
+      <td>&lt;path&gt;/sch/test-cct.ngspice.op</td><td></td>
+      <td>(Results file - operating point analysis)</td>
+    </tr>
+    <tr>
+      <td>&lt;path&gt;/sch/test-cct.ngspice.dc</td><td></td>
+      <td>(Results file - DC analysis)</td>
+      </tr>
+    <tr>
+      <td>&lt;path&gt;/sch/test-cct.ngspice.ac</td><td></td>
+      <td>(Results file - AC analysis)</td>
+    </tr>
+<!-- <tr>
+       <td>&lt;path&gt;/sch/test-cct.ngspice.di</td><td></td>
+       <td>(Results file - distortion analysis)</td>
+     </tr> -->
+<!-- <tr>
+       <td>&lt;path&gt;/sch/test-cct.ngspice.no</td><td></td>
+       <td>(Results file - noise analysis)</td>
+     </tr> -->
+<!-- <tr>
+       <td>&lt;path&gt;/sch/test-cct.ngspice.pz</td><td></td>
+       <td>(Results file - pole-zero analysis)</td>
+     </tr> -->
+<!-- <tr>
+       <td>&lt;path&gt;/sch/test-cct.ngspice.se</td><td></td>
+       <td>(Results file - sensitivity analysis)</td>
+     </tr> -->
+    <tr>
+      <td>&lt;path&gt;/sch/test-cct.ngspice.tr</td><td></td>
+      <td>(Results file - transient response analysis)</td>
+    </tr>
+<!-- <tr>
+       <td>&lt;path&gt;/sch/test-cct.ngspice.tf</td><td></td>
+       <td>(Results file - transfer function analysis)</td>
+    </tr> -->
+
+    <tr><td>&nbsp;</td><td></td><td></td></tr>
+
+    <tr>
+      <td>&lt;path&gt;/sch/test-cct.gnucap.op</td> <td></td>
+      <td>(Results file - operating point analysis)</td>
+    </tr>
+    <tr>
+      <td>&lt;path&gt;/sch/test-cct.gnucap.dc</td> <td></td>
+      <td>(Results file - DC analysis)</td>
+    </tr>
+    <tr>
+      <td>&lt;path&gt;/sch/test-cct.gnucap.ac</td> <td></td>
+      <td>(Results file - AC analysis)</td>
+    </tr>
+    <tr>
+      <td>&lt;path&gt;/sch/test-cct.gnucap.tr</td> <td></td>
+      <td>(Results file - transient response analysis)</td>
+    </tr>
+<!-- <tr>
+      <td>&lt;path&gt;/sch/test-cct.gnucap.fo</td> <td></td>
+      <td>(Results file - fourier analysis)</td>
+    </tr> -->
+
+  </table>
+</blockquote>
+
+<p>
+  All file names begin with the prefix "test-cct" (taken from the schematic file name). File name
+  extensions then depend on the file type. Files containing simulation results include the name of
+  the simulation engine used to generate the data and an abbreviation indicating the analysis type.
+</p>
+
+<p>
+  Notes :
+</p>
+
+<ul>
+  <li>
+    gSpiceUI has various mechanisms for managing temporary files (eg. delete them), refer to
+    <a href="#MNU_SETGS">Settings&nbsp;Menu</a>.
+  </li>
+  <li>
+    If temporary files are deleted this includes the schematic backup file.
+  </li>
+</ul>
+
+<br>
+<a href="#TOP"><center>Return to top</center></a>
+
+<hr size="5">
+
+<!------------------------------------------------------------------------------------------------->
+
+<address>
+  Last modified : 2016-11-10
+  <br>
+  Author : Mike Waters
+  <br>
+  E-Mail : mwaters517_AT_gmail_DOT_com
+</address>
+
+<!------------------------------------------------------------------------------------------------->
+
+<style>
+  <!--
+    a:link    { color: #0022CC; text-decoration: underline }
+    a:active  { color: #FF0000; text-decoration: none      }
+    a:visited { color: #551A8B; text-decoration: underline }
+
+    h1
+    {
+      color:           #E46103;
+      font-family:     Arial, Verdana, Helvetica, Sans-Serif;
+      font-size:       24pt;
+      text-decoration: none;
+      text-align:      center;
+    }
+
+    h2
+    {
+      color:           #CD1076;
+      font-family:     Arial, Verdana, Helvetica, Sans-Serif;
+      font-size:       20pt;
+      text-decoration: none;
+      text-align:      left;
+    }
+
+    h3
+    {
+      color:           #CD1076;
+      font-family:     Arial, Verdana, Helvetica, Sans-Serif;
+      font-size:       16pt;
+      text-decoration: none;
+      text-align:      left;
+    }
+
+    h4
+    {
+      color:           #008208;
+      font-family:     Arial, Verdana, Helvetica, Sans-Serif;
+      font-size:       14pt;
+      text-decoration: none;
+      text-align:      left;
+    }
+  -->
+</style>
+
+<!------------------------------------------------------------------------------------------------->
+
+</body>
+</html>

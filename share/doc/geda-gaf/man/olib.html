@@ -1,0 +1,329 @@
+<!-- Creator     : groff version 1.18.1.4 -->
+<!-- CreationDate: Tue Jan 22 04:00:02 2013 -->
+<html>
+<head>
+<meta name="generator" content="groff -Thtml, see www.gnu.org">
+<meta name="Content-Style" content="text/css">
+<title>olib</title>
+</head>
+<body>
+
+<h1 align=center>olib</h1>
+<a href="#NAME">NAME</a><br>
+<a href="#SYNOPSIS">SYNOPSIS</a><br>
+<a href="#DESCRIPTION">DESCRIPTION</a><br>
+<a href="#OPTIONS">OPTIONS</a><br>
+<a href="#LIMITATIONS">LIMITATIONS</a><br>
+<a href="#AUTHOR">AUTHOR</a><br>
+<a href="#SEE ALSO">SEE ALSO</a><br>
+<a href="#COPYRIGHT">COPYRIGHT</a><br>
+
+<hr>
+<a name="NAME"></a>
+<h2>NAME</h2>
+<!-- INDENTATION -->
+<table width="100%" border=0 rules="none" frame="void"
+       cols="2" cellspacing="0" cellpadding="0">
+<tr valign="top" align="left">
+<td width="10%"></td>
+<td width="89%">
+<p><b>olib</b> &minus; OrCAD(tm) library part to gEDA .sym
+converter</p>
+</td>
+</table>
+<a name="SYNOPSIS"></a>
+<h2>SYNOPSIS</h2>
+<!-- INDENTATION -->
+<table width="100%" border=0 rules="none" frame="void"
+       cols="2" cellspacing="0" cellpadding="0">
+<tr valign="top" align="left">
+<td width="10%"></td>
+<td width="89%">
+<p><b>olib</b> <i>filename prefix</i></p>
+</td>
+</table>
+<a name="DESCRIPTION"></a>
+<h2>DESCRIPTION</h2>
+<!-- INDENTATION -->
+<table width="100%" border=0 rules="none" frame="void"
+       cols="2" cellspacing="0" cellpadding="0">
+<tr valign="top" align="left">
+<td width="10%"></td>
+<td width="89%">
+<p><b>olib</b> is a simple automated converter from OrCAD v4
+(in SDT version 1.10) ASCII parts library to gEDA component
+definition in .sym format file. It allow an initial dumb
+conversion file to file, with one lib converted in multiple
+.sym file, one per component in library. The converted
+component file may need a little editing to become usable,
+but in some case needs no editing at all. <b>olib</b> will
+write one file per part in the current directory.</p>
+<!-- INDENTATION -->
+<p><b>olib</b> will:</p>
+</td>
+</table>
+<!-- TABS -->
+<table width="100%" border=0 rules="none" frame="void"
+       cols="4" cellspacing="0" cellpadding="0">
+<tr valign="top" align="left">
+<td width="11%"></td>
+<td width="2%">
+
+<p>&bull;</p>
+</td>
+<td width="7%"></td>
+<td width="77%">
+
+<p>Convert box-shaped components in OrCAD lib to .sym file
+in gEDA format;</p>
+</td>
+<tr valign="top" align="left">
+<td width="11%"></td>
+<td width="2%">
+
+<p>&bull;</p>
+</td>
+<td width="7%"></td>
+<td width="77%">
+
+<p>Place pin, pin name, pin type, pin number;</p>
+</td>
+<tr valign="top" align="left">
+<td width="11%"></td>
+<td width="2%">
+
+<p>&bull;</p>
+</td>
+<td width="7%"></td>
+<td width="77%">
+
+<p>Place logic bubble when needed (DOT attribute in OrCAD
+(TM), for logic negation);</p>
+</td>
+<tr valign="top" align="left">
+<td width="11%"></td>
+<td width="2%">
+
+<p>&bull;</p>
+</td>
+<td width="7%"></td>
+<td width="77%">
+
+<p>Place clock arrow when needed (CLK attribute);</p>
+</td>
+<tr valign="top" align="left">
+<td width="11%"></td>
+<td width="2%">
+
+<p>&bull;</p>
+</td>
+<td width="7%"></td>
+<td width="77%">
+
+<p>Place reference, from REFERENCE statement in OrCAD;</p>
+</td>
+<tr valign="top" align="left">
+<td width="11%"></td>
+<td width="2%">
+
+<p>&bull;</p>
+</td>
+<td width="7%"></td>
+<td width="77%">
+
+<p>Place part name as label and device name as
+attribute;</p>
+</td>
+<tr valign="top" align="left">
+<td width="11%"></td>
+<td width="2%">
+
+<p>&bull;</p>
+</td>
+<td width="7%"></td>
+<td width="77%">
+
+<p>Parse and draw non-box component, with LINE, ARC, CIRCLE
+and TEXT;</p>
+</td>
+<tr valign="top" align="left">
+<td width="11%"></td>
+<td width="2%">
+
+<p>&bull;</p>
+</td>
+<td width="7%"></td>
+<td width="77%">
+
+<p>Add power pin as invisible net=name:pin attribute when
+detected (in OrCAD, invisible pin has typically T0 and B0
+coords);</p>
+</td>
+<tr valign="top" align="left">
+<td width="11%"></td>
+<td width="2%">
+
+<p>&bull;</p>
+</td>
+<td width="7%"></td>
+<td width="77%">
+
+<p>Through a command line switch, hides pin name in VECTOR
+drawn symbols, for a better appearance;</p>
+</td>
+<tr valign="top" align="left">
+<td width="11%"></td>
+<td width="2%">
+
+<p>&bull;</p>
+</td>
+<td width="7%"></td>
+<td width="77%">
+
+<p>Write both new (post-20020825) and old (20020209) file
+format for .sym files through a switch on the command
+line;</p>
+</td>
+</table>
+<a name="OPTIONS"></a>
+<h2>OPTIONS</h2>
+<!-- INDENTATION -->
+<table width="100%" border=0 rules="none" frame="void"
+       cols="2" cellspacing="0" cellpadding="0">
+<tr valign="top" align="left">
+<td width="10%"></td>
+<td width="89%">
+<p>filename</p></td>
+</table>
+<!-- INDENTATION -->
+<table width="100%" border=0 rules="none" frame="void"
+       cols="2" cellspacing="0" cellpadding="0">
+<tr valign="top" align="left">
+<td width="21%"></td>
+<td width="77%">
+<p>The OrCAD library to convert. This should have been
+previously converted to ASCII format using the OrCAD
+&rsquo;decomp&rsquo; utility.</p>
+</td>
+</table>
+<!-- TABS -->
+<table width="100%" border=0 rules="none" frame="void"
+       cols="4" cellspacing="0" cellpadding="0">
+<tr valign="top" align="left">
+<td width="11%"></td>
+<td width="8%">
+
+<p>prefix</p>
+</td>
+<td width="1%"></td>
+<td width="77%">
+
+<p>The prefix used to generate the filenames of the output
+gEDA symbols e.g. prefix-partname-1.sym</p>
+</td>
+</table>
+<a name="LIMITATIONS"></a>
+<h2>LIMITATIONS</h2>
+<!-- INDENTATION -->
+<table width="100%" border=0 rules="none" frame="void"
+       cols="2" cellspacing="0" cellpadding="0">
+<tr valign="top" align="left">
+<td width="10%"></td>
+<td width="89%">
+<p><b>olib</b> has the following limitations:</p>
+</td>
+</table>
+<!-- TABS -->
+<table width="100%" border=0 rules="none" frame="void"
+       cols="4" cellspacing="0" cellpadding="0">
+<tr valign="top" align="left">
+<td width="11%"></td>
+<td width="2%">
+
+<p>&bull;</p>
+</td>
+<td width="7%"></td>
+<td width="77%">
+
+<p><b>olib</b> will not parse and store alternate component
+drawing (statement CONVERT in OrCAD);</p>
+</td>
+<tr valign="top" align="left">
+<td width="11%"></td>
+<td width="2%">
+
+<p>&bull;</p>
+</td>
+<td width="7%"></td>
+<td width="77%">
+
+<p><b>olib</b> will not handle drawing part using VECTOR
+list from another part (statement VECTOR
+&rsquo;partname&rsquo; in OrCAD);</p>
+</td>
+<tr valign="top" align="left">
+<td width="11%"></td>
+<td width="2%">
+
+<p>&bull;</p>
+</td>
+<td width="7%"></td>
+<td width="77%">
+
+<p><b>olib</b> will not handle FILL statement in VECTOR
+statement (no equivalent in gEDA);</p>
+</td>
+<tr valign="top" align="left">
+<td width="11%"></td>
+<td width="2%">
+
+<p>&bull;</p>
+</td>
+<td width="7%"></td>
+<td width="77%">
+
+<p><b>olib</b> will not handle multiple part in one package
+(slots in gEDA).</p>
+</td>
+</table>
+<a name="AUTHOR"></a>
+<h2>AUTHOR</h2>
+<!-- INDENTATION -->
+<table width="100%" border=0 rules="none" frame="void"
+       cols="2" cellspacing="0" cellpadding="0">
+<tr valign="top" align="left">
+<td width="10%"></td>
+<td width="89%">
+<p>Mario Pascucci &lt;m.pas@libero.it&gt;</p>
+</td>
+</table>
+<a name="SEE ALSO"></a>
+<h2>SEE ALSO</h2>
+<!-- INDENTATION -->
+<table width="100%" border=0 rules="none" frame="void"
+       cols="2" cellspacing="0" cellpadding="0">
+<tr valign="top" align="left">
+<td width="10%"></td>
+<td width="89%">
+<p><b>gschem</b>(1)</p>
+</td>
+</table>
+<a name="COPYRIGHT"></a>
+<h2>COPYRIGHT</h2>
+<!-- INDENTATION -->
+<table width="100%" border=0 rules="none" frame="void"
+       cols="2" cellspacing="0" cellpadding="0">
+<tr valign="top" align="left">
+<td width="10%"></td>
+<td width="89%">
+<pre>Copyright &copy; 1999-2011 gEDA Contributors.  License GPLv2+: GNU GPL
+version 2 or later.  Please see the &lsquo;COPYING&rsquo; file included with this
+program for full details.
+
+This is free software: you are free to change and redistribute it.
+There is NO WARRANTY, to the extent permitted by law.
+
+</pre>
+<hr>
+</body>
+</html>

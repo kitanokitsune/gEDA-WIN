@@ -1,0 +1,15 @@
+prefix=/home/dj/nightly-geda/build/result
+exec_prefix=${prefix}
+libdir=${exec_prefix}/lib
+includedir=${prefix}/include
+datarootdir=${prefix}/share
+datadir=${datarootdir}
+
+sitedir=${datarootdir}/guile/site
+libguileinterface=21:0:4
+
+Name: GNU Guile
+Description: GNU's Ubiquitous Intelligent Language for Extension
+Version: 1.8.8
+Libs: -L${libdir} -lguile  -L/home/dj/nightly-geda/build/result/lib -lregex -lgmp -lws2_32 -lm -lltdl 
+Cflags: -I${includedir} -B/usr/i686-pc-mingw32 -I/home/dj/nightly-geda/build/result/include 

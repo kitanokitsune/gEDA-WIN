@@ -1,0 +1,783 @@
+                                              ChangeLog
+                                             -----------
+Start Date  : 2004-08-12
+Last Update : 2016-11-10
+Author      : Mike Waters
+Email       : mwaters517_AT_gmail_DOT_com
+====================================================================================================
+
+gSpiceUI - A Graphical User Interface (GUI) to various freely available electronic circuit
+           simulation engines.
+
+----------------------------------------------------------------------------------------------------
+
+ * Added a preferences option for synchronizing ambient temperature values between analysis pages
+   and the OPTIONS dialogue.
+ * Cleaned up the DlgPrefs class by removing all Get*( ) functions.
+ * Added a preferences option to exclude the netlist file from the list of temporary files.
+ * At startup, if a schematic file is open but a netlist file doesn't exist automatically generate
+   the netlist file by performing an import operation on the schematic file thereby generating the
+   netlist file. To date an error message was displayed.
+ * Add help target to Makefile and src/Makefile, displays a help message listing available targets.
+ * BugFix : Temporary files are deleted by the function FileTasks::bDelTmpFiles( ) which was
+            suffering from some bit rot; it was leaving some temporary files behind.
+ * When gschem is envoked by gSpiceUI command line options have been added to configure the
+   appearance of gschem ie. light colour scheme, the status panel and side bar aren't displayed.
+ * Added a target for cppcheck (a tool for static C/C++ code analysis) to src/Makefile.
+ * Added a preferences option to enable gnetlist nomunge mode whereby component label
+   prefixes are tested for correctness and if necessary the correct prefix is prepended to the
+   component label eg. all resistors should have the prefix R.
+ * Added a preferences option to set the tool tip delay.
+ * gSpiceUI now automatically determines what gnetlist backends are available instead of using a
+   hard coded list.
+ * Added a preferences option to enable gnetlist verbose mode whereby debug spew is generated.
+ * Added a preferences option to enable gnetlist include mode whereby model file contents can be
+   inserted into the netlist file of an .INCLUDE directive be used.
+ * Added a preferences option to enable gnetlist embed mode whereby .INCLUDE file contents can be
+   inserted into the netlist file of the .INCLUDE directive is left untouched.
+ * The configuration mechanism has been re-written and a dedicated Config claas has been introduced.
+ * Updates to the usage message in class CmdLinePcr.
+ * The class PrcSimEngBase inherits from the class PrcBase. The functions PrcBase::bLogOutput( ) and
+   PrcSimEngBase::bSaveOutput( ) perform essentially the same job so the later has been removed.
+ * The GUI controls are now properly locked out during operations that require this behaviour eg.
+   import, reload, create netlist, etc.
+ * In the File menu, "Exit" renamed to "Quit", seems to be more often used by other applications.
+ * BugFix : Andrew Holmes has reported a bug which can result in gSpiceUI crashing. gSpiceUI is
+            susceptible to entering an wxYield( ) loop when the GUI is accessed during a long
+            simulation run. The GUI is now properly locked out during simulation runs and calls to
+            wxYield( ) have all been replaced with calls to wxTheApp->Yield( ).
+ * The result file the column width is no longer fixed at 14 chars. but is automatically set
+   according to the maximum column label width or data field width. The result are now packed more
+   tightly so more of the raw data can be viewed in the results file window.
+ * The results plotting utility Gaw complains if the results file ends with an empty line so the
+   last line is no longer empty.
+ * A user (Dom) has reported that NG-Spice (and GNU-Cap) allow a DC sweep with negative step value.
+   The code has been modified to allow a DC start value greater then the stop value, the sign of the
+   step value is automatically adjusted in the simulation engine command.
+ * gSpiceUI now displays more illuminating and consistant error messages if problems occur whilst
+   running the simulation process or formatting the results.
+ * BugFix : Over many the years a file named "prcbase.log" would occasionally appear amongst the
+            netlist or schematic files. It is the default log file name for the PrcBase class but I
+            couldn't determine why it was being used. The problem was in FrmMain::Initialize( ),
+            FrmMain::InitLogFiles( ) must be called after FileTasks::Initialize( ) or the proper log
+            file name wasn't set ie. "gspiceui.log".
+ * BugFix : The wxWidgets class wxStringTokenizer assignment operator '=' is unreliable, in one case
+            it caused a core dump. All instances of this usage of wxStringTokenizer have now been
+            replaced with the function call wxStringTokenizer::SetString( ).
+ * Following an inquiry from Eckard Klotz my curiousity got the better of me and I've determined a
+   technique to building gSpiceUI on M$ Windoze. Basically, install MinGW, install the wxWidgets
+   sources, build wxWidgets using MinGW, install the wxWidgets library, get the gSpiceUI sources and
+   build gSpiceUI using MinGW. The end result : "gspiceui.exe" runs but is untested. Instructions
+   have been added to the Install file in the gSpiceUI project root directory.
+ * BugFix : Several Mac OSX users have reported a compiler bug caused by OnClose( ) event handlers
+            in the class HelpTasks. Hiroshi Yoshikawa has offered a patch which I've used to develop
+            a fix.
+ * Documentation updates including basic information regarding using KiCAD and gSpiceIU.
+ * Various minor updates and bug fixes.
+
+----------------------------------------------------------------------------------------------------
+
+2015-04-29 : M.Waters
+
+ * Released version 1.1.00.
+ * BugFix : In the NetList class the load file and load attributes operations have been separated to
+            prevent redundant disk activity. SimnBase class has been modified in simpathy.
+ * BugFix : In the Component class the type is determined based on the first character in the name
+            eg. D1 is assumed to be a diode. If the component type couldn't be identified it was
+            deemed invalid. This was a bit too harsh so now the component is assumed to be valid
+            even if it's type can't be determined.
+ * BugFix : The PnlValue control could be tripped up under certain circumstances if a value was
+            manually entered (eg. enter 1.0V and decrement to 0.0V instead of 1000.0mV).
+ * If a netlist loaded by gSpiceUI is found to be a valid simulation file it is now loaded into the
+   Simulation console as well as the NetList console. Changes to FrmMain::bSimnLoad( ).
+ * BugFix : In the simulation file an incorrect reference to schematic file/s could be included.
+            This could occur if a .ckt wasn't derived from a .sch file.
+ * gSpiceUI can now be compiled against wxWidgets v3.0.0 or v2.8.12. Hence forth development will be
+   based around wxWidgets v3.0.0 so gSpiceUI may look prettier with this version of the library.
+ * The delay between successive spin button control updates can now be set using the Preferences
+   dialogue and the "Spin control period" parameter. Allowable values range from 20 to 400 mSec.
+ * BugFix : Henry reported on 2010-10-04 that the command line option -g for importing schematic
+            file/s was broken. This bug has now been rectified.
+ * BugFix : If a PnlValue value outside the allowable range was manually entered, the spin buttons
+            ceased to work. The event handlers now know what to do in this case.
+ * Further development and testing of OPTIONS dialogue.
+ * Comparison of floating point numbers isn't easy when the values are similar. Two new functions
+   have been added to class CnvtType which compare floats ie. CnvtType::bIsEqual( ).
+ * Significant upgrades to class PnlValue bSetValue( ) functions. This is due to testing done using
+   the test application test_AppPnlValue.
+ * It's not good practise to declare "using namespace" with global scope so all such declaration
+   have been removed.
+ * BugFix : The CnvtType class bParseFlt( ) functions could fail at certain boundary conditions
+            around mantissa values of 1.0 and 10.0.
+ * Added a test application directory src/tests. The first test application is test_AppPnlValue
+   which is used to test the display control class PnlValue and all the classes it uses. It's
+   getting too difficult to test GUI components inside gSpiceUI.
+ * Support for temperature values in Degrees Kelvin and Fahrenheit has been dropped. Both NG-Spice
+   and GNU-Cap only support Deg.C and the data-sheets for various electronic components I've checked
+   only mention Deg.C. Supporting Deg.K & Deg.F properly in gSpiceUI would require significant
+   effort which isn't justified given the maginal benefit to be gained.
+ * Phase angle units are now set via the Preferences dialogue.
+ * The preferences dialogue now includes an option to alter the main frame layout. Either the probes
+   (nodes and components) lists extend the full height of the frame or (as normal) the text controls
+   can expand to cover the full width of the frame at the expense of probe lists height.
+ * BugFix : When setting a PnlValue the units where being ignored if the value to be set was zero.
+            The function PnlValue::bSetValue( wxString & ) has been completely rewritten.
+ * BugFix : If Source sychronization was enabled the sweep parameter units where not being updated
+            for the DC analysis panels.
+ * BugFix : In the class NbkNgSpice the result file width was not being calculated correctly meaning
+            results could be lost.
+ * In the classes CmdGnuCapOPT and DlgGcpCfgOPT have removed options which are no longer supported
+   and included new options.
+ * In Settings menu place Preferences item at the top.
+ * Created a new class UnitsBase as a base class to ChoUnits and LblUnits.
+ * Tidied up the layout of all configuration dialogues.
+ * Created a new class LblUnits to be used as an attribute in the class PnlValue as the units label.
+ * The layout of the analysis panels for both NG-Spice and GNU-Cap were showing a some bit rot.
+   These panels have been updated.
+ * Created a new class PnlLblTxt to replace some instances of the wxTextCtrl class. It provides much
+   of the functionality of wxTextCtrl and adds a parameter name string displayed to the left of the
+   wxTextCtrl control.
+ * Created a new class PnlLblCho to replace some instances of the wxChoice class. It provides the
+   functionality of wxChoice and adds a parameter name string displayed to the left of the wxChoice
+   control.
+ * Updates to the build system to suppress warnings when building with gcc and wxWidgets v2.8.12.
+ * Convert all bool values to lower case "true" or "false" instead of upper case "TRUE" and "FALSE".
+   There seems to be no reason to use upper case values hence the change.
+ * BugFix : The class CnvtType was failing one test utility check. The method bIsFloat( ) was not
+            detecting that a string like "123E-4" represents a float.
+ * Updates to the build system for the test utilities (ie. in src/Makefile).
+ * Change from the drawing package Xfig (and FIG drawing files converted to JPEG image files) to
+   Inkscape (and SVG drawing files converted to PNG image files).
+ * BugFix : Contributor "dcb" ran cppcheck on the gSpiceUI sources. Two non-sensical test
+            expressions inside two if( ) statements were found in the file CmdGnuCapGEN.cpp. Both
+            bugs have now been rectified. The rest of the sources passed the cppcheck tests OK.
+ * Update to GPL license version 3.
+ * Changed email address references.
+ * gSpiceUI now responds appropriately if a binary file can't be found eg. gschem or gnetlist.
+ * Major update of ConvertType class including a name change to CnvtType.
+ * HTML documentation updates.
+ * Many minor updates and bug fixes.
+
+----------------------------------------------------------------------------------------------------
+
+2011-09-27 : M.Waters
+
+ * Released version 1.0.00.
+ * When gSpiceUI is installed example schematic files and library files are now included (this was
+   always intended but overlooked).
+ * gSpiceUI has been successfully compiled against the wxWidgets library version 2.9.2 (with
+   wxWidgets 2.8 compatibility enabled). This was requested by a Mac OSX user Jerry J. since "it
+   works better with the Cocoa framework".
+ * BugFix : The temporary file management scheme was incomplete. If more than one circuit
+            descriptions were loaded in a single session temporary files could be created but not
+            deleted.
+ * Modifications to the functions in utility/StrUtils.cpp. Signal source names are now sorted so
+   that the most used component types appear at the top of the list.
+ * Modifications to the functions in utility/StrUtils.cpp. The more interesting node and component
+   names now tend to be placed at the top of the test probe list boxes and the remaining names are
+   sorted more sensibly.
+ * In the classes NetList, SimnBase, SimnGunCap and SimnNgSpice change all Extract*( ) function
+   names to Load*( ).
+ * BugFix : In version v0.9.99 a reload operation would close gschem and gwave or gaw. (This was
+            unintended behaviour.)
+ * In class SpinCtrl hard-coded a spin button repeat period of 80 msec. This may be user
+   configurable in the future.
+ * Increased the maximum number of lines which can be displayed in any text control to 1,000,000
+   lines and the default to 10,000. (I don't know if wxTextCtrl can cope with this but someone will
+   try it sooner or later and we'll find out).
+ * Objects inheriting from PrcBase (which itself inherits from wxProcess) created input and output
+   streams but didn't deleted them. Eventually all available file descriptors were used up and
+   gSpiceUI could no longer launch new processes. This long standing bug has been resolved
+   (I think?) thanks to a contribution made by Jarno H.
+ * Added a LM555 model file and demo. schematic.
+ * In the classes PrcGWave and PrcGaw removed the functions bFormatLine( ) and bFormatField( )
+   because these operations are already performed by PrcGnuCap and PrcNgSpice.
+ * Over-haul of the ChoUnits class.
+ * In the PnlValue::bSetValue( ) methods remove unnecessary complexity by eliminating the bNoUnits
+   argument; it's already implemented by the PnlValue::m_bUseUnits attribute.
+ * BugFix : If a node label didn't start with a digit CmdGnuCapPR::Parse( ) categorized it as a
+            component label.
+ * BugFix : The src/Makefile target "deps" was not correctly defined. Most of the source files where
+            being overlooked.
+ * In HelpTasks class removed the status bar from the HTML window, it wasn't used.
+ * Disable the Stop tool and Stop menu option when no simulation is actually running.
+ * In the HelpTasks class added a tool to the tool bar for moving forward in the history database.
+ * In the HelpTasks class implemented wxFrame close tool for HTML window.
+ * Implemented a new command-line option -d which enables debug mode. This causes console spew to be
+   generated on standard error.
+ * At startup error messages are held over until the the main frame of the GUI has been fully
+   displayed.
+ * In src/Makefile added a new variable $DESTDIR which may be used to specify the install location
+   at the request of Declan.
+ * BugFix : The src/Makefile install mechanism failed if the target bin/ directory didn't already
+            exist.
+ * In the classes PnlValue, SpinCtrl and ChoUnits the method bClear( ) is used to set defaults.
+   Added a function bSetDefaults( ) to set default values and changed the bClear( ) methods to just
+   clear the object attributes.
+ * Replace all references to wxWindows with wxWidgets.
+ * Minor updates to Install documentation.
+ * BugFix : The files utility/iStrCmp.h and utility/iStrCmp.c actually contain C++ code so they have
+            been renamed to utility/iStrCmp.hpp and utility/iStrCmp.cpp respectively. Also removed
+            instructions for compiling C code from Makefile.
+ * In the class ConvertType all function for processing double float's take only double's of long's
+   as arguments. (This is to do with compile time problems under OSX.)
+ * BugFix : If gSpiceUI has gschem open and a reload operation is executed, the gSchem process is no
+            longer closed.
+ * Added a mechanism to sch/Makefile to convert all example schematic files included with gSpiceUI
+   to netlist files using gnetlist. This provides some level of validation of schematic files,
+   although it doesn't guarantee that they will work.
+ * Updates to the HTML documentation.
+ * Minor updates to man page.
+ * Various minor modifications and bug fixes.
+
+----------------------------------------------------------------------------------------------------
+
+2010-04-19 : M.Waters
+
+ * Released version 0.9.99 Alpha.
+ * BugFix : The Component class wasn't recognizing sub-circuits, transmission-lines or logic devices
+            correctly.
+ * Minor mods. so that all test utilities compile.
+ * Have defined the following types in TypeDefs.hpp : ulong, uint and uchar.
+ * It has been reported that "gSpiceUI opens new FIFOs every time gWave, etc. are started but never
+   closes them. In a long session the user eventually runs out of file handles". In
+   PrcBase::bLogOutput( ) instead of repeatedly getting the input and error streams, get input
+   stream pointers once. I've not personally encountered this bug but this might fix it.
+ * The sweep sources can now be synchronized. If a sweep source is selected in one analysis page,
+   where possible the same source will appear in other analysis pages. This feature may be enabled
+   or disabled via the Preferences dialogue.
+ * In the class ConvertType replaced all calls to pow10f( ) with calls to pow( ) owing to problems
+   compiling the code on OSX.
+ * Simplified FrmMain::OnOpen( ), FrmMain::OnImport( ) and FrmMain::OnReload( ) so that most of the
+   work is done by the class FileTasks.
+ * Simplified FileTasks::bReload( ) so that it calls FileTasks::bOpen( ) and FileTasks::bImport( )
+   instead of duplicating code.
+ * In the class PrcGNetList remove the functions that aren't really required :
+     bSetGNetList( ), rofnGetGNetList( ), szGetGuileProcCnt( ) and szGetSchemFileCnt( ).
+ * BugFix : Sort out bugs in the mechanism for loading schematic file/s via the command line.
+ * BugFix : Sort out bugs in the mechanism for loading a netlist file via the command line.
+ * Added m_iExitCode attribute to PrcBase class to contain the exit code returned when the process
+   was last run.
+ * Re-organise contents of lib/ directory.
+ * Implement function CmdLinePcr::bCheckFiles( ) for basic file name testing.
+ * Implement function CmdLinePcr::Print( ) for debugging.
+ * BugFix : If errors are encountered by gnetlist the Console tab is displayed instead of the
+            NetList tab.
+ * BugFix : In dialogs pressing the Clear or Defaults buttons can now reversed by pressing the
+            Cancel button.
+ * The function PnlValue::bSetValue( wxString, bool ) can now set the units with a value of 0.0
+   eg. "0.0msec".
+ * BugFix : In FileTasks::InitNetLstFile( ) simulation data was transferred from FrmMain::m_oSimnGcp
+            to FrmMain::m_oSimnNgs when it had already been transferred from FrmMain::m_oSimnNgs
+            to FrmMain::m_oSimnGcp.
+ * BugFix : In CpntNgIndSrc::bParseValue( ) and CpntNgIndSrc::bFormatValue( ) the pulse source
+            function was incorrectly formatted; the pulse width appeared ahead of the fall time.
+ * Super-conductor junction components are now recognized.
+ * The class name AppGSpiceUI has been changed to App_gSpiceUI.
+ * BugFix : LC_NUMERIC locale problem reported by Werner H. and Viktor N. Have applied a patch
+            provide by Werner : moved the locale call from the AppGSpiceUI constructor to
+            AppGSpiceUI::OnInit( ).
+ * Documentation updates.
+ * Various minor modifications and bug fixes.
+
+----------------------------------------------------------------------------------------------------
+
+2009-09-14 : M.Waters
+
+ * Released version 0.9.98 Alpha.
+ * BugFix : In the <root>/Makefile the "install" target had the files ReadMe and Install in
+            upper-case which caused the install to fail. Bug found by Werner H.
+ * BugFix : For NG-Spice simulations columns of results where lost if more than three parameters
+            where derived. Class CmdNgSpiceOPT can now set an appropriate page width for the number
+            of derived parameters.
+ * Updates to the text files : Authors, ChangeLog, Install, ReadMe and ToDo.
+ * Add a new command line option "-c" to partially rebuild/clean the configuration file
+   ie. ~/.gspiceui.conf.
+ * BugFix : The command line processor was not functioning properly when the option "-g" was
+            specified without an argument.
+ * Some updates to the installation instructions (ie. Install).
+ * BugFix : Gaw was used regardless of the setting in the Preferences dialog.
+ * In <root>/src/Makefile the debug flag was set by default. This meant that the resulting binary
+   was much larger than necessary. The debug flag is now clear by default.
+ * There is a new parameter in the preferences dialog which allows the results precision to be
+   specified; a lower value means the raw data is easier to read but a higher value provides for
+   greater resolution.
+ * Brought back the component names in the NG-Spice results column labels.
+ * Much of the implementation of the method bMakeArgLst( ) in classes PrcGnuCap and PrcNgSpice has
+   been moved to the base class PrcSimrBase.
+ * The gSchem ".sym" files in the <root>/lib/ directory where mistakenly omitted from the last
+   release.
+ * Bug fixes.
+
+----------------------------------------------------------------------------------------------------
+
+2009-09-11 : M.Waters
+
+ * Released version 0.9.97 Alpha.
+ * Data is now transferred from a NG-Spice simulation object to a GNU-Cap object (and visa-versa) by
+   design rather than happenstance.
+ * DlgPrefs is no longer an attribute of FrmMain but is created when needed.
+ * Tidy up PrcGNetList class source files.
+ * Some changes to the installation instructions for wxWidgets (ie. Install).
+ * Remove the restriction that the transient analyse must have a signal source.
+ * Modified the class DlgGcpCfgGEN so that it is derived from wxDialog only and not CmdGnuCapGEN as
+   well.
+ * Modified the class DlgGcpCfgOPT so that it is derived from wxDialog only and not CmdGnuCapOPT as
+   well.
+ * Modified the class DlgNgsCfgSrc so that it is derived from wxDialog only and not CpntNgsIndSrc as
+   well.
+ * Modified the class DlgNgsCfgOPT so that it is derived from wxDialog only and not CmdNgSpiceOPT as
+   well.
+ * BugFix : The temporary file management strategy indicator wasn't being stored in the
+            configuration file. Changes to FileTasks class and DlgPrefs class.
+ * Modified the Component class to handle TABs as field separators in component definitions.
+ * Updates to the About dialog.
+ * Updates to the command line usage message.
+ * Update the "tar" target in the project root Makefile.
+ * Modified DlgNgsCfgOPT so that it inherits CmdNgSpiceOPT instead of having an instance as an
+   attribute.
+ * Modified DlgNgsCfgSrc so that it inherits CpntNgsIndSrc instead of having an instance as an
+   attribute.
+ * Updates to the class ConvertType. Can now specify a resolution for conversions from floats to
+   strings.
+ * Updates to the About dialogue contents particularly the licence details.
+ * Major re-think and overhaul of the Simulation class to make it easier to understand and maintain.
+   It's been replaced with the structures SimnBase, SimnNgSpice and SimnGnuCap.
+ * Some classes have now been re-defined as structures so that most of they're attributes have
+   public access. This increases they're ease of use since attributes can be accessed directly
+   rather than via inline function calls. (It would be nice if C++ had a mechanism for defining
+   attributes as read-only to the outside world.)
+ * Created a new simulation structure SimnBase from which the new structures SimnNgSpice and
+   SimnGnuCap inherit. These structure replace the single Simulation class which had become far too
+   complicated.
+ * Simplify NetList class.
+ * Updated Component class, changed type to structure, it now permits public access to most
+   attributes.
+ * Added units of pico-seconds (psec) to the units of time in class ChoUnits.
+ * Transient analyses may now be run without having to specify a sweep source.
+ * Integrated the command classes into the simulation engine process classes.
+ * Created new command classes CmdGnuCapOP, CmdGnuCapTR and CmdGnuCapFO for parsing and formatting
+   GNU-Cap OP, Transient and Fourier commands.
+ * Created new command classes CmdGnuCapPR and CmdGnuCapGEN for parsing and formatting GNU-Cap Print
+   and Generator commands.
+ * Created new command classes CmdNgSpicePR for parsing and formatting NG-Spice Print commands.
+ * Created a new structure CpntNgsIndSrc which inherits from the Component structure. It processes
+   NG-Spice independent voltage or current source definition commands.
+ * And others things that I've forgotten.
+
+----------------------------------------------------------------------------------------------------
+
+2008-02-29 : M.Waters
+
+ * Released version 0.9.65 Alpha.
+ * A schematic editor (ie. gSchem) can now be envoked from within gSpiceUI via the menuing system or
+   the tool bar.
+ * Implemented test utilities in all command classes to facilitate debugging.
+ * Create new command classes CmdGnuCapDC and CmdGnuCapAC for parsing and formatting GNU-Cap DC and
+   AC commands.
+ * Created new command classes CmdNgSpiceAC and CmdNgSpiceTR for parsing and formatting NG-Spice AC
+   and Transient analysis commands.
+ * Modify class PrcNgSpice to use the command classes ie. CmdNgSpiceDC, etc.
+ * Created a new class PrcGaw to interface to the waveform viewer Gaw (which is a rewrite of gWave).
+ * One of two waveform viewers may now be specified by the user via the command line or the
+   preferences dialog ie. gWave or Gaw. This preference is also stored in the configuration file and
+   so need only be specified once.
+ * Bug fixes.
+
+----------------------------------------------------------------------------------------------------
+
+2007-10-25 : M.Waters
+
+ * Released version 0.9.55 Alpha.
+ * Various improvements to src/Makefile.
+ * Changed the name of the Options menu to Settings to prevent confusion with the SPICE OPTIONS
+   command.
+ * Fixed a bug in the "make deps" process.
+ * Fixed a bug where a reload operation was clearing the units of the stop value in the NG-Spice DC
+   analysis. Also fixed many other bugs associated the reload operation in all other analysis
+   panels.
+ * Minor overhaul of the class PnlNgSpiceDC. Will do the same to all other analysis panel classes in
+   the fullness of time.
+ * Fixed bug 1759886 "make install: error if ../share/man/man1 is missing" submitted by Werner H.
+ * Added the file TypeDefs.hpp to contain mainly the enumerated type definitions used throughout
+   gSpiceUI.
+ * First cut at controlling the fonts used by gSpiceUI.
+ * Added a Clear button to the GNU-Cap Generator Setup dialog and the NG-Spice Signal Source Setup
+   dialog.
+ * A new class CmdNgSpiceDC has been introduced for parsing and formatting NG-Spice DC analysis
+   commands. Ultimately all analysis commands will be processed using this mechanism.
+ * The recommended version of the wxWidgets library is still v2.8.x but work has been done to
+   improve support for v2.6.x. It seems that wxWidgets v2.8.x has not yet been sufficiently widely
+   adopted to make it a requirement.
+ * The src/Makefile has been modified so that the version of the wxWidgets library to compile
+   against may be specified via the make command line or within the Makefile itself.
+ * An upper limit of 9 characters has now been imposed on the number of characters which may be
+   entered into a SpinCtrl object.
+ * Fixed several bugs associated with the SpinCtrl class.
+ * Bug fixes.
+
+----------------------------------------------------------------------------------------------------
+
+2007-07-05 : M.Waters
+
+ * Released version 0.9.33 Alpha.
+ * Added a sinusoid function to the NG-Spice signal source configuration dialog.
+ * Tidy up of the Makefiles.
+ * The title line/s in user generated circuit description files are now preserved in the simulation
+   file generated by gSpiceUI. Requested by Andres M.
+ * Fixed a bugs in the GNU-Cap DC and AC command parsers causing them to break when the start and
+   stop sweep values where equal.
+ * Adjustments to the size and position of display components.
+ * For GNU-Cap the option BASIC has been appended to all analysis lines to suppress the use of alpha
+   abbreviations instead of an exponent eg. 3.1u now becomes 3.1E-6. Requested by Andres M.
+ * Introduced an .OPTIONS button on each analysis panel and removed the .OPTIONS option in the
+   Options menu.
+ * Added tooltips to the NG-Spice source component setup dialog and the GNU-Cap generator component
+   dialog.
+ * Improvements to src/Makefile.
+ * NG-Spice negative node values in .PRINT statements were not processed correctly. Eg.
+   PRINT TRAN V(0,1) V(0,2) (2 parameters) is interpreted as PRINT TRAN (-V(1)-V(2)) (1 parameter);
+   I've found through experiment that PRINT TRAN 0-V(1) 0-V(2) results in the correct intepretation.
+   The code has been modified accordingly.
+ * Fixed warnings generated by GCC v4.1.1.
+ * Added tool tips to the OPTIONS line setup dialogs.
+ * gSpiceUI can now be compiled against wxWidgets v2.8.4.
+ * Addition of a man page. Minor updates to the documentation.
+ * The SpinCtrl control is now right justified.
+ * Implement the application preferences dialog.
+ * Some modifications to the PnlValue class.
+ * The main frame's system close button now works.
+ * Automated the creation of dependencies. Added target "deps" to the Makefile in the C++ sources
+   Makefile. This target creates the file Makefile.deps which contains a list of dependencies which
+   are included in the Makefile.
+ * Many bug fixes.
+
+----------------------------------------------------------------------------------------------------
+
+2006-10-26 : M.Waters
+
+ * Released version 0.8.90 Alpha.
+ * Some modifications to the PnlValue class.
+ * Fixed some subtle bugs in the SpinCtrl class.
+ * The SpinCtrl class can now display positive floats with an exponent.
+ * Added NG-Spice OPTIONS line setup dialog.
+ * Added GNU-Cap OPTIONS command setup dialog.
+ * Added selection to Options menu to access OPTIONS setup dialog.
+ * All include file paths are now from the source directory. Allows reuse of file names.
+ * Added TeraHz, kV and kA to the class ChoUnits.
+ * If during installation $(INSTALLDIR)/bin doesn't exist it is created.
+ * Bug fixes.
+
+----------------------------------------------------------------------------------------------------
+
+2006-05-16 : M.Waters
+
+ * Released version 0.8.55 Alpha.
+ * Fixed fault where source component requested for NG-Spice temperature sweep.
+ * Fixed some faults in the parsing of floating point numbers into mantissa and exponent
+   (ConvertType.cpp).
+ * The last line of the console output was missing if it didn't end in a new line character.
+ * The output from gNetList is now searched for errors and the user notified if any are found.
+ * The application initialization process has been overhauled. It's still not perfect but is an
+   improvement.
+ * A progress dialog is displayed while the simulation engine is being changed.
+ * The source and generator dialogs now do some validity checks before accepting the user settings.
+ * Bit rot in PrcBase::Print( ) meant that the text controls weren't always being loaded properly.
+ * The Simulation text control wasn't being updated when a simulation was run.
+ * Bug fixes.
+
+----------------------------------------------------------------------------------------------------
+
+2006-02-17 : M.Waters
+
+ * Released version 0.8.36 Alpha.
+ * The rogue log file going by the name prcbase.log which some times appeared has been tracked down
+   to the class PrcGNetList. The log file name wasn't being set properly and sometimes wasn't
+   deleted when no longer needed. Both of these problems have been rectified.
+ * The technique used to clear the save file in the function PrcSimrBase::bSaveOutput( ) has been
+   much improved. Large simulations should now run noticably faster.
+ * The function bExec( ) has been moved from the classes PrcGnuCap and PrcNgSpice to the class
+   PrcSimrBase.
+ * Cleaned up the code that formats NG-Spice results (PrcNgSpice.cpp).
+ * Cleaned up the code that formats GNU-Cap  results (PrcGnuCap.cpp).
+ * A new panel has been added to the GNU-Cap notebook for Fourier analysis.
+ * Options for displaying the GNU-Cap and NG-Spice manuals have been dropped from the Help menu.
+ * An alternative installation directory may now be specified via the base Makefile. Refer to text
+   file INSTALL for a complete description.
+ * Include file wx/image.h added to HelpTasks.hpp for MAC platforms as a result of feedback provided
+   by Anthony W.
+ * Crash caused by an attempt to access the first character in an empty string fixed as a result of
+   feedback from Anthony W. - functions modified were:
+     PnlNgSpiceDC::InitSwpUnts( ) and PnlGnuCapDC::InitSwpUnts( ).
+ * Crash caused by attempt to set the value of a non-existent display object fixed as a result of
+   feedback from Anthony W. - function modified was:
+     PnlGnuCapFO::CreateOutputs( ).
+ * The tool bar help icon was found to be malformed and has been fixed as a result of feedback from
+   Anthony W. - file modified was:
+     icons/help.xpm
+ * Additions to the documentation.
+ * Bug fixes.
+
+----------------------------------------------------------------------------------------------------
+
+2005-11-29 : M.Waters
+
+ * Released version 0.8.08 Alpha.
+ * Documentation is now included in the install process.
+ * Added a tool to the tool bar linking with the gSpiceUI manual.
+ * The gSpiceUI manual can now be accessed from the Help menu.
+ * The application main frame close box has been disabled because when used configuration data isn't
+   recorded. I will fix this at some later date.
+ * Cleaned up the code run when the simulation engine selection changes.
+ * Built using the infamous gcc version 4.0.1 compiler. One warning produced which has been fixed.
+ * Bug fixes.
+
+----------------------------------------------------------------------------------------------------
+
+2005-11-16 : M.Waters
+
+ * Released version 0.7.93 Alpha.
+ * If a net list or schematic is open on exit that same file will be opened next time gspiceui is
+   started.
+ * The open net list and import schematic dialogs now remember the last directory accessed (these
+   values are stored in the configuration file).
+ * Added two minor mods. for clean compilation under Sun Solaris.
+ * A alternative configuration file may now be specified via the command line using the -r option.
+ * The relationship between the class AppGSpiceUI, FrmMain and CmdLinePcr has been simplified.
+   Should prevent compiler errors associated with circular includes.
+ * Continued implementation of the configuration file mechanism.
+ * The development status has reverted to Alpha since fundamental structural changes are still being
+   made and are still required.
+ * The command line option "-t" which sets the temporary file management strategy hadn't been
+   implemented, it has now.
+ * The command line option "-d" which sets the number of lines to display in text controls has been
+   dropped.
+ * The main frame is now resizable.
+ * Changed the layout of the main frame to make better use of the available
+   space.
+
+----------------------------------------------------------------------------------------------------
+
+2005-09-03 : M.Waters
+
+ * Released version 0.7.80 Alpha.
+ * Rectified some bugs associated with the status bar. It now works correctly.
+ * Commenced implementation of a configuration file mechanism. The configuration file name is
+   ".gspiceui.conf" and is placed in the user's home directory.
+ * The position of the main application frame is now recorded in the configuration file. At startup
+   gSpiceUI attempts to position itself where it was last placed.
+ * In class FrmMain the function OnRun( ) has been tidied up.
+ * If required a .WIDTH card is now added to NG-Spice decks so that more than 5 columns of data may
+   be output in the results files.
+ * Net list files generated by gSpiceUI no longer have "gspiceui" appended to the file name eg. for
+   a schematic "circuit.sch" the net list file name will be "circuit.ckt" and no longer
+   "circuit.gspiceui.ckt".
+ * The text control notebook page "Results" has been replaced with two pages "GNU-Cap" and
+   "NG-Spice" which display GNU-Cap and NG-Spice simulation results respectively.
+ * Added a reference to the source schematic/s in net list files created by gSpiceUI. A reload
+   operation now re-imports the schematics if this reference exists in the currently open net list.
+ * Added GHz to frequency units.
+ * Additions to the documentation.
+ * Bug fixes.
+
+----------------------------------------------------------------------------------------------------
+
+2005-07-21 : M.Waters
+
+ * Released version 0.7.56 Alpha.
+ * Commenced the use of layout managers to place and size display objects. This has been completed
+   in the classes DlgSrcCfg, DlgGenCfg and PnlValue.
+ * Development of gSpiceUI is now based on the wxWidgets library v2.6.x. wxWidgets library v2.4.x is
+   no longer supported as it does not contain the class wxSizerFlags which is required for use of
+   layout managers.
+ * Changed references to make in all Makefiles to $(MAKE) so that gmake works on FreeBSD.
+ * Implemented the tool bar and removed the simulation control buttons in the main frame.
+ * Implemented the schematic/netlist reload function in the File menu and tool bar.
+ * Created a new class NbkTxtCtls to contain all of the code associated with the text controls used
+   by the FrmMain class.
+ * Created a new class HelpTasks to contain most of the help operations required by the FrmMain
+   class.
+ * Created a new class FileTasks to contain most of the file operations required by the FrmMain
+   class.
+ * Discovered the wonders of compiling NG-Spice with XSpice extensions. Enables NG-Spice to handle
+   POLY( ) statements eg. found in opamp models.
+ * Added "*.cir" to the netlist file filters in the open dialog.
+ * Added modifications suggested by Ezra to remove errors when compiling under Mac OSX.
+ * Added Unicode support.
+ * Bug fixes.
+
+----------------------------------------------------------------------------------------------------
+
+2005-05-18 : M.Waters
+
+ * Released version 0.7.18 Alpha.
+ * Added modifications suggested by Shahab Sanjari to remove errors when compiling under FreeBSD.
+ * Dialogue added to NG-Spice Transient analysis to allow pulse source to be configured by the user.
+ * Spin control precision changed from one decimal place to two.
+ * Fixed some minor bugs associated with the PnlValue class.
+ * In the AC analysis the default step scale has been set to "Dec" and the default source level to
+   1.0V (ie. 0dBV).
+ * The AC analysis complex parts radio for magnitude in dB has been changed to "Mag. in dBV" to
+   highlight the units used.
+ * The correct Options menu simulator item is now checked when a new simulation is opened.
+ * The class PrcPlotter has been rename to PrcGWave.
+ * Added two new operational amplifier models to the lib/opamp directory ie. LM324 (national) and
+   LMX358 (maxim).
+ * Al Davis reported that the GNU-Cap AC analysis generated by gSpiceUI was missing an .OP command
+   prior to the .AC command. The operational amplifier models in the lib/opamp directory can now be
+   AC analysed correctly using GNU-Cap.
+ * Additions to the documentation.
+ * Bug fixes.
+
+----------------------------------------------------------------------------------------------------
+
+2005-04-19 : M.Waters
+
+ * Released version 0.7.01 Alpha.
+ * More than one schematic files can now be imported via the command line.
+ * gSpiceUI can now be compiled using the wxWidgets library v2.5.4 but at this stage the GUI looks
+   better using wxWidgets v2.5.2 or earlier.
+ * Command line option added to specify temporary file management strategy ie. "-t <n>", delete the
+   files automatically, prompt the user or keep them.
+ * Command line options which have not yet been implemented are no longer displayed in the
+   application usage message which has also been tidied up.
+ * The application frame now cannot be resized using the mouse but the text control display area can
+   be resized with a new command line option "-d n".
+ * The spin controls have been modified so that the units automatically change to the next logical
+   value when appropriate eg. 1000.0mV rolls up to 1.0V and 1.0mV rolls down to 1000.0uV.
+ * I have derived an opamp model on which NG-Spice can perform an AC analysis. The model is based on
+   the Maxim LMX358 model. I haven't been able to find an opamp model on which GNU-Cap can
+   successfully perform an AC analysis. So far I've tried models from National and Maxim.
+ * Additions to the documentation.
+ * Bug fixes.
+
+----------------------------------------------------------------------------------------------------
+
+2005-03-22 : M.Waters
+
+ * Released version 0.6.91 Alpha.
+ * Added sweep step size checks when creating simulation.
+ * Work has been completed on parsing basic GNU-Cap commands contained in circuit description files.
+ * Work has been completed on parsing basic NG-Spice commands contained in circuit description
+   files.
+ * The command line processing code has been moved from class AppGSpiceUI to it's own class
+   CmdLinePcr.
+ * Fixed a bug that caused net list files to be loaded twice. Load operation should now be faster.
+ * Fixed a bug in the spin control which caused incorrect incrementing of negative numbers.
+ * Bug fixes.
+
+----------------------------------------------------------------------------------------------------
+
+2005-02-22 : M.Waters
+
+ * Released version 0.6.81 Alpha.
+ * The log file created by gnetlist is now removed on Close or Exit.
+ * Temporary files created by gSpiceUI to hold analysis results are now removed on Close or Exit.
+ * The development status has been changed from Alpha to Beta.
+ * The naming convention for the simulation file has changed from "<name>.sim" to
+   "<name>.gspiceui.ckt".
+ * Work has commenced on parsing SPICE commands contained in circuit description files. The GNU-Cap
+   Quiescent analysis and the NG-Spice AC analysis are complete.
+ * The circuit description files generated by gSpiceUI will now have the extension
+   "<name>.gspiceui.ckt" instead of "<name>.sim".
+ * The GNU-Cap Fourier analysis panel has been temporarily disabled. It is broken and as yet does
+   nothing useful. It will be enabled again when it is fixed.
+ * The spin controls have been modified so that the step increment is now dependent on the value
+   shown. In most cases the control will be incremented or decremented by between 10% and 100% of
+   the displayed value.
+ * Sort out some bugs which have crept into the NG-Spice simulation mechanism.
+ * Simulation class now inherits from NetList class. Streamlines application architecture.
+ * Additions to the documentation eg. object model diagrams.
+ * Bug fixes.
+
+----------------------------------------------------------------------------------------------------
+
+2005-01-12 : M.Waters
+
+ * Released version 0.6.58 Alpha.
+ * Allow standard power supply rail labels (ie. Vcc, Vee, Vss and Vdd) to be used as sweep sources.
+ * Move source attributes and code from analysis panel classes into base class PnlAnaBase to
+   facilitate reuse and maintainability.
+ * Move complex parts attributes and code into class PnlAnaBase to facilitate reuse and
+   maintainability.
+ * Bug fixes.
+
+----------------------------------------------------------------------------------------------------
+
+2004-12-08 : M.Waters
+
+ * Released version 0.6.53 Alpha.
+ * Clean-up and re-arrange analysis notebook display objects to accommodate a new analysis
+   temperature display control.
+ * Implement new anaylsis temperature control.
+ * Add units of radians and grad to phase values.
+ * Move analysis temperature attribute and code into class PnlAnaBase to facilitate reuse and
+   maintainability.
+ * Improve the management of the i/o notebook text controls.
+ * Additions to the documentation.
+ * Bug fixes.
+
+----------------------------------------------------------------------------------------------------
+
+2004-11-10 : M.Waters
+
+ * Released version 0.6.47 Alpha.
+ * Allow ".include" directives to be specified in net list files.
+ * Replaced NG-Spice field identifiers in result file with component labels.
+
+----------------------------------------------------------------------------------------------------
+
+2004-11-08 : M.Waters
+
+ * Released version 0.6.45 Alpha.
+ * gSpiceUI now behaves properly when sub-circuit appear in the net list.
+ * As a result of the change to wxWidgets v2.5.2 the GWave process was broken. It now works again.
+ * Multiple schematic files may now be selected and imported via the GUI but not yet from the
+   command line.
+ * Status line enhancements. Simulation engine is now displayed.
+ * Improvements to the application architecture.
+ * Plot process mechanism over-hauled.
+ * New class introduced to display floating point or integer variables. It now behaves correctly
+   near zero.
+ * New choice control class introduced to display and process units.
+ * Debug messages mechanism has been removed.
+ * For the time being only one plotter process can be intiated at a time.
+ * Additions to the documentation.
+ * Bug fixes
+
+----------------------------------------------------------------------------------------------------
+
+2004-09-16 : M.Waters
+
+ * Released version 0.5.76 Alpha.
+ * PrcGNetList.cpp : Multiple schematic files can now be imported via gnetlist into one netlist
+   file.
+ * gSpiceUI is now based on the wxWidgets v2.5.2 library (it may not be backwards compatible with
+   v2.4.2).
+ * Added Transient analysis panel for NG-Spice.
+ * Added AC analysis panel for NG-Spice.
+ * Makefile : "make config" is now part of "make all" because it got left out by some users and
+              appeared to be a fault.
+
+----------------------------------------------------------------------------------------------------
+
+2004-08-12 : M.Waters
+
+ * Released version 0.5.63 Alpha.
+ * Verbose mode option (-v) added to argument list to gnetlist.
+ * Default argument in FrmMain::bImportSchem( ) was removed. Caused some compilers to barf.
+ * Some additions to the documentation.
+
+----------------------------------------------------------------------------------------------------
+
+2004-08-05 : M.Waters
+
+ * The initial release of gSpiceUI, version 0.5.54 Alpha.
+
+----------------------------------------------------------------------------------------------------
+
+2003-08-15 : M.Waters
+
+ * Started development of gSpiceUI.
+
+====================================================================================================

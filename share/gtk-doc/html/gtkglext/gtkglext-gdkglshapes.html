@@ -1,0 +1,415 @@
+<html>
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=US-ASCII">
+<title>Geometric Object Rendering</title>
+<meta name="generator" content="DocBook XSL Stylesheets V1.65.1">
+<link rel="home" href="index.html" title="GtkGLExt Reference Manual">
+<link rel="up" href="GdkGLExt-API.html" title="Part&#160;II.&#160;GdkGLExt API Reference">
+<link rel="previous" href="gtkglext-gdkglfont.html" title="Font Rendering">
+<link rel="next" href="gtkglext-gdkgltokens.html" title="Tokens">
+<meta name="generator" content="GTK-Doc V1.4 (XML mode)">
+<link rel="stylesheet" href="style.css" type="text/css">
+<link rel="part" href="Overview.html" title="Part&#160;I.&#160;GtkGLExt Overview">
+<link rel="part" href="GdkGLExt-API.html" title="Part&#160;II.&#160;GdkGLExt API Reference">
+<link rel="part" href="GtkGLExt-API.html" title="Part&#160;III.&#160;GtkGLExt API Reference">
+</head>
+<body bgcolor="white" text="black" link="#0000FF" vlink="#840084" alink="#0000FF">
+<table class="navigation" width="100%" summary="Navigation header" cellpadding="2" cellspacing="2"><tr valign="middle">
+<td><a accesskey="p" href="gtkglext-gdkglfont.html"><img src="left.png" width="24" height="24" border="0" alt="Prev"></a></td>
+<td><a accesskey="u" href="GdkGLExt-API.html"><img src="up.png" width="24" height="24" border="0" alt="Up"></a></td>
+<td><a accesskey="h" href="index.html"><img src="home.png" width="24" height="24" border="0" alt="Home"></a></td>
+<th width="100%" align="center">GtkGLExt Reference Manual</th>
+<td><a accesskey="n" href="gtkglext-gdkgltokens.html"><img src="right.png" width="24" height="24" border="0" alt="Next"></a></td>
+</tr></table>
+<div class="refentry" lang="en">
+<a name="gtkglext-gdkglshapes"></a><div class="titlepage">
+<div></div>
+<div></div>
+</div>
+<div class="refnamediv"><table width="100%"><tr>
+<td valign="top">
+<h2><span class="refentrytitle">Geometric Object Rendering</span></h2>
+<p>Geometric Object Rendering &#8212; Functions for generating easily recognizable 3D geometric objects</p>
+</td>
+<td valign="top" align="right"></td>
+</tr></table></div>
+<div class="refsynopsisdiv">
+<h2>Synopsis</h2>
+<pre class="synopsis">
+
+#include &lt;gdk/gdkgl.h&gt;
+
+
+void        <a href="gtkglext-gdkglshapes.html#gdk-gl-draw-cube">gdk_gl_draw_cube</a>                (<a
+href="/usr/share/gtk-doc/html/glib/glib-Basic-Types.html#gboolean"
+>gboolean</a> solid,
+                                             double size);
+void        <a href="gtkglext-gdkglshapes.html#gdk-gl-draw-sphere">gdk_gl_draw_sphere</a>              (<a
+href="/usr/share/gtk-doc/html/glib/glib-Basic-Types.html#gboolean"
+>gboolean</a> solid,
+                                             double radius,
+                                             int slices,
+                                             int stacks);
+void        <a href="gtkglext-gdkglshapes.html#gdk-gl-draw-cone">gdk_gl_draw_cone</a>                (<a
+href="/usr/share/gtk-doc/html/glib/glib-Basic-Types.html#gboolean"
+>gboolean</a> solid,
+                                             double base,
+                                             double height,
+                                             int slices,
+                                             int stacks);
+void        <a href="gtkglext-gdkglshapes.html#gdk-gl-draw-torus">gdk_gl_draw_torus</a>               (<a
+href="/usr/share/gtk-doc/html/glib/glib-Basic-Types.html#gboolean"
+>gboolean</a> solid,
+                                             double inner_radius,
+                                             double outer_radius,
+                                             int nsides,
+                                             int rings);
+void        <a href="gtkglext-gdkglshapes.html#gdk-gl-draw-tetrahedron">gdk_gl_draw_tetrahedron</a>         (<a
+href="/usr/share/gtk-doc/html/glib/glib-Basic-Types.html#gboolean"
+>gboolean</a> solid);
+void        <a href="gtkglext-gdkglshapes.html#gdk-gl-draw-octahedron">gdk_gl_draw_octahedron</a>          (<a
+href="/usr/share/gtk-doc/html/glib/glib-Basic-Types.html#gboolean"
+>gboolean</a> solid);
+void        <a href="gtkglext-gdkglshapes.html#gdk-gl-draw-dodecahedron">gdk_gl_draw_dodecahedron</a>        (<a
+href="/usr/share/gtk-doc/html/glib/glib-Basic-Types.html#gboolean"
+>gboolean</a> solid);
+void        <a href="gtkglext-gdkglshapes.html#gdk-gl-draw-icosahedron">gdk_gl_draw_icosahedron</a>         (<a
+href="/usr/share/gtk-doc/html/glib/glib-Basic-Types.html#gboolean"
+>gboolean</a> solid);
+void        <a href="gtkglext-gdkglshapes.html#gdk-gl-draw-teapot">gdk_gl_draw_teapot</a>              (<a
+href="/usr/share/gtk-doc/html/glib/glib-Basic-Types.html#gboolean"
+>gboolean</a> solid,
+                                             double scale);
+</pre>
+</div>
+<div class="refsect1" lang="en">
+<a name="id2516391"></a><h2>Description</h2>
+<p>
+
+</p>
+</div>
+<div class="refsect1" lang="en">
+<a name="id2516400"></a><h2>Details</h2>
+<div class="refsect2" lang="en">
+<a name="id2516406"></a><h3>
+<a name="gdk-gl-draw-cube"></a>gdk_gl_draw_cube ()</h3>
+<a class="indexterm" name="id2516416"></a><pre class="programlisting">void        gdk_gl_draw_cube                (<a
+href="/usr/share/gtk-doc/html/glib/glib-Basic-Types.html#gboolean"
+>gboolean</a> solid,
+                                             double size);</pre>
+<p>
+Renders a cube.
+The cube is centered at the modeling coordinates origin with sides of
+length <i class="parameter"><tt>size</tt></i>.</p>
+<p>
+
+</p>
+<div class="variablelist"><table border="0">
+<col align="left" valign="top">
+<tbody>
+<tr>
+<td>
+<span class="term"><i class="parameter"><tt>solid</tt></i>&#160;:</span></td>
+<td> TRUE if the cube should be solid.
+</td>
+</tr>
+<tr>
+<td>
+<span class="term"><i class="parameter"><tt>size</tt></i>&#160;:</span></td>
+<td> length of cube sides.
+</td>
+</tr>
+</tbody>
+</table></div>
+</div>
+<hr>
+<div class="refsect2" lang="en">
+<a name="id2516495"></a><h3>
+<a name="gdk-gl-draw-sphere"></a>gdk_gl_draw_sphere ()</h3>
+<a class="indexterm" name="id2516506"></a><pre class="programlisting">void        gdk_gl_draw_sphere              (<a
+href="/usr/share/gtk-doc/html/glib/glib-Basic-Types.html#gboolean"
+>gboolean</a> solid,
+                                             double radius,
+                                             int slices,
+                                             int stacks);</pre>
+<p>
+Renders a sphere centered at the modeling coordinates origin of
+the specified <i class="parameter"><tt>radius</tt></i>. The sphere is subdivided around the Z axis into
+<i class="parameter"><tt>slices</tt></i> and along the Z axis into <i class="parameter"><tt>stacks</tt></i>.</p>
+<p>
+
+</p>
+<div class="variablelist"><table border="0">
+<col align="left" valign="top">
+<tbody>
+<tr>
+<td>
+<span class="term"><i class="parameter"><tt>solid</tt></i>&#160;:</span></td>
+<td> TRUE if the sphere should be solid.
+</td>
+</tr>
+<tr>
+<td>
+<span class="term"><i class="parameter"><tt>radius</tt></i>&#160;:</span></td>
+<td> the radius of the sphere.
+</td>
+</tr>
+<tr>
+<td>
+<span class="term"><i class="parameter"><tt>slices</tt></i>&#160;:</span></td>
+<td> the number of subdivisions around the Z axis (similar to lines of
+         longitude).
+</td>
+</tr>
+<tr>
+<td>
+<span class="term"><i class="parameter"><tt>stacks</tt></i>&#160;:</span></td>
+<td> the number of subdivisions along the Z axis (similar to lines of
+         latitude).
+</td>
+</tr>
+</tbody>
+</table></div>
+</div>
+<hr>
+<div class="refsect2" lang="en">
+<a name="id2516642"></a><h3>
+<a name="gdk-gl-draw-cone"></a>gdk_gl_draw_cone ()</h3>
+<a class="indexterm" name="id2516652"></a><pre class="programlisting">void        gdk_gl_draw_cone                (<a
+href="/usr/share/gtk-doc/html/glib/glib-Basic-Types.html#gboolean"
+>gboolean</a> solid,
+                                             double base,
+                                             double height,
+                                             int slices,
+                                             int stacks);</pre>
+<p>
+Renders a cone oriented along the Z axis.
+The <i class="parameter"><tt>base</tt></i> of the cone is placed at Z = 0, and the top at Z = <i class="parameter"><tt>height</tt></i>.
+The cone is subdivided around the Z axis into <i class="parameter"><tt>slices</tt></i>, and along
+the Z axis into <i class="parameter"><tt>stacks</tt></i>.</p>
+<p>
+
+</p>
+<div class="variablelist"><table border="0">
+<col align="left" valign="top">
+<tbody>
+<tr>
+<td>
+<span class="term"><i class="parameter"><tt>solid</tt></i>&#160;:</span></td>
+<td> TRUE if the cone should be solid.
+</td>
+</tr>
+<tr>
+<td>
+<span class="term"><i class="parameter"><tt>base</tt></i>&#160;:</span></td>
+<td> the radius of the base of the cone.
+</td>
+</tr>
+<tr>
+<td>
+<span class="term"><i class="parameter"><tt>height</tt></i>&#160;:</span></td>
+<td> the height of the cone.
+</td>
+</tr>
+<tr>
+<td>
+<span class="term"><i class="parameter"><tt>slices</tt></i>&#160;:</span></td>
+<td> the number of subdivisions around the Z axis.
+</td>
+</tr>
+<tr>
+<td>
+<span class="term"><i class="parameter"><tt>stacks</tt></i>&#160;:</span></td>
+<td> the number of subdivisions along the Z axis.
+</td>
+</tr>
+</tbody>
+</table></div>
+</div>
+<hr>
+<div class="refsect2" lang="en">
+<a name="id2516815"></a><h3>
+<a name="gdk-gl-draw-torus"></a>gdk_gl_draw_torus ()</h3>
+<a class="indexterm" name="id2516826"></a><pre class="programlisting">void        gdk_gl_draw_torus               (<a
+href="/usr/share/gtk-doc/html/glib/glib-Basic-Types.html#gboolean"
+>gboolean</a> solid,
+                                             double inner_radius,
+                                             double outer_radius,
+                                             int nsides,
+                                             int rings);</pre>
+<p>
+Renders a torus (doughnut) centered at the modeling coordinates
+origin whose axis is aligned with the Z axis.</p>
+<p>
+
+</p>
+<div class="variablelist"><table border="0">
+<col align="left" valign="top">
+<tbody>
+<tr>
+<td>
+<span class="term"><i class="parameter"><tt>solid</tt></i>&#160;:</span></td>
+<td> TRUE if the torus should be solid.
+</td>
+</tr>
+<tr>
+<td>
+<span class="term"><i class="parameter"><tt>inner_radius</tt></i>&#160;:</span></td>
+<td> inner radius of the torus.
+</td>
+</tr>
+<tr>
+<td>
+<span class="term"><i class="parameter"><tt>outer_radius</tt></i>&#160;:</span></td>
+<td> outer radius of the torus.
+</td>
+</tr>
+<tr>
+<td>
+<span class="term"><i class="parameter"><tt>nsides</tt></i>&#160;:</span></td>
+<td> number of sides for each radial section.
+</td>
+</tr>
+<tr>
+<td>
+<span class="term"><i class="parameter"><tt>rings</tt></i>&#160;:</span></td>
+<td> number of radial divisions for the torus.
+</td>
+</tr>
+</tbody>
+</table></div>
+</div>
+<hr>
+<div class="refsect2" lang="en">
+<a name="id2516964"></a><h3>
+<a name="gdk-gl-draw-tetrahedron"></a>gdk_gl_draw_tetrahedron ()</h3>
+<a class="indexterm" name="id2516975"></a><pre class="programlisting">void        gdk_gl_draw_tetrahedron         (<a
+href="/usr/share/gtk-doc/html/glib/glib-Basic-Types.html#gboolean"
+>gboolean</a> solid);</pre>
+<p>
+Renders a tetrahedron centered at the modeling coordinates
+origin with a radius of the square root of 3.</p>
+<p>
+
+</p>
+<div class="variablelist"><table border="0">
+<col align="left" valign="top">
+<tbody><tr>
+<td>
+<span class="term"><i class="parameter"><tt>solid</tt></i>&#160;:</span></td>
+<td> TRUE if the tetrahedron should be solid.
+</td>
+</tr></tbody>
+</table></div>
+</div>
+<hr>
+<div class="refsect2" lang="en">
+<a name="id2517027"></a><h3>
+<a name="gdk-gl-draw-octahedron"></a>gdk_gl_draw_octahedron ()</h3>
+<a class="indexterm" name="id2517037"></a><pre class="programlisting">void        gdk_gl_draw_octahedron          (<a
+href="/usr/share/gtk-doc/html/glib/glib-Basic-Types.html#gboolean"
+>gboolean</a> solid);</pre>
+<p>
+Renders a octahedron centered at the modeling coordinates
+origin with a radius of 1.0.</p>
+<p>
+
+</p>
+<div class="variablelist"><table border="0">
+<col align="left" valign="top">
+<tbody><tr>
+<td>
+<span class="term"><i class="parameter"><tt>solid</tt></i>&#160;:</span></td>
+<td> TRUE if the octahedron should be solid.
+</td>
+</tr></tbody>
+</table></div>
+</div>
+<hr>
+<div class="refsect2" lang="en">
+<a name="id2517089"></a><h3>
+<a name="gdk-gl-draw-dodecahedron"></a>gdk_gl_draw_dodecahedron ()</h3>
+<a class="indexterm" name="id2517099"></a><pre class="programlisting">void        gdk_gl_draw_dodecahedron        (<a
+href="/usr/share/gtk-doc/html/glib/glib-Basic-Types.html#gboolean"
+>gboolean</a> solid);</pre>
+<p>
+Renders a dodecahedron centered at the modeling coordinates
+origin with a radius of the square root of 3.</p>
+<p>
+
+</p>
+<div class="variablelist"><table border="0">
+<col align="left" valign="top">
+<tbody><tr>
+<td>
+<span class="term"><i class="parameter"><tt>solid</tt></i>&#160;:</span></td>
+<td> TRUE if the dodecahedron should be solid.
+</td>
+</tr></tbody>
+</table></div>
+</div>
+<hr>
+<div class="refsect2" lang="en">
+<a name="id2517151"></a><h3>
+<a name="gdk-gl-draw-icosahedron"></a>gdk_gl_draw_icosahedron ()</h3>
+<a class="indexterm" name="id2517162"></a><pre class="programlisting">void        gdk_gl_draw_icosahedron         (<a
+href="/usr/share/gtk-doc/html/glib/glib-Basic-Types.html#gboolean"
+>gboolean</a> solid);</pre>
+<p>
+Renders a icosahedron.
+The icosahedron is centered at the modeling coordinates origin
+and has a radius of 1.0.</p>
+<p>
+
+</p>
+<div class="variablelist"><table border="0">
+<col align="left" valign="top">
+<tbody><tr>
+<td>
+<span class="term"><i class="parameter"><tt>solid</tt></i>&#160;:</span></td>
+<td> TRUE if the icosahedron should be solid.
+</td>
+</tr></tbody>
+</table></div>
+</div>
+<hr>
+<div class="refsect2" lang="en">
+<a name="id2517214"></a><h3>
+<a name="gdk-gl-draw-teapot"></a>gdk_gl_draw_teapot ()</h3>
+<a class="indexterm" name="id2517225"></a><pre class="programlisting">void        gdk_gl_draw_teapot              (<a
+href="/usr/share/gtk-doc/html/glib/glib-Basic-Types.html#gboolean"
+>gboolean</a> solid,
+                                             double scale);</pre>
+<p>
+Renders a teapot.
+Both surface normals and texture coordinates for the teapot are generated.
+The teapot is generated with OpenGL evaluators.</p>
+<p>
+
+</p>
+<div class="variablelist"><table border="0">
+<col align="left" valign="top">
+<tbody>
+<tr>
+<td>
+<span class="term"><i class="parameter"><tt>solid</tt></i>&#160;:</span></td>
+<td> TRUE if the teapot should be solid.
+</td>
+</tr>
+<tr>
+<td>
+<span class="term"><i class="parameter"><tt>scale</tt></i>&#160;:</span></td>
+<td> relative size of the teapot.
+</td>
+</tr>
+</tbody>
+</table></div>
+</div>
+</div>
+</div>
+<table class="navigation" width="100%" summary="Navigation footer" cellpadding="2" cellspacing="0"><tr valign="middle">
+<td align="left"><a accesskey="p" href="gtkglext-gdkglfont.html"><b>&lt;&lt;&#160;Font Rendering</b></a></td>
+<td align="right"><a accesskey="n" href="gtkglext-gdkgltokens.html"><b>Tokens&#160;&gt;&gt;</b></a></td>
+</tr></table>
+</body>
+</html>

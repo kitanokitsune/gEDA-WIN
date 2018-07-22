@@ -1,0 +1,28 @@
+                                               Authors
+                                              ---------
+Start Date  : 2004-04-04
+Last Update : 2014-12-05
+Author      : Mike Waters
+Email       : mwaters517_AT_gmail_DOT_com
+====================================================================================================
+
+gSpiceUI - A Graphical User Interface (GUI) to various freely available electronic circuit
+           simulation engines.
+
+----------------------------------------------------------------------------------------------------
+
+Author : Mike Waters
+Email  : mwaters517_AT_gmail_DOT_com
+
+This application depends significantly on software written by others. Credit should be attributed to
+the authors of :
+
+  wxWidgets
+  NG-Spice
+  GNU-Cap
+  gschem
+  gnetList
+  Gwave
+  Gaw
+
+====================================================================================================

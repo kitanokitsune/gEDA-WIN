@@ -1,0 +1,26 @@
+Pcb is a CAD (computer aided design) program for the physical
+design of printed circuit boards.
+
+For installing the release refer to the file 'INSTALL'.
+For additional information read the manual (doc/pcb.pdf) 
+
+If you are updating to a new snapshot, you may wish to read
+the ChangeLog file.  People using git are expected to look
+at the git commit messages, instead.
+
+There is also a bug tracking system available which can
+be found from http://pcb.geda-project.org.  
+
+
+-------------------------------------------------------------------------
+                            COPYRIGHT
+
+PCB is covered by the GNU General Public License.  See the individual
+files for the exact copyright notices.
+
+  Contact addresses for paper mail and Email:
+  harry eaton
+  6697 Buttonhole Court
+  Columbia, MD 21044
+  haceaton@aplcomm.jhuapl.edu
+

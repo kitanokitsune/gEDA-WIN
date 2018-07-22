@@ -1,0 +1,50 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN"
+ "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html>
+<head>
+  <title></title>
+  <link rel="stylesheet" media="screen" type="text/css" href="./style.css" />
+  <link rel="stylesheet" media="screen" type="text/css" href="./design.css" />
+  <link rel="stylesheet" media="print" type="text/css" href="./print.css" />
+
+  <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+</head>
+<body>
+
+
+<h1 class="sectionedit954"><a name="attribute_management" id="attribute_management">Attribute management</a></h1>
+<div class="level1">
+
+</div>
+<!-- EDIT954 SECTION "Attribute management" [3-38] -->
+<h2 class="sectionedit955"><a name="help_my_design_has_hundreds_of_components_and_it_s_a_pain_to_use_gschem_to_attach_all_my_attributes" id="help_my_design_has_hundreds_of_components_and_it_s_a_pain_to_use_gschem_to_attach_all_my_attributes">Help! My design has hundreds of components, and it&#039;s a pain to use gschem to attach all my attributes!</a></h2>
+<div class="level2">
+
+<p>
+The answer here is the gEDA/gaf utility “gattrib”. Gattrib is an attribute editor for gEDA. It reads your .sch file(s) and creates a spreadsheet showing all components, nets, and pins in rows, with the associated attributes listed in the columns. Gattrib allows you to add, modify, or delete attributes outside of gschem, and then save the .sch files back out. Here’s a screenshot:
+</p>
+
+<p>
+<a href="media/geda/faq_attrib.jpg" class="media" target="_blank" title="geda:faq_attrib.jpg"><img src="media/geda/faq_attrib.jpg" class="media" alt="" /></a>
+</p>
+
+<p>
+Note that gattrib is the gEDA Project’s current answer to the question of heavy symbols. That is, rather than putting all attributes (such as SPICE model files, footprint names, manufacturer part nos and the like), you are encouraged to put this information into your schematic using gattrib, where it is visible and easily manipulable with gattrib.
+</p>
+
+<p>
+When using gattrib, make sure you exit gschem first. Gattrib and gschem both save your work into the same file, so you should have only one program running at a time to avoid conflicts. There is no lockfile mechanism in gEDA/gaf (yet), so it’s your responsibility to avoid conflicts.
+</p>
+
+</div>
+<!-- EDIT955 SECTION "Help! My design has hundreds of components, and it's a pain to use gschem to attach all my attributes!" [39-1208] -->
+<h2 class="sectionedit956"><a name="how_do_i_know_what_footprint_name_to_use_for_layout_using_pcb" id="how_do_i_know_what_footprint_name_to_use_for_layout_using_pcb">How do I know what footprint name to use for layout using PCB?</a></h2>
+<div class="level2">
+
+<p>
+<a href="geda-pcb_tips.html#i_want_to_use_pcb_to_do_layout._how_do_i_know_what_value_to_use_for_the_footprint_attribute" class="wikilink1" title="geda-pcb_tips.html">Answered here</a>.
+</p>
+
+</div>
+<!-- EDIT956 SECTION "How do I know what footprint name to use for layout using PCB?" [1209-] --></body>
+</html>

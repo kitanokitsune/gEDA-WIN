@@ -1,0 +1,959 @@
+<!-- Creator     : groff version 1.18.1.4 -->
+<!-- CreationDate: Tue Jan 22 03:59:32 2013 -->
+<html>
+<head>
+<meta name="generator" content="groff -Thtml, see www.gnu.org">
+<meta name="Content-Style" content="text/css">
+<title>gnetlist</title>
+</head>
+<body>
+
+<h1 align=center>gnetlist</h1>
+<a href="#NAME">NAME</a><br>
+<a href="#SYNOPSIS">SYNOPSIS</a><br>
+<a href="#DESCRIPTION">DESCRIPTION</a><br>
+<a href="#GENERAL OPTIONS">GENERAL OPTIONS</a><br>
+<a href="#BACKENDS">BACKENDS</a><br>
+<a href="#EXAMPLES">EXAMPLES</a><br>
+<a href="#ENVIRONMENT">ENVIRONMENT</a><br>
+<a href="#AUTHORS">AUTHORS</a><br>
+<a href="#COPYRIGHT">COPYRIGHT</a><br>
+<a href="#SEE ALSO">SEE ALSO</a><br>
+
+<hr>
+<a name="NAME"></a>
+<h2>NAME</h2>
+<!-- INDENTATION -->
+<table width="100%" border=0 rules="none" frame="void"
+       cols="2" cellspacing="0" cellpadding="0">
+<tr valign="top" align="left">
+<td width="10%"></td>
+<td width="89%">
+<p>gnetlist - gEDA/gaf Netlist Extraction and Generation</p>
+</td>
+</table>
+<a name="SYNOPSIS"></a>
+<h2>SYNOPSIS</h2>
+<!-- INDENTATION -->
+<table width="100%" border=0 rules="none" frame="void"
+       cols="2" cellspacing="0" cellpadding="0">
+<tr valign="top" align="left">
+<td width="10%"></td>
+<td width="89%">
+<p><b>gnetlist</b> [<i>OPTION</i> ...] [<b>-g</b>
+<i>BACKEND</i>] [<i>--</i>] <i>FILE</i> ...</p>
+</td>
+</table>
+<a name="DESCRIPTION"></a>
+<h2>DESCRIPTION</h2>
+<!-- INDENTATION -->
+<table width="100%" border=0 rules="none" frame="void"
+       cols="2" cellspacing="0" cellpadding="0">
+<tr valign="top" align="left">
+<td width="10%"></td>
+<td width="89%">
+<p><b>gnetlist</b> is a netlist extraction and generation
+tool, and is part of the gEDA (GPL Electronic Design
+Automation) toolset. It takes one or electronic schematics
+as input, and outputs a netlist. A netlist is a
+machine-interpretable description of the way that components
+in an electronic circuit are connected together, and is
+commonly used as the input to a PCB layout program such as
+<b>pcb</b>(1) or to a simulator such as
+<b>gnucap</b>(1).</p>
+<!-- INDENTATION -->
+<p>A normal <b>gnetlist</b> run is carried out in two steps.
+First, the <b>gnetlist</b> frontend loads the specified
+human-readable schematic <i>FILE</i>s, and compiles them to
+an in-memory netlist description. Next, a
+&lsquo;backend&rsquo; is used to export the connection and
+component data to one of many supported netlist formats.</p>
+<!-- INDENTATION -->
+<p><b>gnetlist</b> is extensible, using the Scheme
+programming language.</p>
+</td>
+</table>
+<a name="GENERAL OPTIONS"></a>
+<h2>GENERAL OPTIONS</h2>
+<!-- TABS -->
+<table width="100%" border=0 rules="none" frame="void"
+       cols="4" cellspacing="0" cellpadding="0">
+<tr valign="top" align="left">
+<td width="11%"></td>
+<td width="2%">
+
+<p><b>-q</b></p>
+</td>
+<td width="14%"></td>
+<td width="70%">
+
+<p>Quiet mode. Turns off all warnings/notes/messages.</p>
+</td>
+</table>
+<!-- INDENTATION -->
+<table width="100%" border=0 rules="none" frame="void"
+       cols="2" cellspacing="0" cellpadding="0">
+<tr valign="top" align="left">
+<td width="10%"></td>
+<td width="89%">
+<p><b>-v</b>, <b>--verbose</b></p></td>
+</table>
+<!-- INDENTATION -->
+<table width="100%" border=0 rules="none" frame="void"
+       cols="2" cellspacing="0" cellpadding="0">
+<tr valign="top" align="left">
+<td width="23%"></td>
+<td width="76%">
+<p>Verbose mode. Output all diagnostic information.</p>
+</td>
+</table>
+<!-- INDENTATION -->
+<table width="100%" border=0 rules="none" frame="void"
+       cols="2" cellspacing="0" cellpadding="0">
+<tr valign="top" align="left">
+<td width="10%"></td>
+<td width="89%">
+<p><b>-L</b> <i>DIRECTORY</i></p></td>
+</table>
+<!-- INDENTATION -->
+<table width="100%" border=0 rules="none" frame="void"
+       cols="2" cellspacing="0" cellpadding="0">
+<tr valign="top" align="left">
+<td width="23%"></td>
+<td width="76%">
+<p>Prepend <i>DIRECTORY</i> to the list of directories to be
+searched for Scheme files.</p>
+</td>
+</table>
+<!-- INDENTATION -->
+<table width="100%" border=0 rules="none" frame="void"
+       cols="2" cellspacing="0" cellpadding="0">
+<tr valign="top" align="left">
+<td width="10%"></td>
+<td width="89%">
+<p><b>-g</b> <i>BACKEND</i></p></td>
+</table>
+<!-- INDENTATION -->
+<table width="100%" border=0 rules="none" frame="void"
+       cols="2" cellspacing="0" cellpadding="0">
+<tr valign="top" align="left">
+<td width="23%"></td>
+<td width="76%">
+<p>Specify the netlist backend to be used.</p>
+</td>
+</table>
+<!-- INDENTATION -->
+<table width="100%" border=0 rules="none" frame="void"
+       cols="2" cellspacing="0" cellpadding="0">
+<tr valign="top" align="left">
+<td width="10%"></td>
+<td width="89%">
+<p><b>-O</b> <i>STRING</i></p></td>
+</table>
+<!-- INDENTATION -->
+<table width="100%" border=0 rules="none" frame="void"
+       cols="2" cellspacing="0" cellpadding="0">
+<tr valign="top" align="left">
+<td width="23%"></td>
+<td width="76%">
+<p>Pass an option string to the backend.</p>
+</td>
+</table>
+<!-- INDENTATION -->
+<table width="100%" border=0 rules="none" frame="void"
+       cols="2" cellspacing="0" cellpadding="0">
+<tr valign="top" align="left">
+<td width="10%"></td>
+<td width="89%">
+<p><b>--list-backends</b></p></td>
+</table>
+<!-- INDENTATION -->
+<table width="100%" border=0 rules="none" frame="void"
+       cols="2" cellspacing="0" cellpadding="0">
+<tr valign="top" align="left">
+<td width="23%"></td>
+<td width="76%">
+<p>Print a list of available netlist backends.</p>
+</td>
+</table>
+<!-- TABS -->
+<table width="100%" border=0 rules="none" frame="void"
+       cols="3" cellspacing="0" cellpadding="0">
+<tr valign="top" align="left">
+<td width="11%"></td>
+<td width="11%">
+
+<p><b>-o</b> <i>FILE</i></p>
+</td>
+<td width="76%">
+
+<p>Specify the filename for the generated netlist. By
+default, output is directed to &lsquo;output.net&rsquo;.</p>
+</td>
+<tr valign="top" align="left">
+<td width="11%"></td>
+<td width="11%">
+
+<p><b>-l</b> <i>FILE</i></p>
+</td>
+<td width="76%">
+
+<p>Specify a Scheme file to be loaded before the backend is
+loaded or executed. This option can be specified multiple
+times.</p>
+</td>
+<tr valign="top" align="left">
+<td width="11%"></td>
+<td width="11%">
+
+<p><b>-m</b> <i>FILE</i></p>
+</td>
+<td width="76%">
+
+<p>Specify a Scheme file to be loaded between loading the
+backend and executing it. This option can be specified
+multiple times.</p>
+</td>
+<tr valign="top" align="left">
+<td width="11%"></td>
+<td width="11%">
+
+<p><b>-c</b> <i>EXPR</i></p>
+</td>
+<td width="76%">
+
+<p>Specify a Scheme expression to be executed during
+<b>gnetlist</b> startup. This option can be specified
+multiple times.</p>
+</td>
+<tr valign="top" align="left">
+<td width="11%"></td>
+<td width="11%">
+
+<p><b>-i</b></p>
+</td>
+<td width="76%">
+
+<p>After the schematic files have been loaded and compiled,
+and after all Scheme files have been loaded, but before
+running the backend, enter a Scheme read-eval-print
+loop.</p>
+</td>
+</table>
+<!-- INDENTATION -->
+<table width="100%" border=0 rules="none" frame="void"
+       cols="2" cellspacing="0" cellpadding="0">
+<tr valign="top" align="left">
+<td width="10%"></td>
+<td width="89%">
+<p><b>-h</b>, <b>--help</b></p></td>
+</table>
+<!-- INDENTATION -->
+<table width="100%" border=0 rules="none" frame="void"
+       cols="2" cellspacing="0" cellpadding="0">
+<tr valign="top" align="left">
+<td width="23%"></td>
+<td width="76%">
+<p>Print a help message.</p>
+</td>
+</table>
+<!-- INDENTATION -->
+<table width="100%" border=0 rules="none" frame="void"
+       cols="2" cellspacing="0" cellpadding="0">
+<tr valign="top" align="left">
+<td width="10%"></td>
+<td width="89%">
+<p><b>-V</b>, <b>--version</b></p></td>
+</table>
+<!-- INDENTATION -->
+<table width="100%" border=0 rules="none" frame="void"
+       cols="2" cellspacing="0" cellpadding="0">
+<tr valign="top" align="left">
+<td width="23%"></td>
+<td width="76%">
+<p>Print <b>gnetlist</b> version information.</p>
+</td>
+</table>
+<!-- TABS -->
+<table width="100%" border=0 rules="none" frame="void"
+       cols="4" cellspacing="0" cellpadding="0">
+<tr valign="top" align="left">
+<td width="11%"></td>
+<td width="2%">
+
+<p><b>--</b></p>
+</td>
+<td width="8%"></td>
+<td width="76%">
+
+<p>Treat all remaining arguments as schematic filenames.
+Use this if you have a schematic filename which begins with
+&lsquo;-&rsquo;.</p>
+</td>
+</table>
+<a name="BACKENDS"></a>
+<h2>BACKENDS</h2>
+<!-- INDENTATION -->
+<table width="100%" border=0 rules="none" frame="void"
+       cols="2" cellspacing="0" cellpadding="0">
+<tr valign="top" align="left">
+<td width="10%"></td>
+<td width="89%">
+<p>Currently, <b>gnetlist</b> includes the following
+backends:</p>
+</td>
+</table>
+<!-- TABS -->
+<table width="100%" border=0 rules="none" frame="void"
+       cols="5" cellspacing="0" cellpadding="0">
+<tr valign="top" align="left">
+<td width="11%"></td>
+<td width="10%">
+
+<p><b>allegro</b></p>
+</td>
+<td width="8%"></td>
+<td width="52%">
+
+<p>Allegro netlist format.</p>
+</td>
+<td width="16%">
+</td>
+<tr valign="top" align="left">
+<td width="11%"></td>
+<td width="10%">
+
+<p><b>bae</b></p>
+</td>
+<td width="8%"></td>
+<td width="52%">
+
+<p>Bartels Autoengineer netlist format.</p>
+</td>
+<td width="16%">
+</td>
+</table>
+<!-- INDENTATION -->
+<table width="100%" border=0 rules="none" frame="void"
+       cols="2" cellspacing="0" cellpadding="0">
+<tr valign="top" align="left">
+<td width="10%"></td>
+<td width="89%">
+<p><b>bom</b>, <b>bom2</b></p></td>
+</table>
+<!-- INDENTATION -->
+<table width="100%" border=0 rules="none" frame="void"
+       cols="2" cellspacing="0" cellpadding="0">
+<tr valign="top" align="left">
+<td width="23%"></td>
+<td width="76%">
+<p>Bill of materials generation.</p>
+</td>
+</table>
+<!-- TABS -->
+<table width="100%" border=0 rules="none" frame="void"
+       cols="5" cellspacing="0" cellpadding="0">
+<tr valign="top" align="left">
+<td width="11%"></td>
+<td width="10%">
+
+<p><b>calay</b></p>
+</td>
+<td width="11%"></td>
+<td width="39%">
+
+<p>Calay netlist format.</p>
+</td>
+<td width="26%">
+</td>
+<tr valign="top" align="left">
+<td width="11%"></td>
+<td width="10%">
+
+<p><b>cascade</b></p>
+</td>
+<td width="11%"></td>
+<td width="39%">
+
+<p>RF Cascade netlist format</p>
+</td>
+<td width="26%">
+</td>
+</table>
+<!-- INDENTATION -->
+<table width="100%" border=0 rules="none" frame="void"
+       cols="2" cellspacing="0" cellpadding="0">
+<tr valign="top" align="left">
+<td width="10%"></td>
+<td width="89%">
+<p><b>drc</b>, <b>drc2</b></p></td>
+</table>
+<!-- INDENTATION -->
+<table width="100%" border=0 rules="none" frame="void"
+       cols="2" cellspacing="0" cellpadding="0">
+<tr valign="top" align="left">
+<td width="23%"></td>
+<td width="76%">
+<p>Design rule checkers (<b>drc2</b> is recommended).</p>
+</td>
+</table>
+<!-- TABS -->
+<table width="100%" border=0 rules="none" frame="void"
+       cols="4" cellspacing="0" cellpadding="0">
+<tr valign="top" align="left">
+<td width="11%"></td>
+<td width="7%">
+
+<p><b>eagle</b></p>
+</td>
+<td width="4%"></td>
+<td width="76%">
+
+<p>Eagle netlist format.</p>
+</td>
+<tr valign="top" align="left">
+<td width="11%"></td>
+<td width="7%">
+
+<p><b>ewnet</b></p>
+</td>
+<td width="4%"></td>
+<td width="76%">
+
+<p>Netlist format for National Instruments ULTIboard layout
+tool.</p>
+</td>
+</table>
+<!-- INDENTATION -->
+<table width="100%" border=0 rules="none" frame="void"
+       cols="2" cellspacing="0" cellpadding="0">
+<tr valign="top" align="left">
+<td width="10%"></td>
+<td width="89%">
+<p><b>futurenet2</b></p></td>
+</table>
+<!-- INDENTATION -->
+<table width="100%" border=0 rules="none" frame="void"
+       cols="2" cellspacing="0" cellpadding="0">
+<tr valign="top" align="left">
+<td width="23%"></td>
+<td width="76%">
+<p>Futurenet2 netlist format.</p>
+</td>
+</table>
+<!-- TABS -->
+<table width="100%" border=0 rules="none" frame="void"
+       cols="4" cellspacing="0" cellpadding="0">
+<tr valign="top" align="left">
+<td width="11%"></td>
+<td width="8%">
+
+<p><b>geda</b></p>
+</td>
+<td width="2%"></td>
+<td width="76%">
+
+<p>Native gEDA netlist format (mainly used for testing and
+diagnostics).</p>
+</td>
+<tr valign="top" align="left">
+<td width="11%"></td>
+<td width="8%">
+
+<p><b>gossip</b></p>
+</td>
+<td width="2%"></td>
+<td width="76%">
+
+<p>Gossip netlist format.</p>
+</td>
+</table>
+<!-- INDENTATION -->
+<table width="100%" border=0 rules="none" frame="void"
+       cols="2" cellspacing="0" cellpadding="0">
+<tr valign="top" align="left">
+<td width="10%"></td>
+<td width="89%">
+<p><b>gsch2pcb</b></p></td>
+</table>
+<!-- INDENTATION -->
+<table width="100%" border=0 rules="none" frame="void"
+       cols="2" cellspacing="0" cellpadding="0">
+<tr valign="top" align="left">
+<td width="23%"></td>
+<td width="76%">
+<p>Backend used for <b>pcb</b>(1) file layout generation by
+<b>gsch2pcb</b>(1). It is not recommended to use this
+backend directly.</p>
+</td>
+</table>
+<!-- INDENTATION -->
+<table width="100%" border=0 rules="none" frame="void"
+       cols="2" cellspacing="0" cellpadding="0">
+<tr valign="top" align="left">
+<td width="10%"></td>
+<td width="89%">
+<p><b>liquidpcb</b></p></td>
+</table>
+<!-- INDENTATION -->
+<table width="100%" border=0 rules="none" frame="void"
+       cols="2" cellspacing="0" cellpadding="0">
+<tr valign="top" align="left">
+<td width="23%"></td>
+<td width="76%">
+<p>LiquidPCB netlist format.</p>
+</td>
+</table>
+<!-- INDENTATION -->
+<table width="100%" border=0 rules="none" frame="void"
+       cols="2" cellspacing="0" cellpadding="0">
+<tr valign="top" align="left">
+<td width="10%"></td>
+<td width="89%">
+<p><b>mathematica</b></p></td>
+</table>
+<!-- INDENTATION -->
+<table width="100%" border=0 rules="none" frame="void"
+       cols="2" cellspacing="0" cellpadding="0">
+<tr valign="top" align="left">
+<td width="23%"></td>
+<td width="76%">
+<p>Netlister for analytical circuit solving using
+Mathematica.</p>
+</td>
+</table>
+<!-- INDENTATION -->
+<table width="100%" border=0 rules="none" frame="void"
+       cols="2" cellspacing="0" cellpadding="0">
+<tr valign="top" align="left">
+<td width="10%"></td>
+<td width="89%">
+<p><b>maxascii</b></p></td>
+</table>
+<!-- INDENTATION -->
+<table width="100%" border=0 rules="none" frame="void"
+       cols="2" cellspacing="0" cellpadding="0">
+<tr valign="top" align="left">
+<td width="23%"></td>
+<td width="76%">
+<p>MAXASCII netlist format.</p>
+</td>
+</table>
+<!-- TABS -->
+<table width="100%" border=0 rules="none" frame="void"
+       cols="5" cellspacing="0" cellpadding="0">
+<tr valign="top" align="left">
+<td width="11%"></td>
+<td width="8%">
+
+<p><b>osmond</b></p>
+</td>
+<td width="11%"></td>
+<td width="35%">
+
+<p>Osmond netlist format.</p>
+</td>
+<td width="32%">
+</td>
+<tr valign="top" align="left">
+<td width="11%"></td>
+<td width="8%">
+
+<p><b>pads</b></p>
+</td>
+<td width="11%"></td>
+<td width="35%">
+
+<p>PADS netlist format.</p>
+</td>
+<td width="32%">
+</td>
+</table>
+<!-- INDENTATION -->
+<table width="100%" border=0 rules="none" frame="void"
+       cols="2" cellspacing="0" cellpadding="0">
+<tr valign="top" align="left">
+<td width="10%"></td>
+<td width="89%">
+<p><b>partslist1</b>, <b>partslist2</b>,
+<b>partslist3</b></p></td>
+</table>
+<!-- INDENTATION -->
+<table width="100%" border=0 rules="none" frame="void"
+       cols="2" cellspacing="0" cellpadding="0">
+<tr valign="top" align="left">
+<td width="23%"></td>
+<td width="76%">
+<p>Bill of materials generation backends (alternatives to
+<b>bom</b> and <b>bom2</b>).</p>
+</td>
+</table>
+<!-- TABS -->
+<table width="100%" border=0 rules="none" frame="void"
+       cols="4" cellspacing="0" cellpadding="0">
+<tr valign="top" align="left">
+<td width="11%"></td>
+<td width="10%">
+
+<p><b>PCB</b></p>
+</td>
+<td width="1%"></td>
+<td width="76%">
+
+<p><b>pcb</b>(1) netlist format.</p>
+</td>
+<tr valign="top" align="left">
+<td width="11%"></td>
+<td width="10%">
+
+<p><b>pcbpins</b></p>
+</td>
+<td width="1%"></td>
+<td width="76%">
+
+<p>Generates a <b>pcb</b>(1) action file for forward
+annotating pin/pad names from schematic to layout.</p>
+</td>
+</table>
+<!-- INDENTATION -->
+<table width="100%" border=0 rules="none" frame="void"
+       cols="2" cellspacing="0" cellpadding="0">
+<tr valign="top" align="left">
+<td width="10%"></td>
+<td width="89%">
+<p><b>protelII</b></p></td>
+</table>
+<!-- INDENTATION -->
+<table width="100%" border=0 rules="none" frame="void"
+       cols="2" cellspacing="0" cellpadding="0">
+<tr valign="top" align="left">
+<td width="23%"></td>
+<td width="76%">
+<p>Protel II netlist format.</p>
+</td>
+</table>
+<!-- TABS -->
+<table width="100%" border=0 rules="none" frame="void"
+       cols="5" cellspacing="0" cellpadding="0">
+<tr valign="top" align="left">
+<td width="11%"></td>
+<td width="7%">
+
+<p><b>redac</b></p>
+</td>
+<td width="14%"></td>
+<td width="39%">
+
+<p>RACAL-REDAC netlist format.</p>
+</td>
+<td width="26%">
+</td>
+</table>
+<!-- INDENTATION -->
+<table width="100%" border=0 rules="none" frame="void"
+       cols="2" cellspacing="0" cellpadding="0">
+<tr valign="top" align="left">
+<td width="10%"></td>
+<td width="89%">
+<p><b>spice</b>, <b>spice-sdb</b></p></td>
+</table>
+<!-- INDENTATION -->
+<table width="100%" border=0 rules="none" frame="void"
+       cols="2" cellspacing="0" cellpadding="0">
+<tr valign="top" align="left">
+<td width="23%"></td>
+<td width="76%">
+<p>SPICE-compatible netlist format (<b>spice-sdb</b> is
+recommended). Suitable for use with <b>gnucap</b>(1).</p>
+</td>
+</table>
+<!-- TABS -->
+<table width="100%" border=0 rules="none" frame="void"
+       cols="4" cellspacing="0" cellpadding="0">
+<tr valign="top" align="left">
+<td width="11%"></td>
+<td width="10%">
+
+<p><b>switcap</b></p>
+</td>
+<td width="10%"></td>
+<td width="67%">
+
+<p>SWITCAP switched capacitor simulator netlist format.</p>
+</td>
+<tr valign="top" align="left">
+<td width="11%"></td>
+<td width="10%">
+
+<p><b>systemc</b></p>
+</td>
+<td width="10%"></td>
+<td width="67%">
+
+<p>Structural SystemC code generation.</p>
+</td>
+<tr valign="top" align="left">
+<td width="11%"></td>
+<td width="10%">
+
+<p><b>tango</b></p>
+</td>
+<td width="10%"></td>
+<td width="67%">
+
+<p>Tango netlist format.</p>
+</td>
+<tr valign="top" align="left">
+<td width="11%"></td>
+<td width="10%">
+
+<p><b>vams</b></p>
+</td>
+<td width="10%"></td>
+<td width="67%">
+
+<p>VHDL-AMS code generation.</p>
+</td>
+<tr valign="top" align="left">
+<td width="11%"></td>
+<td width="10%">
+
+<p><b>verilog</b></p>
+</td>
+<td width="10%"></td>
+<td width="67%">
+
+<p>Verilog code generation.</p>
+</td>
+<tr valign="top" align="left">
+<td width="11%"></td>
+<td width="10%">
+
+<p><b>vhdl</b></p>
+</td>
+<td width="10%"></td>
+<td width="67%">
+
+<p>VHDL code generation.</p>
+</td>
+<tr valign="top" align="left">
+<td width="11%"></td>
+<td width="10%">
+
+<p><b>vipec</b></p>
+</td>
+<td width="10%"></td>
+<td width="67%">
+
+<p>ViPEC Network Analyser netlist format.</p>
+</td>
+</table>
+<a name="EXAMPLES"></a>
+<h2>EXAMPLES</h2>
+<!-- INDENTATION -->
+<table width="100%" border=0 rules="none" frame="void"
+       cols="2" cellspacing="0" cellpadding="0">
+<tr valign="top" align="left">
+<td width="10%"></td>
+<td width="89%">
+<p>These examples assume that you have a
+&lsquo;stack_1.sch&rsquo; in the current directory.</p>
+<!-- INDENTATION -->
+<p><b>gnetlist</b> requires that at least one schematic to
+be specified on the command line:</p>
+</td>
+</table>
+<!-- TABS -->
+<table width="100%" border=0 rules="none" frame="void"
+       cols="3" cellspacing="0" cellpadding="0">
+<tr valign="top" align="left">
+<td width="17%"></td>
+<td width="7%">
+
+<p>./gnetlist stack_1.sch</p>
+</td>
+<td width="74%">
+</td>
+</table>
+<!-- INDENTATION -->
+<table width="100%" border=0 rules="none" frame="void"
+       cols="2" cellspacing="0" cellpadding="0">
+<tr valign="top" align="left">
+<td width="10%"></td>
+<td width="89%">
+<p>This is not very useful since it does not direct
+<b>gnetlist</b> to do<br>
+anything.</p>
+<!-- INDENTATION -->
+<p>Specify a backend name with &lsquo;&minus;g&rsquo; to get
+<b>gnetlist</b> to output a<br>
+netlist:</p>
+</td>
+</table>
+<!-- TABS -->
+<table width="100%" border=0 rules="none" frame="void"
+       cols="3" cellspacing="0" cellpadding="0">
+<tr valign="top" align="left">
+<td width="17%"></td>
+<td width="7%">
+
+<p>./gnetlist &minus;g geda stack_1.sch</p>
+</td>
+<td width="74%">
+</td>
+</table>
+<!-- INDENTATION -->
+<table width="100%" border=0 rules="none" frame="void"
+       cols="2" cellspacing="0" cellpadding="0">
+<tr valign="top" align="left">
+<td width="10%"></td>
+<td width="89%">
+<p>The netlist output will be written to a file called
+&lsquo;output.net&rsquo;<br>
+in the current working directory.</p>
+<!-- INDENTATION -->
+<p>You can specify the output filename by using the
+&lsquo;&minus;o&rsquo; option:</p>
+</td>
+</table>
+<!-- TABS -->
+<table width="100%" border=0 rules="none" frame="void"
+       cols="3" cellspacing="0" cellpadding="0">
+<tr valign="top" align="left">
+<td width="17%"></td>
+<td width="7%">
+
+<p>./gnetlist &minus;g geda stack_1.sch &minus;o
+/tmp/stack.netlist</p>
+</td>
+<td width="74%">
+</td>
+</table>
+<!-- INDENTATION -->
+<table width="100%" border=0 rules="none" frame="void"
+       cols="2" cellspacing="0" cellpadding="0">
+<tr valign="top" align="left">
+<td width="10%"></td>
+<td width="89%">
+<p>Output will now be directed to
+&lsquo;/tmp/stack.netlist&rsquo;.</p>
+<!-- INDENTATION -->
+<p>You could run (for example) the &lsquo;spice-sdb&rsquo;
+backend against the<br>
+schematic if you specified &lsquo;&minus;g spice-sdb&rsquo;,
+or you could generate a<br>
+bill of materials for the schematic using &lsquo;&minus;g
+partslist1&rsquo;.</p>
+<!-- INDENTATION -->
+<p>To obtain a Scheme prompt to run Scheme expressions
+directly, you can<br>
+use the &lsquo;&minus;i&rsquo; option.</p>
+</td>
+</table>
+<!-- TABS -->
+<table width="100%" border=0 rules="none" frame="void"
+       cols="3" cellspacing="0" cellpadding="0">
+<tr valign="top" align="left">
+<td width="17%"></td>
+<td width="7%">
+
+<p>./gnetlist &minus;i stack_1.sch</p>
+</td>
+<td width="74%">
+</td>
+</table>
+<!-- INDENTATION -->
+<table width="100%" border=0 rules="none" frame="void"
+       cols="2" cellspacing="0" cellpadding="0">
+<tr valign="top" align="left">
+<td width="10%"></td>
+<td width="89%">
+<p><b>gnetlist</b> will load &lsquo;stack_1.sh&rsquo;, and
+then enter an interactive<br>
+Scheme read-eval-print loop.</p>
+</td>
+</table>
+<a name="ENVIRONMENT"></a>
+<h2>ENVIRONMENT</h2>
+<!-- INDENTATION -->
+<table width="100%" border=0 rules="none" frame="void"
+       cols="2" cellspacing="0" cellpadding="0">
+<tr valign="top" align="left">
+<td width="10%"></td>
+<td width="89%">
+<p><b>GEDADATA</b></p></td>
+</table>
+<!-- INDENTATION -->
+<table width="100%" border=0 rules="none" frame="void"
+       cols="2" cellspacing="0" cellpadding="0">
+<tr valign="top" align="left">
+<td width="23%"></td>
+<td width="76%">
+<p>specifies the search directory for Scheme and rc files.
+The default is &lsquo;${prefix}/share/gEDA&rsquo;.</p>
+</td>
+</table>
+<!-- INDENTATION -->
+<table width="100%" border=0 rules="none" frame="void"
+       cols="2" cellspacing="0" cellpadding="0">
+<tr valign="top" align="left">
+<td width="10%"></td>
+<td width="89%">
+<p><b>GEDADATARC</b></p></td>
+</table>
+<!-- INDENTATION -->
+<table width="100%" border=0 rules="none" frame="void"
+       cols="2" cellspacing="0" cellpadding="0">
+<tr valign="top" align="left">
+<td width="23%"></td>
+<td width="76%">
+<p>specifies the search directory for rc files. The default
+is &lsquo;$GEDADATA&rsquo;.</p>
+</td>
+</table>
+<a name="AUTHORS"></a>
+<h2>AUTHORS</h2>
+<!-- INDENTATION -->
+<table width="100%" border=0 rules="none" frame="void"
+       cols="2" cellspacing="0" cellpadding="0">
+<tr valign="top" align="left">
+<td width="10%"></td>
+<td width="89%">
+<p>See the &lsquo;AUTHORS&rsquo; file included with this
+program.</p>
+</td>
+</table>
+<a name="COPYRIGHT"></a>
+<h2>COPYRIGHT</h2>
+<!-- INDENTATION -->
+<table width="100%" border=0 rules="none" frame="void"
+       cols="2" cellspacing="0" cellpadding="0">
+<tr valign="top" align="left">
+<td width="10%"></td>
+<td width="89%">
+<pre>Copyright &copy; 1999-2011 gEDA Contributors.  License GPLv2+: GNU GPL
+version 2 or later.  Please see the &lsquo;COPYING&rsquo; file included with this
+program for full details.
+
+This is free software: you are free to change and redistribute it.
+There is NO WARRANTY, to the extent permitted by law.
+
+</pre>
+</td>
+</table>
+<a name="SEE ALSO"></a>
+<h2>SEE ALSO</h2>
+<!-- INDENTATION -->
+
+<table width="100%" border=0 rules="none" frame="void"
+       cols="2" cellspacing="0" cellpadding="0">
+<tr valign="top" align="left">
+<td width="10%"></td>
+<td width="89%">
+<p><b>gschem</b>(1), <b>gsymcheck</b>(1), <b>pcb</b>(1),
+<b>gnucap</b>(1)</p>
+</td>
+</table>
+<hr>
+</body>
+</html>

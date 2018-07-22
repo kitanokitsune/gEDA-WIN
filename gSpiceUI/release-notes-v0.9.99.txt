@@ -1,0 +1,73 @@
+There is one new feature in this release : the sweep sources can now be
+synchronized. If a sweep source is selected in one analysis page, where
+possible the same source will appear in other analysis pages. This feature may
+be enabled or disabled via the Preferences dialogue. Otherwise this release
+mainly contains bug fixes.
+
+
+There are two bugs which I'd be particularly interested to see resolved. If
+anyone has comments re the following I'd be interested to hear them :
+
+ - It has been reported that "gSpiceUI opens new FIFOs every time gWave, etc.
+   are started but never closes them. In a long session the user eventually
+   runs out of file handles". In PrcBase::bLogOutput( ) instead of repeatedly
+   getting the input and error streams, get input stream pointers once. I've
+   not personally encountered this bug but this might fix it.
+ - Locales.
+
+
+I'm still trying to focus mainly on fixing bugs so that version 1.0.00 is as
+stable as possible, when it's released.
+
+The following is an extract from the ChangeLog file associated with this release :
+
+ * BugFix : The Component class wasn't recognizing sub-circuits,
+            transmission-line or logic devices correctly.
+ * Minor mods. so that all test utilities compile.
+ * Have defined the following types in TypeDefs.hpp : ulong, uint and uchar.
+ * It has been reported that "gSpiceUI opens new FIFOs every time gWave, etc.
+   are started but never closes them. In a long session the user eventually
+   runs out of file handles". In PrcBase::bLogOutput( ) instead of repeatedly
+   getting the input and error streams, get input stream pointers once. I've
+   not personally encountered this bug but this might fix it.
+ * The sweep sources can now be synchronized. If a sweep source is selected in
+   one analysis page, where possible the same source will appear in other
+   analysis pages. This feature may be enabled or disabled via the Preferences
+   dialogue.
+ * In the class ConvertType replaced all calls to pow10f( ) with calls to
+   pow( ) owing to problems compiling the code on OSX.
+ * Simplified FrmMain::OnOpen( ), FrmMain::OnImport( ) and FrmMain::OnReload( )
+   so that most of the work is done by the class FileTasks.
+ * Simplified FileTasks::bReload( ) so that it calls FileTasks::bOpen( ) and
+   FileTasks::bImport( ) instead of duplicating code.
+ * In the class PrcGNetList remove the functions that aren't really required :
+   bSetGNetList( ), rofnGetGNetList( ), szGetGuileProcCnt( ) and
+   szGetSchemFileCnt( ).
+ * BugFix : Sort out bugs in the mechanism for loading schematic file/s via the
+            command line.
+ * BugFix : Sort out bugs in the mechanism for loading a netlist file via the
+            command line.
+ * Added m_iExitCode attribute to PrcBase class to contain the exit code
+   returned when the process was last run.
+ * Re-organise contents of lib/ directory.
+ * Implement function CmdLinePcr::bCheckFiles( ) for basic file name testing.
+ * Implement function CmdLinePcr::Print( ) for debugging.
+ * BugFix : If errors are encountered by gnetlist the Console tab is displayed
+            instead of the NetList tab.
+ * BugFix : In dialogs pressing the Clear or Defaults buttons can now reversed
+            by pressing the Cancel button.
+ * The function PnlValue::bSetValue( wxString, bool ) can now set the units
+   with a value of 0.0 eg. "0.0msec".
+ * BugFix : In FileTasks::InitNetLstFile( ) simulation data was transferred
+            from FrmMain::m_oSimnGcp to FrmMain::m_oSimnNgs when it had already
+            been transferred from FrmMain::m_oSimnNgs to FrmMain::m_oSimnGcp.
+ * BugFix : In CpntNgIndSrc::bParseValue( ) and CpntNgIndSrc::bFormatValue( )
+            the pulse source function was incorrectly formatted; the pulse
+            width appeared ahead of the fall time.
+ * Super-conductor junction components are now recognized.
+ * The class name AppGSpiceUI has been changed to App_gSpiceUI.
+ * BugFix : LC_NUMERIC locale problem reported by Werner H. and Viktor N. Have
+            applied a patch provide by Werner : moved the locale call from the
+            AppGSpiceUI constructor to AppGSpiceUI::OnInit( ).
+ * Various minor mods. and bug fixes.
+ * Documentation updates.

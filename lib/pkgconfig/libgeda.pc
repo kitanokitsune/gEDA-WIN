@@ -1,0 +1,15 @@
+prefix=/home/dj/nightly-geda/build/result
+exec_prefix=${prefix}
+libdir=${exec_prefix}/lib
+includedir=${prefix}/include
+gedarcdir=${prefix}/share/gEDA
+gedadatadir=${prefix}/share/gEDA
+
+Name: libgeda
+Description: gEDA/gaf's core library 
+Requires: glib-2.0 gdk-pixbuf-2.0 gio-2.0 guile-1.8
+Requires.private:
+Version: 20121203
+Libs: -L${libdir} -lgeda
+Libs.private:
+Cflags: -I${includedir}

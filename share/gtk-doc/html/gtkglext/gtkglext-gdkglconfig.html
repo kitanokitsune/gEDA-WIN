@@ -1,0 +1,799 @@
+<html>
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=US-ASCII">
+<title>Frame Buffer Configuration</title>
+<meta name="generator" content="DocBook XSL Stylesheets V1.65.1">
+<link rel="home" href="index.html" title="GtkGLExt Reference Manual">
+<link rel="up" href="GdkGLExt-API.html" title="Part&#160;II.&#160;GdkGLExt API Reference">
+<link rel="previous" href="gtkglext-gdkglquery.html" title="Query">
+<link rel="next" href="gtkglext-gdkglcontext.html" title="Rendering Context">
+<meta name="generator" content="GTK-Doc V1.4 (XML mode)">
+<link rel="stylesheet" href="style.css" type="text/css">
+<link rel="part" href="Overview.html" title="Part&#160;I.&#160;GtkGLExt Overview">
+<link rel="part" href="GdkGLExt-API.html" title="Part&#160;II.&#160;GdkGLExt API Reference">
+<link rel="part" href="GtkGLExt-API.html" title="Part&#160;III.&#160;GtkGLExt API Reference">
+</head>
+<body bgcolor="white" text="black" link="#0000FF" vlink="#840084" alink="#0000FF">
+<table class="navigation" width="100%" summary="Navigation header" cellpadding="2" cellspacing="2"><tr valign="middle">
+<td><a accesskey="p" href="gtkglext-gdkglquery.html"><img src="left.png" width="24" height="24" border="0" alt="Prev"></a></td>
+<td><a accesskey="u" href="GdkGLExt-API.html"><img src="up.png" width="24" height="24" border="0" alt="Up"></a></td>
+<td><a accesskey="h" href="index.html"><img src="home.png" width="24" height="24" border="0" alt="Home"></a></td>
+<th width="100%" align="center">GtkGLExt Reference Manual</th>
+<td><a accesskey="n" href="gtkglext-gdkglcontext.html"><img src="right.png" width="24" height="24" border="0" alt="Next"></a></td>
+</tr></table>
+<div class="refentry" lang="en">
+<a name="gtkglext-gdkglconfig"></a><div class="titlepage">
+<div></div>
+<div></div>
+</div>
+<div class="refnamediv"><table width="100%"><tr>
+<td valign="top">
+<h2><span class="refentrytitle">Frame Buffer Configuration</span></h2>
+<p>Frame Buffer Configuration &#8212; OpenGL frame buffer configuration object</p>
+</td>
+<td valign="top" align="right"></td>
+</tr></table></div>
+<div class="refsynopsisdiv">
+<h2>Synopsis</h2>
+<a name="GdkGLConfig"></a><pre class="synopsis">
+
+#include &lt;gdk/gdkgl.h&gt;
+
+
+enum        <a href="gtkglext-gdkglconfig.html#GdkGLConfigMode">GdkGLConfigMode</a>;
+            <a href="gtkglext-gdkglconfig.html#GdkGLConfig-struct">GdkGLConfig</a>;
+<a href="gtkglext-gdkglconfig.html#GdkGLConfig">GdkGLConfig</a>* <a href="gtkglext-gdkglconfig.html#gdk-gl-config-new">gdk_gl_config_new</a>              (const int *attrib_list);
+<a href="gtkglext-gdkglconfig.html#GdkGLConfig">GdkGLConfig</a>* <a href="gtkglext-gdkglconfig.html#gdk-gl-config-new-for-screen">gdk_gl_config_new_for_screen</a>   (<a
+href="/usr/share/gtk-doc/html/gdk/GdkScreen.html"
+>GdkScreen</a> *screen,
+                                             const int *attrib_list);
+<a href="gtkglext-gdkglconfig.html#GdkGLConfig">GdkGLConfig</a>* <a href="gtkglext-gdkglconfig.html#gdk-gl-config-new-by-mode">gdk_gl_config_new_by_mode</a>      (<a href="gtkglext-gdkglconfig.html#GdkGLConfigMode">GdkGLConfigMode</a> mode);
+<a href="gtkglext-gdkglconfig.html#GdkGLConfig">GdkGLConfig</a>* <a href="gtkglext-gdkglconfig.html#gdk-gl-config-new-by-mode-for-screen">gdk_gl_config_new_by_mode_for_screen</a>
+                                            (<a
+href="/usr/share/gtk-doc/html/gdk/GdkScreen.html"
+>GdkScreen</a> *screen,
+                                             <a href="gtkglext-gdkglconfig.html#GdkGLConfigMode">GdkGLConfigMode</a> mode);
+<a
+href="/usr/share/gtk-doc/html/gdk/GdkScreen.html"
+>GdkScreen</a>*  <a href="gtkglext-gdkglconfig.html#gdk-gl-config-get-screen">gdk_gl_config_get_screen</a>        (<a href="gtkglext-gdkglconfig.html#GdkGLConfig">GdkGLConfig</a> *glconfig);
+<a
+href="/usr/share/gtk-doc/html/glib/glib-Basic-Types.html#gboolean"
+>gboolean</a>    <a href="gtkglext-gdkglconfig.html#gdk-gl-config-get-attrib">gdk_gl_config_get_attrib</a>        (<a href="gtkglext-gdkglconfig.html#GdkGLConfig">GdkGLConfig</a> *glconfig,
+                                             int attribute,
+                                             int *value);
+<a
+href="/usr/share/gtk-doc/html/gdk/gdk-Colormaps-and-Colors.html#GdkColormap"
+>GdkColormap</a>* <a href="gtkglext-gdkglconfig.html#gdk-gl-config-get-colormap">gdk_gl_config_get_colormap</a>     (<a href="gtkglext-gdkglconfig.html#GdkGLConfig">GdkGLConfig</a> *glconfig);
+<a
+href="/usr/share/gtk-doc/html/gdk/gdk-Visuals.html#GdkVisual"
+>GdkVisual</a>*  <a href="gtkglext-gdkglconfig.html#gdk-gl-config-get-visual">gdk_gl_config_get_visual</a>        (<a href="gtkglext-gdkglconfig.html#GdkGLConfig">GdkGLConfig</a> *glconfig);
+<a
+href="/usr/share/gtk-doc/html/glib/glib-Basic-Types.html#gint"
+>gint</a>        <a href="gtkglext-gdkglconfig.html#gdk-gl-config-get-depth">gdk_gl_config_get_depth</a>         (<a href="gtkglext-gdkglconfig.html#GdkGLConfig">GdkGLConfig</a> *glconfig);
+<a
+href="/usr/share/gtk-doc/html/glib/glib-Basic-Types.html#gint"
+>gint</a>        <a href="gtkglext-gdkglconfig.html#gdk-gl-config-get-layer-plane">gdk_gl_config_get_layer_plane</a>   (<a href="gtkglext-gdkglconfig.html#GdkGLConfig">GdkGLConfig</a> *glconfig);
+<a
+href="/usr/share/gtk-doc/html/glib/glib-Basic-Types.html#gint"
+>gint</a>        <a href="gtkglext-gdkglconfig.html#gdk-gl-config-get-n-aux-buffers">gdk_gl_config_get_n_aux_buffers</a> (<a href="gtkglext-gdkglconfig.html#GdkGLConfig">GdkGLConfig</a> *glconfig);
+<a
+href="/usr/share/gtk-doc/html/glib/glib-Basic-Types.html#gint"
+>gint</a>        <a href="gtkglext-gdkglconfig.html#gdk-gl-config-get-n-sample-buffers">gdk_gl_config_get_n_sample_buffers</a>
+                                            (<a href="gtkglext-gdkglconfig.html#GdkGLConfig">GdkGLConfig</a> *glconfig);
+<a
+href="/usr/share/gtk-doc/html/glib/glib-Basic-Types.html#gboolean"
+>gboolean</a>    <a href="gtkglext-gdkglconfig.html#gdk-gl-config-is-rgba">gdk_gl_config_is_rgba</a>           (<a href="gtkglext-gdkglconfig.html#GdkGLConfig">GdkGLConfig</a> *glconfig);
+<a
+href="/usr/share/gtk-doc/html/glib/glib-Basic-Types.html#gboolean"
+>gboolean</a>    <a href="gtkglext-gdkglconfig.html#gdk-gl-config-is-double-buffered">gdk_gl_config_is_double_buffered</a>
+                                            (<a href="gtkglext-gdkglconfig.html#GdkGLConfig">GdkGLConfig</a> *glconfig);
+<a
+href="/usr/share/gtk-doc/html/glib/glib-Basic-Types.html#gboolean"
+>gboolean</a>    <a href="gtkglext-gdkglconfig.html#gdk-gl-config-is-stereo">gdk_gl_config_is_stereo</a>         (<a href="gtkglext-gdkglconfig.html#GdkGLConfig">GdkGLConfig</a> *glconfig);
+<a
+href="/usr/share/gtk-doc/html/glib/glib-Basic-Types.html#gboolean"
+>gboolean</a>    <a href="gtkglext-gdkglconfig.html#gdk-gl-config-has-alpha">gdk_gl_config_has_alpha</a>         (<a href="gtkglext-gdkglconfig.html#GdkGLConfig">GdkGLConfig</a> *glconfig);
+<a
+href="/usr/share/gtk-doc/html/glib/glib-Basic-Types.html#gboolean"
+>gboolean</a>    <a href="gtkglext-gdkglconfig.html#gdk-gl-config-has-depth-buffer">gdk_gl_config_has_depth_buffer</a>  (<a href="gtkglext-gdkglconfig.html#GdkGLConfig">GdkGLConfig</a> *glconfig);
+<a
+href="/usr/share/gtk-doc/html/glib/glib-Basic-Types.html#gboolean"
+>gboolean</a>    <a href="gtkglext-gdkglconfig.html#gdk-gl-config-has-stencil-buffer">gdk_gl_config_has_stencil_buffer</a>
+                                            (<a href="gtkglext-gdkglconfig.html#GdkGLConfig">GdkGLConfig</a> *glconfig);
+<a
+href="/usr/share/gtk-doc/html/glib/glib-Basic-Types.html#gboolean"
+>gboolean</a>    <a href="gtkglext-gdkglconfig.html#gdk-gl-config-has-accum-buffer">gdk_gl_config_has_accum_buffer</a>  (<a href="gtkglext-gdkglconfig.html#GdkGLConfig">GdkGLConfig</a> *glconfig);
+
+
+</pre>
+</div>
+<div class="refsect1" lang="en">
+<a name="id2501167"></a><h2>Object Hierarchy</h2>
+<pre class="synopsis">
+
+  <a
+href="/usr/share/gtk-doc/html/gobject/gobject-The-Base-Object-Type.html#GObject"
+>GObject</a>
+   +----GdkGLConfig
+</pre>
+</div>
+<div class="refsect1" lang="en">
+<a name="id2501188"></a><h2>Description</h2>
+<p>
+
+</p>
+</div>
+<div class="refsect1" lang="en">
+<a name="id2501198"></a><h2>Details</h2>
+<div class="refsect2" lang="en">
+<a name="id2501203"></a><h3>
+<a name="GdkGLConfigMode"></a>enum GdkGLConfigMode</h3>
+<a class="indexterm" name="id2501214"></a><pre class="programlisting">typedef enum
+{
+  GDK_GL_MODE_RGB         = 0,
+  GDK_GL_MODE_RGBA        = 0,       /* same as RGB */
+  GDK_GL_MODE_INDEX       = 1 &lt;&lt; 0,
+  GDK_GL_MODE_SINGLE      = 0,
+  GDK_GL_MODE_DOUBLE      = 1 &lt;&lt; 1,
+  GDK_GL_MODE_STEREO      = 1 &lt;&lt; 2,
+  GDK_GL_MODE_ALPHA       = 1 &lt;&lt; 3,
+  GDK_GL_MODE_DEPTH       = 1 &lt;&lt; 4,
+  GDK_GL_MODE_STENCIL     = 1 &lt;&lt; 5,
+  GDK_GL_MODE_ACCUM       = 1 &lt;&lt; 6,
+  GDK_GL_MODE_MULTISAMPLE = 1 &lt;&lt; 7   /* not supported yet */
+} GdkGLConfigMode;
+</pre>
+<p>
+
+</p>
+</div>
+<hr>
+<div class="refsect2" lang="en">
+<a name="id2501238"></a><h3>
+<a name="GdkGLConfig-struct"></a>GdkGLConfig</h3>
+<a class="indexterm" name="id2501249"></a><pre class="programlisting">typedef struct _GdkGLConfig GdkGLConfig;</pre>
+<p>
+
+</p>
+</div>
+<hr>
+<div class="refsect2" lang="en">
+<a name="id2501264"></a><h3>
+<a name="gdk-gl-config-new"></a>gdk_gl_config_new ()</h3>
+<a class="indexterm" name="id2501274"></a><pre class="programlisting"><a href="gtkglext-gdkglconfig.html#GdkGLConfig">GdkGLConfig</a>* gdk_gl_config_new              (const int *attrib_list);</pre>
+<p>
+Returns an OpenGL frame buffer configuration that match the specified
+attributes.
+</p>
+<p>
+attrib_list is a int array that contains the attribute/value pairs.
+Available attributes are: 
+GDK_GL_USE_GL, GDK_GL_BUFFER_SIZE, GDK_GL_LEVEL, GDK_GL_RGBA,
+GDK_GL_DOUBLEBUFFER, GDK_GL_STEREO, GDK_GL_AUX_BUFFERS,
+GDK_GL_RED_SIZE, GDK_GL_GREEN_SIZE, GDK_GL_BLUE_SIZE, GDK_GL_ALPHA_SIZE,
+GDK_GL_DEPTH_SIZE, GDK_GL_STENCIL_SIZE, GDK_GL_ACCUM_RED_SIZE,
+GDK_GL_ACCUM_GREEN_SIZE, GDK_GL_ACCUM_BLUE_SIZE, GDK_GL_ACCUM_ALPHA_SIZE.</p>
+<p>
+
+</p>
+<div class="variablelist"><table border="0">
+<col align="left" valign="top">
+<tbody>
+<tr>
+<td>
+<span class="term"><i class="parameter"><tt>attrib_list</tt></i>&#160;:</span></td>
+<td> a list of attribute/value pairs. The last attribute must
+              be GDK_GL_ATTRIB_LIST_NONE.
+</td>
+</tr>
+<tr>
+<td>
+<span class="term"><span class="emphasis"><em>Returns</em></span>&#160;:</span></td>
+<td> the new <a href="gtkglext-gdkglconfig.html#GdkGLConfig"><span class="type">GdkGLConfig</span></a>.
+</td>
+</tr>
+</tbody>
+</table></div>
+</div>
+<hr>
+<div class="refsect2" lang="en">
+<a name="id2501354"></a><h3>
+<a name="gdk-gl-config-new-for-screen"></a>gdk_gl_config_new_for_screen ()</h3>
+<a class="indexterm" name="id2501365"></a><pre class="programlisting"><a href="gtkglext-gdkglconfig.html#GdkGLConfig">GdkGLConfig</a>* gdk_gl_config_new_for_screen   (<a
+href="/usr/share/gtk-doc/html/gdk/GdkScreen.html"
+>GdkScreen</a> *screen,
+                                             const int *attrib_list);</pre>
+<p>
+Returns an OpenGL frame buffer configuration that match the specified
+attributes.</p>
+<p>
+
+</p>
+<div class="variablelist"><table border="0">
+<col align="left" valign="top">
+<tbody>
+<tr>
+<td>
+<span class="term"><i class="parameter"><tt>screen</tt></i>&#160;:</span></td>
+<td> target screen.
+</td>
+</tr>
+<tr>
+<td>
+<span class="term"><i class="parameter"><tt>attrib_list</tt></i>&#160;:</span></td>
+<td> a list of attribute/value pairs. The last attribute must
+              be GDK_GL_ATTRIB_LIST_NONE.
+</td>
+</tr>
+<tr>
+<td>
+<span class="term"><span class="emphasis"><em>Returns</em></span>&#160;:</span></td>
+<td> the new <a href="gtkglext-gdkglconfig.html#GdkGLConfig"><span class="type">GdkGLConfig</span></a>.
+</td>
+</tr>
+</tbody>
+</table></div>
+</div>
+<hr>
+<div class="refsect2" lang="en">
+<a name="id2501457"></a><h3>
+<a name="gdk-gl-config-new-by-mode"></a>gdk_gl_config_new_by_mode ()</h3>
+<a class="indexterm" name="id2501469"></a><pre class="programlisting"><a href="gtkglext-gdkglconfig.html#GdkGLConfig">GdkGLConfig</a>* gdk_gl_config_new_by_mode      (<a href="gtkglext-gdkglconfig.html#GdkGLConfigMode">GdkGLConfigMode</a> mode);</pre>
+<p>
+Returns an OpenGL frame buffer configuration that match the specified
+display mode.</p>
+<p>
+
+</p>
+<div class="variablelist"><table border="0">
+<col align="left" valign="top">
+<tbody>
+<tr>
+<td>
+<span class="term"><i class="parameter"><tt>mode</tt></i>&#160;:</span></td>
+<td> display mode bit mask.
+</td>
+</tr>
+<tr>
+<td>
+<span class="term"><span class="emphasis"><em>Returns</em></span>&#160;:</span></td>
+<td> the new <a href="gtkglext-gdkglconfig.html#GdkGLConfig"><span class="type">GdkGLConfig</span></a>.
+</td>
+</tr>
+</tbody>
+</table></div>
+</div>
+<hr>
+<div class="refsect2" lang="en">
+<a name="id2501538"></a><h3>
+<a name="gdk-gl-config-new-by-mode-for-screen"></a>gdk_gl_config_new_by_mode_for_screen ()</h3>
+<a class="indexterm" name="id2501549"></a><pre class="programlisting"><a href="gtkglext-gdkglconfig.html#GdkGLConfig">GdkGLConfig</a>* gdk_gl_config_new_by_mode_for_screen
+                                            (<a
+href="/usr/share/gtk-doc/html/gdk/GdkScreen.html"
+>GdkScreen</a> *screen,
+                                             <a href="gtkglext-gdkglconfig.html#GdkGLConfigMode">GdkGLConfigMode</a> mode);</pre>
+<p>
+Returns an OpenGL frame buffer configuration that match the specified
+display mode.</p>
+<p>
+
+</p>
+<div class="variablelist"><table border="0">
+<col align="left" valign="top">
+<tbody>
+<tr>
+<td>
+<span class="term"><i class="parameter"><tt>screen</tt></i>&#160;:</span></td>
+<td> target screen.
+</td>
+</tr>
+<tr>
+<td>
+<span class="term"><i class="parameter"><tt>mode</tt></i>&#160;:</span></td>
+<td> display mode bit mask.
+</td>
+</tr>
+<tr>
+<td>
+<span class="term"><span class="emphasis"><em>Returns</em></span>&#160;:</span></td>
+<td> the new <a href="gtkglext-gdkglconfig.html#GdkGLConfig"><span class="type">GdkGLConfig</span></a>.
+</td>
+</tr>
+</tbody>
+</table></div>
+</div>
+<hr>
+<div class="refsect2" lang="en">
+<a name="id2501642"></a><h3>
+<a name="gdk-gl-config-get-screen"></a>gdk_gl_config_get_screen ()</h3>
+<a class="indexterm" name="id2501652"></a><pre class="programlisting"><a
+href="/usr/share/gtk-doc/html/gdk/GdkScreen.html"
+>GdkScreen</a>*  gdk_gl_config_get_screen        (<a href="gtkglext-gdkglconfig.html#GdkGLConfig">GdkGLConfig</a> *glconfig);</pre>
+<p>
+Gets <a
+href="/usr/share/gtk-doc/html/gdk/GdkScreen.html"
+><span class="type">GdkScreen</span></a>.</p>
+<p>
+</p>
+<div class="variablelist"><table border="0">
+<col align="left" valign="top">
+<tbody>
+<tr>
+<td>
+<span class="term"><i class="parameter"><tt>glconfig</tt></i>&#160;:</span></td>
+<td> a <a href="gtkglext-gdkglconfig.html#GdkGLConfig"><span class="type">GdkGLConfig</span></a>.
+</td>
+</tr>
+<tr>
+<td>
+<span class="term"><span class="emphasis"><em>Returns</em></span>&#160;:</span></td>
+<td> the <a
+href="/usr/share/gtk-doc/html/gdk/GdkScreen.html"
+><span class="type">GdkScreen</span></a>.
+</td>
+</tr>
+</tbody>
+</table></div>
+</div>
+<hr>
+<div class="refsect2" lang="en">
+<a name="id2501735"></a><h3>
+<a name="gdk-gl-config-get-attrib"></a>gdk_gl_config_get_attrib ()</h3>
+<a class="indexterm" name="id2501746"></a><pre class="programlisting"><a
+href="/usr/share/gtk-doc/html/glib/glib-Basic-Types.html#gboolean"
+>gboolean</a>    gdk_gl_config_get_attrib        (<a href="gtkglext-gdkglconfig.html#GdkGLConfig">GdkGLConfig</a> *glconfig,
+                                             int attribute,
+                                             int *value);</pre>
+<p>
+Gets information about a OpenGL frame buffer configuration.</p>
+<p>
+
+</p>
+<div class="variablelist"><table border="0">
+<col align="left" valign="top">
+<tbody>
+<tr>
+<td>
+<span class="term"><i class="parameter"><tt>glconfig</tt></i>&#160;:</span></td>
+<td> a <a href="gtkglext-gdkglconfig.html#GdkGLConfig"><span class="type">GdkGLConfig</span></a>.
+</td>
+</tr>
+<tr>
+<td>
+<span class="term"><i class="parameter"><tt>attribute</tt></i>&#160;:</span></td>
+<td> the attribute to be returned.
+</td>
+</tr>
+<tr>
+<td>
+<span class="term"><i class="parameter"><tt>value</tt></i>&#160;:</span></td>
+<td> returns the requested value.
+</td>
+</tr>
+<tr>
+<td>
+<span class="term"><span class="emphasis"><em>Returns</em></span>&#160;:</span></td>
+<td> TRUE if it succeeded, FALSE otherwise.
+</td>
+</tr>
+</tbody>
+</table></div>
+</div>
+<hr>
+<div class="refsect2" lang="en">
+<a name="id2501858"></a><h3>
+<a name="gdk-gl-config-get-colormap"></a>gdk_gl_config_get_colormap ()</h3>
+<a class="indexterm" name="id2501869"></a><pre class="programlisting"><a
+href="/usr/share/gtk-doc/html/gdk/gdk-Colormaps-and-Colors.html#GdkColormap"
+>GdkColormap</a>* gdk_gl_config_get_colormap     (<a href="gtkglext-gdkglconfig.html#GdkGLConfig">GdkGLConfig</a> *glconfig);</pre>
+<p>
+Gets the <a
+href="/usr/share/gtk-doc/html/gdk/gdk-Colormaps-and-Colors.html#GdkColormap"
+><span class="type">GdkColormap</span></a> that is appropriate for the OpenGL frame buffer
+configuration.</p>
+<p>
+
+</p>
+<div class="variablelist"><table border="0">
+<col align="left" valign="top">
+<tbody>
+<tr>
+<td>
+<span class="term"><i class="parameter"><tt>glconfig</tt></i>&#160;:</span></td>
+<td> a <a href="gtkglext-gdkglconfig.html#GdkGLConfig"><span class="type">GdkGLConfig</span></a>.
+</td>
+</tr>
+<tr>
+<td>
+<span class="term"><span class="emphasis"><em>Returns</em></span>&#160;:</span></td>
+<td> the appropriate <a
+href="/usr/share/gtk-doc/html/gdk/gdk-Colormaps-and-Colors.html#GdkColormap"
+><span class="type">GdkColormap</span></a>.
+</td>
+</tr>
+</tbody>
+</table></div>
+</div>
+<hr>
+<div class="refsect2" lang="en">
+<a name="id2501953"></a><h3>
+<a name="gdk-gl-config-get-visual"></a>gdk_gl_config_get_visual ()</h3>
+<a class="indexterm" name="id2501964"></a><pre class="programlisting"><a
+href="/usr/share/gtk-doc/html/gdk/gdk-Visuals.html#GdkVisual"
+>GdkVisual</a>*  gdk_gl_config_get_visual        (<a href="gtkglext-gdkglconfig.html#GdkGLConfig">GdkGLConfig</a> *glconfig);</pre>
+<p>
+Gets the <a
+href="/usr/share/gtk-doc/html/gdk/gdk-Visuals.html#GdkVisual"
+><span class="type">GdkVisual</span></a> that is appropriate for the OpenGL frame buffer
+configuration.</p>
+<p>
+
+</p>
+<div class="variablelist"><table border="0">
+<col align="left" valign="top">
+<tbody>
+<tr>
+<td>
+<span class="term"><i class="parameter"><tt>glconfig</tt></i>&#160;:</span></td>
+<td> a <a href="gtkglext-gdkglconfig.html#GdkGLConfig"><span class="type">GdkGLConfig</span></a>.
+</td>
+</tr>
+<tr>
+<td>
+<span class="term"><span class="emphasis"><em>Returns</em></span>&#160;:</span></td>
+<td> the appropriate <a
+href="/usr/share/gtk-doc/html/gdk/gdk-Visuals.html#GdkVisual"
+><span class="type">GdkVisual</span></a>.
+</td>
+</tr>
+</tbody>
+</table></div>
+</div>
+<hr>
+<div class="refsect2" lang="en">
+<a name="id2502048"></a><h3>
+<a name="gdk-gl-config-get-depth"></a>gdk_gl_config_get_depth ()</h3>
+<a class="indexterm" name="id2502059"></a><pre class="programlisting"><a
+href="/usr/share/gtk-doc/html/glib/glib-Basic-Types.html#gint"
+>gint</a>        gdk_gl_config_get_depth         (<a href="gtkglext-gdkglconfig.html#GdkGLConfig">GdkGLConfig</a> *glconfig);</pre>
+<p>
+Gets the color depth of the OpenGL-capable visual.</p>
+<p>
+
+</p>
+<div class="variablelist"><table border="0">
+<col align="left" valign="top">
+<tbody>
+<tr>
+<td>
+<span class="term"><i class="parameter"><tt>glconfig</tt></i>&#160;:</span></td>
+<td> a <a href="gtkglext-gdkglconfig.html#GdkGLConfig"><span class="type">GdkGLConfig</span></a>.
+</td>
+</tr>
+<tr>
+<td>
+<span class="term"><span class="emphasis"><em>Returns</em></span>&#160;:</span></td>
+<td> number of bits per pixel
+</td>
+</tr>
+</tbody>
+</table></div>
+</div>
+<hr>
+<div class="refsect2" lang="en">
+<a name="id2502128"></a><h3>
+<a name="gdk-gl-config-get-layer-plane"></a>gdk_gl_config_get_layer_plane ()</h3>
+<a class="indexterm" name="id2502138"></a><pre class="programlisting"><a
+href="/usr/share/gtk-doc/html/glib/glib-Basic-Types.html#gint"
+>gint</a>        gdk_gl_config_get_layer_plane   (<a href="gtkglext-gdkglconfig.html#GdkGLConfig">GdkGLConfig</a> *glconfig);</pre>
+<p>
+Gets the layer plane (level) of the frame buffer.
+Zero is the default frame buffer.
+Positive layer planes correspond to frame buffers that overlay the default
+buffer, and negative layer planes correspond to frame buffers that underlie
+the default frame buffer.</p>
+<p>
+
+</p>
+<div class="variablelist"><table border="0">
+<col align="left" valign="top">
+<tbody>
+<tr>
+<td>
+<span class="term"><i class="parameter"><tt>glconfig</tt></i>&#160;:</span></td>
+<td> a <a href="gtkglext-gdkglconfig.html#GdkGLConfig"><span class="type">GdkGLConfig</span></a>.
+</td>
+</tr>
+<tr>
+<td>
+<span class="term"><span class="emphasis"><em>Returns</em></span>&#160;:</span></td>
+<td> layer plane.
+</td>
+</tr>
+</tbody>
+</table></div>
+</div>
+<hr>
+<div class="refsect2" lang="en">
+<a name="id2502211"></a><h3>
+<a name="gdk-gl-config-get-n-aux-buffers"></a>gdk_gl_config_get_n_aux_buffers ()</h3>
+<a class="indexterm" name="id2502222"></a><pre class="programlisting"><a
+href="/usr/share/gtk-doc/html/glib/glib-Basic-Types.html#gint"
+>gint</a>        gdk_gl_config_get_n_aux_buffers (<a href="gtkglext-gdkglconfig.html#GdkGLConfig">GdkGLConfig</a> *glconfig);</pre>
+<p>
+Gets the number of auxiliary color buffers.</p>
+<p>
+
+</p>
+<div class="variablelist"><table border="0">
+<col align="left" valign="top">
+<tbody>
+<tr>
+<td>
+<span class="term"><i class="parameter"><tt>glconfig</tt></i>&#160;:</span></td>
+<td> a <a href="gtkglext-gdkglconfig.html#GdkGLConfig"><span class="type">GdkGLConfig</span></a>.
+</td>
+</tr>
+<tr>
+<td>
+<span class="term"><span class="emphasis"><em>Returns</em></span>&#160;:</span></td>
+<td> number of auxiliary color buffers.
+</td>
+</tr>
+</tbody>
+</table></div>
+</div>
+<hr>
+<div class="refsect2" lang="en">
+<a name="id2502291"></a><h3>
+<a name="gdk-gl-config-get-n-sample-buffers"></a>gdk_gl_config_get_n_sample_buffers ()</h3>
+<a class="indexterm" name="id2502303"></a><pre class="programlisting"><a
+href="/usr/share/gtk-doc/html/glib/glib-Basic-Types.html#gint"
+>gint</a>        gdk_gl_config_get_n_sample_buffers
+                                            (<a href="gtkglext-gdkglconfig.html#GdkGLConfig">GdkGLConfig</a> *glconfig);</pre>
+<p>
+Gets the number of multisample buffers.</p>
+<p>
+
+</p>
+<div class="variablelist"><table border="0">
+<col align="left" valign="top">
+<tbody>
+<tr>
+<td>
+<span class="term"><i class="parameter"><tt>glconfig</tt></i>&#160;:</span></td>
+<td> a <a href="gtkglext-gdkglconfig.html#GdkGLConfig"><span class="type">GdkGLConfig</span></a>.
+</td>
+</tr>
+<tr>
+<td>
+<span class="term"><span class="emphasis"><em>Returns</em></span>&#160;:</span></td>
+<td> number of multisample buffers.
+</td>
+</tr>
+</tbody>
+</table></div>
+</div>
+<hr>
+<div class="refsect2" lang="en">
+<a name="id2502372"></a><h3>
+<a name="gdk-gl-config-is-rgba"></a>gdk_gl_config_is_rgba ()</h3>
+<a class="indexterm" name="id2502383"></a><pre class="programlisting"><a
+href="/usr/share/gtk-doc/html/glib/glib-Basic-Types.html#gboolean"
+>gboolean</a>    gdk_gl_config_is_rgba           (<a href="gtkglext-gdkglconfig.html#GdkGLConfig">GdkGLConfig</a> *glconfig);</pre>
+<p>
+Returns whether the configured frame buffer is RGBA mode.</p>
+<p>
+
+</p>
+<div class="variablelist"><table border="0">
+<col align="left" valign="top">
+<tbody>
+<tr>
+<td>
+<span class="term"><i class="parameter"><tt>glconfig</tt></i>&#160;:</span></td>
+<td> a <a href="gtkglext-gdkglconfig.html#GdkGLConfig"><span class="type">GdkGLConfig</span></a>.
+</td>
+</tr>
+<tr>
+<td>
+<span class="term"><span class="emphasis"><em>Returns</em></span>&#160;:</span></td>
+<td> TRUE if the configured frame buffer is RGBA mode, FALSE
+              otherwise.
+</td>
+</tr>
+</tbody>
+</table></div>
+</div>
+<hr>
+<div class="refsect2" lang="en">
+<a name="id2502453"></a><h3>
+<a name="gdk-gl-config-is-double-buffered"></a>gdk_gl_config_is_double_buffered ()</h3>
+<a class="indexterm" name="id2502464"></a><pre class="programlisting"><a
+href="/usr/share/gtk-doc/html/glib/glib-Basic-Types.html#gboolean"
+>gboolean</a>    gdk_gl_config_is_double_buffered
+                                            (<a href="gtkglext-gdkglconfig.html#GdkGLConfig">GdkGLConfig</a> *glconfig);</pre>
+<p>
+Returns whether the configuration supports the double-buffered visual.</p>
+<p>
+
+</p>
+<div class="variablelist"><table border="0">
+<col align="left" valign="top">
+<tbody>
+<tr>
+<td>
+<span class="term"><i class="parameter"><tt>glconfig</tt></i>&#160;:</span></td>
+<td> a <a href="gtkglext-gdkglconfig.html#GdkGLConfig"><span class="type">GdkGLConfig</span></a>.
+</td>
+</tr>
+<tr>
+<td>
+<span class="term"><span class="emphasis"><em>Returns</em></span>&#160;:</span></td>
+<td> TRUE if the double-buffered visual is supported, FALSE
+              otherwise.
+</td>
+</tr>
+</tbody>
+</table></div>
+</div>
+<hr>
+<div class="refsect2" lang="en">
+<a name="id2502534"></a><h3>
+<a name="gdk-gl-config-is-stereo"></a>gdk_gl_config_is_stereo ()</h3>
+<a class="indexterm" name="id2502545"></a><pre class="programlisting"><a
+href="/usr/share/gtk-doc/html/glib/glib-Basic-Types.html#gboolean"
+>gboolean</a>    gdk_gl_config_is_stereo         (<a href="gtkglext-gdkglconfig.html#GdkGLConfig">GdkGLConfig</a> *glconfig);</pre>
+<p>
+Returns whether the configuration supports the stereo visual.</p>
+<p>
+
+</p>
+<div class="variablelist"><table border="0">
+<col align="left" valign="top">
+<tbody>
+<tr>
+<td>
+<span class="term"><i class="parameter"><tt>glconfig</tt></i>&#160;:</span></td>
+<td> a <a href="gtkglext-gdkglconfig.html#GdkGLConfig"><span class="type">GdkGLConfig</span></a>.
+</td>
+</tr>
+<tr>
+<td>
+<span class="term"><span class="emphasis"><em>Returns</em></span>&#160;:</span></td>
+<td> TRUE if the stereo visual is supported, FALSE otherwise.
+</td>
+</tr>
+</tbody>
+</table></div>
+</div>
+<hr>
+<div class="refsect2" lang="en">
+<a name="id2502614"></a><h3>
+<a name="gdk-gl-config-has-alpha"></a>gdk_gl_config_has_alpha ()</h3>
+<a class="indexterm" name="id2502625"></a><pre class="programlisting"><a
+href="/usr/share/gtk-doc/html/glib/glib-Basic-Types.html#gboolean"
+>gboolean</a>    gdk_gl_config_has_alpha         (<a href="gtkglext-gdkglconfig.html#GdkGLConfig">GdkGLConfig</a> *glconfig);</pre>
+<p>
+Returns whether the configured color buffer has alpha bits.</p>
+<p>
+
+</p>
+<div class="variablelist"><table border="0">
+<col align="left" valign="top">
+<tbody>
+<tr>
+<td>
+<span class="term"><i class="parameter"><tt>glconfig</tt></i>&#160;:</span></td>
+<td> a <a href="gtkglext-gdkglconfig.html#GdkGLConfig"><span class="type">GdkGLConfig</span></a>.
+</td>
+</tr>
+<tr>
+<td>
+<span class="term"><span class="emphasis"><em>Returns</em></span>&#160;:</span></td>
+<td> TRUE if the color buffer has alpha bits, FALSE otherwise.
+</td>
+</tr>
+</tbody>
+</table></div>
+</div>
+<hr>
+<div class="refsect2" lang="en">
+<a name="id2502694"></a><h3>
+<a name="gdk-gl-config-has-depth-buffer"></a>gdk_gl_config_has_depth_buffer ()</h3>
+<a class="indexterm" name="id2502705"></a><pre class="programlisting"><a
+href="/usr/share/gtk-doc/html/glib/glib-Basic-Types.html#gboolean"
+>gboolean</a>    gdk_gl_config_has_depth_buffer  (<a href="gtkglext-gdkglconfig.html#GdkGLConfig">GdkGLConfig</a> *glconfig);</pre>
+<p>
+Returns whether the configured frame buffer has depth buffer.</p>
+<p>
+
+</p>
+<div class="variablelist"><table border="0">
+<col align="left" valign="top">
+<tbody>
+<tr>
+<td>
+<span class="term"><i class="parameter"><tt>glconfig</tt></i>&#160;:</span></td>
+<td> a <a href="gtkglext-gdkglconfig.html#GdkGLConfig"><span class="type">GdkGLConfig</span></a>.
+</td>
+</tr>
+<tr>
+<td>
+<span class="term"><span class="emphasis"><em>Returns</em></span>&#160;:</span></td>
+<td> TRUE if the frame buffer has depth buffer, FALSE otherwise.
+</td>
+</tr>
+</tbody>
+</table></div>
+</div>
+<hr>
+<div class="refsect2" lang="en">
+<a name="id2502775"></a><h3>
+<a name="gdk-gl-config-has-stencil-buffer"></a>gdk_gl_config_has_stencil_buffer ()</h3>
+<a class="indexterm" name="id2502787"></a><pre class="programlisting"><a
+href="/usr/share/gtk-doc/html/glib/glib-Basic-Types.html#gboolean"
+>gboolean</a>    gdk_gl_config_has_stencil_buffer
+                                            (<a href="gtkglext-gdkglconfig.html#GdkGLConfig">GdkGLConfig</a> *glconfig);</pre>
+<p>
+Returns whether the configured frame buffer has stencil buffer.</p>
+<p>
+
+</p>
+<div class="variablelist"><table border="0">
+<col align="left" valign="top">
+<tbody>
+<tr>
+<td>
+<span class="term"><i class="parameter"><tt>glconfig</tt></i>&#160;:</span></td>
+<td> a <a href="gtkglext-gdkglconfig.html#GdkGLConfig"><span class="type">GdkGLConfig</span></a>.
+</td>
+</tr>
+<tr>
+<td>
+<span class="term"><span class="emphasis"><em>Returns</em></span>&#160;:</span></td>
+<td> TRUE if the frame buffer has stencil buffer, FALSE otherwise.
+</td>
+</tr>
+</tbody>
+</table></div>
+</div>
+<hr>
+<div class="refsect2" lang="en">
+<a name="id2502857"></a><h3>
+<a name="gdk-gl-config-has-accum-buffer"></a>gdk_gl_config_has_accum_buffer ()</h3>
+<a class="indexterm" name="id2502868"></a><pre class="programlisting"><a
+href="/usr/share/gtk-doc/html/glib/glib-Basic-Types.html#gboolean"
+>gboolean</a>    gdk_gl_config_has_accum_buffer  (<a href="gtkglext-gdkglconfig.html#GdkGLConfig">GdkGLConfig</a> *glconfig);</pre>
+<p>
+Returns whether the configured frame buffer has accumulation buffer.</p>
+<p>
+
+</p>
+<div class="variablelist"><table border="0">
+<col align="left" valign="top">
+<tbody>
+<tr>
+<td>
+<span class="term"><i class="parameter"><tt>glconfig</tt></i>&#160;:</span></td>
+<td> a <a href="gtkglext-gdkglconfig.html#GdkGLConfig"><span class="type">GdkGLConfig</span></a>.
+</td>
+</tr>
+<tr>
+<td>
+<span class="term"><span class="emphasis"><em>Returns</em></span>&#160;:</span></td>
+<td> TRUE if the frame buffer has accumulation buffer, FALSE
+              otherwise.
+</td>
+</tr>
+</tbody>
+</table></div>
+</div>
+</div>
+</div>
+<table class="navigation" width="100%" summary="Navigation footer" cellpadding="2" cellspacing="0"><tr valign="middle">
+<td align="left"><a accesskey="p" href="gtkglext-gdkglquery.html"><b>&lt;&lt;&#160;Query</b></a></td>
+<td align="right"><a accesskey="n" href="gtkglext-gdkglcontext.html"><b>Rendering Context&#160;&gt;&gt;</b></a></td>
+</tr></table>
+</body>
+</html>

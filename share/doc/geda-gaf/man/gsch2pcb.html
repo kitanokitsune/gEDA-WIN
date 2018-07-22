@@ -1,0 +1,531 @@
+<!-- Creator     : groff version 1.18.1.4 -->
+<!-- CreationDate: Tue Jan 22 04:00:01 2013 -->
+<html>
+<head>
+<meta name="generator" content="groff -Thtml, see www.gnu.org">
+<meta name="Content-Style" content="text/css">
+<title>gsch2pcb</title>
+</head>
+<body>
+
+<h1 align=center>gsch2pcb</h1>
+<a href="#NAME">NAME</a><br>
+<a href="#SYNOPSIS">SYNOPSIS</a><br>
+<a href="#DESCRIPTION">DESCRIPTION</a><br>
+<a href="#OPTIONS">OPTIONS</a><br>
+<a href="#PROJECT FILES">PROJECT FILES</a><br>
+<a href="#ENVIRONMENT">ENVIRONMENT</a><br>
+<a href="#AUTHORS">AUTHORS</a><br>
+<a href="#COPYRIGHT">COPYRIGHT</a><br>
+<a href="#SEE ALSO">SEE ALSO</a><br>
+
+<hr>
+<a name="NAME"></a>
+<h2>NAME</h2>
+<!-- INDENTATION -->
+<table width="100%" border=0 rules="none" frame="void"
+       cols="2" cellspacing="0" cellpadding="0">
+<tr valign="top" align="left">
+<td width="10%"></td>
+<td width="89%">
+<p>gsch2pcb - Update PCB layouts from gEDA/gaf
+schematics</p>
+</td>
+</table>
+<a name="SYNOPSIS"></a>
+<h2>SYNOPSIS</h2>
+<!-- INDENTATION -->
+<table width="100%" border=0 rules="none" frame="void"
+       cols="2" cellspacing="0" cellpadding="0">
+<tr valign="top" align="left">
+<td width="10%"></td>
+<td width="89%">
+<p><b>gsch2pcb</b> [<i>OPTION</i> ...] {<i>PROJECT</i> |
+<i>FILE</i> ...}</p>
+</td>
+</table>
+<a name="DESCRIPTION"></a>
+<h2>DESCRIPTION</h2>
+<!-- INDENTATION -->
+<table width="100%" border=0 rules="none" frame="void"
+       cols="2" cellspacing="0" cellpadding="0">
+<tr valign="top" align="left">
+<td width="10%"></td>
+<td width="89%">
+<p><b>gsch2pcb</b> is a frontend to <b>gnetlist</b>(1) which
+aids in creating and updating <b>pcb</b>(1) printed circuit
+board layouts based on a set of electronic schematics
+created with <b>gschem</b>(1).</p>
+<!-- INDENTATION -->
+<p>Instead of specifying all options and input gEDA
+schematic <i>FILE</i>s on the command line, <b>gsch2pcb</b>
+can use a <i>PROJECT</i> file instead.</p>
+<!-- INDENTATION -->
+<p><b>gsch2pcb</b> first runs <b>gnetlist</b>(1) with the
+&lsquo;PCB&rsquo; backend to create a
+&lsquo;&lt;name&gt;.net&rsquo; file containing a
+<b>pcb</b>(1) formatted netlist for the design.</p>
+<!-- INDENTATION -->
+<p>The second step is to run <b>gnetlist</b>(1) again with
+the &lsquo;gsch2pcb&rsquo; backend to find any <b>M4</b>(1)
+elements required by the schematics. Any missing elements
+are found by searching a set of file element directories. If
+no &lsquo;&lt;name&gt;.pcb&rsquo; file exists for the design
+yet, it is created with the required elements; otherwise,
+any new elements are output to a
+&lsquo;&lt;name&gt;.new.pcb&rsquo; file.</p>
+<!-- INDENTATION -->
+<p>If a &lsquo;&lt;name&gt;.pcb&rsquo; file exists, it is
+searched for elements with a non-empty element name with no
+matching schematic symbol. These elements are removed from
+the &lsquo;&lt;name&gt;.pcb&rsquo; file, with a backup in a
+&lsquo;&lt;name&gt;.pcb.bak&rsquo; file.</p>
+<!-- INDENTATION -->
+<p>Finally, <b>gnetlist</b>(1) is run a third time with the
+&lsquo;pcbpins&rsquo; backend to create a
+&lsquo;&lt;name&gt;.cmd&rsquo; file. This can be loaded into
+<b>pcb</b>(1) to rename all pin names in the PCB layout to
+match the schematic.</p>
+</td>
+</table>
+<a name="OPTIONS"></a>
+<h2>OPTIONS</h2>
+<!-- INDENTATION -->
+<table width="100%" border=0 rules="none" frame="void"
+       cols="2" cellspacing="0" cellpadding="0">
+<tr valign="top" align="left">
+<td width="10%"></td>
+<td width="89%">
+<p><b>-o</b>, <b>--output-name</b>=<i>BASENAME</i></p></td>
+</table>
+<!-- INDENTATION -->
+<table width="100%" border=0 rules="none" frame="void"
+       cols="2" cellspacing="0" cellpadding="0">
+<tr valign="top" align="left">
+<td width="23%"></td>
+<td width="76%">
+<p>Use output filenames &lsquo;<i>BASENAME</i>.net&rsquo;,
+&lsquo;<i>BASENAME</i>.pcb&rsquo;, and
+&lsquo;<i>BASENAME</i>.new.pcb&rsquo;. By default, the
+basename of the first schematic file in the list of input
+files is used.</p>
+</td>
+</table>
+<!-- INDENTATION -->
+<table width="100%" border=0 rules="none" frame="void"
+       cols="2" cellspacing="0" cellpadding="0">
+<tr valign="top" align="left">
+<td width="10%"></td>
+<td width="89%">
+<p><b>-d</b>,
+<b>--elements-dir</b>=<i>DIRECTORY</i></p></td>
+</table>
+<!-- INDENTATION -->
+<table width="100%" border=0 rules="none" frame="void"
+       cols="2" cellspacing="0" cellpadding="0">
+<tr valign="top" align="left">
+<td width="23%"></td>
+<td width="76%">
+<p>Add <i>DIRECTORY</i> to the list of directories to search
+for PCB file elements. By default, the following directories
+are searched if they exist: &lsquo;./packages&rsquo;,
+&lsquo;/usr/local/share/pcb/newlib&rsquo;,
+&lsquo;/usr/share/pcb/newlib&rsquo;,
+&lsquo;/usr/local/lib/pcb_lib&rsquo;,
+&lsquo;/usr/lib/pcb_lib&rsquo;,
+&lsquo;/usr/local/pcb_lib&rsquo;.</p>
+</td>
+</table>
+<!-- INDENTATION -->
+<table width="100%" border=0 rules="none" frame="void"
+       cols="2" cellspacing="0" cellpadding="0">
+<tr valign="top" align="left">
+<td width="10%"></td>
+<td width="89%">
+<p><b>-f</b>, <b>--use-files</b></p></td>
+</table>
+<!-- INDENTATION -->
+<table width="100%" border=0 rules="none" frame="void"
+       cols="2" cellspacing="0" cellpadding="0">
+<tr valign="top" align="left">
+<td width="23%"></td>
+<td width="76%">
+<p>Force use of file elements in preference to elements
+generated with <b>M4</b>(1).</p>
+</td>
+</table>
+<!-- INDENTATION -->
+<table width="100%" border=0 rules="none" frame="void"
+       cols="2" cellspacing="0" cellpadding="0">
+<tr valign="top" align="left">
+<td width="10%"></td>
+<td width="89%">
+<p><b>-s</b>, <b>--skip-m4</b></p></td>
+</table>
+<!-- INDENTATION -->
+<table width="100%" border=0 rules="none" frame="void"
+       cols="2" cellspacing="0" cellpadding="0">
+<tr valign="top" align="left">
+<td width="23%"></td>
+<td width="76%">
+<p>Disable element generation using <b>M4</b>(1)
+entirely.</p>
+</td>
+</table>
+<!-- INDENTATION -->
+<table width="100%" border=0 rules="none" frame="void"
+       cols="2" cellspacing="0" cellpadding="0">
+<tr valign="top" align="left">
+<td width="10%"></td>
+<td width="89%">
+<p><b>--m4-file</b> <i>FILE</i></p></td>
+</table>
+<!-- INDENTATION -->
+<table width="100%" border=0 rules="none" frame="void"
+       cols="2" cellspacing="0" cellpadding="0">
+<tr valign="top" align="left">
+<td width="23%"></td>
+<td width="76%">
+<p>Use the <b>M4</b>(1) file <i>FILE</i> in addition to the
+default M4 files &lsquo;./pcb.inc&rsquo; and
+&lsquo;~/.pcb/pcb.inc&rsquo;.</p>
+</td>
+</table>
+<!-- INDENTATION -->
+<table width="100%" border=0 rules="none" frame="void"
+       cols="2" cellspacing="0" cellpadding="0">
+<tr valign="top" align="left">
+<td width="10%"></td>
+<td width="89%">
+<p><b>--m4-pcbdir</b> <i>DIRECTORY</i></p></td>
+</table>
+<!-- INDENTATION -->
+<table width="100%" border=0 rules="none" frame="void"
+       cols="2" cellspacing="0" cellpadding="0">
+<tr valign="top" align="left">
+<td width="23%"></td>
+<td width="76%">
+<p>Set <i>DIRECTORY</i> as the directory where
+<b>gsch2pcb</b> should look for <b>M4</b>(1) files installed
+by <b>pcb</b>(1).</p>
+</td>
+</table>
+<!-- INDENTATION -->
+<table width="100%" border=0 rules="none" frame="void"
+       cols="2" cellspacing="0" cellpadding="0">
+<tr valign="top" align="left">
+<td width="10%"></td>
+<td width="89%">
+<p><b>-r</b>, <b>--remove-unfound</b></p></td>
+</table>
+<!-- INDENTATION -->
+<table width="100%" border=0 rules="none" frame="void"
+       cols="2" cellspacing="0" cellpadding="0">
+<tr valign="top" align="left">
+<td width="23%"></td>
+<td width="76%">
+<p>Don&rsquo;t include references to unfound elements in the
+generated &lsquo;.pcb&rsquo; files. Use if you want
+<b>pcb</b>(1) to be able to load the (incomplete)
+&lsquo;.pcb&rsquo; file. This is enabled by default.</p>
+</td>
+</table>
+<!-- INDENTATION -->
+<table width="100%" border=0 rules="none" frame="void"
+       cols="2" cellspacing="0" cellpadding="0">
+<tr valign="top" align="left">
+<td width="10%"></td>
+<td width="89%">
+<p><b>-k</b>, <b>--keep-unfound</b></p></td>
+</table>
+<!-- INDENTATION -->
+<table width="100%" border=0 rules="none" frame="void"
+       cols="2" cellspacing="0" cellpadding="0">
+<tr valign="top" align="left">
+<td width="23%"></td>
+<td width="76%">
+<p>Keep include references to unfound elements in the
+generated &lsquo;.pcb&rsquo; files. Use if you want to hand
+edit or otherwise preprocess the generated
+&lsquo;.pcb&rsquo; file before running <b>pcb</b>(1).</p>
+</td>
+</table>
+<!-- INDENTATION -->
+<table width="100%" border=0 rules="none" frame="void"
+       cols="2" cellspacing="0" cellpadding="0">
+<tr valign="top" align="left">
+<td width="10%"></td>
+<td width="89%">
+<p><b>-p</b>, <b>--preserve</b></p></td>
+</table>
+<!-- INDENTATION -->
+<table width="100%" border=0 rules="none" frame="void"
+       cols="2" cellspacing="0" cellpadding="0">
+<tr valign="top" align="left">
+<td width="23%"></td>
+<td width="76%">
+<p>Preserve elements in PCB files which are not found in the
+schematics. Since elements with an empty element name
+(schematic &quot;refdes&quot;) are never deleted, this
+option is rarely useful.</p>
+</td>
+</table>
+<!-- INDENTATION -->
+<table width="100%" border=0 rules="none" frame="void"
+       cols="2" cellspacing="0" cellpadding="0">
+<tr valign="top" align="left">
+<td width="10%"></td>
+<td width="89%">
+<p><b>--gnetlist</b> <i>BACKEND</i></p></td>
+</table>
+<!-- INDENTATION -->
+<table width="100%" border=0 rules="none" frame="void"
+       cols="2" cellspacing="0" cellpadding="0">
+<tr valign="top" align="left">
+<td width="23%"></td>
+<td width="76%">
+<p>In addition to the default backends, run
+<b>gnetlist</b>(1) with &lsquo;&minus;g
+<i>BACKEND</i>&rsquo;, with output to
+&lsquo;&lt;name&gt;.<i>BACKEND</i>&rsquo;.</p>
+</td>
+</table>
+<!-- INDENTATION -->
+<table width="100%" border=0 rules="none" frame="void"
+       cols="2" cellspacing="0" cellpadding="0">
+<tr valign="top" align="left">
+<td width="10%"></td>
+<td width="89%">
+<p><b>--gnetlist-arg</b> <i>ARG</i></p></td>
+</table>
+<!-- INDENTATION -->
+<table width="100%" border=0 rules="none" frame="void"
+       cols="2" cellspacing="0" cellpadding="0">
+<tr valign="top" align="left">
+<td width="23%"></td>
+<td width="76%">
+<p>Pass <i>ARG</i> as an additional argument to
+<b>gnetlist</b>(1).</p>
+</td>
+</table>
+<!-- INDENTATION -->
+<table width="100%" border=0 rules="none" frame="void"
+       cols="2" cellspacing="0" cellpadding="0">
+<tr valign="top" align="left">
+<td width="10%"></td>
+<td width="89%">
+<p><b>--empty-footprint</b> <i>NAME</i></p></td>
+</table>
+<!-- INDENTATION -->
+<table width="100%" border=0 rules="none" frame="void"
+       cols="2" cellspacing="0" cellpadding="0">
+<tr valign="top" align="left">
+<td width="23%"></td>
+<td width="76%">
+<p>If <i>NAME</i> is not &lsquo;none&rsquo;, <b>gsch2pcb</b>
+will not add elements for components with that name to the
+PCB file. Note that if the omitted components have net
+connections, they will still appear in the netlist and
+<b>pcb</b>(1) will warn that they are missing.</p>
+</td>
+</table>
+<!-- INDENTATION -->
+<table width="100%" border=0 rules="none" frame="void"
+       cols="2" cellspacing="0" cellpadding="0">
+<tr valign="top" align="left">
+<td width="10%"></td>
+<td width="89%">
+<p><b>--fix-elements</b></p></td>
+</table>
+<!-- INDENTATION -->
+<table width="100%" border=0 rules="none" frame="void"
+       cols="2" cellspacing="0" cellpadding="0">
+<tr valign="top" align="left">
+<td width="23%"></td>
+<td width="76%">
+<p>If a schematic component&rsquo;s &lsquo;footprint&rsquo;
+attribute is not equal to the &lsquo;Description&rsquo; of
+the corresponding PCB element, update the
+&lsquo;Description&rsquo; instead of replacing the
+element.</p>
+</td>
+</table>
+<!-- INDENTATION -->
+<table width="100%" border=0 rules="none" frame="void"
+       cols="2" cellspacing="0" cellpadding="0">
+<tr valign="top" align="left">
+<td width="10%"></td>
+<td width="89%">
+<p><b>-q</b>, <b>--quiet</b></p></td>
+</table>
+<!-- INDENTATION -->
+<table width="100%" border=0 rules="none" frame="void"
+       cols="2" cellspacing="0" cellpadding="0">
+<tr valign="top" align="left">
+<td width="23%"></td>
+<td width="76%">
+<p>Don&rsquo;t output information on steps to take after
+running <b>gsch2pcb</b>.</p>
+</td>
+</table>
+<!-- INDENTATION -->
+<table width="100%" border=0 rules="none" frame="void"
+       cols="2" cellspacing="0" cellpadding="0">
+<tr valign="top" align="left">
+<td width="10%"></td>
+<td width="89%">
+<p><b>-v</b>, <b>--verbose</b></p></td>
+</table>
+<!-- INDENTATION -->
+<table width="100%" border=0 rules="none" frame="void"
+       cols="2" cellspacing="0" cellpadding="0">
+<tr valign="top" align="left">
+<td width="23%"></td>
+<td width="76%">
+<p>Output extra debugging information. This option can be
+specified twice (&lsquo;&minus;v &minus;v&rsquo;) to obtain
+additional debugging for file elements.</p>
+</td>
+</table>
+<!-- INDENTATION -->
+<table width="100%" border=0 rules="none" frame="void"
+       cols="2" cellspacing="0" cellpadding="0">
+<tr valign="top" align="left">
+<td width="10%"></td>
+<td width="89%">
+<p><b>-h</b>, <b>--help</b></p></td>
+</table>
+<!-- INDENTATION -->
+<table width="100%" border=0 rules="none" frame="void"
+       cols="2" cellspacing="0" cellpadding="0">
+<tr valign="top" align="left">
+<td width="23%"></td>
+<td width="76%">
+<p>Print a help message.</p>
+</td>
+</table>
+<!-- INDENTATION -->
+<table width="100%" border=0 rules="none" frame="void"
+       cols="2" cellspacing="0" cellpadding="0">
+<tr valign="top" align="left">
+<td width="10%"></td>
+<td width="89%">
+<p><b>-V</b>, <b>--version</b></p></td>
+</table>
+<!-- INDENTATION -->
+<table width="100%" border=0 rules="none" frame="void"
+       cols="2" cellspacing="0" cellpadding="0">
+<tr valign="top" align="left">
+<td width="23%"></td>
+<td width="76%">
+<p>Print <b>gsch2pcb</b> version information.</p>
+</td>
+</table>
+<a name="PROJECT FILES"></a>
+<h2>PROJECT FILES</h2>
+<!-- INDENTATION -->
+<table width="100%" border=0 rules="none" frame="void"
+       cols="2" cellspacing="0" cellpadding="0">
+<tr valign="top" align="left">
+<td width="10%"></td>
+<td width="89%">
+<p>A <b>gsch2pcb</b> project file is a file (not ending in
+&lsquo;.sch&rsquo;) containing a list of schematics to
+process and some options. Any long-form command line option
+can appear in the project file with the leading
+&lsquo;&minus;&minus;&rsquo; removed, with the exception of
+&lsquo;&minus;&minus;gnetlist-arg&rsquo;,
+&lsquo;&minus;&minus;fix-elements&rsquo;,
+&lsquo;&minus;&minus;verbose&rsquo;, and
+&lsquo;&minus;&minus;version&rsquo;. Schematics should be
+listed on a line beginning with
+&lsquo;schematics&rsquo;.</p>
+<!-- INDENTATION -->
+<p>An example project file might look like:</p>
+</td>
+</table>
+<!-- TABS -->
+<table width="100%" border=0 rules="none" frame="void"
+       cols="3" cellspacing="0" cellpadding="0">
+<tr valign="top" align="left">
+<td width="17%"></td>
+<td width="7%">
+
+<p>schematics partA.sch partB.sch</p>
+</td>
+<td width="74%">
+</td>
+<tr valign="top" align="left">
+<td width="17%"></td>
+<td width="7%">
+
+<p>output-name design</p>
+</td>
+<td width="74%">
+</td>
+</table>
+<a name="ENVIRONMENT"></a>
+<h2>ENVIRONMENT</h2>
+<!-- INDENTATION -->
+<table width="100%" border=0 rules="none" frame="void"
+       cols="2" cellspacing="0" cellpadding="0">
+<tr valign="top" align="left">
+<td width="10%"></td>
+<td width="89%">
+<p><b>GNETLIST</b></p></td>
+</table>
+<!-- INDENTATION -->
+<table width="100%" border=0 rules="none" frame="void"
+       cols="2" cellspacing="0" cellpadding="0">
+<tr valign="top" align="left">
+<td width="23%"></td>
+<td width="76%">
+<p>specifies the <b>gnetlist</b>(1) program to run. The
+default is &lsquo;gnetlist&rsquo;.</p>
+</td>
+</table>
+<a name="AUTHORS"></a>
+<h2>AUTHORS</h2>
+<!-- INDENTATION -->
+<table width="100%" border=0 rules="none" frame="void"
+       cols="2" cellspacing="0" cellpadding="0">
+<tr valign="top" align="left">
+<td width="10%"></td>
+<td width="89%">
+<p>See the &lsquo;AUTHORS&rsquo; file included with this
+program.</p>
+</td>
+</table>
+<a name="COPYRIGHT"></a>
+<h2>COPYRIGHT</h2>
+<!-- INDENTATION -->
+<table width="100%" border=0 rules="none" frame="void"
+       cols="2" cellspacing="0" cellpadding="0">
+<tr valign="top" align="left">
+<td width="10%"></td>
+<td width="89%">
+<pre>Copyright &copy; 1999-2011 gEDA Contributors.  License GPLv2+: GNU GPL
+version 2 or later.  Please see the &lsquo;COPYING&rsquo; file included with this
+program for full details.
+
+This is free software: you are free to change and redistribute it.
+There is NO WARRANTY, to the extent permitted by law.
+
+</pre>
+</td>
+</table>
+<a name="SEE ALSO"></a>
+<h2>SEE ALSO</h2>
+<!-- INDENTATION -->
+
+<table width="100%" border=0 rules="none" frame="void"
+       cols="2" cellspacing="0" cellpadding="0">
+<tr valign="top" align="left">
+<td width="10%"></td>
+<td width="89%">
+<p><b>gschem</b>(1), <b>gnetlist</b>(1), <b>pcb</b>(1)</p>
+</td>
+</table>
+<hr>
+</body>
+</html>

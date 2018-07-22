@@ -1,0 +1,49 @@
+v 20110619 2
+V 200 150 50 3 10 0 0 -1 -1 0 -1 -1 -1 -1 -1
+P 200 100 200 0 1 0 1
+{
+T 100 100 5 8 0 1 0 6 1
+pinnumber=1
+T 200 250 5 10 1 1 0 3 1
+pinlabel=Vcc
+T 301 102 5 8 0 1 0 0 1
+pintype=pwr
+}
+T 100 1900 5 8 0 0 0 0 1
+description=positive supply voltage
+T 100 700 5 8 0 0 0 0 1
+net=Vcc:1
+T 100 1300 5 8 0 0 0 0 1
+author= Kai-Martin Knaak, kmk@lilalaser.de
+T 100 1700 5 8 0 0 0 0 1
+footprint=none
+T 100 1500 5 8 0 0 0 0 1
+symversion=1.0
+T 100 900 5 8 0 0 0 0 1
+use-license=free, no restrictions
+T 100 1100 5 8 0 0 0 0 1
+dist-license=GPL 3, see http://www.gnu.org/licenses/gpl-3.0.txtv 20110619 2
+V 200 150 50 3 10 0 0 -1 -1 0 -1 -1 -1 -1 -1
+P 200 100 200 0 1 0 1
+{
+T 100 100 5 8 0 1 0 6 1
+pinnumber=1
+T 200 250 5 10 1 1 0 3 1
+pinlabel=Vcc
+T 301 102 5 8 0 1 0 0 1
+pintype=pwr
+}
+T 100 1900 5 8 0 0 0 0 1
+description=positive supply voltage
+T 100 700 5 8 0 0 0 0 1
+net=Vcc:1
+T 100 1300 5 8 0 0 0 0 1
+author= Kai-Martin Knaak, kmk@lilalaser.de
+T 100 1700 5 8 0 0 0 0 1
+footprint=none
+T 100 1500 5 8 0 0 0 0 1
+symversion=1.0
+T 100 900 5 8 0 0 0 0 1
+use-license=free, no restrictions
+T 100 1100 5 8 0 0 0 0 1
+dist-license=GPL 3, see http://www.gnu.org/licenses/gpl-3.0.txt

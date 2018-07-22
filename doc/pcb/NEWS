@@ -1,0 +1,926 @@
+========================================================================
+Release Notes for PCB snapshot 20110918
+========================================================================
+This release represents over 797 commits and as such this summary 
+clearly is not complete.  See the ChangeLog file for the complete list
+of changes.
+
+Features
+--------
+
+- Internal coordinate space is now metric.  This should fix the "trace
+  nubs on metric grids" issue.  Also, units are allowed on pretty much
+  every "coordinate" that PCB accepts.  Example: 5.4in, 10cm, 0.55mm.
+  New configure option --enable-coord64 to force (slower?) 64-bit type
+  for coordinates on 32-bit systems (if you need a board bigger than 1
+  meter across).  The internal precision is 1 nanometer, the internal
+  type is "Coord".
+- MinGW support.
+- New GL mode for the gtk hid with translucent traces.
+
+- New GTK layer view/choose widget and other GUI enhancements.
+- GTK HID warns if the *.pcb file has changed on disk.
+- Enhanced grid snapping logic.
+- Select/report nets by name.
+- Auto-pan has been removed.
+- Zoom can zoom out beyond the edge of the board's workspace.
+- GTK: title string matches GNOME conventions.
+- Personally identifiable information is no longer stored in the PCB.
+- Toggling vias from hole to plated is reversible.
+- Gerber exporter has options for including outlines on other layers.
+- Edited footprint files are saved as footprints, not pcbs.
+- Improved gtk library search/filter.
+- Default layer stack is now a six-layer template with outline.
+- If the board has an outline layer, an outline will be shown if no
+  other outline is specified.
+- Group[] string allows t/b synonyms for c/s.  "top" and "bottom" are
+  the standard names now.
+- PCB will save files with an older version tag if newer features aren't needed.
+- Autorouter has a progress dialog.
+- PCB will no longer let you delete the last top/bottom layer.
+- Refcard has been updated.
+- Documentation updates.
+- Layes with the PCB::skip-drc attribute set are ignored during DRC.
+- Allow numeric keys to also choose the silk layer.
+- Minor readability tweaks to the default font.
+- Via copper may overlap.
+- User is notified if an Import() cannot find all the footprints.
+
+Bug Fixes
+---------
+
+- Optimizer won't try to optimize overlapping pads
+- Undo should fail less, in corner cases.
+- Nested key-bound actions won't crash lesstif.
+- Do not select invisible pads on the far side.
+- Protect Import() from command injection.
+- Fix conversion of far-side polygons to element pads.
+- Fix initial clearance values of text when loading PCBs.
+- Fix solder mask drawing on vias.
+- Add missing action documentation.
+- Fab drawing notes actual outline trace width.
+- Zero clearance pins and pads won't cause DRC failures.
+- PS export: fix draw-rectangle (used to do fill, not outline)
+- Gerber export no longer fills unfilled rectanges.
+- If there are no image formats available, the PNG hid is not enabled.
+- You can no longer select pins/pads of locked elements.
+- The m4-to-newlib converter now creates file names that match the
+  library view.
+- Never set the FOUND flag on new silk lines.
+- Lesstif HID won't crash if both Xinerama and XRender are detected.
+- Lesstif menu is now internationalizable.
+- Refdes labels in a font-less layout can be moved.
+- Import can correctly update elements on the bottom side.
+- DRC no longer treats unplated holes as conducting.
+
+Other
+-----
+
+- Updated and new translations, including Dutch.
+- Many polygon speedups.
+- Numerous build-related cleanups.
+- Numerous minor speed-related cleanups.
+- GTK 2.18 is the minimum required version.
+- GTS moved out of the src/ tree so it can be built with different flags.
+- More C++ compatible.
+- Expanded regex documentation.
+- Much code which is no longer needed has been removed.
+- HID init method changed to allow for hid struct expansion without
+  breaking everything.
+- New HID calls for whole-pad and whole-pin drawing.
+- ClearAndRedrawOutput() replaced with Redraw().
+- Board objects use hashes instead of lists to store parts, so
+  pointers don't change.
+- DVI documentation output is no longer generated.
+
+========================================================================
+Release Notes for PCB snapshot 20100929
+========================================================================
+This release represents over 240 commits and as such this summary 
+clearly is not complete.  See the ChangeLog file for the complete list
+of changes.
+
+Features
+--------
+
+- PCB can directly import (forward annotate) schematics while running.
+- Many places where measurements are entered now accept units, like
+  "5mm", and "cm" and "in" are allowed too.
+- Free Rotate Buffer added to menu
+- Polygon Hole tool.
+- F12 invokes the Lock tool.
+- Russian translation added.
+- DBUS is enabled by default when possible.
+- Command-line exporters can run action scripts too.
+- GTK tool tips on elements, pins, and nets.
+- Command-line actions in GUIs do not require (,,) syntax.
+- PCB can import footprints both in subdirectories and the named directories.
+- New GCode exporter.
+- Footprint files use ".fp" as the suffix; this is automatically
+  searched for if needed.
+- GTK dialogs do not show at startup unless requested.
+- Stackup can be specified on the command line for command-line exporting.
+- Reference card updated.
+- The snap-point in pads is the center.
+- The 's' key toggles polygons to clear/notclear all pads and pins
+
+Bug Fixes
+---------
+
+- Various PNG export fixes.
+- lesstif's magic toggle-layers-on-flip fixed.
+- Arc bounding box math fixed.
+- Fixed: sometimes, disabling silk also disabled the solder layer.
+- "pcb --help" prints all options again
+- Add mnemonic for "close without saving"
+- Don't select silk on the back side when it's invisible.
+- Various polygon rendering bugs fixed.
+- PNG drill bloat export fixed.
+- Attempts to change polygon clearance *on* polygons results in a hint.
+- PNG doesn't segfault if not all graphic formats are supported.
+- Various toporouter fixes and improvements
+- HID_Mixed is supported in attribute dialogs
+- Flipped rectangles in PS exports are drawn correctly.
+- Optimizer removes micro-traces under pads.
+- Vias, pins, and pads are now drawn under the mask instead of over.
+- Windows supported better.
+
+Other
+-----
+
+- Sources converted to C99
+- Doc extraction gives more control over categories.
+- Thermal documentation updated.
+- Actions can see the context they were invoked in
+
+========================================================================
+Release Notes for PCB snapshot 20091103
+========================================================================
+This release represents almost 200 commits and as such this summary 
+clearly is not complete.  See the ChangeLog file for the complete list
+of changes.
+
+- [feature] Add attributes to layers
+- [bugfix]  Remove memory leak in attributes
+- [bugfix]  Avoid layer buttons getting confused (GTK)
+- [bugfix]  Fix dereference bug in hid_find_action()
+- [feature] Speed up some polygon operations
+- [bugfix]  Don't let DRC change the grid setting
+- [bugfix]  Correct URL's in some dialogs and output
+- [feature] Add filters to load file chooser dialog (GTK)
+- [bugfix]  Avoid segfaults with png HID with newer versions of libgd
+- [bugfix]  Don't disperse locked elements
+- [feature] Added experimental topological autorouter
+- [feature] Added the beginning of a testsuite.
+- [docs]    Document FreeRotateBuffer()
+- [docs]    Add some additional notes on the usage of the existing
+            autorouter
+- [feature] Add --png-bloat option
+- [bugfix]  Fix several bugs found with valgrind
+- [bugfix]  Improve the pre-install wrapper script
+- [bugfix]  Several fixes to the autorouter
+- [feature] Allow quoted strings and escaped characters in action
+            arguments
+- [footprints] Add missing INDC3216M, remove duplicated RESC3216M
+- [feature] Added the ability to customize mouse events via gpcb-menu.res
+            in the GTK HID.
+- [feature] Added the ability to use mod1 (alt)(option) in
+            HIDs.  Useful on OSX.
+- [bugfix]  Fix compilation issues on centos
+- [bugfix]  Make the detection of tools and build system around
+            building the documentation be more robust.  Users should
+            not be worrying about --disable-doc or --enable-maintainer-mode
+            anymore
+- [footprints] Add T018, T039, fix pinout of T092 to match JEDEC
+- [bugfix]  Speed up rendering of DRC violation previews under GTK
+- [bugfix]  Fix some crashing bugs related to polygons and thindraw mode
+- [feature] Added a DRC refresh button
+- [bugfix]  Fix some pango markup in the GTK DRC dialog
+- [bugfix]  Fix cursor warping on flipped boards (GTK)
+- [feature] Added preview images in the DRC violations window (GTK)
+- [feature] Add a DrcViolationType structure and add hooks to allow HID's to use this
+- [bugfix]  Fix some polygon memory leaks
+- [feature] Add an API for registering actions with a context to support scripting
+            languages like GPMI.
+- [bugfix]  Fix a bug with the Report(NetLength) action and NULL pin/pad names
+- [bugfix]  Allow exporters to work with hairlines (width of 0)
+- [tools]   Increase autoconf version to 2.60 since we were using some features of it
+- [bugfix]  Fix a number of polygon related issues
+- [bugfix]  Fix a number of gcc warnings
+- [feature] Don't display undocumented options in help output.  This helps
+            the transition when deprecating an option.
+- [feature] Add outline mode for photo-mode exporting
+- [footprints] Put the mark on pin 1 for axial footprints to make them more likely
+               to fall on grid
+- [bugfix]  Fix flipping of arcs
+- [bugfix]  Fix parsing of old-syntax arcs
+- [bugfix]  Include explicit text/lines on silk layers in the assembly drawing output
+- [feature] '--ben-mode' has been renamed to '--photo-mode'
+- [bugfix]  Fix some crashign bugs on boards with a large number of rats
+- [bugfix]  Fix an off-by-one bug in the GTK netlist window
+- [docs]    Add getting started guide
+- [feature] Add support for parsing suffixes on numbers ("um", "mm", "in", "mil")
+- [bugfix]  Fix some configure/build issues when cross compiling
+- [bugfix]  Fix some improperly used automake conditionals
+- [bugfix]  Fix some uninstall of shortcuts issues under windows Vista
+- [feature] Add additional crosshair shapes
+- [bugfix]  Various windows build script improvements
+
+========================================================================
+Release Notes for PCB snapshot 20081128
+========================================================================
+This release represents over 70 commits and as such this summary 
+clearly is not complete.  See the ChangeLog file for the complete list
+of changes.
+
+- Minor bug fixes in RS274-X output.
+-.Bug fixes in postscript output
+- DRC checks for annular ring on pads only uses the mininum annular ring
+  drc setting instead of also checking minimum copper width.
+- Fix postscript output for zero length lines.
+- Improve the 'save before closing' dialogs.
+- Fixed bugs where objects attached to the cursor vanish sometimes.
+- Various minor code portability improvements.
+- Enabled additional gcc warnings (when using gcc)
+- Allow outline layers to have only arcs.
+- Added "Ben Mode" png output which provides a simulated "photograph"
+  of the board.  Very nice for publications.
+- Fix poly clearance around rotated pads.
+- Fix the batch HID which had bit rotted a little.
+- Display net names hierarchically.
+- Various speed improvements in the GTK HID.
+- Various speed improvements in the autorouter.
+- Minor improvements to the windows port.
+- Other various bug fixes.
+
+========================================================================
+Release Notes for PCB snapshot 20080202
+========================================================================
+This release represents over 180 commits and as such this summary 
+clearly is not complete.  See the ChangeLog file for the complete list
+of changes.
+
+- Added a footprin preview in the library window
+- Added gnome/kde desktop integration files (app and mime icons, and
+  .desktop file)
+- Added i18n support
+- Updated dbus support
+- Fix a number of GCC 4 compiler warnings
+- Make the gtk gui more robust against malformed menu resource files
+- Added checking for duplicate hot key definitions in the menu resource
+  file in the gtk gui.
+- Improved support for building on win32.
+- Removed automake/autoconf generated files from cvs
+- Fixed some parallel make bugs
+- Fixed some scrolling/panning bugs in the gtk gui.
+- Added the ability to load edif netlists
+- Closed a number of bugs in the sourceforge tracker
+- Fix a bg in the x-y output files where the y values were mirrored and offset
+- Add XRENDER support to the lesstif HID to support layer transparency
+- Fix some polygon dicer bugs
+- Fix a handful of bugs in the png export HID
+- Avoid vias snapping to pins and moving elements snapping to their own
+  pins/pads
+- Fix a number of undo bugs
+- Fix printer calibration
+- Add global puller
+- Various improvements to the postscript export HID
+- Improve all the GetXY prompts in the menu resource files
+- Improved the pin/via report
+- Improved pin/pad vs grid snapping
+- Various footprint improvements 
+  o fixed some drill sizes
+  o fixed some silk sizes
+  o Added a handful of QFP family footprints
+  o Converted the QFP family to the hi-res format
+- Several other bug fixes
+
+========================================================================
+Release Notes for PCB snapshot 20070912
+========================================================================
+This release represents nearly 200 commits and as such this summary 
+clearly is not complete.  See the ChangeLog file for the complete list
+of changes.
+
+- Many many bug fixes.  Too many to list.
+- Added keystone, C&K, Nichicon, and Optek footprint libraries
+- Add attribute editor to the GTK HID
+- Add a fileselect() function to the HID spec
+- Fix ps output with drill helper on
+- Add a visual indicater when elements are locked
+- Corrections to the manual
+- BOM can export in mm as well as mil 
+- Fix a ps output bug with arcs
+- Fix some memory leaks found with Coverity
+- Added autoconf test for buggy versions of m4
+- Fixed some footprint drill sizes
+- Add user customizable menus for the gtk HID.  The gtk HID now is capable
+  of reading the same format menu resource files as the lesstif HID.
+  This represents significant rework of the menu code and menu callback code.
+- Added Center() action
+- Store the file format in the .pcb file.  This will let pcb know when
+  presented with a file which is too new.  The code for checking the format
+  was present in the prior snapshot.
+- Fix DRC checking of square pads to square pads
+- Added window panning/cursor warping
+- Add the ability to directly load a footprint from a file as if it were
+  a complete layout.
+- Add a Popup() action
+
+========================================================================
+Release Notes for PCB snapshot 20070208
+========================================================================
+- Add polygon clipping code.  This is a big change to how polygons are handled.  
+  The new code now removes islands and correctly identifies open circuits caused
+  by a trace fully cutting through a polygon.  In addition, the RS-274-X output
+  is now simpler and works with some board houses that use older non-conforming
+  sofware.  Different styles for thermal reliefs are also now supported as part
+  of the polygon clipper code.
+- Add support for plugins
+- Many improvements to the autorouter.
+- Various improvements to the trace optimizer.
+- Add a fontmode for editing pcb fonts
+- Add progress() hook to HID structure
+- Fix a bug with non-functional windows on some window managers commonly
+  found on OS-X
+- Add support for controlling pcb via dbus
+- Fix various bugs which would cause a crash
+- Add --scale for postscript scaling
+- Intercept window manager delete events with the GTK gui
+- Scan the .pcb file for a FileVersion value.  This is not written out yet
+  but will be in future versions.  
+- Warn if non-manhattan lines are trying to become pads.
+- Allow no-solder paste pads to support fiducials
+- Report in mm or mils as selected by user
+- Allow reordering of layers
+- add some more QFN packages
+- fix building with sun studio c compiler
+- Made a pcb installation be relocatable.
+- Convert the m4 libraries to newlib libraries as part of building a distfile.
+  The m4 libraries are still considered the sources and as such are still
+  distributed but this eliminates the need for m4 at runtime for footprints.
+- Got rid of the pcb wrapper script around pcb-bin.
+- Remove some old footprints of questionable naming, accuracy, or usefulness.
+- Get the autosave/backup code working on all GUI's
+- Fix some drill size rounding in the reports
+- Changed the backup file name to be derived from the .pcb file name
+- Added a command line option for DrawGrid
+- Fix logic for adding new ratlines
+- Fix gtk grid when board is flipped
+- Add "find" and "rip-up" buttons to the netlist window
+- Draw plated holes when exporting
+- Fix some bugs when converting selection to element
+- Fix build on cygwin
+- Enhance the win32/build_pcb script used to generate a non-cygwin windows
+  installer.
+- Make pcb work under non-cygwin windows
+
+========================================================================
+Release Notes for PCB snapshot 20060822
+========================================================================
+- various manual updates
+- update the INSTALL documentation
+- fix a bug where pins turned into pure holes when an element
+  was smashed.
+- use locale-independent strtod and dtostr functions to avoid problems
+  loading files saved in some locales.
+- fixed various bugs which caused pcb to crash
+- update the gtk status line after save/save as
+- make the gerber file names be compatible with pre-HID versions
+- split plated and unplated drill output
+- fix various typos in menus and comments
+- add a batch mode HID.
+- fix drawing of box around text in the buffer
+- various fixes and improvements to the trace optimizer and the
+  autorouter
+- fix board flipping code
+- fix rounding bug when creating list of drill sizes
+- add support for > 8 copper layers
+- avoid strict aliasing violations encountered with gcc4
+- refactor code related to handling the filenames in the export
+  HID's
+- fix layer group parsing code
+- add the ability to user-configure mouse actions in the lesstif GUI.
+- enable loaded netlists by default
+- improve the positioning of the drill list in the postscript output
+- various improvements to the configure script to improve robustness
+  and improve error messages when thing don't go well.
+- add IPC style footprints for 01005 passives.
+- added a Renumber() action which will renumber all reference designators
+  and produced an annotation file for backannotating to schematics.
+- Draw via annulii on assembly drawings
+- various other bug fixes and improvements.
+
+========================================================================
+Release Notes for PCB snapshot 20060422
+========================================================================
+- Several minor portability fixes for Solaris and the SunPRO compiler and
+  for Irix and the MIPSpro compiler.
+
+- Added --psfade option for the postscript HID.
+
+- Fixed a bug where the "load layout" and some other menu choices
+  didn't do anything.
+
+- Added remaining actions to the actions reference section of the manual.
+
+- Worked around X11 polluting the name space with some of the X header files.
+
+- Fix route style "Save as default" bug.
+
+- For the Gtk HID, add an alternate vertical window layout mode to
+  help on lower vertical resolution displays.
+
+- Fix soldermask draw while TAB view from solder side.
+
+- Change default PNG output scaling to be 100 dpi instead of fixing
+  the max dimension at 800 pixels.
+
+- Added background image support for the GTK HID (lesstif one has it too).
+
+- Fix missing window icons for the main GTK window and log window.
+
+========================================================================
+Release Notes for PCB snapshot 20060414
+========================================================================
+- This is the first snapshot of the new HID version of PCB.  HID, which
+  stands for Human Interface Device is the abstraction created by
+  DJ Delorie which seperates the core PCB code from the graphical user
+  interface.  In this release, two GUI HID's are supported, gtk and lesstif.
+  In addition, there are HID exporters for postscript and encapsulated
+  postscript, RS-274-X (gerber), bill of materials, centroid file, and
+  png/gif/jpeg.  This represents a major restructuring of the code and
+  many months of work.
+
+- PCB's actions (the commands which drive the core of the program and
+  may be directly accessed by the user) now have the documentation in-line
+  in the code and the actions reference section of the manual is 
+  extracted from the in-line documentation.  The goal it to provide more
+  complete and accurate documentation.  As always the manual is still
+  a work in progress but it is getting more complete and up to date.
+
+- Fixed a long standing segfault when saving connection data
+
+- Fixed a DRC bug
+
+- Fix some rounding issues when setting sizes.  Hopefully this will address
+  the issue with 23.99 mil drills and related problems.
+
+- The html manual is now in one file instead of many files
+
+- The lesstif HID now supports loading of background images to help
+  recover a layout which may exist in hardcopy form only.
+
+========================================================================
+Release Notes for PCB snapshot 20060321
+========================================================================
+- Add internal support for more than 8 layers.  By default PCB is still
+  compiled for 8 copper layers.
+- Fixed several minor bugs in the GTK user interface including fixing
+  scrolling of the log window, fixed up some of the DRC reporting
+  and mm/mil units.
+- Fixed several key bindings.
+- Updated refcard.tex to reflect the current set of key bindings.
+- Fixed some minor bugs which caused compilation problems on some
+  systems.
+- Converted the QFN footprints to hi-res.
+- Added documentation to the manual for the centroid file format and
+  the algorithm used for finding the centroid and rotation.
+- Fixed a bug so that the initial layer named 'component' is actually
+  on the component side of the board and 'solder' is actually on the
+  solder side of the board.
+- Fixed the pin order in the bourns trim pots (~bourns library)
+- Added actions and a script to allow command line printing.
+- Added IPC-7351 recommended footprints for 0201, 0402, etc passives.
+- Fixed SME5 package.
+- Fixed a bug which prevented disabling nets from the ratsnest
+- Fixed a bug where clearances could be set 1 below the spacing
+- Fixed clearline flag so that arcs also have this property.
+- Speed up rtree searches and other autorouter speedups.
+- Fixed a bug in computation of the closest polygon point.
+- Use rtrees for polygon handling for speed improvements.
+- Add a ChangePinName() action.
+- Fix a bug which caused duplicate rats names when manually adding
+  rats lines.
+- Added DRC checks for minimum drill diameter and minimum annular ring.
+- Add a minimal glossary to the manual
+- Fix the author name in the fab drawing
+- Cause the crosshair to snap to pad ends instead of center for rat
+  drawing.
+- Add "join" to SetFlag, ClrFlag and ChangeFlag.
+- Added inline documentation for the pcb file syntax.  The manual now
+  is up to date and correctly documents the file format.  In addition
+  the inline documentation will make it much easier to maintain the
+  documentation.
+- Remove some broken m4lib footprints
+- Put the correct setting for the gschem footprint= attribute in []
+  in the library window for the m4 libraries.
+
+========================================================================
+Release Notes for PCB snapshot 20050609
+========================================================================
+
+- **** The GUI is now based on gtk2 instead of Xaw ****  This represents
+  a fairly major change.  You will now need gtk-2.4 or higher installed
+  along with any of its dependencies to build pcb.  On linux
+  distributions, it is probably the case that you already have this,
+  but see the README-GTK_PORT file for a note on gtk versions.
+  For *BSD, Solaris, and others, you may want to use NetBSD's pkgsrc
+  to help install gtk2 and its dependencies.
+
+- Flags are stored symbolically in the .pcb file.  This is the start
+  of moving to support >8 layers.  Please note that >8 layer support
+  is not yet available in this snapshot.
+
+- Fixes for gcc-4
+
+- As part of the switch to gtk2, the user customizable menu feature has
+  been temporarily broken.  Hopefully this will be fixed by the next
+  snapshot.  In addition, the loading of background images has also been
+  temporarily broken.
+
+========================================================================
+Release Notes for PCB snapshot 20050315
+========================================================================
+
+- Several footprint library fixes including TO-220 parse errors and
+  incorrect drill holes on several componenets.
+
+- Fixed a crashing bug in the pinout window.
+
+- Allow the FAB author to be set via an Xresource to override what
+  PCB might have gotten from the gecos information.
+
+- Added table of standard drill sizes to the manual.
+
+- Fixed a crashing bug when trying to use arrow keys to adjust the scale
+  slider in the print dialog box.
+
+========================================================================
+Release Notes for PCB snapshot 20050127
+========================================================================
+
+- Fix drill size for PLCC sockets in ~geda library.  Fix drill size for
+  LED3 and LED5 footprints in ~geda library.
+
+- Move the right-click popup menu to pcb-menu.res.
+
+- Add DisperseElements() action for spreading out elements in an initial
+  layout.
+
+- Fix fab drawing output for the case where a very small number of
+  drill sizes are used.
+
+- Various documentation improvements.
+
+- Remove many compiler warnings.
+
+- Added metric output to the cursor display
+
+- Fix <Key>. for toggling 45 degree mode.
+
+- Crosshair snap snaps to center of pads and also to the mark of the
+  element.
+
+- Protect all strcmp() calls with a check for a NULL pointer.  Fixes
+  various crashes.
+
+- Fixed the mode buttons which were unresponsive in some versions of 
+  the X libraries.
+
+- Element names may be edited over the element.
+
+- Added --enable-efence for ElectricFence debugging.  Off by default
+
+- Added --disable-rpath to avoid using rpath for the X libraries.
+
+- Added vendor resource file support.  This allows lets you specify
+  a set of allowed drill sizes and drc rules for a particular vendor.
+
+- Added -action command line option to allow executing an action on
+  startup.
+
+- Date and time of compilation added to About dialog.
+
+- Fix a bug where the soldermask relief on a new element is 100x smaller
+  than the default when "convert buffer to element" is used.
+
+- Fix a name_tree corruption bug when changing an element name.
+
+- Don't remove the formatted manual with a 'make clean' since they are
+  part of the distfile.  
+
+- Let automake handle the html and pdf conversion.  This ends up using
+  texi2pdf for the pdf output which seems to do a better job than ps2pdf.
+
+- Sort actions by modifier so that both Ctrl<Key>x and <Key>x work.
+
+- Fix a SelectByName bug.
+
+- Fix non-gcc compilation
+
+- Command history added to :
+
+- Fixed pinout window crash
+
+- Allow Ctrl-drag to copy objects in arrow mode.
+
+- Fixed a polygon clearance bug
+
+- Fix an arc bounding box calculation error.
+
+========================================================================
+Release Notes for PCB snapshot 20040903
+========================================================================
+
+- enable -Wall when compiling with gcc.  Many compiler warnings have
+  been fixed.
+
+- add a short man page which refers the user to the real documentation
+
+- Added ExecuteFile(file) action which allows the execution of several
+  actions contained in a text file.
+
+- Added -script <file> flag which specifies a file containing actions
+  to be executed upon startup.
+
+- Various documentation improvements
+
+- Protect some gcc extensions with tests for gcc.  This allows
+  compilation with the IRIX c compiler.
+
+- Add support for a background image in the drawing area which can
+  help in importing a layout from a scanned image.
+
+- Updated the ~geda library 150 and 300 mil width SOIC packages
+  to remove silk on pads and to more closely follow the IPC
+  recommendations
+
+- Added support for menu accelerators.
+
+- segfault when breaking apart an element with no element selected
+  bug fixed.
+
+- autorouter improvements
+
+- added more 400mil DIP packages to ~geda library
+
+- fix a trace optimizer bug which produced a segfault
+
+- other various bug fixes
+
+
+========================================================================
+Release Notes for PCB snapshot 20040530
+========================================================================
+This has been an exciting 3 months for PCB.  Many improvements have
+been made in the program as well as additions and improvements to the
+footprint library.  Thanks to everyone who has provided feedback,
+patches, etc.
+
+----------------------
+Additions/Improvements
+----------------------
+  - Expanded DRC checking
+  - "Realtime" DRC checking
+  - DRC settings are now stored in the board fle
+  - Centroid (X-Y) and bill of materials output
+  - Dynamic menus.  Users can now customize the menus via a
+    site-wide, per-user, or per-project menu resource file.
+  - Significant improvements to autorouting of congested designs.
+  - Autorouter can now use power planes.
+  - Improved appearance in autorouter output.
+  - Silk on pads/pins is clipped in RS-274-X output
+  - Ordering is preserved when writing output files so that diff
+    may be effectively used on pcb files.
+  - The autoplace feature now actually works
+  - Added ToggleVisibility action
+  - Most of the database is now kept in rtrees which avoids linear
+    searches.  This speeds up operation significantly.
+  - Added SetFlag, ClrFlag, ChangeFlag actions
+
+---------
+Bug Fixes
+---------
+  - pin/pad bounding box calculation fixed.  Components can
+    now be placed closer to the edge of the board.
+  - miter trace optimization bug.
+  - Fix bug with pins which are enclosed by multiple polygons.
+  - Shorts to unnamed elements and pins are handled correctly.
+  - Various memory leaks fixed.
+  - Fixed some bugs with a really high zoom.
+  - Fixed default media selection in postscript print dialog
+  - Fix some DRC bugs with square pins.
+
+------------------
+Footprint Library:
+------------------
+  - Added SOJ footprint family (~geda library)
+  - Added CTS series 742/3/4/5/6 resistor pack footprints (~cts library)
+  - Added PKG_CONNECTOR_DIL macro to let the HEADER*_1 footprints work
+    (~geda library)
+  - Correct the SDIP footprints (~geda library)
+  - Correct some Minicircuits footprints (~minicircuits library)
+  - Correct some panasonic footprints (~panasonic library)
+  - Change refdes silk size for sockets (~johnstech library)
+  - Increase soldermask relief on some mounting holes
+    (~johnstech library)
+  - Convert the COMMON_SMT_DIL_MIL and COMMON_SMT_DIL_MM macros
+    used by several other libraries to the hi-res format.
+  - Correct pin count on 100 pin QFP packages (100 not 72)
+    (~geda library)
+  - Correct pin count on HEADER60_2 (60 not 50) (~geda library)
+
+========================================================================
+
+New Features for 2.0
+
+(1) New library system. A directory tree is parsed and added to the library 
+selector window. This directory is specified in the config.h file as 
+PCBTREEDIR and should point to a directory where any pcb user that needs to 
+create library elements has write privileges. The "-libtree X" switch will 
+cause pcb to use directory X instead of the installed default for the new 
+library directory. You should continue to be wary of the old library 
+elements, many of them are not quite right. (Just check them carefully before 
+fabing to be sure there are no surprises). My intent is to create a 
+repository for new elements THAT PEOPLE HAVE FABRICATED SUCCESSFULLY in order 
+to grow a reliable library.
+
+(2) Element files can now contain layers (line, arcs, polygons), vias and 
+elements. The new library system reads from element files (no need to learn 
+M4). The expanded capability of element files allows you to put useful 
+sub-circuits into the library. For example, a QFP package with a break-out 
+via pattern can be stored as a library element. Be careful with this as the 
+layers are saved simply by their layer number and lose any association with a 
+group (e.g. whether it is the component, or solder-side layer).
+
+(3) Improved fascilities for creating elements from drawn objects. Now you 
+can put an element in the buffer, and break it into it's consitutent parts. 
+Paste this to the layout, make changes, then put it back in the buffer to 
+convert to an element. You can also save a buffer's contents to an element 
+file (i.e. add it to the library). Of course element files are still just 
+text files so you can edit them at will. Draw the element outline on the silk 
+layer (lines and arcs, no polygons), use Vias to make pins or holes, and lines 
+on the component and/or solder layers for SMD pads. Number the pins and pads 
+with the name ("n" key) entry, then cut it all to the buffer and select 
+"convert buffer to element". Saved elements always appear in the file in a 
+component-side orientation (even if you save while viewing the solder side).
+
+(4) Support for elements with surface-mount pads on both sides of the board. 
+e.g. edge connectors. This also allows creation of elements with multiple
+pins/pads having the same "number" string. This can be used, for example,
+to create a DIP footprint that has a pad on top and bottom coincident
+with each pin. This effectively makes the pins have elongated copper pads
+on the top and bottom - something several home-made board makers have
+requested.  If you do create an element with multiple pins having the
+same number, and that number appears in the netlist, they MUST be connected
+before the board is considered routed. See the "14DIP_oval_pad" example
+in the "test" section of the library for an example.
+
+(5) Support for the strokes library. Compiling with strokes enabled (see 
+config.h) binds the middle button to recognize strokes for the user 
+interface. Zoom in, Zoom out, choose the line, arrow, or via tools, rotate an 
+object, etc. can be done with simple strokes. Check the source code 
+(FinishStroke() in action.c) to see what the strokes are.
+
+(6) Better fascilites for panning at high zoom: Shift-button3 down shows the 
+whole layout - move the crosshair to where you want the display centered, 
+then release the mouse button - the previous zoom level is restored, centered 
+at the new location. You can do this while in the middle of drawing, moving, 
+etc. You can also place the cursor in the panner area, and use the arrow keys 
+on the keyboard to scroll half a window view per keypress. Of course you can 
+still drag the screen with button1 with the panner tool (previously known
+as no tool).
+Auto-scrolling is also improved. If you want to use menus, buttons,
+the panner, placing the pointer over them stops auto-scroll. If you
+want to go to another window and not auto-scroll, pass the pointer
+over one of those things before heading to the other window.
+
+(7) Auto-router. The auto-router routes with the active line size, via size, 
+and keep-away. It is a grid-less router, and will automatically avoid any 
+existing traces, etc. that you've placed on the board. It uses all layers 
+that are visible when invoked, so turn off any layers you don't want it to 
+use. You can auto-route all rat lines, or selected rat lines. This was
+written by C. Scott Ananian
+
+(8) Fascilities to rip-up tracks and vias that were placed by the 
+auto-router. You can rip-up all auto-routed tracks, or just those that are 
+selected (and were auto-routed).
+
+(9) Auto-placement code. It's broken. Don't use it.
+
+(10) Many functions added to the menus that were previously accessible only 
+through keys or typed commands. e.g. SetValue(Grid,1), DRC().
+
+(11) You can turn on/off the requirement for unique element names. When 
+unique names are required, they may be automatically generated when pasting. 
+Turn on uniqueness for a single layout, turn off if placing several boards in 
+a panel (or if you just want duplicate names). It's in the settings menu.
+
+(12) Support for metric grids. Coordinates are still always integer mils,
+but you can have the grid fall on a regular metric spacing to within
++/- 1 mil. Selectable in the "Screen" menu and also with the "SetValue(Grid, x)"
+command; the value x is still in mils, but it's floating point now. Also
+the concept of "absolute" grid has been eliminated - just align it where
+you want.
+
+(13) Support for viewing the soldermask. The Screen menu has a selection for
+turning on/off the display of the solder mask. You can also change the
+size of mask holes when the mask is displayed by using the
+"ChangeClearSize(what, change)" function (k key). If the mask is not
+displayed, this function changes polygon clearances as before. For example
+you could elliminate all via soldermask holes by selecting everything
+(make sure vias are turned on), then typing the command:
+":ChangeClearSize(SelectedVias, 0)" There is a special case for
+vias to change the mask diameter equal to the via diameter, by using
++0 as the size change.
+ 
+(14) Support for creation/addition of netlist by drawing rat lines.
+Select "netlist" from the drawing layer, and use the line tool to
+add nets. Undo removes the rat, but not the created net. To delete
+a netlist entry, select the connection in the netlist window and
+hit the backspace key. The "netlist" layer must be the active layer
+to delete connections like this. This is NOT the recommended way
+to create a netlist, but a lot of people asked for it.
+
+(15) Support for snapping the crosshair to pins/pads even when they're not on
+grid. Selectable in the "Settings" menu. Thanks to Borges for this
+great idea.
+
+(16) Doesn't draw negative lines and arcs in print output unless
+necessary. It still does this for all pads though. Doesn't technically
+matter, but there are a lot of bogus gerber viewers out there and
+people that are easily confused by gerber files that completely meet
+the specification.
+
+(17) Added a "Lock" feature that lets you lock an object so it
+can't be selected, moved, or modified. Very handy for making a
+board-outline element (e.g. pc104 card) invisible to the Arrow
+tool.
+
+(18) lots of bug fixes (plus, no doubt, lots of newly introduced ones).
+
+(19) a tool (in the tools folder) for converting to/from ncap files
+for auto-routing with MUCS-PCB. I have not tried this myself. Written
+By Luis Claudio G. Lopes
+
+(20) a new build system based on the GNU automake and autoconf tools.
+This should make compiling on different systems easier than with the
+old imake based build system.
+ 
+(21) A program for quickly generating QFP elements. Its invoked
+from the old library (~generic/qfp menu, generic)
+
+(22) Increased resolution.  The internal unit is now 0.01 mil
+as opposed to 1.0 mil which was the previous unit.
+
+Quick and dirty explanation of some as-yet undocumented features:
+
+Netlist window: double-click on a net-name to enable/disable it. A "*" 
+appears next to the name when it is disabled. Disabled means rats nests will 
+ignore the net. Click on a connection to select it (and center it) in the 
+layout window. "Finding" a connection starting from a pin or pad will
+select it in the netlist window.
+
+The "j" key controls whether a line (arc) clears (plow through) polygons or 
+touches them. Newly created lines and arcs follow the setting in the 
+"settings" menu. Put the cursor over the line or arc you want to change, then 
+hit the "j" (j for join) key.
+
+The "k" key controls the width of clearance around a line (arc) when it 
+plows. "k" key increases clearance by 2, Shift-K decreases it by 2, also 
+works for pins and vias piercing polygons. The initial value for new objects 
+(but not element pins/pads which is in the element definition)
+is controlled by the "keepaway" setting, changeable in the "sizes" menu.
+
+When drawing lines, you can start a new anchor point without drawing from 
+the previous point by either clicking button3, or Ctrl-button1. DON'T
+USE BUTTON2 - that would be wrong, even if it sort of works.
+
+The Arrow tool is for selecting/deselecting objects, and moving them. 
+Shift-click to add to the existing selection. You can click-drag to draw 
+boxes for box selection. If you click-drag on an already selected item, you 
+will move the selection. If you click-drag on an un-selected item, you will 
+move that item without selecting it. This last technique is the only way to 
+move a point (e.g. end point of a line), and is also the only way to perform 
+moves with rubber-banding (i.e. rubber-banding doesn't work with selections). 
+Moving a selection actually cuts it to a special paste buffer, then pastes it 
+at the new location. Always start a box selection by clicking in an empty 
+region of the board. It may be desireable to turn off some visibility in 
+order to simplify the box selection operation.  You can also lock
+an object to make it invisible to the Arrow tool (so box selections can
+begin over the object). If you don't configure for
+strokes, the middle button is bound to the arrow tool.
+
+To move an element or silk text to the opposite side of the board, use the 
+"b" key (b for backside) to send it to the opposite side. You can also cut an 
+object to a buffer, switch viewing sides (tab), then paste it. The buffer can 
+be used this way to flip layout traces to the other side too, although if 
+layer groups are used, the precise layer they appear on may not have the 
+color you want, but the connectivity should not change.
+
+
+Installation tip: BE SURE TO INSTALL THE NEW X11 RESOURCE FILE - run
+make install to do this. If you just want to test without installing,
+run the pcbtest.sh script in the src directory.
+

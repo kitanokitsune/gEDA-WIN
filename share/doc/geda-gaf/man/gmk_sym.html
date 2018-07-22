@@ -1,0 +1,346 @@
+<!-- Creator     : groff version 1.18.1.4 -->
+<!-- CreationDate: Tue Jan 22 04:00:05 2013 -->
+<html>
+<head>
+<meta name="generator" content="groff -Thtml, see www.gnu.org">
+<meta name="Content-Style" content="text/css">
+<title>gmk_sym</title>
+</head>
+<body>
+
+<h1 align=center>gmk_sym</h1>
+<a href="#NAME">NAME</a><br>
+<a href="#SYNOPSIS">SYNOPSIS</a><br>
+<a href="#DESCRIPTION">DESCRIPTION</a><br>
+<a href="#OPTIONS">OPTIONS</a><br>
+<a href="#FILE FORMAT">FILE FORMAT</a><br>
+<a href="#AUTHOR">AUTHOR</a><br>
+<a href="#SEE ALSO">SEE ALSO</a><br>
+<a href="#COPYRIGHT">COPYRIGHT</a><br>
+
+<hr>
+<a name="NAME"></a>
+<h2>NAME</h2>
+<!-- INDENTATION -->
+<table width="100%" border=0 rules="none" frame="void"
+       cols="2" cellspacing="0" cellpadding="0">
+<tr valign="top" align="left">
+<td width="10%"></td>
+<td width="89%">
+<p>gmk_sym &minus; create rectangular symbols for gschem
+from a text file</p>
+</td>
+</table>
+<a name="SYNOPSIS"></a>
+<h2>SYNOPSIS</h2>
+<!-- INDENTATION -->
+<table width="100%" border=0 rules="none" frame="void"
+       cols="2" cellspacing="0" cellpadding="0">
+<tr valign="top" align="left">
+<td width="10%"></td>
+<td width="89%">
+<p><b>gmk_sym [ -d ]</b> <i>inputfile.txt</i> <b>&gt;</b>
+<i>outputfile.sym</i></p>
+<!-- INDENTATION -->
+<p><b>gmk_sym -h|-?</b></p>
+</td>
+</table>
+<a name="DESCRIPTION"></a>
+<h2>DESCRIPTION</h2>
+<!-- INDENTATION -->
+<table width="100%" border=0 rules="none" frame="void"
+       cols="2" cellspacing="0" cellpadding="0">
+<tr valign="top" align="left">
+<td width="10%"></td>
+<td width="89%">
+<p><b>gmk_sym</b> is a program to create rectangular symbols
+for gschem from a file composed of comma separated
+lines.</p>
+</td>
+</table>
+<a name="OPTIONS"></a>
+<h2>OPTIONS</h2>
+<!-- TABS -->
+<table width="100%" border=0 rules="none" frame="void"
+       cols="5" cellspacing="0" cellpadding="0">
+<tr valign="top" align="left">
+<td width="11%"></td>
+<td width="8%">
+
+<p>&minus;d</p>
+</td>
+<td width="7%"></td>
+<td width="42%">
+
+<p>Turn on debug output</p>
+</td>
+<td width="29%">
+</td>
+<tr valign="top" align="left">
+<td width="11%"></td>
+<td width="8%">
+
+<p>&minus;h, &minus;?</p>
+</td>
+<td width="7%"></td>
+<td width="42%">
+
+<p>Display usage information</p>
+</td>
+<td width="29%">
+</td>
+</table>
+<a name="FILE FORMAT"></a>
+<h2>FILE FORMAT</h2>
+<!-- INDENTATION -->
+<table width="100%" border=0 rules="none" frame="void"
+       cols="2" cellspacing="0" cellpadding="0">
+<tr valign="top" align="left">
+<td width="10%"></td>
+<td width="89%">
+<p>The input file format is:</p>
+</td>
+</table>
+<!-- TABS -->
+<table width="100%" border=0 rules="none" frame="void"
+       cols="4" cellspacing="0" cellpadding="0">
+<tr valign="top" align="left">
+<td width="11%"></td>
+<td width="1%">
+
+<p>&bull;</p>
+</td>
+<td width="8%"></td>
+<td width="77%">
+
+<p>lines starting with &rsquo;;&rsquo; are comment lines
+and are not processed;</p>
+</td>
+<tr valign="top" align="left">
+<td width="11%"></td>
+<td width="1%">
+
+<p>&bull;</p>
+</td>
+<td width="8%"></td>
+<td width="77%">
+
+<p>The 1st valid line describes a device:</p>
+</td>
+</table>
+<!-- TABS -->
+<table width="100%" border=0 rules="none" frame="void"
+       cols="4" cellspacing="0" cellpadding="0">
+<tr valign="top" align="left">
+<td width="11%"></td>
+<td width="13%">
+
+<p>&bull;</p>
+</td>
+<td width="1%"></td>
+<td width="73%">
+
+<p>1st value: device name</p>
+</td>
+<tr valign="top" align="left">
+<td width="11%"></td>
+<td width="13%">
+
+<p>&bull;</p>
+</td>
+<td width="1%"></td>
+<td width="73%">
+
+<p>2nd value: visible name</p>
+</td>
+<tr valign="top" align="left">
+<td width="11%"></td>
+<td width="13%">
+
+<p>&bull;</p>
+</td>
+<td width="1%"></td>
+<td width="73%">
+
+<p>3rd value: visible name location on package</p>
+</td>
+<tr valign="top" align="left">
+<td width="11%"></td>
+<td width="13%">
+
+<p>&bull;</p>
+</td>
+<td width="1%"></td>
+<td width="73%">
+
+<p>4th value: box&rsquo;s hoz size, in pins spacings</p>
+</td>
+<tr valign="top" align="left">
+<td width="11%"></td>
+<td width="13%">
+
+<p>&bull;</p>
+</td>
+<td width="1%"></td>
+<td width="73%">
+
+<p>5th value: box&rsquo;s ver size, in pins spacings</p>
+</td>
+<tr valign="top" align="left">
+<td width="11%"></td>
+<td width="13%">
+
+<p>&bull;</p>
+</td>
+<td width="1%"></td>
+<td width="73%">
+
+<p>6th value: uref prefix, like U or J</p>
+</td>
+<tr valign="top" align="left">
+<td width="11%"></td>
+<td width="13%">
+
+<p>&bull;</p>
+</td>
+<td width="1%"></td>
+<td width="73%">
+
+<p>7th value: Footprint</p>
+</td>
+<tr valign="top" align="left">
+<td width="11%"></td>
+<td width="13%">
+
+<p>&bull;</p>
+</td>
+<td width="1%"></td>
+<td width="73%">
+
+<p>8th value: Total number of pins on device (including
+hidden)</p>
+</td>
+<tr valign="top" align="left">
+<td width="11%"></td>
+<td width="13%">
+
+<p>&bull;</p>
+</td>
+<td width="1%"></td>
+<td width="73%">
+
+<p>All other valid lines describes the symbol&rsquo;s
+pins:</p>
+</td>
+<tr valign="top" align="left">
+<td width="11%"></td>
+<td width="13%">
+
+<p>&bull;</p>
+</td>
+<td width="1%"></td>
+<td width="73%">
+
+<p>1st value: pin name</p>
+</td>
+<tr valign="top" align="left">
+<td width="11%"></td>
+<td width="13%">
+
+<p>&bull;</p>
+</td>
+<td width="1%"></td>
+<td width="73%">
+
+<p>2nd value: pin number</p>
+</td>
+<tr valign="top" align="left">
+<td width="11%"></td>
+<td width="13%">
+
+<p>&bull;</p>
+</td>
+<td width="1%"></td>
+<td width="73%">
+
+<p>3rd value: pin shape, choice of: line, clock,
+dot&amp;line</p>
+</td>
+<tr valign="top" align="left">
+<td width="11%"></td>
+<td width="13%">
+
+<p>&bull;</p>
+</td>
+<td width="1%"></td>
+<td width="73%">
+
+<p>4th value: side of box to attach the pin,choice of: R,
+L, T, B</p>
+</td>
+<tr valign="top" align="left">
+<td width="11%"></td>
+<td width="13%">
+
+<p>&bull;</p>
+</td>
+<td width="1%"></td>
+<td width="73%">
+
+<p>5th value: location of pin on side of box, in pin
+spacings</p>
+</td>
+<tr valign="top" align="left">
+<td width="11%"></td>
+<td width="13%">
+
+<p>&bull;</p>
+</td>
+<td width="1%"></td>
+<td width="73%">
+
+<p>6th value: (optional) pin type attribute: in, out, io,
+oc, oe, pas, tp, tri, clk, pwr</p>
+</td>
+</table>
+<a name="AUTHOR"></a>
+<h2>AUTHOR</h2>
+<!-- INDENTATION -->
+<table width="100%" border=0 rules="none" frame="void"
+       cols="2" cellspacing="0" cellpadding="0">
+<tr valign="top" align="left">
+<td width="10%"></td>
+<td width="89%">
+<p>Jerry O&rsquo;Keefe &lt;jerryok@pacbell.net&gt;</p>
+</td>
+</table>
+<a name="SEE ALSO"></a>
+<h2>SEE ALSO</h2>
+<!-- INDENTATION -->
+<table width="100%" border=0 rules="none" frame="void"
+       cols="2" cellspacing="0" cellpadding="0">
+<tr valign="top" align="left">
+<td width="10%"></td>
+<td width="89%">
+<p><b>gschem</b>(1)</p>
+</td>
+</table>
+<a name="COPYRIGHT"></a>
+<h2>COPYRIGHT</h2>
+<!-- INDENTATION -->
+<table width="100%" border=0 rules="none" frame="void"
+       cols="2" cellspacing="0" cellpadding="0">
+<tr valign="top" align="left">
+<td width="10%"></td>
+<td width="89%">
+<pre>Copyright &copy; 1999-2011 gEDA Contributors.  License GPLv2+: GNU GPL
+version 2 or later.  Please see the &lsquo;COPYING&rsquo; file included with this
+program for full details.
+
+This is free software: you are free to change and redistribute it.
+There is NO WARRANTY, to the extent permitted by law.
+
+</pre>
+<hr>
+</body>
+</html>

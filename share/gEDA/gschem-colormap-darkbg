@@ -1,0 +1,69 @@
+;                                                         -*-Scheme-*-
+;
+; Dark background color map for gschem
+;
+
+;  ;'s are comments
+;  Keywords are case sensitive (Guile feature)
+;  Colors are not case sensitive
+;
+
+; Colors may be specified in "#RRGGBB" or "#RRGGBBAA" format. If the alpha
+; value is not specified, full opacity is assumed.
+;
+; If a color is #f (not a string; Scheme 'false'), then objects of
+; that color will never be drawn.
+
+(display-color-map
+ '((background         "#000000")
+   (pin                "#ffffff")
+   (net-endpoint       "#ff0000")
+   (graphic            "#00ff00")
+   (net                "#0000ff")
+   (attribute          "#ffff00")
+   (logic-bubble       "#00ffff")
+   (dots-grid          "#bebebe")
+   (mesh-grid-major    "#1e1e1e")
+   (mesh-grid-minor    "#171717")
+   (detached-attribute "#ff0000")
+   (text               "#00ff00")
+   (bus                "#00ff00")
+   (select             "#ffa500")
+   (bounding-box       "#ffa500")
+   (zoom-box           "#00ffff")
+   (stroke             "#e5e5e5")
+   (lock               "#bebebe")
+   (output-background  #f)
+   (junction           "#ffff00")
+   (freestyle1         #f)
+   (freestyle2         #f)
+   (freestyle3         #f)
+   (freestyle4         #f)
+   ))
+
+(display-outline-color-map
+ '((background         #f)
+   (pin                "#ababab")
+   (net-endpoint       "#00ab00")
+   (graphic            "#00ab00")
+   (net                "#0000ab")
+   (attribute          "#abab00")
+   (logic-bubble       "#00abab")
+   (dots-grid          #f)
+   (mesh-grid-major    #f)
+   (mesh-grid-minor    #f)
+   (detached-attribute "#ab0000")
+   (text               "#00ab00")
+   (bus                "#00ab00")
+   (select             "#ffa500")
+   (bounding-box       "#ffa500")
+   (zoom-box           "#00ffff")
+   (stroke             "#e5e5e5")
+   (lock               "#a9a9a9")
+   (output-background  #f)
+   (junction           "#abab00")
+   (freestyle1         #f)
+   (freestyle2         #f)
+   (freestyle3         #f)
+   (freestyle4         #f)
+   ))

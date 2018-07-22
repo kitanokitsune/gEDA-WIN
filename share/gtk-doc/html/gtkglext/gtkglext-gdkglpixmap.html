@@ -1,0 +1,393 @@
+<html>
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=US-ASCII">
+<title>OpenGL Pixmap</title>
+<meta name="generator" content="DocBook XSL Stylesheets V1.65.1">
+<link rel="home" href="index.html" title="GtkGLExt Reference Manual">
+<link rel="up" href="GdkGLExt-API.html" title="Part&#160;II.&#160;GdkGLExt API Reference">
+<link rel="previous" href="gtkglext-gdkgldrawable.html" title="Rendering Surface">
+<link rel="next" href="gtkglext-gdkglwindow.html" title="OpenGL Window">
+<meta name="generator" content="GTK-Doc V1.4 (XML mode)">
+<link rel="stylesheet" href="style.css" type="text/css">
+<link rel="part" href="Overview.html" title="Part&#160;I.&#160;GtkGLExt Overview">
+<link rel="part" href="GdkGLExt-API.html" title="Part&#160;II.&#160;GdkGLExt API Reference">
+<link rel="part" href="GtkGLExt-API.html" title="Part&#160;III.&#160;GtkGLExt API Reference">
+</head>
+<body bgcolor="white" text="black" link="#0000FF" vlink="#840084" alink="#0000FF">
+<table class="navigation" width="100%" summary="Navigation header" cellpadding="2" cellspacing="2"><tr valign="middle">
+<td><a accesskey="p" href="gtkglext-gdkgldrawable.html"><img src="left.png" width="24" height="24" border="0" alt="Prev"></a></td>
+<td><a accesskey="u" href="GdkGLExt-API.html"><img src="up.png" width="24" height="24" border="0" alt="Up"></a></td>
+<td><a accesskey="h" href="index.html"><img src="home.png" width="24" height="24" border="0" alt="Home"></a></td>
+<th width="100%" align="center">GtkGLExt Reference Manual</th>
+<td><a accesskey="n" href="gtkglext-gdkglwindow.html"><img src="right.png" width="24" height="24" border="0" alt="Next"></a></td>
+</tr></table>
+<div class="refentry" lang="en">
+<a name="gtkglext-gdkglpixmap"></a><div class="titlepage">
+<div></div>
+<div></div>
+</div>
+<div class="refnamediv"><table width="100%"><tr>
+<td valign="top">
+<h2><span class="refentrytitle">OpenGL Pixmap</span></h2>
+<p>OpenGL Pixmap &#8212; OpenGL pixmap which is maintained off-screen</p>
+</td>
+<td valign="top" align="right"></td>
+</tr></table></div>
+<div class="refsynopsisdiv">
+<h2>Synopsis</h2>
+<a name="GdkGLPixmap"></a><pre class="synopsis">
+
+#include &lt;gdk/gdkgl.h&gt;
+
+
+            <a href="gtkglext-gdkglpixmap.html#GdkGLPixmap-struct">GdkGLPixmap</a>;
+<a href="gtkglext-gdkglpixmap.html#GdkGLPixmap">GdkGLPixmap</a>* <a href="gtkglext-gdkglpixmap.html#gdk-gl-pixmap-new">gdk_gl_pixmap_new</a>              (<a href="gtkglext-gdkglconfig.html#GdkGLConfig">GdkGLConfig</a> *glconfig,
+                                             <a
+href="/usr/share/gtk-doc/html/gdk/gdk-Bitmaps-and-Pixmaps.html#GdkPixmap"
+>GdkPixmap</a> *pixmap,
+                                             const int *attrib_list);
+void        <a href="gtkglext-gdkglpixmap.html#gdk-gl-pixmap-destroy">gdk_gl_pixmap_destroy</a>           (<a href="gtkglext-gdkglpixmap.html#GdkGLPixmap">GdkGLPixmap</a> *glpixmap);
+<a
+href="/usr/share/gtk-doc/html/gdk/gdk-Bitmaps-and-Pixmaps.html#GdkPixmap"
+>GdkPixmap</a>*  <a href="gtkglext-gdkglpixmap.html#gdk-gl-pixmap-get-pixmap">gdk_gl_pixmap_get_pixmap</a>        (<a href="gtkglext-gdkglpixmap.html#GdkGLPixmap">GdkGLPixmap</a> *glpixmap);
+<a href="gtkglext-gdkglpixmap.html#GdkGLPixmap">GdkGLPixmap</a>* <a href="gtkglext-gdkglpixmap.html#gdk-pixmap-set-gl-capability">gdk_pixmap_set_gl_capability</a>   (<a
+href="/usr/share/gtk-doc/html/gdk/gdk-Bitmaps-and-Pixmaps.html#GdkPixmap"
+>GdkPixmap</a> *pixmap,
+                                             <a href="gtkglext-gdkglconfig.html#GdkGLConfig">GdkGLConfig</a> *glconfig,
+                                             const int *attrib_list);
+void        <a href="gtkglext-gdkglpixmap.html#gdk-pixmap-unset-gl-capability">gdk_pixmap_unset_gl_capability</a>  (<a
+href="/usr/share/gtk-doc/html/gdk/gdk-Bitmaps-and-Pixmaps.html#GdkPixmap"
+>GdkPixmap</a> *pixmap);
+<a
+href="/usr/share/gtk-doc/html/glib/glib-Basic-Types.html#gboolean"
+>gboolean</a>    <a href="gtkglext-gdkglpixmap.html#gdk-pixmap-is-gl-capable">gdk_pixmap_is_gl_capable</a>        (<a
+href="/usr/share/gtk-doc/html/gdk/gdk-Bitmaps-and-Pixmaps.html#GdkPixmap"
+>GdkPixmap</a> *pixmap);
+<a href="gtkglext-gdkglpixmap.html#GdkGLPixmap">GdkGLPixmap</a>* <a href="gtkglext-gdkglpixmap.html#gdk-pixmap-get-gl-pixmap">gdk_pixmap_get_gl_pixmap</a>       (<a
+href="/usr/share/gtk-doc/html/gdk/gdk-Bitmaps-and-Pixmaps.html#GdkPixmap"
+>GdkPixmap</a> *pixmap);
+#define     <a href="gtkglext-gdkglpixmap.html#gdk-pixmap-get-gl-drawable">gdk_pixmap_get_gl_drawable</a>      (pixmap)
+
+
+</pre>
+</div>
+<div class="refsect1" lang="en">
+<a name="id2510440"></a><h2>Object Hierarchy</h2>
+<pre class="synopsis">
+
+  <a
+href="/usr/share/gtk-doc/html/gobject/gobject-The-Base-Object-Type.html#GObject"
+>GObject</a>
+   +----<a
+href="/usr/share/gtk-doc/html/gdk/gdk-Drawing-Primitives.html#GdkDrawable"
+>GdkDrawable</a>
+         +----GdkGLPixmap
+</pre>
+</div>
+<div class="refsect1" lang="en">
+<a name="id2510468"></a><h2>Description</h2>
+<p>
+
+</p>
+</div>
+<div class="refsect1" lang="en">
+<a name="id2510477"></a><h2>Details</h2>
+<div class="refsect2" lang="en">
+<a name="id2510483"></a><h3>
+<a name="GdkGLPixmap-struct"></a>GdkGLPixmap</h3>
+<a class="indexterm" name="id2510493"></a><pre class="programlisting">typedef struct _GdkGLPixmap GdkGLPixmap;</pre>
+<p>
+
+</p>
+</div>
+<hr>
+<div class="refsect2" lang="en">
+<a name="id2510508"></a><h3>
+<a name="gdk-gl-pixmap-new"></a>gdk_gl_pixmap_new ()</h3>
+<a class="indexterm" name="id2510519"></a><pre class="programlisting"><a href="gtkglext-gdkglpixmap.html#GdkGLPixmap">GdkGLPixmap</a>* gdk_gl_pixmap_new              (<a href="gtkglext-gdkglconfig.html#GdkGLConfig">GdkGLConfig</a> *glconfig,
+                                             <a
+href="/usr/share/gtk-doc/html/gdk/gdk-Bitmaps-and-Pixmaps.html#GdkPixmap"
+>GdkPixmap</a> *pixmap,
+                                             const int *attrib_list);</pre>
+<p>
+Creates an off-screen rendering area.
+attrib_list is currently unused. This must be set to NULL or empty
+(first attribute of None). See GLX 1.3 spec.</p>
+<p>
+
+</p>
+<div class="variablelist"><table border="0">
+<col align="left" valign="top">
+<tbody>
+<tr>
+<td>
+<span class="term"><i class="parameter"><tt>glconfig</tt></i>&#160;:</span></td>
+<td> a <a href="gtkglext-gdkglconfig.html#GdkGLConfig"><span class="type">GdkGLConfig</span></a>.
+</td>
+</tr>
+<tr>
+<td>
+<span class="term"><i class="parameter"><tt>pixmap</tt></i>&#160;:</span></td>
+<td> the <a
+href="/usr/share/gtk-doc/html/gdk/gdk-Bitmaps-and-Pixmaps.html#GdkPixmap"
+><span class="type">GdkPixmap</span></a> to be used as the rendering area.
+</td>
+</tr>
+<tr>
+<td>
+<span class="term"><i class="parameter"><tt>attrib_list</tt></i>&#160;:</span></td>
+<td> this must be set to NULL or empty (first attribute of None).
+</td>
+</tr>
+<tr>
+<td>
+<span class="term"><span class="emphasis"><em>Returns</em></span>&#160;:</span></td>
+<td> the new <a href="gtkglext-gdkglpixmap.html#GdkGLPixmap"><span class="type">GdkGLPixmap</span></a>.
+</td>
+</tr>
+</tbody>
+</table></div>
+</div>
+<hr>
+<div class="refsect2" lang="en">
+<a name="id2510648"></a><h3>
+<a name="gdk-gl-pixmap-destroy"></a>gdk_gl_pixmap_destroy ()</h3>
+<a class="indexterm" name="id2510659"></a><pre class="programlisting">void        gdk_gl_pixmap_destroy           (<a href="gtkglext-gdkglpixmap.html#GdkGLPixmap">GdkGLPixmap</a> *glpixmap);</pre>
+<p>
+Destroys the OpenGL resources associated with <i class="parameter"><tt>glpixmap</tt></i> and
+decrements <i class="parameter"><tt>glpixmap</tt></i>'s reference count.</p>
+<p>
+
+</p>
+<div class="variablelist"><table border="0">
+<col align="left" valign="top">
+<tbody><tr>
+<td>
+<span class="term"><i class="parameter"><tt>glpixmap</tt></i>&#160;:</span></td>
+<td> a <a href="gtkglext-gdkglpixmap.html#GdkGLPixmap"><span class="type">GdkGLPixmap</span></a>.
+</td>
+</tr></tbody>
+</table></div>
+</div>
+<hr>
+<div class="refsect2" lang="en">
+<a name="id2510729"></a><h3>
+<a name="gdk-gl-pixmap-get-pixmap"></a>gdk_gl_pixmap_get_pixmap ()</h3>
+<a class="indexterm" name="id2510739"></a><pre class="programlisting"><a
+href="/usr/share/gtk-doc/html/gdk/gdk-Bitmaps-and-Pixmaps.html#GdkPixmap"
+>GdkPixmap</a>*  gdk_gl_pixmap_get_pixmap        (<a href="gtkglext-gdkglpixmap.html#GdkGLPixmap">GdkGLPixmap</a> *glpixmap);</pre>
+<p>
+Returns the <a
+href="/usr/share/gtk-doc/html/gdk/gdk-Bitmaps-and-Pixmaps.html#GdkPixmap"
+><span class="type">GdkPixmap</span></a> associated with <i class="parameter"><tt>glpixmap</tt></i>.
+</p>
+<p>
+Notice that <a href="gtkglext-gdkglpixmap.html#GdkGLPixmap"><span class="type">GdkGLPixmap</span></a> is not <a
+href="/usr/share/gtk-doc/html/gdk/gdk-Bitmaps-and-Pixmaps.html#GdkPixmap"
+><span class="type">GdkPixmap</span></a>, but another
+<a
+href="/usr/share/gtk-doc/html/gdk/gdk-Drawing-Primitives.html#GdkDrawable"
+><span class="type">GdkDrawable</span></a> which have an associated <a
+href="/usr/share/gtk-doc/html/gdk/gdk-Bitmaps-and-Pixmaps.html#GdkPixmap"
+><span class="type">GdkPixmap</span></a>.</p>
+<p>
+
+</p>
+<div class="variablelist"><table border="0">
+<col align="left" valign="top">
+<tbody>
+<tr>
+<td>
+<span class="term"><i class="parameter"><tt>glpixmap</tt></i>&#160;:</span></td>
+<td> a <a href="gtkglext-gdkglpixmap.html#GdkGLPixmap"><span class="type">GdkGLPixmap</span></a>.
+</td>
+</tr>
+<tr>
+<td>
+<span class="term"><span class="emphasis"><em>Returns</em></span>&#160;:</span></td>
+<td> the <a
+href="/usr/share/gtk-doc/html/gdk/gdk-Bitmaps-and-Pixmaps.html#GdkPixmap"
+><span class="type">GdkPixmap</span></a> associated with <i class="parameter"><tt>glpixmap</tt></i>.
+</td>
+</tr>
+</tbody>
+</table></div>
+</div>
+<hr>
+<div class="refsect2" lang="en">
+<a name="id2510871"></a><h3>
+<a name="gdk-pixmap-set-gl-capability"></a>gdk_pixmap_set_gl_capability ()</h3>
+<a class="indexterm" name="id2510882"></a><pre class="programlisting"><a href="gtkglext-gdkglpixmap.html#GdkGLPixmap">GdkGLPixmap</a>* gdk_pixmap_set_gl_capability   (<a
+href="/usr/share/gtk-doc/html/gdk/gdk-Bitmaps-and-Pixmaps.html#GdkPixmap"
+>GdkPixmap</a> *pixmap,
+                                             <a href="gtkglext-gdkglconfig.html#GdkGLConfig">GdkGLConfig</a> *glconfig,
+                                             const int *attrib_list);</pre>
+<p>
+Set the OpenGL-capability to the <i class="parameter"><tt>pixmap</tt></i>.
+This function creates a new <a href="gtkglext-gdkglpixmap.html#GdkGLPixmap"><span class="type">GdkGLPixmap</span></a> held by the <i class="parameter"><tt>pixmap</tt></i>.
+attrib_list is currently unused. This must be set to NULL or empty
+(first attribute of None).</p>
+<p>
+
+</p>
+<div class="variablelist"><table border="0">
+<col align="left" valign="top">
+<tbody>
+<tr>
+<td>
+<span class="term"><i class="parameter"><tt>pixmap</tt></i>&#160;:</span></td>
+<td> the <a
+href="/usr/share/gtk-doc/html/gdk/gdk-Bitmaps-and-Pixmaps.html#GdkPixmap"
+><span class="type">GdkPixmap</span></a> to be used as the rendering area.
+</td>
+</tr>
+<tr>
+<td>
+<span class="term"><i class="parameter"><tt>glconfig</tt></i>&#160;:</span></td>
+<td> a <a href="gtkglext-gdkglconfig.html#GdkGLConfig"><span class="type">GdkGLConfig</span></a>.
+</td>
+</tr>
+<tr>
+<td>
+<span class="term"><i class="parameter"><tt>attrib_list</tt></i>&#160;:</span></td>
+<td> this must be set to NULL or empty (first attribute of None).
+</td>
+</tr>
+<tr>
+<td>
+<span class="term"><span class="emphasis"><em>Returns</em></span>&#160;:</span></td>
+<td> the <a href="gtkglext-gdkglpixmap.html#GdkGLPixmap"><span class="type">GdkGLPixmap</span></a> used by the <i class="parameter"><tt>pixmap</tt></i> if it is successful,
+              NULL otherwise.
+</td>
+</tr>
+</tbody>
+</table></div>
+</div>
+<hr>
+<div class="refsect2" lang="en">
+<a name="id2511039"></a><h3>
+<a name="gdk-pixmap-unset-gl-capability"></a>gdk_pixmap_unset_gl_capability ()</h3>
+<a class="indexterm" name="id2511050"></a><pre class="programlisting">void        gdk_pixmap_unset_gl_capability  (<a
+href="/usr/share/gtk-doc/html/gdk/gdk-Bitmaps-and-Pixmaps.html#GdkPixmap"
+>GdkPixmap</a> *pixmap);</pre>
+<p>
+Unset the OpenGL-capability of the <i class="parameter"><tt>pixmap</tt></i>.
+This function destroys the <a href="gtkglext-gdkglpixmap.html#GdkGLPixmap"><span class="type">GdkGLPixmap</span></a> held by the <i class="parameter"><tt>pixmap</tt></i>.</p>
+<p>
+
+</p>
+<div class="variablelist"><table border="0">
+<col align="left" valign="top">
+<tbody><tr>
+<td>
+<span class="term"><i class="parameter"><tt>pixmap</tt></i>&#160;:</span></td>
+<td> a <a
+href="/usr/share/gtk-doc/html/gdk/gdk-Bitmaps-and-Pixmaps.html#GdkPixmap"
+><span class="type">GdkPixmap</span></a>.
+</td>
+</tr></tbody>
+</table></div>
+</div>
+<hr>
+<div class="refsect2" lang="en">
+<a name="id2511128"></a><h3>
+<a name="gdk-pixmap-is-gl-capable"></a>gdk_pixmap_is_gl_capable ()</h3>
+<a class="indexterm" name="id2511139"></a><pre class="programlisting"><a
+href="/usr/share/gtk-doc/html/glib/glib-Basic-Types.html#gboolean"
+>gboolean</a>    gdk_pixmap_is_gl_capable        (<a
+href="/usr/share/gtk-doc/html/gdk/gdk-Bitmaps-and-Pixmaps.html#GdkPixmap"
+>GdkPixmap</a> *pixmap);</pre>
+<p>
+Returns whether the <i class="parameter"><tt>pixmap</tt></i> is OpenGL-capable.</p>
+<p>
+
+</p>
+<div class="variablelist"><table border="0">
+<col align="left" valign="top">
+<tbody>
+<tr>
+<td>
+<span class="term"><i class="parameter"><tt>pixmap</tt></i>&#160;:</span></td>
+<td> a <a
+href="/usr/share/gtk-doc/html/gdk/gdk-Bitmaps-and-Pixmaps.html#GdkPixmap"
+><span class="type">GdkPixmap</span></a>.
+</td>
+</tr>
+<tr>
+<td>
+<span class="term"><span class="emphasis"><em>Returns</em></span>&#160;:</span></td>
+<td> TRUE if the <i class="parameter"><tt>pixmap</tt></i> is OpenGL-capable, FALSE otherwise.
+</td>
+</tr>
+</tbody>
+</table></div>
+</div>
+<hr>
+<div class="refsect2" lang="en">
+<a name="id2511219"></a><h3>
+<a name="gdk-pixmap-get-gl-pixmap"></a>gdk_pixmap_get_gl_pixmap ()</h3>
+<a class="indexterm" name="id2511230"></a><pre class="programlisting"><a href="gtkglext-gdkglpixmap.html#GdkGLPixmap">GdkGLPixmap</a>* gdk_pixmap_get_gl_pixmap       (<a
+href="/usr/share/gtk-doc/html/gdk/gdk-Bitmaps-and-Pixmaps.html#GdkPixmap"
+>GdkPixmap</a> *pixmap);</pre>
+<p>
+Returns the <a href="gtkglext-gdkglpixmap.html#GdkGLPixmap"><span class="type">GdkGLPixmap</span></a> held by the <i class="parameter"><tt>pixmap</tt></i>.</p>
+<p>
+
+</p>
+<div class="variablelist"><table border="0">
+<col align="left" valign="top">
+<tbody>
+<tr>
+<td>
+<span class="term"><i class="parameter"><tt>pixmap</tt></i>&#160;:</span></td>
+<td> a <a
+href="/usr/share/gtk-doc/html/gdk/gdk-Bitmaps-and-Pixmaps.html#GdkPixmap"
+><span class="type">GdkPixmap</span></a>.
+</td>
+</tr>
+<tr>
+<td>
+<span class="term"><span class="emphasis"><em>Returns</em></span>&#160;:</span></td>
+<td> the <a href="gtkglext-gdkglpixmap.html#GdkGLPixmap"><span class="type">GdkGLPixmap</span></a>.
+</td>
+</tr>
+</tbody>
+</table></div>
+</div>
+<hr>
+<div class="refsect2" lang="en">
+<a name="id2511319"></a><h3>
+<a name="gdk-pixmap-get-gl-drawable"></a>gdk_pixmap_get_gl_drawable()</h3>
+<a class="indexterm" name="id2511330"></a><pre class="programlisting">#define     gdk_pixmap_get_gl_drawable(pixmap)</pre>
+<p>
+Returns the <a href="gtkglext-gdkgldrawable.html#GdkGLDrawable"><span class="type">GdkGLDrawable</span></a> held by the <i class="parameter"><tt>pixmap</tt></i>. In fact, this is macro
+that casts the result of <a href="gtkglext-gdkglpixmap.html#gdk-pixmap-get-gl-pixmap"><span class="type">gdk_pixmap_get_gl_pixmap</span></a> to <a href="gtkglext-gdkgldrawable.html#GdkGLDrawable"><span class="type">GdkGLDrawable</span></a>.
+</p>
+<div class="variablelist"><table border="0">
+<col align="left" valign="top">
+<tbody>
+<tr>
+<td>
+<span class="term"><i class="parameter"><tt>pixmap</tt></i>&#160;:</span></td>
+<td>a <a href="gtkglext-gdkglpixmap.html#GdkGLPixmap"><span class="type">GdkGLPixmap</span></a>.
+</td>
+</tr>
+<tr>
+<td>
+<span class="term"><span class="emphasis"><em>Returns</em></span>&#160;:</span></td>
+<td>the <a href="gtkglext-gdkgldrawable.html#GdkGLDrawable"><span class="type">GdkGLDrawable</span></a>.
+
+
+</td>
+</tr>
+</tbody>
+</table></div>
+</div>
+</div>
+</div>
+<table class="navigation" width="100%" summary="Navigation footer" cellpadding="2" cellspacing="0"><tr valign="middle">
+<td align="left"><a accesskey="p" href="gtkglext-gdkgldrawable.html"><b>&lt;&lt;&#160;Rendering Surface</b></a></td>
+<td align="right"><a accesskey="n" href="gtkglext-gdkglwindow.html"><b>OpenGL Window&#160;&gt;&gt;</b></a></td>
+</tr></table>
+</body>
+</html>

@@ -1,0 +1,10 @@
+[Desktop Entry]
+Encoding=UTF-8
+Comment=Gerber file
+Comment[nl]=Gerber bestand
+Comment[ru]=Gerber-файл
+MimeType=application/x-gerber
+Type=MimeType
+Icon=application-x-gerber
+Patterns=*.gbr
+X-KDE-IsAlso=text/plain
