@@ -14,7 +14,7 @@ This uses the following projects:
 
 ## How to Install
 1. [required] Unzip the file into any folder you like.
-1. [required] Execute `pixbuf.cmd` once when you unzip the file or move the folder to another.
+1. [required] Execute `pixbuf.cmd` once after you unzip the file or when move the folder to another.
 1. [optional] Copy contents of USERPROFILE subfolder to your HOME folder (usually `%USERPROFILE%`). Edit the copied files if necessary.
 
 
