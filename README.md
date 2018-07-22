@@ -2,7 +2,7 @@
 
 ## Overview
 Windows port of [gEDA Project](http://www.geda-project.org/ ).
-Draw schematics, do SPICE simulations and view simulation resultss on MS-Windows.
+Draw schematics, do SPICE simulations and view simulation results on MS-Windows.
 
 This uses the following projects:
 
