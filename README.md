@@ -20,9 +20,9 @@ This uses the following projects:
 
 
 ## How to Use
-* gschem : double click `run_gschem.cmd` icon.
-* gSpiceUI : double click `run_gSpiceUI.cmd` icon.
-* Other tools : run `gedavars.cmd` on command prompt or double click `geda_console.cmd`, then invoke any tool in the command prompt.
+* **gschem** : double click `run_gschem.cmd` icon.
+* **gSpiceUI** : double click `run_gSpiceUI.cmd` icon.
+* **Other tools** : run `gedavars.cmd` on command prompt or double click `geda_console.cmd`, then invoke any tool in the command prompt.
 
 Please refer each project home page for individual usage.
 
