@@ -1,4 +1,5 @@
 # gEDA for Windows plus gSpiceUI
+[日本語](./README_JP.md)
 
 ## Overview
 Windows port of [gEDA Project](http://www.geda-project.org/ ).

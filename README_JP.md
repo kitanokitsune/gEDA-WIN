@@ -1,4 +1,5 @@
 # gEDA for Windows plus gSpiceUI
+[English](./README.md)
 
 ## Overview
 [gEDAプロジェクト](http://www.geda-project.org/ )のWindows移植版です。
