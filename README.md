@@ -8,7 +8,7 @@
 
 ## Overview
 Windows port of [gEDA Project](http://www.geda-project.org/ ).
-Draw schematics, do SPICE simulations and view simulation results on MS-Windows.
+A schematics editor, SPICE simulators (Ngspice/Gnucap) and a waveform viewer on MS-Windows.
 
 This uses the following projects:
 

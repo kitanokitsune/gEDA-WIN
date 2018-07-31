@@ -8,7 +8,7 @@
 
 ## Overview
 [gEDAプロジェクト](http://www.geda-project.org/ )のWindows移植版です。
-Windows上で回路図作成、SPICEシミュレーション、結果波形の表示ができます。
+Windows上で回路図作成、SPICEシミュレーション(Ngspice/Gnucap)、結果波形の表示ができます。
 
 以下のプロジェクトのファイルを使用しています。
 
