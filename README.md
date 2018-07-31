@@ -4,8 +4,8 @@
 
 <img src="./gspiceui.png" width="600px" alt="gspiceui" title="gspiceui">
 
-<img src="./gschem.png" height="280px" alt="gschem" title="gschem">
-<img src="./waveviewer.png" height="280px" alt="waveviewer" title="waveviewer">
+<img src="./gschem.png" height="236px" alt="gschem" title="gschem">
+<img src="./waveviewer.png" height="236px" alt="waveviewer" title="waveviewer">
 
 ## Overview
 Windows port of [gEDA Project](http://www.geda-project.org/ ).
