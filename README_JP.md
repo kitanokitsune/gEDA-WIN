@@ -4,8 +4,7 @@
 
 <img src="./gspiceui.png" width="600px" alt="gspiceui" title="gspiceui">
 
-<img src="./gschem.png" height="236px" alt="gschem" title="gschem">
-<img src="./waveviewer.png" height="236px" alt="waveviewer" title="waveviewer">
+<img src="./gschem.png" height="236px" alt="gschem" title="gschem"><img src="./waveviewer.png" height="236px" alt="waveviewer" title="waveviewer">
 
 ## Overview
 [gEDAプロジェクト](http://www.geda-project.org/ )のWindows移植版です。
