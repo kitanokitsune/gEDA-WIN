@@ -1,6 +1,12 @@
 # gEDA for Windows plus gSpiceUI
 [日本語](./README_JP.md)
 
+
+<img src="./gspiceui.png" width="712px" alt="gspiceui" title="gspiceui">
+
+<img src="./gschem.png" height="280px" alt="gschem" title="gschem">
+<img src="./waveviewer.png" height="280px" alt="waveviewer" title="waveviewer">
+
 ## Overview
 Windows port of [gEDA Project](http://www.geda-project.org/ ).
 Draw schematics, do SPICE simulations and view simulation results on MS-Windows.
